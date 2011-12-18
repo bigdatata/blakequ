@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.Gravity;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -26,8 +28,8 @@ public class SeekBarTestActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.my_progress_bar);
-        bp = new ProgressButton(this);
+        setContentView(R.layout.progress);
+//        bp = new ProgressButton(this);
         
         /*bt = (ImageButton) findViewById(R.id.imgbt);
         
@@ -36,14 +38,23 @@ public class SeekBarTestActivity extends Activity {
         
         bt.setBackgroundDrawable(bp.getBackground());
         */
-        LinearLayout ll = new LinearLayout(this);
-        ll.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
-        ll.setPadding(20, 10, 0, 0);
-        ll.setGravity(Gravity.CENTER_HORIZONTAL);
-        bp.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+//        LinearLayout ll = new LinearLayout(this);
+//        ll.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+//        ll.setPadding(20, 10, 0, 0);
+//        ll.setGravity(Gravity.CENTER_HORIZONTAL);
+//        bp.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+        bp = (ProgressButton) findViewById(R.id.myButton);
+        bp.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				System.out.println("main onck");
+			}
+		});
         bp.setMax(50, 100);
-        ll.addView(bp);
-        setContentView(ll);
+//        ll.addView(bp);
+//        setContentView(ll);
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
 			
