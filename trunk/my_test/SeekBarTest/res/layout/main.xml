@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="#528B8B">
+    <SeekBar android:id="@android:id/progress"  
+        style="?android:attr/progressBarStyleHorizontal"  
+        android:progressDrawable="@drawable/seekbar_style"    
+        android:thumb="@drawable/thumb"  
+        android:layout_width="fill_parent"  
+        android:layout_height="wrap_content"  
+        android:paddingLeft="25dip"  
+        android:paddingRight="25dip"  
+        android:paddingBottom="4dip"/> 
+    <SeekBar android:id="@+id/seekbar2"  
+        style="?android:attr/progressBarStyleHorizontal"  
+        android:progressDrawable="@drawable/seekbar_style2"    
+        android:thumb="@drawable/thumb"  
+        android:layout_width="fill_parent"  
+        android:layout_height="60dip"  
+        android:paddingLeft="25dip"  
+        android:paddingRight="25dip"  
+        android:paddingBottom="4dip"/> 
+     <SeekBar android:id="@+id/seekbar3"  
+        style="?android:attr/progressBarStyleHorizontal"  
+        android:progressDrawable="@drawable/seekbar_style3"    
+        android:thumb="@drawable/thumb"  
+        android:layout_width="fill_parent"  
+        android:layout_height="wrap_content"  
+        android:paddingLeft="25dip"  
+        android:paddingRight="25dip"  
+        android:paddingBottom="4dip"/>
+     <LinearLayout 
+         android:orientation="horizontal"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content">
+         <ImageButton android:src="@drawable/pause_icon"
+             android:background="@drawable/button_left_gray_background"
+             android:layout_height="45dip"
+             android:layout_width="45dip"/>
+         <SeekBar android:id="@+id/seekbar4"  
+	        style="?android:attr/progressBarStyleHorizontal"  
+	        android:progressDrawable="@drawable/seekbar_style4"
+	        android:thumb="@drawable/thumb"    
+	        android:layout_width="160dip"  
+	        android:layout_height="60dip"  
+	        android:paddingLeft="1dip"  
+	        android:paddingRight="1dip"  
+	        android:paddingBottom="4dip"/>
+         <TextView
+             android:background="@drawable/button_right_gray_background"
+             android:layout_height="45dip"
+             android:layout_width="45dip"/>
+     </LinearLayout>
+     <RelativeLayout 
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:gravity="center_horizontal">
+         <ImageButton 
+             android:id="@+id/imgbt"
+             android:src="@drawable/pause_icon"
+             android:background="@drawable/button_left_gray_background"
+             android:layout_height="58dip"
+             android:layout_width="60dip"/>
+         <ProgressBar android:id="@+id/seekbar5"
+            android:paddingTop="1dip"
+            android:layout_toRightOf="@id/imgbt"
+	        style="?android:attr/progressBarStyleHorizontal"  
+	        android:progressDrawable="@drawable/seekbar_style4"  
+	        android:layout_width="160dip"  
+	        android:layout_height="61dip"  
+	        android:paddingLeft="1dip"  
+	        android:paddingRight="1dip"  
+	        android:paddingBottom="4dip"/>
+         <TextView
+             android:layout_alignTop="@id/imgbt"
+             android:layout_toRightOf="@id/seekbar5"
+             android:background="@drawable/button_right_gray_background"
+             android:layout_height="58dip"
+             android:layout_width="60dip"/>
+     </RelativeLayout>
+</LinearLayout>
