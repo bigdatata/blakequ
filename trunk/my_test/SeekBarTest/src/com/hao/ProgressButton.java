@@ -12,8 +12,10 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.MeasureSpec;
+import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,12 +28,11 @@ public class ProgressButton extends View{
 	private int max = 0, progress = 0, secondProgress = 0;
 	private int perLen = 0;
 	private OnProgressChanged mOnProgressChanged;
-	private View.OnClickListener onClickListener;
+	private boolean isPressed = false;
 
 	public ProgressButton(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
-		this.mContext = context;
 		init();
 	}
 	
@@ -46,14 +47,14 @@ public class ProgressButton extends View{
 	}
 	
 	private void init(){
-		begin = drawableToBitmap(mContext.getResources().getDrawable(R.drawable.rectangle_left_yellow));
-		bm_gray =  drawableToBitmap(mContext.getResources().getDrawable(R.drawable.rectangle_gray));
-		bm_yellow =  drawableToBitmap(mContext.getResources().getDrawable(R.drawable.rectangle_yellow));
-		bm_second =  drawableToBitmap(mContext.getResources().getDrawable(R.drawable.rectangle_second_yellow));
-		end_gray =  drawableToBitmap(mContext.getResources().getDrawable( R.drawable.rectangle_right_gray));
-		end_yellow =  drawableToBitmap(mContext.getResources().getDrawable(R.drawable.rectangle_right_yellow));
-		pressedImg = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.pause_button_default);
-		defaultImg = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.pause_button_pressed);
+		begin = drawableToBitmap(getResources().getDrawable(R.drawable.rectangle_left_yellow));
+		bm_gray =  drawableToBitmap(getResources().getDrawable(R.drawable.rectangle_gray));
+		bm_yellow =  drawableToBitmap(getResources().getDrawable(R.drawable.rectangle_yellow));
+		bm_second =  drawableToBitmap(getResources().getDrawable(R.drawable.rectangle_second_yellow));
+		end_gray =  drawableToBitmap(getResources().getDrawable( R.drawable.rectangle_right_gray));
+		end_yellow =  drawableToBitmap(getResources().getDrawable(R.drawable.rectangle_right_yellow));
+		pressedImg = BitmapFactory.decodeResource(getResources(), R.drawable.pause_button_default);
+		defaultImg = BitmapFactory.decodeResource(getResources(), R.drawable.pause_button_pressed);
 		bitmapHeight = begin.getHeight();
 		bitmapWidth = begin.getWidth();
 		btWidth = pressedImg.getWidth();
@@ -106,20 +107,23 @@ public class ProgressButton extends View{
 		canvas.drawBitmap(pressedImg, new Rect(0, 0, btWidth, btHeight), 
 				new Rect((end-btWidth)/2, 0, (end+btWidth)/2, bitmapHeight), null);
 	}
-	
-	public void setOnClickListener(OnClickListener onClickListener) {
-		this.onClickListener = onClickListener;
-	}
 
-	View.OnClickListener mOnClickListener = new View.OnClickListener() {
-		
-		@Override
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			if(onClickListener != null) onClickListener.onClick(v);
-			
+
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		// TODO Auto-generated method stub
+//		//在这里因为要换按钮，故而需要更新整个视图
+		if(event.getAction() == MotionEvent.ACTION_DOWN){
+			System.out.println("down");
+			isPressed = true;
+			invalidate();
+		}else if(event.getAction() == MotionEvent.ACTION_UP){
+			System.out.println("up");
+			isPressed = false;
+			invalidate();
 		}
-	};
+		return true;
+	}
 
 	/**
 	 * 
@@ -145,7 +149,7 @@ public class ProgressButton extends View{
 			mOnProgressChanged.onProgressUpdated();
 		}
 		this.progress = progress;
-		requestLayout();
+//		requestLayout();
 		invalidate();
 	}
 	
@@ -164,7 +168,7 @@ public class ProgressButton extends View{
 			mOnProgressChanged.onSecondProgressUpdated();
 		}
 		this.secondProgress = secondProgress;
-		requestLayout();
+//		requestLayout();
 		invalidate();
 	}
 	
@@ -181,6 +185,5 @@ public class ProgressButton extends View{
 		void onProgressUpdated();
 		void onSecondProgressUpdated();
 	}
-    
 
 }
