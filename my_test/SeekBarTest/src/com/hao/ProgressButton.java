@@ -21,14 +21,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ProgressButton extends View{
-	private Context mContext;
 	private Bitmap begin , bm_gray, bm_yellow, bm_second, end_gray, end_yellow;
-	private Bitmap pressedImg, defaultImg;
+	private Bitmap pausePressedImg;
+	private Bitmap playPressedImg;
 	private int bitmapWidth = 0 , bitmapHeight = 0, btWidth = 0, btHeight = 0;  
 	private int max = 0, progress = 0, secondProgress = 0;
 	private int perLen = 0;
 	private OnProgressChanged mOnProgressChanged;
-	private boolean isPressed = false;
+	private boolean isPlaying = false;
 
 	public ProgressButton(Context context) {
 		super(context);
@@ -53,12 +53,12 @@ public class ProgressButton extends View{
 		bm_second =  drawableToBitmap(getResources().getDrawable(R.drawable.rectangle_second_yellow));
 		end_gray =  drawableToBitmap(getResources().getDrawable( R.drawable.rectangle_right_gray));
 		end_yellow =  drawableToBitmap(getResources().getDrawable(R.drawable.rectangle_right_yellow));
-		pressedImg = BitmapFactory.decodeResource(getResources(), R.drawable.pause_button_default);
-		defaultImg = BitmapFactory.decodeResource(getResources(), R.drawable.pause_button_pressed);
+		pausePressedImg = BitmapFactory.decodeResource(getResources(), R.drawable.pause_button_pressed);
+		playPressedImg = BitmapFactory.decodeResource(getResources(), R.drawable.play_button_pressed);
 		bitmapHeight = begin.getHeight();
 		bitmapWidth = begin.getWidth();
-		btWidth = pressedImg.getWidth();
-		btHeight = pressedImg.getHeight();
+		btWidth = pausePressedImg.getWidth();
+		btHeight = pausePressedImg.getHeight();
 	}
 	
 	public static Bitmap drawableToBitmap(Drawable drawable) {
@@ -79,7 +79,8 @@ public class ProgressButton extends View{
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		// TODO Auto-generated method stub
 		Log.e("*******", "onMeasure");
-		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+		setMeasuredDimension(measureWidth(widthMeasureSpec),
+                measureHeight(heightMeasureSpec));
 	}
 
 	@Override
@@ -103,9 +104,14 @@ public class ProgressButton extends View{
 		}
 		canvas.drawBitmap(end_gray, new Rect(0,0,5,bitmapHeight), 
 				new Rect(end, 0, end+5, bitmapHeight), null);
-		
-		canvas.drawBitmap(pressedImg, new Rect(0, 0, btWidth, btHeight), 
-				new Rect((end-btWidth)/2, 0, (end+btWidth)/2, bitmapHeight), null);
+		if(!isPlaying) {
+			canvas.drawBitmap(pausePressedImg, new Rect(0, 0, btWidth, btHeight), 
+					new Rect((end-btWidth)/2, 0, (end+btWidth)/2, bitmapHeight), null);
+		}else{
+			canvas.drawBitmap(playPressedImg, new Rect(0, 0, btWidth, btHeight), 
+					new Rect((end-btWidth)/2, 0, (end+btWidth)/2, bitmapHeight), null);
+		}
+		super.onDraw(canvas);
 	}
 
 
@@ -114,50 +120,67 @@ public class ProgressButton extends View{
 		// TODO Auto-generated method stub
 //		//在这里因为要换按钮，故而需要更新整个视图
 		if(event.getAction() == MotionEvent.ACTION_DOWN){
-			System.out.println("down");
-			isPressed = true;
-			invalidate();
-		}else if(event.getAction() == MotionEvent.ACTION_UP){
-			System.out.println("up");
-			isPressed = false;
+			onClickListener.onClick(this);
 			invalidate();
 		}
 		return true;
 	}
 	
-	
-	
-	@Override
-	protected void drawableStateChanged() {
-		// TODO Auto-generated method stub
-		super.drawableStateChanged();
+	/**
+	 * 这个方法必须设置，当播放的时候
+	 * @param isPlaying
+	 */
+	public void setStateChanged(boolean isPlaying){
+		this.isPlaying = isPlaying;
 	}
+	
 
-	private int resolveAdjustedSize(int desiredSize, int maxSize, int measureSpec) {
-		int result = desiredSize;
-		int specMode = MeasureSpec.getMode(measureSpec);
-		int specSize = MeasureSpec.getSize(measureSpec);
-		switch (specMode) {
-		case MeasureSpec.UNSPECIFIED:
-			/*
-			 * Parent says we can be as big as we want. Just don't be larger
-			 * than max size imposed on ourselves.
-			 */
-			result = Math.min(desiredSize, maxSize);
-			break;
-		case MeasureSpec.AT_MOST:
-			// Parent says we can be as big as we want, up to specSize.
-			// Don't be larger than specSize, and don't be larger than
-			// the max size imposed on ourselves.
-			result = Math.min(Math.min(desiredSize, specSize), maxSize);
-			break;
-		case MeasureSpec.EXACTLY:
-			// No choice. Do what we are told.
-			result = specSize;
-			break;
-		}
-		return result;
-	}
+	/**
+     * Determines the width of this view
+     * @param measureSpec A measureSpec packed into an int
+     * @return The width of the view, honoring constraints from measureSpec
+     */
+    private int measureWidth(int measureSpec) {
+    	int result = 0;
+        int specMode = MeasureSpec.getMode(measureSpec);
+        int specSize = MeasureSpec.getSize(measureSpec);
+
+        if (specMode == MeasureSpec.EXACTLY) {
+            // We were told how big to be
+            result = specSize;
+        } else {
+        	result = max*perLen + getPaddingLeft() + getPaddingRight();
+        	if (specMode == MeasureSpec.AT_MOST) {
+                // Respect AT_MOST value if that was what is called for by measureSpec
+                result = Math.min(result, specSize);
+            }
+        }
+        return result;
+    }
+    
+    /**
+     * Determines the height of this view
+     * @param measureSpec A measureSpec packed into an int
+     * @return The height of the view, honoring constraints from measureSpec
+     */
+    private int measureHeight(int measureSpec) {
+        int result = 0;
+        int specMode = MeasureSpec.getMode(measureSpec);
+        int specSize = MeasureSpec.getSize(measureSpec);
+
+        if (specMode == MeasureSpec.EXACTLY) {
+            // We were told how big to be
+            result = specSize;
+        } else {
+            // Measure the text (beware: ascent is a negative number)
+            result = (int) getPaddingTop() + getPaddingBottom() + bitmapHeight;
+            if (specMode == MeasureSpec.AT_MOST) {
+                // Respect AT_MOST value if that was what is called for by measureSpec
+                result = Math.min(result, specSize);
+            }
+        }
+        return result;
+    }
 
 	/**
 	 * 
@@ -202,7 +225,6 @@ public class ProgressButton extends View{
 			mOnProgressChanged.onSecondProgressUpdated();
 		}
 		this.secondProgress = secondProgress;
-//		requestLayout();
 		invalidate();
 	}
 	
@@ -219,5 +241,14 @@ public class ProgressButton extends View{
 		void onProgressUpdated();
 		void onSecondProgressUpdated();
 	}
+	
+	@Override
+	public void setOnClickListener(OnClickListener l) {
+		// TODO Auto-generated method stub
+		if(l != null) onClickListener = l;
+		super.setOnClickListener(l);
+	}
+
+	private View.OnClickListener onClickListener;
 
 }
