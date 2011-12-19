@@ -21,14 +21,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ProgressButton extends View{
-	private Bitmap begin , bm_gray, bm_yellow, bm_second, end_gray, end_yellow;
+	private Bitmap begin , bm_gray, bm_yellow, bm_second, end_gray, end_yellow, line,begin_gray;
 	private Bitmap pausePressedImg;
 	private Bitmap playPressedImg;
 	private int bitmapWidth = 0 , bitmapHeight = 0, btWidth = 0, btHeight = 0;  
-	private int max = 0, progress = 0, secondProgress = 0;
-	private int perLen = 0;
+	private int progress = 0, secondProgress = 0;
+	private double perLen = 0, max = 0, maxSize = 0;
 	private OnProgressChanged mOnProgressChanged;
 	private boolean isPlaying = false;
+	private Paint mTextPaint;
+	private String time;
 
 	public ProgressButton(Context context) {
 		super(context);
@@ -48,17 +50,24 @@ public class ProgressButton extends View{
 	
 	private void init(){
 		begin = drawableToBitmap(getResources().getDrawable(R.drawable.rectangle_left_yellow));
+		begin_gray = drawableToBitmap(getResources().getDrawable(R.drawable.rectangle_left_gray));
 		bm_gray =  drawableToBitmap(getResources().getDrawable(R.drawable.rectangle_gray));
 		bm_yellow =  drawableToBitmap(getResources().getDrawable(R.drawable.rectangle_yellow));
 		bm_second =  drawableToBitmap(getResources().getDrawable(R.drawable.rectangle_second_yellow));
 		end_gray =  drawableToBitmap(getResources().getDrawable( R.drawable.rectangle_right_gray));
 		end_yellow =  drawableToBitmap(getResources().getDrawable(R.drawable.rectangle_right_yellow));
+		line = drawableToBitmap(getResources().getDrawable(R.drawable.rectangle_line));
 		pausePressedImg = BitmapFactory.decodeResource(getResources(), R.drawable.pause_button_pressed);
 		playPressedImg = BitmapFactory.decodeResource(getResources(), R.drawable.play_button_pressed);
 		bitmapHeight = begin.getHeight();
 		bitmapWidth = begin.getWidth();
 		btWidth = pausePressedImg.getWidth();
 		btHeight = pausePressedImg.getHeight();
+		mTextPaint = new Paint();
+        mTextPaint.setAntiAlias(true);
+        mTextPaint.setTextSize(14);
+        mTextPaint.setColor(Color.GREEN);
+        setPadding(3, 3, 3, 3);
 	}
 	
 	public static Bitmap drawableToBitmap(Drawable drawable) {
@@ -81,6 +90,7 @@ public class ProgressButton extends View{
 		Log.e("*******", "onMeasure");
 		setMeasuredDimension(measureWidth(widthMeasureSpec),
                 measureHeight(heightMeasureSpec));
+		perLen = maxSize/max; 
 	}
 
 	@Override
@@ -88,9 +98,15 @@ public class ProgressButton extends View{
 		// TODO Auto-generated method stub
 		Log.e("*******", "onDraw");
 		
-		int middle1 = progress*perLen, middle2 = secondProgress*perLen ,end = max*perLen;
-		canvas.drawBitmap(begin, new Rect(0,0,bitmapWidth,bitmapHeight), 
-					new Rect(0, 0, bitmapWidth, bitmapHeight), null);
+		int middle1 = (int) (progress*perLen), middle2 = (int) (secondProgress*perLen) ,end = (int) maxSize-5;
+//		System.out.println("middle1:"+middle1+"middle2:"+middle2+"end:"+end);
+		
+		canvas.drawBitmap(begin_gray, new Rect(0,0,bitmapWidth,bitmapHeight), 
+				new Rect(0, 0, bitmapWidth, bitmapHeight), null);
+		if(middle1 > 0 || middle2 > 0){
+			canvas.drawBitmap(begin, new Rect(0,0,bitmapWidth,bitmapHeight), 
+						new Rect(0, 0, bitmapWidth, bitmapHeight), null);
+		}
 		canvas.drawBitmap(bm_yellow, new Rect(0,0,middle1-bitmapWidth,bitmapHeight), 
 				    new Rect(bitmapWidth, 0, middle1, bitmapHeight), null);
 		if(secondProgress != 0 && secondProgress > progress){
@@ -102,14 +118,29 @@ public class ProgressButton extends View{
 			canvas.drawBitmap(bm_gray, new Rect(0,0,end-middle1,bitmapHeight), 
 					new Rect(middle1, 0, end, bitmapHeight), null);
 		}
-		canvas.drawBitmap(end_gray, new Rect(0,0,5,bitmapHeight), 
-				new Rect(end, 0, end+5, bitmapHeight), null);
 		if(!isPlaying) {
 			canvas.drawBitmap(pausePressedImg, new Rect(0, 0, btWidth, btHeight), 
-					new Rect((end-btWidth)/2, 0, (end+btWidth)/2, bitmapHeight), null);
+					new Rect(0, 0, btWidth, bitmapHeight), null);
 		}else{
 			canvas.drawBitmap(playPressedImg, new Rect(0, 0, btWidth, btHeight), 
-					new Rect((end-btWidth)/2, 0, (end+btWidth)/2, bitmapHeight), null);
+					new Rect(0, 0, btWidth, bitmapHeight), null);
+		}
+		canvas.drawBitmap(line, new Rect(0, 0, 2, bitmapHeight), 
+				new Rect(btWidth, 0, btWidth+2, bitmapHeight), null);
+		if(time.length() == 5){
+			canvas.drawBitmap(line, new Rect(0, 0, 2, bitmapHeight), 
+					new Rect(end - 50, 0, end-48, bitmapHeight), null);
+			canvas.drawText("-"+time, end-46, bitmapHeight/2+5, mTextPaint);
+		}else{
+			canvas.drawBitmap(line, new Rect(0, 0, 2, bitmapHeight), 
+					new Rect(end - 60, 0, end-58, bitmapHeight), null);
+			canvas.drawText("-"+time, end-56, bitmapHeight/2+5, mTextPaint);
+		}
+		canvas.drawBitmap(end_gray, new Rect(0,0,5,bitmapHeight), 
+				new Rect(end, 0, end+5, bitmapHeight), null);
+		if(middle2 >= end || middle1 >= end){
+			canvas.drawBitmap(end_yellow, new Rect(0,0,5,bitmapHeight), 
+					new Rect(end, 0, end+5, bitmapHeight), null);
 		}
 		super.onDraw(canvas);
 	}
@@ -118,7 +149,7 @@ public class ProgressButton extends View{
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		// TODO Auto-generated method stub
-//		//在这里因为要换按钮，故而需要更新整个视图
+		//在这里因为要换按钮，故而需要更新整个视图
 		if(event.getAction() == MotionEvent.ACTION_DOWN){
 			onClickListener.onClick(this);
 			invalidate();
@@ -144,17 +175,18 @@ public class ProgressButton extends View{
     	int result = 0;
         int specMode = MeasureSpec.getMode(measureSpec);
         int specSize = MeasureSpec.getSize(measureSpec);
-
         if (specMode == MeasureSpec.EXACTLY) {
             // We were told how big to be
             result = specSize;
         } else {
-        	result = max*perLen + getPaddingLeft() + getPaddingRight();
+        	result = (int) ((int)max*perLen + getPaddingLeft() + getPaddingRight());
         	if (specMode == MeasureSpec.AT_MOST) {
                 // Respect AT_MOST value if that was what is called for by measureSpec
                 result = Math.min(result, specSize);
             }
         }
+        System.out.println("width:"+result);
+        maxSize = result;
         return result;
     }
     
@@ -179,16 +211,35 @@ public class ProgressButton extends View{
                 result = Math.min(result, specSize);
             }
         }
+        System.out.println("Height:"+result);
         return result;
     }
+    
+    /**
+	 * set the time
+	 * @param currentTime 剩余时间
+	 * @param totalTime 总播放时间
+	 */
+	public void setTime(int currentTime, int totalTime){
+		int time = totalTime - currentTime;
+		time/=1000;
+		int minute = time/60;
+		int hour = minute/60;
+		int second = time%60;
+		minute %= 60;
+		if(hour == 0){
+			this.time = String.format("%02d:%02d", minute,second);
+		}else{
+			this.time = String.format("%02d:%02d:%02d", hour, minute,second);
+		}
+	}
 
 	/**
 	 * 
 	 * @param viewWidth 组件的宽度
 	 */
-	public void setMax(int max, int viewWidth){
+	public void setMax(int max){
 		this.max = max;
-		perLen = viewWidth/max;
 	}
 	
 	/**
@@ -197,7 +248,7 @@ public class ProgressButton extends View{
 	 */
 	public void setProgress(int progress){
 		if(progress>max){
-			progress = max;
+			progress = (int) max;
 		}
 		else if(progress<0){
 			progress = 0;
@@ -206,7 +257,6 @@ public class ProgressButton extends View{
 			mOnProgressChanged.onProgressUpdated();
 		}
 		this.progress = progress;
-//		requestLayout();
 		invalidate();
 	}
 	
@@ -216,7 +266,7 @@ public class ProgressButton extends View{
 	 */
 	public void setSecondProgress(int secondProgress){
 		if(secondProgress>max){
-			secondProgress = max;
+			secondProgress = (int) max;
 		}
 		else if(secondProgress<0){
 			secondProgress = 0;
