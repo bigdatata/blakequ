@@ -20,7 +20,6 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
 public class SeekBarTestActivity extends Activity {
-	SeekBar mySB;
 	ProgressButton bp;
 	int time = 60000 , currentTime = 0;
 	boolean flag = true;

@@ -11,13 +11,14 @@
         android:label="@string/app_name" >
         <activity
             android:label="@string/app_name"
-            android:name=".SeekBarTestActivity" >
+            android:name=".mp3.AudioPlayerActivity" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name=".mp3.AudioService"></service>
     </application>
 
 </manifest>
