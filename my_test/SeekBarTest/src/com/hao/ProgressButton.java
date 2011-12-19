@@ -124,6 +124,40 @@ public class ProgressButton extends View{
 		}
 		return true;
 	}
+	
+	
+	
+	@Override
+	protected void drawableStateChanged() {
+		// TODO Auto-generated method stub
+		super.drawableStateChanged();
+	}
+
+	private int resolveAdjustedSize(int desiredSize, int maxSize, int measureSpec) {
+		int result = desiredSize;
+		int specMode = MeasureSpec.getMode(measureSpec);
+		int specSize = MeasureSpec.getSize(measureSpec);
+		switch (specMode) {
+		case MeasureSpec.UNSPECIFIED:
+			/*
+			 * Parent says we can be as big as we want. Just don't be larger
+			 * than max size imposed on ourselves.
+			 */
+			result = Math.min(desiredSize, maxSize);
+			break;
+		case MeasureSpec.AT_MOST:
+			// Parent says we can be as big as we want, up to specSize.
+			// Don't be larger than specSize, and don't be larger than
+			// the max size imposed on ourselves.
+			result = Math.min(Math.min(desiredSize, specSize), maxSize);
+			break;
+		case MeasureSpec.EXACTLY:
+			// No choice. Do what we are told.
+			result = specSize;
+			break;
+		}
+		return result;
+	}
 
 	/**
 	 * 
