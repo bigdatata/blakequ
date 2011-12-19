@@ -21,40 +21,26 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 
 public class SeekBarTestActivity extends Activity {
 	SeekBar mySB;
-	ImageButton bt;
 	ProgressButton bp;
 	int len = 0;
+	boolean flag = true;
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.progress);
-//        bp = new ProgressButton(this);
-        
-        /*bt = (ImageButton) findViewById(R.id.imgbt);
-        
-        bp.setProgress(23);
-        bp.setMax(50, bt.getWidth());
-        
-        bt.setBackgroundDrawable(bp.getBackground());
-        */
-//        LinearLayout ll = new LinearLayout(this);
-//        ll.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
-//        ll.setPadding(20, 10, 0, 0);
-//        ll.setGravity(Gravity.CENTER_HORIZONTAL);
-//        bp.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
-        bp = (ProgressButton) findViewById(R.id.myButton);
+        bp = (ProgressButton) findViewById(R.id.pb1);
         bp.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				System.out.println("main onck");
+				bp.setStateChanged(flag);
+				flag = !flag;
 			}
 		});
         bp.setMax(50, 100);
-//        ll.addView(bp);
-//        setContentView(ll);
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
 			

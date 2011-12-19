@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:gravity="center_horizontal"
-    android:paddingTop="5dip"
-    android:orientation="vertical">
-    <com.hao.ProgressButton
-        android:layout_width="100dp"
-        android:layout_height="45dp"
-        android:id="@+id/myButton"
-        android:src="@drawable/button_left_gray_background"
-        android:background="@drawable/pause_icon"/>
-</LinearLayout>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    	android:paddingTop="5dip"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:gravity="center_horizontal">
+         <com.hao.ProgressButton
+            android:id="@+id/pb1"
+	        android:layout_width="45dp"
+	        android:layout_height="45dp"
+	        android:background="@drawable/button_left_gray_background"/>
+         <ProgressBar android:id="@+id/seekbar5"
+            android:paddingTop="1dip"
+            android:layout_toRightOf="@id/pb1"
+	        style="?android:attr/progressBarStyleHorizontal"  
+	        android:progressDrawable="@drawable/seekbar_style4"   
+	        android:layout_width="170dip"  
+	        android:layout_height="48dip"  
+	        android:paddingLeft="1dip"  
+	        android:paddingRight="1dip"  
+	        android:paddingBottom="4dip"/>
+         <com.hao.ProgressButton
+             android:id="@+id/pb2"
+             android:layout_alignTop="@id/pb1"
+             android:layout_toRightOf="@id/seekbar5"
+             android:background="@drawable/button_right_gray_background"
+             android:layout_height="45dip"
+             android:layout_width="55dip"/>
+</RelativeLayout>    
