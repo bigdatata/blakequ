@@ -22,14 +22,14 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 public class SeekBarTestActivity extends Activity {
 	SeekBar mySB;
 	ProgressButton bp;
-	int len = 0;
+	int time = 60000 , currentTime = 0;
 	boolean flag = true;
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.progress);
-        bp = (ProgressButton) findViewById(R.id.pb1);
+        setContentView(R.layout.my_progress_bar);
+        bp = (ProgressButton) findViewById(R.id.pbt);
         bp.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -40,7 +40,7 @@ public class SeekBarTestActivity extends Activity {
 				flag = !flag;
 			}
 		});
-        bp.setMax(50, 100);
+        bp.setMax(60000);
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
 			
@@ -59,9 +59,10 @@ public class SeekBarTestActivity extends Activity {
 		@Override
 		public void handleMessage(Message msg) {
 			// TODO Auto-generated method stub
-			len+=3;
-			bp.setProgress(len);
-			bp.setSecondProgress(len+4);
+			currentTime +=1000;
+			bp.setProgress(currentTime);
+			bp.setSecondProgress(currentTime+1000);
+			bp.setTime(currentTime, time);
 		}
     	
     };
