@@ -99,37 +99,14 @@ public class ProgressButton extends View{
 		// TODO Auto-generated method stub
 		Log.e("*******", "onDraw");
 		int middle1 = (int) (progress*perLen), middle2 = (int) (secondProgress*perLen) ,end = (int) maxSize-4;
-		if(progress == 0 && secondProgress == 0){
-			//draw background
-			canvas.drawBitmap(begin_gray, new Rect(0,0,bitmapWidth,bitmapHeight), 
-									new Rect(0, 0, bitmapWidth, bitmapHeight), null);
-			canvas.drawBitmap(bm_gray, new Rect(0,0,end-middle1,bitmapHeight), 
-					new Rect(bitmapWidth, 0, end, bitmapHeight), null);
-			canvas.drawBitmap(end_gray, new Rect(0,0,4,bitmapHeight), 
-					new Rect(end, 0, end+4, bitmapHeight), null);
-			//draw button and line
-			canvas.drawBitmap(playPressedImg, new Rect(0, 0, btWidth, btHeight), 
-					new Rect(0, 0, btWidth, bitmapHeight), null);
-			canvas.drawBitmap(line, new Rect(0, 0, 2, bitmapHeight), 
-					new Rect(btWidth, 0, btWidth+2, bitmapHeight), null);
-			//draw time and line
-			if(time.length() == 5){
-				canvas.drawBitmap(line, new Rect(0, 0, 2, bitmapHeight), 
-						new Rect(end - 50, 0, end-48, bitmapHeight), null);
-				canvas.drawText("-"+time, end-45, bitmapHeight/2+5, mTextPaint);
-			}else{
-				canvas.drawBitmap(line, new Rect(0, 0, 2, bitmapHeight), 
-						new Rect(end - 60, 0, end-58, bitmapHeight), null);
-				canvas.drawText("-"+time, end-55, bitmapHeight/2+5, mTextPaint);
-			}
-		}else{
+		if(progress >0 || secondProgress >3){
 			//begin
 			canvas.drawBitmap(begin, new Rect(0,0,bitmapWidth,bitmapHeight), 
 						new Rect(0, 0, bitmapWidth, bitmapHeight), null);
 			canvas.drawBitmap(bm_yellow, new Rect(0,0,middle1-bitmapWidth,bitmapHeight), 
 					    new Rect(bitmapWidth, 0, middle1, bitmapHeight), null);
 			//middle
-			if(secondProgress != 0 && secondProgress > progress){
+			if(secondProgress > 3 && secondProgress > progress){
 				canvas.drawBitmap(bm_second, new Rect(0,0,bitmapWidth,bitmapHeight), 
 						new Rect(middle1, 0, middle2, bitmapHeight), null);
 				canvas.drawBitmap(bm_gray, new Rect(0,0,bitmapWidth,bitmapHeight), 
@@ -141,7 +118,7 @@ public class ProgressButton extends View{
 			//end
 			canvas.drawBitmap(end_gray, new Rect(0,0,4,bitmapHeight), 
 					new Rect(end, 0, end+4, bitmapHeight), null);
-			if(middle2 >= end || middle1 >= end){
+			if(middle1 >= end){
 				canvas.drawBitmap(end_yellow, new Rect(0,0,4,bitmapHeight), 
 						new Rect(end, 0, end+4, bitmapHeight), null);
 			}
@@ -165,6 +142,39 @@ public class ProgressButton extends View{
 						new Rect(end - 60, 0, end-58, bitmapHeight), null);
 				canvas.drawText("-"+time, end-55, bitmapHeight/2+5, mTextPaint);
 			}
+			//draw notice
+			if((isPlaying && secondProgress > 0 && secondProgress <= 3) || progress < 3){
+				canvas.drawText("正在缓冲...", end*2/5, bitmapHeight/2+5, mTextPaint);
+			}else{
+				canvas.drawText("正在播放", end*2/5, bitmapHeight/2+5, mTextPaint);
+			}
+		}else{
+			//draw background
+			canvas.drawBitmap(begin_gray, new Rect(0,0,bitmapWidth,bitmapHeight), 
+									new Rect(0, 0, bitmapWidth, bitmapHeight), null);
+			canvas.drawBitmap(bm_gray, new Rect(0,0,end-middle1,bitmapHeight), 
+					new Rect(bitmapWidth, 0, end, bitmapHeight), null);
+			canvas.drawBitmap(end_gray, new Rect(0,0,4,bitmapHeight), 
+					new Rect(end, 0, end+4, bitmapHeight), null);
+			//draw button and line
+			canvas.drawBitmap(playPressedImg, new Rect(0, 0, btWidth, btHeight), 
+					new Rect(0, 0, btWidth, bitmapHeight), null);
+			canvas.drawBitmap(line, new Rect(0, 0, 2, bitmapHeight), 
+					new Rect(btWidth, 0, btWidth+2, bitmapHeight), null);
+			//draw time and line
+			if(time.length() == 5){
+				canvas.drawBitmap(line, new Rect(0, 0, 2, bitmapHeight), 
+						new Rect(end - 50, 0, end-48, bitmapHeight), null);
+				canvas.drawText("-"+time, end-45, bitmapHeight/2+5, mTextPaint);
+			}else{
+				canvas.drawBitmap(line, new Rect(0, 0, 2, bitmapHeight), 
+						new Rect(end - 60, 0, end-58, bitmapHeight), null);
+				canvas.drawText("-"+time, end-55, bitmapHeight/2+5, mTextPaint);
+			}
+			//draw notice
+			if(isPlaying){
+				canvas.drawText("正在缓冲...", end*2/5, bitmapHeight/2+5, mTextPaint);
+			}
 		}
 		super.onDraw(canvas);
 	}
@@ -187,6 +197,7 @@ public class ProgressButton extends View{
 	 */
 	public void setStateChanged(boolean isPlaying){
 		this.isPlaying = isPlaying;
+		invalidate();
 	}
 	
 	public void setTextColor(int color){
