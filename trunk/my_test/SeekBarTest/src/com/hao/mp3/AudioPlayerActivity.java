@@ -39,8 +39,8 @@ public class AudioPlayerActivity extends Activity {
 				bp.setStateChanged(flag);
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(AudioPlayerActivity.this, AudioService.class);
-//				intent.putExtra(AudioService.PATH, "http://219.138.125.22/myweb/mp3/CMP3/JH19.MP3");
-				intent.putExtra(AudioService.PATH, "/sdcard/download/I cry.mp3");
+				intent.putExtra(AudioService.PATH, "http://219.138.125.22/myweb/mp3/CMP3/JH19.MP3");
+//				intent.putExtra(AudioService.PATH, "/sdcard/download/I cry.mp3");
 				intent.putExtra(AudioService.MSG, AudioService.PLAY_MSG);
 				startService(intent);
 				flag = !flag;
