@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.bjpowernode.drp.domain.AbstractDataDict" table="t_data_dict">
+		<id name="id">
+			<generator class="assigned"/>
+		</id>
+		<discriminator type="string" column="category"/>
+		<property name="name"/>
+		<subclass name="com.bjpowernode.drp.domain.ItemCategory" discriminator-value="A"/>
+		<subclass name="com.bjpowernode.drp.domain.ItemUnit" discriminator-value="B"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="loginForm" type="com.bjpowernode.drp.web.forms.LoginActionForm"/>
+		<form-bean name="itemForm" type="com.bjpowernode.drp.web.forms.ItemActionForm"/>
+	</form-beans>
+	
+	<global-exceptions>
+		<exception key="errors.detail" type="com.bjpowernode.drp.AppException" path="/error.jsp"/>
+	</global-exceptions>
+	
+	<global-forwards>
+		<forward name="index" path="/index.jsp" redirect="true"/>
+	</global-forwards>
+	
+	<action-mappings>
+		
+		<action path="/login"
+				type="org.springframework.web.struts.DelegatingActionProxy"
+				name="loginForm"
+				scope="request"
+		>	
+			<forward name="success" path="/item.do" redirect="true"/>
+		</action>
+	
+		<action path="/item"
+				type="org.springframework.web.struts.DelegatingActionProxy"
+				name="itemForm"
+				scope="request"
+				parameter="command"
+		>
+			<forward name="list" path="/WEB-INF/jsp/item_maint.jsp"/>
+			<forward name="show_add" path="/WEB-INF/jsp/item_add.jsp"/>
+			<forward name="item_index" path="/item.do" redirect="true"/>
+			<forward name="show_modify" path="/WEB-INF/jsp/item_modify.jsp"/>
+			<forward name="show_detail" path="/WEB-INF/jsp/item_detail.jsp"/>
+			<forward name="show_upload" path="/WEB-INF/jsp/item_upload.jsp"/>
+		</action>
+	</action-mappings>
+    <message-resources parameter="MessageResources" />
+</struts-config>
