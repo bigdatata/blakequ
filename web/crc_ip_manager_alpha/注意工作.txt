@@ -1,0 +1,70 @@
+1.station删除的时候级联删除工作
+
+station删除就要删除对于的computer,router-->port,segment
+station添加就要添加对应的computer,router-->port,关键是segment添加的时候有两条线段
+
+Router
+
+/**
+	 * 级联删除路由器所对应的路由器端口
+	 * @param router
+	 */
+	void deletePortFromRouter(E entity);
+	
+	public void deletePortFromRouter(Router entity) {
+		// TODO Auto-generated method stub
+		log.debug("delete port from router "+this.getClass().getName());
+		try {
+			Iterator i = entity.getPorts().iterator();
+			while(i.hasNext()){
+				Port p = (Port) i.next();
+				portService.delete(p.getId());
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("delete port from router fail! "+this.getClass().getName(), e);
+			throw new AppException("删除路由器对应的端口失败");
+		}
+	}
+	
+	
+	Station
+	
+	/**
+	 * 删除站点电脑
+	 * @param entity
+	 */
+	void deleteComputerFromStation(E entity);
+	
+	/**
+	 * 删除站点路由器
+	 * @param entity
+	 */
+	void deleteRouterFromStation(E entity);
+	
+	/**
+	 * 删除站点所关联的线段
+	 * @param entity
+	 */
+	void deleteSegmentFromStation(E entity);
+	
+	/**
+	 * 如果增加站点则更新线段
+	 * @param entity
+	 */
+	void updateSegmentByStation(E entity);
+	
+	//注：要想删除Computer和Router就必须先把它对于的ComputerLog和RouterLog删除
+	然后才能删除。而且要先删除它们对于的Station，否则也不能删除
+	station--->computer,router--->log
+	Computer c = (Computer) computerService.get(1);
+		Iterator i = c.getComputerLogs().iterator();
+		while(i.hasNext()){
+			ComputerLog cl = (ComputerLog) i.next();
+			cls.delete(cl.getId());
+		}
+		computerService.delete(1);
+		
+		
+		//**********************
+		专门对表进行设置inverse和cascade实验*************************

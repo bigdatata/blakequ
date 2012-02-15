@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xmlns:aop="http://www.springframework.org/schema/aop"
+	     xmlns:tx="http://www.springframework.org/schema/tx"
+	     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+           
+           <bean id="userService" class="cm.commons.sys.service.impl.UserServiceImpl">
+           		<property name="userDao" ref="userDao"/>
+           </bean>
+           
+           <bean id="computerLogService" class="cm.commons.sys.service.impl.ComputerLogServiceImpl">
+           		<property name="computerLogDao" ref="computerLogDao"/>
+           </bean>
+           
+           <bean id="routerLogService" class="cm.commons.sys.service.impl.RouterLogServiceImpl">
+           		<property name="routerLogDao" ref="routerLogDao"/>
+           </bean>
+           
+           <bean id="systemService" class="cm.commons.sys.service.impl.SystemServiceImpl">
+           		<property name="systemDao" ref="systemDao"/>
+           </bean>
+           
+           <bean id="warnService" class="cm.commons.sys.service.impl.WarnServiceImpl">
+           		<property name="warnDao" ref="warnDao"/>
+           </bean>
+           
+           <bean id="computerService" class="cm.commons.stat.service.impl.ComputerServiceImpl">
+           		<property name="computerDao" ref="computerDao"/>
+           </bean>
+           
+           <bean id="portService" class="cm.commons.stat.service.impl.PortServiceImpl">
+           		<property name="portDao" ref="portDao"/>
+           </bean>
+           
+           <bean id="routerService" class="cm.commons.stat.service.impl.RouterServiceImpl">
+           		<property name="routerDao" ref="routerDao"></property>
+           </bean>
+           
+           <bean id="routeService" class="cm.commons.stat.service.impl.RouteServiceImpl">
+           		<property name="routeDao" ref="routeDao"/>
+           </bean>
+           
+           <bean id="segmentService" class="cm.commons.stat.service.impl.SegmentServiceImpl">
+           		<property name="segmentDao" ref="segmentDao"/>
+           </bean>
+           
+           <bean id="stationService" class="cm.commons.stat.service.impl.StationServiceImpl">
+           		<property name="stationDao" ref="stationDao"/>
+           </bean>
+</beans>

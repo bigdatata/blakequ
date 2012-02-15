@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xmlns:aop="http://www.springframework.org/schema/aop"
+	     xmlns:tx="http://www.springframework.org/schema/tx"
+	     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+         <bean id="basicDao" class="cm.commons.dao.basic.BasicDaoImpl">
+         	<property name="sessionFactory" ref="sessionFactory"/>
+         </bean>
+         
+         <bean id="systemDao" class="cm.commons.sys.dao.impl.SystemDaoImpl">
+         	<property name="sessionFactory" ref="sessionFactory"/>
+         </bean>
+         
+         <bean id="userDao" class="cm.commons.sys.dao.impl.UserDaoImpl">
+         	<property name="sessionFactory" ref="sessionFactory"/>
+         </bean>
+         
+         <bean id="warnDao" class="cm.commons.sys.dao.impl.WarnDaoImpl">
+         	<property name="sessionFactory" ref="sessionFactory"/>
+         </bean>
+         
+         <bean id="routerDao" class="cm.commons.stat.dao.impl.RouterDaoImpl">
+         	<property name="sessionFactory" ref="sessionFactory"/>
+         </bean>
+         
+         <bean id="routeDao" class="cm.commons.stat.dao.impl.RouteDaoImpl">
+         	<property name="sessionFactory" ref="sessionFactory"/>
+         </bean>
+         
+         <bean id="computerDao" class="cm.commons.stat.dao.impl.ComputerDaoImpl">
+         	<property name="sessionFactory" ref="sessionFactory"/>
+         </bean>
+         
+         <bean id="stationDao" class="cm.commons.stat.dao.impl.StationDaoImpl">
+         	<property name="sessionFactory" ref="sessionFactory"/>
+         </bean>
+         
+         <bean id="portDao" class="cm.commons.stat.dao.impl.PortDaoImpl">
+         	<property name="sessionFactory" ref="sessionFactory"/>
+         </bean>
+         
+         <bean id="segmentDao" class="cm.commons.stat.dao.impl.SegmentDaoImpl">
+         	<property name="sessionFactory" ref="sessionFactory"/>
+         </bean>
+         
+         <bean id="routerLogDao" class="cm.commons.sys.dao.impl.RouterLogDaoImpl">
+         	<property name="sessionFactory" ref="sessionFactory"/>
+         </bean>
+         
+         <bean id="computerLogDao" class="cm.commons.sys.dao.impl.ComputerLogDaoImpl">
+         	<property name="sessionFactory" ref="sessionFactory"/>
+         </bean>
+</beans>

@@ -1,0 +1,33 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">
+			com.mysql.jdbc.Driver
+		</property>
+		<property name="hibernate.connection.url">
+			jdbc:mysql://localhost:3306/stations
+		</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">123456</property>
+		<property name="hibernate.dialect">
+			org.hibernate.dialect.MySQLDialect
+		</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.hbm2ddl.auto">true</property>
+		<mapping resource="cm/commons/pojos/Warn.hbm.xml" />
+		<mapping resource="cm/commons/pojos/ComputerLog.hbm.xml" />
+		<mapping resource="cm/commons/pojos/User.hbm.xml" />
+		<mapping resource="cm/commons/pojos/Router.hbm.xml" />
+		<mapping resource="cm/commons/pojos/Station.hbm.xml" />
+		<mapping resource="cm/commons/pojos/Computer.hbm.xml" />
+		<mapping resource="cm/commons/pojos/System.hbm.xml" />
+		<mapping resource="cm/commons/pojos/RouterLog.hbm.xml" />
+		<mapping resource="cm/commons/pojos/Port.hbm.xml" />
+		<mapping resource="cm/commons/pojos/Segment.hbm.xml" />
+		<mapping resource="cm/commons/pojos/Route.hbm.xml" />
+
+	</session-factory>
+</hibernate-configuration>

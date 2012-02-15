@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="crc_ip_manager_alpha"
+  id="myeclipse.1328950016484"
+  context-root="/crc_ip_manager_alpha"
+  j2ee-spec="5.0"
+  archive="crc_ip_manager_alpha.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
