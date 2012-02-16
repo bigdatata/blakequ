@@ -21,7 +21,7 @@
             </key>
             <one-to-many class="cm.commons.pojos.Port" />
         </set>
-        <set name="routerLogs" lazy="extra">
+        <set name="routerLogs" inverse="true" lazy="extra">
         	<key>
         		<column name="router_id"/>
         	</key>
