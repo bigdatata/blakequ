@@ -23,6 +23,11 @@ public class RouterDaoTest extends TestCase {
 		rd = (RouterDao) ac.getBean("routerDao");
 	}
 	
+	public void testDelete(){
+//		Router r = (Router) rd.get(1);
+		rd.delete(1);
+	}
+	
 	public void testSave(){
 		Router r = new Router();
 		r.setPortCount(3);
@@ -37,13 +42,14 @@ public class RouterDaoTest extends TestCase {
 	}
 	
 	public void testGetRouterByIp(){
-		System.out.println(rd.getRouterByIp("2222"));
+		System.out.println(rd.getRouterByIp("2"));
 	}
 	
 	public void testGet(){
 		Router r = (Router) rd.get(1);
 		System.out.println(r);
 		System.out.println(r.getStation());
+		System.out.println(r.getRouterLogs());
 		Iterator i = r.getPorts().iterator();
 		while(i.hasNext()){
 			Port p = (Port) i.next();
