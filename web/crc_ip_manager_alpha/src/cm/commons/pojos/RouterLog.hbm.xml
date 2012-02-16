@@ -10,9 +10,7 @@
             <column name="id" />
             <generator class="native" />
         </id>
-        <many-to-one name="router" class="cm.commons.pojos.Router" fetch="select"  cascade="delete">
-            <column name="router_id" not-null="true" />
-        </many-to-one>
+        <many-to-one name="router" class="cm.commons.pojos.Router" column="router_id"/>
         <property name="errorPacket" type="java.lang.Integer" column="error_packet"/>
         <property name="cpuRate" type="java.lang.Float">
             <column name="cpu_rate" precision="12" scale="0" />

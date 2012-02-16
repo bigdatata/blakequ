@@ -13,7 +13,7 @@
         <property name="ip" type="java.lang.String"/>
         <property name="state" type="java.lang.Integer"/>
         <property name="os" type="java.lang.String"/>
-        <one-to-one name="station" property-ref="computer"/>
+        <many-to-one name="station" column="station_id" unique="true" cascade="all"/>
         <set name="computerLogs" cascade="none" lazy="extra">
         	<key>
         		<column name="computer_id" not-null="true"/>

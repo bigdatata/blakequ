@@ -10,9 +10,7 @@
             <column name="id" />
             <generator class="native" />
         </id>
-        <many-to-one name="router" class="cm.commons.pojos.Router" fetch="select" cascade="delete">
-            <column name="router_id" not-null="true" />
-        </many-to-one>
+        <many-to-one name="router" class="cm.commons.pojos.Router" fetch="select" column="router_id"/>
         <property name="getTime" type="java.util.Date" column="get_time"/>
         <property name="routerState" type="java.lang.Integer" column="router_state"/>
         <property name="inFlow" type="java.lang.Integer" column="in_flow"/>

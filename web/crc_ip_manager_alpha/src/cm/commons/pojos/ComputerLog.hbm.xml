@@ -10,9 +10,7 @@
             <column name="id" />
             <generator class="native" />
         </id>
-        <many-to-one name="computer" class="cm.commons.pojos.Computer" fetch="select" cascade="delete">
-            <column name="computer_id" not-null="true" />
-        </many-to-one>
+        <many-to-one name="computer" class="cm.commons.pojos.Computer" column="computer_id"/>
         <property name="memRate" type="java.lang.Float">
             <column name="mem_rate" precision="12" scale="0" />
         </property>

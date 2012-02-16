@@ -10,12 +10,8 @@
             <column name="id" />
             <generator class="native" />
         </id>
-        <many-to-one name="stationByStation1Id" class="cm.commons.pojos.Station" fetch="select">
-            <column name="station1_id" not-null="true"/>
-        </many-to-one>
-        <many-to-one name="stationByStation2Id" class="cm.commons.pojos.Station" fetch="select">
-            <column name="station2_id" not-null="true"/>
-        </many-to-one>
+        <many-to-one name="stationByStation1Id" class="cm.commons.pojos.Station" column="station1_id"/>
+        <many-to-one name="stationByStation2Id" class="cm.commons.pojos.Station" column="station2_id"/>
         <property name="routeId" type="java.lang.Integer" column="route_id" not-null="true"/>
         <property name="state" type="java.lang.Integer"/>
     </class>
