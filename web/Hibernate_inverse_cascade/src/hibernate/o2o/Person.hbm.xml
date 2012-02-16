@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="hibernate.o2o.Person" table="ip_person">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="name"/>
+		<!-- 在一对一中，级联操作cascade只在one-to-one一端有用，另一端没有效果
+			这边Person相当于一对多中的Set(一的一端)，是主控方；
+			IdCard是关联操作
+		 -->
+		<one-to-one name="idCard" property-ref="person" cascade="all"/>
+	</class>
+</hibernate-mapping>

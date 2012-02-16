@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="hibernate.Classes" table="ic_classes">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="name"/>
+		<!-- 
+		1. 如果inverse=false就表示此关系由Classes自身维护，只有在插入student之后才能生成关联
+			否则是不能生成关联(此时student还不存在)，故而多发两条update语句
+			
+			inverse=true就表示关系反转，由student控制关联，当插入student因为classes已经存在，故而
+			在插入student的时候就可以插入关联，少了两条update语句
+			
+			**inverse只影响存储(save),只有集合标签才有这个属性**
+			
+		2.cascade级联操作(all,none,save-update,delete)，只有”关系标记“才有级联属性：many-to-one,one-to-many,any,set(list,array..)+one-to-many(many-to-many)
+			它的意思就是当主控方执行某操作时，关联对象(被控方)是否执行同一操作，如集合则对集合中的某个元素。
+			如school->master,如果delete(school)时，级联决定是否删除delete(master). 
+			根据触发的操作分：主控操作，关联操作,其操作顺序是：
+				先保存one，在保存many；先删除many，在删除one。
+				如school, student
+				保存必先保存school,然后student；删除必先删除student，在删除school。
+			**只有在主控方设置的cascade才会其作用，如在这里就是在set中设置，在many-to-one中的级联删除没用**
+			**即对于set(many-to-one)只有在set中设置级联才有效，这下面的意思就是对学生执行级联删除**
+			 -->
+		<set name="students" inverse="false" cascade="all" lazy="extra">
+			<key column="classesid"/>
+			<one-to-many class="hibernate.Student"/>
+		</set>
+	</class>
+</hibernate-mapping>
