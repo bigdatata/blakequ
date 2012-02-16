@@ -10,24 +10,22 @@
             <column name="id" />
             <generator class="native" />
         </id>
-        <many-to-one name="router" column="router_id" unique="true" not-null="true" cascade="delete"/>
-        <many-to-one name="computer" column="computer_id" unique="true" not-null="true" cascade="delete"/>
+        <one-to-one name="router" property-ref="station"/>
+        <one-to-one name="computer" property-ref="station"/>
         <property name="name" type="java.lang.String"/>
         <property name="state" type="java.lang.Integer"/>
         <property name="x" type="java.lang.String"/>
         <property name="y" type="java.lang.String"/>
         <property name="segmentNum" type="java.lang.Integer" column="segment_num"/>
-        <set name="segmentsForStation2Id" inverse="true">
+        <set name="segmentsForStation2Id" inverse="false" cascade="all">
             <key>
-                <column name="station2_id" not-null="true">
-                </column>
+                <column name="station2_id"/>
             </key>
             <one-to-many class="cm.commons.pojos.Segment" />
         </set>
-        <set name="segmentsForStation1Id" inverse="true">
+        <set name="segmentsForStation1Id" inverse="false" cascade="all">
             <key>
-                <column name="station1_id" not-null="true">
-                </column>
+                <column name="station1_id"/>
             </key>
             <one-to-many class="cm.commons.pojos.Segment" />
         </set>
