@@ -1,0 +1,187 @@
+(转)Hibernate-inverse,cascade,lazy,unsaved-value  
+
+2011-06-03 20:18:34|  分类： SSH整合 |字号 订阅
+ 
+
+构造这样一个例子，在测试过程中来说明一些Hibernate的高级配置及其相关机制：
+有三个类：Category.java,Prodcuct.java,ConfigurationTest.java，其中第三个类是用来测试的。
+Category.java代码： 
+       
+
+1. package unsaved_value;     
+2. import ......     
+3. public class Category {     
+4.    private Integer id;     
+5.    private String name;     
+6.    private String description;     
+7.    private Set  products;     
+8.    public Category(){     
+9.         id=null;     
+10.         name=null;     
+11.        description=null;     
+12.        products=new HashSet ();     
+13.     }     
+14.     public void addProduct(Product p){     
+15.         products.add(p);     
+16.    }     
+17.     //**********setter and getter     
+18.    ........     
+19. }   
+
+ 
+Product.java代码：
+
+ 
+1.package unsaved_value;       
+2.public class Product {       
+3.    private Integer id;       
+4.    private String name;       
+5.    private Category category;       
+6.    private String description;       
+7.    public Product(){      
+8.          
+9.    }       
+10.     //*******getter and setter       
+11.     .........       
+12. }       
+  
+ConfigurationTest.java
+ 
+1.public void testSave()throws Exception{     
+2.        Category category=new Category();     
+3.        category.setName("java编程书籍2");     
+4.        category.setDescription("编程经典书籍2");     
+5.        Product pro=new Product();     
+6.        pro.setName("java编程思想2");     
+7.        pro.setDescription("第四版中文版2");      
+8.        pro.setCategory(category);     
+9.        category.addProduct(pro);     
+10.        Transaction tx=session.beginTransaction();     
+11.        assert (session!=null):("session is null");     
+12.        session.save(category);     
+13.        tx.commit();     
+14.    }    
+
+      
+  Category代表产品目录，而Product代表产品，显然Category与Product是一对多的关系。Hibernate在映射一对多关系时，有两种方式，一种是单向一对多，一种是双向关系。两者相比，双向一对多的好处体现在两方面：
+    首先，也是很明显的一点，由于是双向关联，我们在实际业务逻辑时将更方便，例如我们可以检索一个Category下的所有Product，同时还可以检索出Product属于哪个。
+    其次，双向关系相对单向关系而言，在数据库的访问方面更有优势。这一点留在后面讲inverse时讲
+。
+双向关联比单向关联唯一的”劣势“，就在于双向关联需要比单向关联多写一个映射文件，这不问题。使用双向关联实现这两个类同数据库的映射： 
+ 
+1.Category.hbm.xml:   
+2. version="1.0" encoding="UTF-8"?>   
+3.4."http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >   
+5.<hibernate-mapping package="unsaved_value">   
+6.   <class name="Category" table="category">   
+7.     <id name="id" column="id">   
+8.       <generator class="native">generator>   
+9.     id>   
+10.      
+11.     <property name="name" column="name"/>   
+12.     <property name="description" column="description"/>
+
+13.14.     <set name="products" table="product" lazy="true" inverse="true" cascade="all">   
+15.         <key column="category"/>   
+16.            <one-to-many class="Product"/>   
+17.     set>   
+18.      
+19.   class>   
+20.hibernate-mapping>   
+   
+Product.hbm.xml:
+
+ 
+1.version="1.0" encoding="UTF-8"?>     
+2."http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >     
+3.<hibernate-mapping package="unsaved_value">     
+4. <class  name="Product" table="product">     
+5.     <id name="id" column="id" unsaved-value="null">     
+6.         <generator class="native">generator>     
+7.     id>     
+8.          
+9.     <property name="name" column="name"/>     
+10.     <property name="description" column="description"/>     
+11.        
+12.     <many-to-one name="category"     
+13.                  column="category"      
+14.                  class="Category"     
+15.     />     
+16.   class>     
+17. hibernate-mapping>     
+         
+现在把这个例子所牵涉到的知识一一展开：
+一.inverse
+    该词的译意是“反转”,反转什么——反转控制端，这项配置决定了由关联双方中的哪一方来维持关联关系（在数据库中表现为外键约束）。上述配置中，在Category.hbm.xml中将inverse设置为true,意思是说“我需要反转（控制端）”，反转的结果是由对方即Product来维持关联关系。用单向关联更容易说明”维持关联关系“是什么意思：考虑用单向关系来实现这个映射关系的情况，即由Category关联到Product，考虑下面的代码： 
+ 
+1.Product p=new Product();   
+2.  ..setXXX   
+3. Category c=new Category();   
+4.  ..设置Category的属性   
+5.  c.addProduct(p);//建立起了c和p的关联关系   
+6.  session.save(c);  
+
+  会执行三条SQL语句:两条插入语句，分别插入c和p，然后还有一条update语句建立起c和p的关联（更新p的外键）。上面，我们说由Category端控制关联，因此p.setCategory(c)这样一句话是没用的,它并不会导致在插入p的时候就设置p的外键以建立起两者的关联关系，从而节省一条update语句。同时我们还会看到，如果在数据库中将表Product 的外键设置成非空，这些代码将不能执行，因为在插入p时，由于c和p的关联关系还未建立起来，因此p的外键为空。回到双向关联上来，为了更清楚地明白inverse在双向关联中到底起什么作用，我们分别将其值设为true和false,看看打印出的的SQL有何区别：
+
+inverse=true时的打印结果：
+ 
+1.Hibernate: insert into category (name, description) values (?, ?)   
+2.Hibernate: insert into product (name, description, category) values (?, ?, ?)    
+ inverse=false时的打印结果：
+ 
+1.Hibernate: insert into category (name, description) values (?, ?)     
+2.Hibernate: insert into product (name, description, category) values (?, ?, ?)     
+3.Hibernate: update product set category=? where id=?    
+       为什么inverse=true时会比inverse=false时少执行一条SQL语句？这是由控制端的不同造成的。前者说"我要反转控制，由Product来控制关联"，因此在将p对象insert时，p已经设置了其category字段，从而建立了关联关系，而后者说"我不反转控制，由我自己来控制关联",因此在将p对象insert后，c为了维持两者的关联，还要去执行一次update，以更新p的外键，从而建立起两者的关联关系。
+      这里我们打个比方：一个经理A和他下属的职员a1,a2.a3出差，到达目的地后，先要找宾馆，无论怎样，经理A总要比其下属先入住某个的房间，房间号是他们联系的途径。经理和下属是一对多的关系，那么经理A是一的一方，当inverse=false时，经理A是主控方，他要主动去维持和下属的通讯，他要通过房间号找到其他下属，当经理A先入住了（save（A）），而下属还未入住，所以经理A不知道下属的房间号。下属入住后（save（a1），save（a2）....）,这时经理才知道下属的房间号而联系上了（update（’房间号‘））。当inverse=true时，下属是主控方，经理A先入住了（save（A）），下属要主动去维持和经理的通讯，找到房间号后下属才入住。
+结论：对于一对多双向关系，始终在“一”那一方将其inverse设置成true,这样会提高性能。
+
+二.cascade
+        级联。当关联的"一"方进行某种动作（更新，删除）时，"多"方即使没有显式地进行编码，它也会自动进行同样的动作。cascade的可选值有：
+all : 所有情况下均进行关联操作。即是save-update + delete
+none：所有情况下均不进行关联操作。这是默认值。
+save-update:在执行save/update/saveOrUpdate时进行关联操作。
+delete：在执行delete时进行关联操作。
+all-delete-orphan:A:级联save-update B级联delete C:删除所有孤儿项（orphan孤儿）。
+
+先看看父子关系，例如在Customer和Order的模型中，这两者便是父子关系，当一个Customer的生命周期决定Order的生命周期，如果一个Customer不在了，其相关的Order继续存在是毫无业务意义的。删除所有孤儿项的意思即是，删除所有与父对象失去关联关系的子对象。
+
+三.lazy
+    是否延迟加载。一般来说，应该延迟加载，即将lazy设为true。延迟加载的相关点很多，这在另外的学习笔记中总结。
+
+四.unsaved-value
+    以上是"一"方的重要配置，再看看"多"方的一个重要配置:unsaved-value,就像上面Product.hbm.xml中的设置那样，这一项在id的配置中设置。这一设置是与级联一起工作的。关于这一点，robbin讲的很清楚：
+当你显式的使用session.save()或者session.update()操作一个对象的时候，实际上是用不到unsaved-value 的。某些情况下(父子表关联保存)，当你在程序中并没有显式的使用save或者update一个持久对象，那么Hibernate需要判断被操作的对象究竟是一个已经持久化过的持久对象，是一个尚未被持久化过的内存临时对象。例如： 
+       Session session = ...;  
+1.Transaction tx = ...;   
+2.Parent parent = (Parent) session.load(Parent.class, id);   
+3.Child child = new Child();   
+4.child.setParent(parent);   
+5.child.setName("sun");   
+6.parent.addChild(child);   
+7.s.update(parent);   
+8.s.flush();   
+9.tx.commit();   
+10.s.close();   
+     在上例中，程序并没有显式的session.save(child); 那么Hibernate需要知道child究竟是一个临时对象，还是已经在数据库中有的持久对象。如果child是一个新创建的临时对象(本例中就是这种情况)，那么Hibernate应该自动产生session.save(child)这样的操作，如果child是已经在数据库中有的持久对象，那么 Hibernate应该自动产生session.update(child)这样的操作。因此我们需要暗示一下Hibernate，究竟 child对象应该对它自动save还是update。在上例中，显然我们应该暗示Hibernate对child自动save，而不是自动 update。那么Hibernate如何判断究竟对child是save还是update呢？它会取一下child的主键属性 child.getId() ，这里假设id是 java.lang.Integer类型的。如果取到的Id值和hbm映射文件中指定的unsave-value相等，那么Hibernate认为 child是新的内存临时对象，发送save，如果不相等，那么Hibernate认为child是已经持久过的对象，发送update。unsaved-value="null" (默认情况，适用于大多数对象类型主键 Integer/Long/String/...)
+当Hibernate取一下child的Id，取出来的是null(在上例中肯定取出来的是null)，和unsaved-value设定值相等，发送save(child)
+当Hibernate取一下child的id，取出来的不是null，那么和unsaved-value设定值不相等，发送update(child)
+   unsaved-value的可选配置有：
+none，any，null
+unsaved-value="none"和unsaved-value="any"主要用在主键属性不是通过Hibernate生成，而是程序自己setId()的时候。unsaved-value="none"和unsaved-value="any"究竟有什么含义了。如果你非要用assigned不可，那么继续解释一下：
+unsaved-value="none" 的时候，由于不论主键属性为任何值，都不可能为none，因此Hibernate总是对child对象发送update(child)
+unsaved-value="any" 的时候，由于不论主键属性为任何值，都肯定为any，因此Hibernate总是对child对象发送save(child)
+      大多数情况下，可以避免使用assigned，只有当你使用复合主键的时候不得不手工setId()，这时候需要你自己考虑究竟怎么设置unsaved-value了，根据你自己的需要来定。
+      关于为什么不要使主键带有义务意义，robbin的解释很清楚：还是以上面的例子打比方，如果我们将Category的某一个性质（比如产品序号或者名称）作为主键，如果后来由于业务需要，我们把这个性质改了，那将不可僻免地要去修改与这个对象相关联的所有数据的外键，而如果我们只要代理主键，这个问题就可完全僻免。
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+所以 Hibernate.org.cn 论坛中的 Robbin 建议在系统设计的时候，遵循如下原则：
+
+1、使用Hibernate的id generator来生成无业务意义的主键，不使用有业务含义的字段做主键，不使用assigned。
+
+2、使用对象类型(String/Integer/Long/...)来做主键，而不使用基础类型(int/long/...)做主键
+
+3、不使用composite-id来处理复合主键的情况，而使用UserType来处理该种情况。
+
+那么你永远用的是unsaved-value="null" ，不可能用到any/none/..了。
