@@ -102,4 +102,18 @@ public class SegmentServiceImpl implements SegmentService<Integer, Segment> {
 		}
 	}
 
+	public List<Segment> getAllSegmentByRoute(Integer routeId) {
+		// TODO Auto-generated method stub
+		log.debug("get all segment from route "+this.getClass().getName());
+		try {
+			return segmentDao.getAllSegmentByRoute(routeId);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get all segment from route fail! "+this.getClass().getName(), e);
+			throw new AppException("获取线路"+routeId+"的所有线段失败");
+		}
+	}
+
+	
+
 }

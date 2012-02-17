@@ -6,9 +6,11 @@
 	     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+          
+           <!-- 该 BeanPostProcessor 将自动起作用，对标注 @Autowired 的 Bean 进行自动注入 -->     
+    	   <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
            
-           <bean id="computerController" class="cm.commons.controller.ComputerController">
-           		<property name="computerService" ref="computerService"/>
-           		<property name="computerLogService" ref="computerLogService"/>
-           </bean>
+           <bean id="computerController" class="cm.commons.controller.ComputerController"/>
+           
+           <bean id="routerController" class="cm.commons.controller.RouterController"/>
 </beans>

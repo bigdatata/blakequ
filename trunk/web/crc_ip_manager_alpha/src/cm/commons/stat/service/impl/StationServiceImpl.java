@@ -153,6 +153,12 @@ public class StationServiceImpl implements StationService<Integer, Station> {
 		}
 	}
 
+
+	public List<Station> getAllStationFromRoute(Integer routeId) {
+		// TODO Auto-generated method stub
+		return null;s
+	}
+
 	
 
 }
