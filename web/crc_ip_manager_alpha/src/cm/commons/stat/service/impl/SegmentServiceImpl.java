@@ -18,11 +18,11 @@ public class SegmentServiceImpl implements SegmentService<Integer, Segment> {
 		this.segmentDao = segmentDao;
 	}
 
-	public void delete(Integer id) {
+	public void deleteById(Integer id) {
 		// TODO Auto-generated method stub
 		log.debug("delete data "+this.getClass().getName());
 		try {
-			segmentDao.delete(id);
+			segmentDao.deleteById(id);
 		} catch (Exception e) {
 			// TODO: handle exception
 			log.error("delete data fail! "+this.getClass().getName(), e);
@@ -87,6 +87,18 @@ public class SegmentServiceImpl implements SegmentService<Integer, Segment> {
 			// TODO: handle exception
 			log.error("update data fail! "+this.getClass().getName(), e);
 			throw new AppException("更新数据失败");
+		}
+	}
+
+	public void delete(Segment entity) {
+		// TODO Auto-generated method stub
+		log.debug("delete data "+this.getClass().getName());
+		try {
+			segmentDao.delete(entity);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("delete data fail! "+this.getClass().getName(), e);
+			throw new AppException("删除数据失败");
 		}
 	}
 

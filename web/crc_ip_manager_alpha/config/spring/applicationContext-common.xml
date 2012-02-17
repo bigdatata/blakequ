@@ -23,7 +23,7 @@
 	
 	<!-- 那些类那些方法使用事务,包名需要修改 -->
 	<aop:config>
-		<aop:pointcut id="allManagerMethod" expression="execution(* cm.commons.sys.service.*.*(..))"/>
+		<aop:pointcut id="allManagerMethod" expression="execution(* cm.commons..*.*(..))"/>
 		<aop:advisor pointcut-ref="allManagerMethod" advice-ref="txAdvice"/>
 	</aop:config>
 	

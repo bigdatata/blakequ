@@ -23,13 +23,13 @@ public class ComputerDaoTest extends TestCase {
 	}
 	
 	public void testDelete(){
-		cd.delete(1);
+		cd.deleteById(1);
 	}
 	
 	public void testGetComputerByIp(){
-		Computer c = cd.getComputerByIp("1111");
-		System.out.println(c);
-//		System.out.println(c.getStation());
+		Computer c = cd.getComputerByIp("2");
+		System.out.println(c.getId());
+		System.out.println(c.getStation());
 	}
 	
 

@@ -43,11 +43,11 @@ public class ComputerServiceImpl implements ComputerService<Integer, Computer> {
 		}
 	}
 
-	public void delete(Integer id) {
+	public void deleteById(Integer id) {
 		// TODO Auto-generated method stub
 		log.debug("delete data "+this.getClass().getName());
 		try {
-			computerDao.delete(id);
+			computerDao.deleteById(id);
 		} catch (Exception e) {
 			// TODO: handle exception
 			log.error("delete data fail! "+this.getClass().getName(), e);
@@ -112,6 +112,18 @@ public class ComputerServiceImpl implements ComputerService<Integer, Computer> {
 			// TODO: handle exception
 			log.error("update data fail! "+this.getClass().getName(), e);
 			throw new AppException("更新站点电脑失败");
+		}
+	}
+
+	public void delete(Computer entity) {
+		// TODO Auto-generated method stub
+		log.debug("delete data "+this.getClass().getName());
+		try {
+			computerDao.delete(entity);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("delete data fail! "+this.getClass().getName(), e);
+			throw new AppException("删除站点电脑失败");
 		}
 	}
 

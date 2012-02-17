@@ -29,7 +29,7 @@ public class StationServiceTest extends TestCase {
 	}
 	
 	public void testDelete(){
-		ss.delete(1);
+		ss.deleteById(1);
 	}
 
 }

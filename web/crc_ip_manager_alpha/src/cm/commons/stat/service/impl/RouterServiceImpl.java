@@ -43,11 +43,11 @@ public class RouterServiceImpl implements RouterService<Integer, Router>{
 		}
 	}
 
-	public void delete(Integer id) {
+	public void deleteById(Integer id) {
 		// TODO Auto-generated method stub
 		log.debug("delete data "+this.getClass().getName());
 		try {
-			routerDao.delete(id);
+			routerDao.deleteById(id);
 		} catch (Exception e) {
 			// TODO: handle exception
 			log.error("delete data fail! "+this.getClass().getName(), e);
@@ -112,6 +112,18 @@ public class RouterServiceImpl implements RouterService<Integer, Router>{
 			// TODO: handle exception
 			log.error("update data fail! "+this.getClass().getName(), e);
 			throw new AppException("更新路由信息失败");
+		}
+	}
+
+	public void delete(Router entity) {
+		// TODO Auto-generated method stub
+		log.debug("delete data "+this.getClass().getName());
+		try {
+			routerDao.delete(entity);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("delete data fail! "+this.getClass().getName(), e);
+			throw new AppException("删除路由失败");
 		}
 	}
 

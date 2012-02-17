@@ -63,11 +63,11 @@ public class SystemServiceImpl implements SystemService<Integer, System> {
 		}
 	}
 	
-	public void delete(Integer id) {
+	public void deleteById(Integer id) {
 		// TODO Auto-generated method stub
 		log.debug("delete by id "+this.getClass().getName());
 		try {
-			systemDao.delete(id);
+			systemDao.deleteById(id);
 		} catch (Exception e) {
 			// TODO: handle exception
 			log.error("delete by id fail! "+this.getClass().getName(), e);
@@ -127,6 +127,17 @@ public class SystemServiceImpl implements SystemService<Integer, System> {
 			// TODO: handle exception
 			log.error("update date fail! "+this.getClass().getName(), e);
 			throw new AppException("更新系统配置失败");
+		}
+	}
+	public void delete(System entity) {
+		// TODO Auto-generated method stub
+		log.debug("delete by id "+this.getClass().getName());
+		try {
+			systemDao.delete(entity);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("delete by id fail! "+this.getClass().getName(), e);
+			throw new AppException("删除系统配置失败");
 		}
 	}
 	

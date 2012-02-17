@@ -68,11 +68,11 @@ public class StationServiceImpl implements StationService<Integer, Station> {
 		}
 	}
 
-	public void delete(Integer id) {
+	public void deleteById(Integer id) {
 		// TODO Auto-generated method stub
 		log.debug("delete data "+this.getClass().getName());
 		try {
-			stationDao.delete(id);
+			stationDao.deleteById(id);
 		} catch (Exception e) {
 			// TODO: handle exception
 			log.error("delete data fail! "+this.getClass().getName(), e);
@@ -137,6 +137,19 @@ public class StationServiceImpl implements StationService<Integer, Station> {
 			// TODO: handle exception
 			log.error("update data fail!　"+this.getClass().getName(), e);
 			throw new AppException("更新数据失败");
+		}
+	}
+
+
+	public void delete(Station entity) {
+		// TODO Auto-generated method stub
+		log.debug("delete data "+this.getClass().getName());
+		try {
+			stationDao.delete(entity);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("delete data fail! "+this.getClass().getName(), e);
+			throw new AppException("删除数据失败");
 		}
 	}
 

@@ -30,9 +30,9 @@ public class ComputerServiceTest extends TestCase {
 		Iterator i = c.getComputerLogs().iterator();
 		while(i.hasNext()){
 			ComputerLog cl = (ComputerLog) i.next();
-			cls.delete(cl.getId());
+			cls.deleteById(cl.getId());
 		}
-		computerService.delete(4);
+		computerService.deleteById(4);
 	}
 	
 	public void testGet(){
@@ -46,7 +46,7 @@ public class ComputerServiceTest extends TestCase {
 	}
 	
 	public void testGetCOmputerByIp(){
-		System.out.println(computerService.getComputerByIp("32"));
+		System.out.println(computerService.getComputerByIp("2"));
 	}
 
 }

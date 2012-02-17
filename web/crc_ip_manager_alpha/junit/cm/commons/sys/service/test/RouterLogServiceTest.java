@@ -3,6 +3,7 @@ package cm.commons.sys.service.test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import cm.commons.pojos.Router;
 import cm.commons.sys.service.RouterLogService;
 
 import junit.framework.TestCase;
@@ -20,4 +21,5 @@ public class RouterLogServiceTest extends TestCase {
 	public void testGet(){
 		System.out.println(rls.get(1));
 	}
+	
 }

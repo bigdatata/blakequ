@@ -42,5 +42,15 @@ public interface BasicService<K, E> {
 	 * 删除实体对象
 	 * @param id
 	 */
-	void delete(K id);
+	void deleteById(K id);
+	
+	/**
+	 * 删除实体对象
+	 * @param entity
+	 * @throws AppException
+	 */
+	void delete(E entity);
+	
+	
+	
 }

@@ -19,11 +19,11 @@ public class RouterLogServiceImpl implements RouterLogService<Integer, RouterLog
 		this.routerLogDao = routerLogDao;
 	}
 	
-	public void delete(Integer id) {
+	public void deleteById(Integer id) {
 		// TODO Auto-generated method stub
 		log.debug("delete data "+this.getClass().getName());
 		try {
-			routerLogDao.delete(id);
+			routerLogDao.deleteById(id);
 		} catch (Exception e) {
 			// TODO: handle exception
 			log.error("delete data fail! "+this.getClass().getName(), e);
@@ -83,6 +83,18 @@ public class RouterLogServiceImpl implements RouterLogService<Integer, RouterLog
 			// TODO: handle exception
 			log.error("update data fail! "+this.getClass().getName(), e);
 			throw new AppException("更新路由日志失败");
+		}
+	}
+
+	public void delete(RouterLog entity) {
+		// TODO Auto-generated method stub
+		log.debug("delete data "+this.getClass().getName());
+		try {
+			routerLogDao.delete(entity);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("delete data fail! "+this.getClass().getName(), e);
+			throw new AppException("删除路由日志失败");
 		}
 	}
 	

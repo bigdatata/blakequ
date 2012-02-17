@@ -22,6 +22,6 @@ public class PortServiceTest extends TestCase {
 	}
 	
 	public void testDelete(){
-		ps.delete(1);
+		ps.deleteById(1);
 	}
 }

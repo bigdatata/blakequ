@@ -13,10 +13,10 @@
         <property name="ip" type="java.lang.String"/>
         <property name="state" type="java.lang.Integer"/>
         <property name="os" type="java.lang.String"/>
-        <many-to-one name="station" column="station_id" unique="true" cascade="all"/>
-        <set name="computerLogs" cascade="none" lazy="extra">
+        <many-to-one name="station" column="station_id" unique="true" cascade="none"/>
+        <set name="computerLogs" lazy="extra" inverse="false">
         	<key>
-        		<column name="computer_id" not-null="true"/>
+        		<column name="computer_id"/>
         	</key>
         	<one-to-many class="cm.commons.pojos.ComputerLog"/>
         </set>

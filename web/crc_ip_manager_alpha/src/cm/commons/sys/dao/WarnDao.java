@@ -1,5 +1,6 @@
 package cm.commons.sys.dao;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import cm.commons.dao.basic.BasicDao;
 import cm.commons.exception.AppException;
 import cm.commons.pojos.Warn;;
 
-public interface WarnDao<K, E> extends BasicDao<K, E> {
+public interface WarnDao<K extends Serializable, E> extends BasicDao<K, E> {
 
 	/**
 	 * 根据站点获得告警信息

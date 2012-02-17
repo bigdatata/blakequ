@@ -20,7 +20,7 @@ public class SystemServiceTest extends TestCase {
 	}
 	
 	public void testDelete(){
-		ssd.delete(1);
+		ssd.deleteById(1);
 	}
 	
 	public void testGet(){

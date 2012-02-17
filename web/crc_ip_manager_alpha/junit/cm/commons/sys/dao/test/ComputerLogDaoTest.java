@@ -4,18 +4,19 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cm.commons.pojos.ComputerLog;
+import cm.commons.sys.dao.ComputerLogDao;
 import cm.commons.sys.dao.impl.ComputerLogDaoImpl;
 import junit.framework.TestCase;
 
 public class ComputerLogDaoTest extends TestCase {
 
-	private ComputerLogDaoImpl cld;
+	private ComputerLogDao cld;
 	@Override
 	protected void setUp() throws Exception {
 		// TODO Auto-generated method stub
 		String []locations={ "classpath:spring/applicationContext-*.xml"};
 		ApplicationContext ac = new ClassPathXmlApplicationContext(locations);
-		cld = (ComputerLogDaoImpl) ac.getBean("computerLogDao");
+		cld = (ComputerLogDao) ac.getBean("computerLogDao");
 	}
 	
 	public void testGet(){
@@ -23,10 +24,14 @@ public class ComputerLogDaoTest extends TestCase {
 	}
 	
 	public void testUpdate(){
-		ComputerLog cl = (ComputerLog) cld.getHibernateTemplate().load(ComputerLog.class, 1);
+		ComputerLog cl = (ComputerLog) cld.get(1);
 		cl.setCupRate(new Float(32));
 		cld.update(cl);
 		
+	}
+	
+	public void testDelete(){
+		cld.deleteById(1);
 	}
 
 }

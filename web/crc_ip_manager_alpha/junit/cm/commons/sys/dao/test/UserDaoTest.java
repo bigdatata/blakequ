@@ -36,7 +36,7 @@ public class UserDaoTest extends TestCase {
 		User u = new User();
 		u.setAuthority("user");
 		u.setPassword("1111111");
-		u.setUsername("32");
+		u.setUsername("223");
 		ud.updateByName(u);
 		
 	}

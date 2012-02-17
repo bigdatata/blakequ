@@ -88,11 +88,11 @@ public class WarnServiceImpl implements WarnService<Integer, Warn> {
 		}
 	}
 
-	public void delete(Integer id) {
+	public void deleteById(Integer id) {
 		// TODO Auto-generated method stub
 		log.debug("delete data "+this.getClass().getName());
 		try {
-			warnDao.delete(id);
+			warnDao.deleteById(id);
 		} catch (Exception e) {
 			// TODO: handle exception
 			log.error("delete data fail! "+this.getClass().getName(), e);
@@ -157,6 +157,18 @@ public class WarnServiceImpl implements WarnService<Integer, Warn> {
 			// TODO: handle exception
 			log.error("update data fail! "+this.getClass().getName(), e);
 			throw new AppException("更新告警失败");
+		}
+	}
+
+	public void delete(Warn entity) {
+		// TODO Auto-generated method stub
+		log.debug("delete data "+this.getClass().getName());
+		try {
+			warnDao.delete(entity);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("delete data fail! "+this.getClass().getName(), e);
+			throw new AppException("删除告警失败");
 		}
 	}
 	

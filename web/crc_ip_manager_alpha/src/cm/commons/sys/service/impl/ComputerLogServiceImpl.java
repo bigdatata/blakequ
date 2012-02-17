@@ -18,11 +18,11 @@ public class ComputerLogServiceImpl implements ComputerLogService<Integer, Compu
 		this.computerLogDao = computerLogDao;
 	}
 	
-	public void delete(Integer id) {
+	public void deleteById(Integer id) {
 		// TODO Auto-generated method stub
 		log.debug("delete data "+this.getClass().getName());
 		try {
-			computerLogDao.delete(id);
+			computerLogDao.deleteById(id);
 		} catch (Exception e) {
 			// TODO: handle exception
 			log.error("delete data fail! "+this.getClass().getName(), e);
@@ -83,6 +83,18 @@ public class ComputerLogServiceImpl implements ComputerLogService<Integer, Compu
 			// TODO: handle exception
 			log.error("update data fail! "+this.getClass().getName(), e);
 			throw new AppException("更新站点电脑失败");
+		}
+	}
+
+	public void delete(ComputerLog entity) {
+		// TODO Auto-generated method stub
+		log.debug("delete data "+this.getClass().getName());
+		try {
+			computerLogDao.delete(entity);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("delete data fail! "+this.getClass().getName(), e);
+			throw new AppException("删除站点电脑日志失败");
 		}
 	}
 	
