@@ -1,11 +1,12 @@
 package cm.commons.stat.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import cm.commons.dao.basic.BasicDao;
 import cm.commons.exception.AppException;
 
-public interface StationDao<K, E> extends BasicDao<K, E> {
+public interface StationDao<K extends Serializable, E> extends BasicDao<K, E> {
 	
 	/**
 	 * 获取站点个数

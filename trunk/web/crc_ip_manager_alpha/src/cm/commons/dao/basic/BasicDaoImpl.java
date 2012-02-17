@@ -1,5 +1,6 @@
 package cm.commons.dao.basic;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -7,7 +8,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import cm.commons.exception.AppException;
 
-public class BasicDaoImpl<K, E>  extends HibernateDaoSupport implements BasicDao<K, E>{
+public class BasicDaoImpl<K extends Serializable, E>  extends HibernateDaoSupport implements BasicDao<K,E>{
 
 	private static Log log = LogFactory.getLog(BasicDaoImpl.class);
 	private Class<? extends E> entityClass;
@@ -28,12 +29,11 @@ public class BasicDaoImpl<K, E>  extends HibernateDaoSupport implements BasicDao
 		}
 	}
 
-	public void delete(K id) throws AppException {
+	public void deleteById(K id) throws AppException {
 		// TODO Auto-generated method stub
 		log.debug("delete from class "+entityClass.getName());
 		try {
-			getSession().createQuery("delete from "+entityClass.getName()+" as cla where cla.id='" +
-					id +"'").executeUpdate();
+			getHibernateTemplate().delete(getHibernateTemplate().get(entityClass, id));
 		} catch (RuntimeException e) {
 			// TODO: handle exception
 			log.error("delete id="+id+ " from class "+entityClass.getName()+" fail!", e);
@@ -47,8 +47,7 @@ public class BasicDaoImpl<K, E>  extends HibernateDaoSupport implements BasicDao
 		// TODO Auto-generated method stub
 		log.debug("get from class "+entityClass.getName());
 		try {
-			return (E) getSession().createQuery("from "+entityClass.getName()+
-					" as cla where cla.id="+"'"+id+"'").uniqueResult();
+			return (E) getHibernateTemplate().load(entityClass, id);
 		} catch (Exception e) {
 			// TODO: handle exception
 			log.error("find id="+id+" from class "+entityClass.getName()+" fail!", e);
@@ -102,6 +101,18 @@ public class BasicDaoImpl<K, E>  extends HibernateDaoSupport implements BasicDao
 			// TODO: handle exception
 			log.error("get all entity "+entityClass.getName()+" fail!", e);
 			throw new AppException("获取所有实体失败");
+		}
+	}
+
+	public void delete(E entity) throws AppException {
+		// TODO Auto-generated method stub
+		log.debug("delete from class "+entityClass.getName());
+		try {
+			getHibernateTemplate().delete(entity);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("delete entity "+entityClass.getName()+" fail!", e);
+			throw new AppException("删除实体失败");
 		}
 	}
 

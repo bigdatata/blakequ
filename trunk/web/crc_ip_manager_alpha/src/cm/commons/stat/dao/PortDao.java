@@ -3,6 +3,8 @@
  */
 package cm.commons.stat.dao;
 
+import java.io.Serializable;
+
 import cm.commons.dao.basic.BasicDao;
 import cm.commons.exception.AppException;
 
@@ -10,6 +12,6 @@ import cm.commons.exception.AppException;
  * @author Administrator
  *
  */
-public interface PortDao<K, E> extends BasicDao<K, E> {
+public interface PortDao<K extends Serializable, E> extends BasicDao<K, E> {
 
 }

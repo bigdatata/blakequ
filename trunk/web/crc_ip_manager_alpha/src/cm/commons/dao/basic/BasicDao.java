@@ -1,14 +1,15 @@
 package cm.commons.dao.basic;
 
+import java.io.Serializable;
 import java.util.List;
 
 import cm.commons.exception.AppException;
 
-public interface BasicDao<K, E> {
+public interface BasicDao<K extends Serializable, E> {
 
 	/**
 	 * 保存实体对象
-	 * @param entity
+	 * @param entity 
 	 */
 	void save(E entity) throws AppException;
 	
@@ -40,10 +41,16 @@ public interface BasicDao<K, E> {
 	List<E> getAll() throws AppException;
 	
 	/**
-	 * 删除实体对象
+	 * 通过id删除实体对象
 	 * @param id
 	 */
-	void delete(K id) throws AppException;
+	void deleteById(K id) throws AppException;
 	
+	/**
+	 * 删除实体对象
+	 * @param entity
+	 * @throws AppException
+	 */
+	void delete(E entity) throws AppException;
 	
 }

@@ -10,7 +10,7 @@ import cm.commons.exception.AppException;
 
 public abstract class BasicServiceAbstImpl<K, E> implements BasicService<K, E> {
 
-	public void delete(K id) {
+	public void deleteById(K id) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -36,6 +36,11 @@ public abstract class BasicServiceAbstImpl<K, E> implements BasicService<K, E> {
 	}
 
 	public void update(E entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void delete(E entity) {
 		// TODO Auto-generated method stub
 		
 	}

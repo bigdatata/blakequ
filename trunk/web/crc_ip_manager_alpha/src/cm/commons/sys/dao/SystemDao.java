@@ -1,10 +1,12 @@
 package cm.commons.sys.dao;
 
+import java.io.Serializable;
+
 import cm.commons.dao.basic.BasicDao;
 import cm.commons.exception.AppException;
 import cm.commons.pojos.System;;
 
-public interface SystemDao<K, E> extends BasicDao<K, E> {
+public interface SystemDao<K extends Serializable, E> extends BasicDao<K, E> {
 	
 	/**
 	 * 根据键值获得配置信息

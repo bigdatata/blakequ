@@ -1,10 +1,12 @@
 package cm.commons.stat.dao;
 
+import java.io.Serializable;
+
 import cm.commons.dao.basic.BasicDao;
 import cm.commons.exception.AppException;
 import cm.commons.pojos.Router;
 
-public interface RouterDao<K, E> extends BasicDao<K, E> {
+public interface RouterDao<K extends Serializable, E> extends BasicDao<K, E> {
 
 	/**
 	 * 通过ip获取路由器

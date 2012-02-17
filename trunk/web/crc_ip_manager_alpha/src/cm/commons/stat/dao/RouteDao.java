@@ -1,5 +1,7 @@
 package cm.commons.stat.dao;
 
+import java.io.Serializable;
+
 import cm.commons.dao.basic.BasicDao;
 
 /**
@@ -9,6 +11,6 @@ import cm.commons.dao.basic.BasicDao;
  * @param <K>
  * @param <E>
  */
-public interface RouteDao<K, E> extends BasicDao<K, E> {
+public interface RouteDao<K extends Serializable, E> extends BasicDao<K, E> {
 	
 }

@@ -19,15 +19,15 @@ public class SystemDaoTest extends TestCase {
 	}
 	
 	public void testGetSystemConfigByKey(){
-		java.lang.System.out.println(sd.getSystemConfigByKey("key"));
+		java.lang.System.out.println(sd.getSystemConfigByKey("1"));
 	}
 	
 	public void testDelete(){
-		sd.delete(2);
+		sd.deleteById(2);
 	}
 	
 	public void testGet(){
-		java.lang.System.out.println(sd.get(9));
+		java.lang.System.out.println(sd.get(1));
 	}
 	
 	public void testGetAll(){
@@ -46,14 +46,14 @@ public class SystemDaoTest extends TestCase {
 	
 	public void testSaveOrUpdate(){
 		System s = new System();
-		s.setConfigKey("key");
-		s.setConfigValue("1");
+		s.setConfigKey("1");
+		s.setConfigValue("1sdafdafda");
 		sd.saveOrUpdate(s);
 	}
 	
 	public void testUpdate(){
 		System s = new System();
-		s.setId(2);
+		s.setId(4);
 		s.setConfigKey("key2");
 		s.setConfigValue("1");
 		sd.update(s);
@@ -68,12 +68,12 @@ public class SystemDaoTest extends TestCase {
 	
 	public void testUpdateSystemConfigKey(){
 		System s = new System();
-		s.setConfigKey("key2");
-		s.setConfigValue("1");
+		s.setConfigKey("3");
+		s.setConfigValue("133333333");
 		sd.updateSystemConfigKey(s);
 	}
 
 	public void testDeleteByKey(){
-		sd.deleteByConfigKey("key2");
+		sd.deleteByConfigKey("3");
 	}
 }

@@ -32,14 +32,14 @@ public class WarnDaoTest extends TestCase {
 	}
 	
 	public void testDeleteByStation(){
-		wd.deleteByStation(0);
+		wd.deleteByStation(2);
 	}
 	
 	public void testDeleteByTime(){
 		Calendar calendar = Calendar. getInstance();
 		calendar.set(2010, 1, 1);
 		Calendar calendar2 = Calendar. getInstance();
-		calendar2.set(2011, 8, 3);
+		calendar2.set(2012, 8, 3);
 		wd.deleteByTime(calendar.getTime(), calendar2.getTime());
 	}
 	

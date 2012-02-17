@@ -21,7 +21,9 @@ public class RouterServiceTest extends TestCase {
 	}
 	
 	public void testDelete(){
-		routerService.delete(1);
+//		routerService.deleteById(1);
+		Router r = (Router) routerService.get(1);
+		routerService.delete(r);
 	}
 	
 	public void testDeleteRouterByIp(){

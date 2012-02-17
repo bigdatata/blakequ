@@ -10,13 +10,13 @@ import junit.framework.TestCase;
 
 public class RouterLogDaoTest extends TestCase {
 
-	private RouterLogDaoImpl rld;
+	private RouterLogDao rld;
 	@Override
 	protected void setUp() throws Exception {
 		// TODO Auto-generated method stub
 		String []locations={ "classpath:spring/applicationContext-*.xml"};
 		ApplicationContext ac = new ClassPathXmlApplicationContext(locations);
-		rld = (RouterLogDaoImpl) ac.getBean("routerLogDao");
+		rld = (RouterLogDao) ac.getBean("routerLogDao");
 	}
 	
 	public void testGet(){
@@ -24,9 +24,13 @@ public class RouterLogDaoTest extends TestCase {
 	}
 	
 	public void testUpdate(){
-		RouterLog rl = (RouterLog) rld.getHibernateTemplate().load(RouterLog.class, 1);
+		RouterLog rl = (RouterLog) rld.get(1);
 		rl.setMemRate(new Float(32));
-		rld.getHibernateTemplate().update(rl);
+		rld.update(rl);
+	}
+	
+	public void testDelete(){
+		rld.deleteById(1);
 	}
 
 }

@@ -4,33 +4,40 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cm.commons.pojos.Station;
+import cm.commons.stat.dao.StationDao;
 import cm.commons.stat.dao.impl.StationDaoImpl;
 import junit.framework.TestCase;
 
 public class StationDaoTest extends TestCase{
 
-	private StationDaoImpl sd;
+	private StationDao sd;
 	@Override
 	protected void setUp() throws Exception {
 		// TODO Auto-generated method stub
 		String []locations={ "classpath:spring/applicationContext-*.xml"};
 		ApplicationContext ac = new ClassPathXmlApplicationContext(locations);
-		sd = (StationDaoImpl) ac.getBean("stationDao");
+		sd = (StationDao) ac.getBean("stationDao");
 	}
 	
 	public void testGet(){
-		System.out.println(sd.get(1));
+		Station s = (Station) sd.get(1);
+//		System.out.println(s);
+		System.out.println(s.getComputer());
+		System.out.println(s.getRouter());
+//		System.out.println(s.getSegmentsForStation1Id());
+//		System.out.println(s.getSegmentsForStation2Id());
 	}
 	
 	public void testDelete(){
-		sd.delete(1);
+		sd.deleteById(1);
 	}
 	
 	public void testUpdate(){
-		Station s = (Station) sd.getHibernateTemplate().load(Station.class, 2);
+		Station s = (Station) sd.get(2);
 		s.setName("你好");
-		sd.getHibernateTemplate().update(s);
+		sd.update(s);
 	}
+	
 	
 	public void testGetErrorStationCount(){
 		System.out.println(sd.getErrorStationCount());
@@ -50,9 +57,17 @@ public class StationDaoTest extends TestCase{
 	}
 	
 	public void testOther(){
-		Station s = sd.get(1);
-		System.out.println(s);
+//		Station s = sd.get(1);
+//		System.out.println(s);
 //		System.out.println(s.getComputer());
 //		System.out.println(s.getRouter());
+	}
+	
+	public void testAdd(){
+		Station s = new Station();
+		s.setName("ggg");
+		s.setSegmentNum(4);
+		s.setState(1);
+		sd.saveOrUpdate(s);
 	}
 }

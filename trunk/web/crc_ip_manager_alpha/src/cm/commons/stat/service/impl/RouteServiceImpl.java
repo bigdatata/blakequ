@@ -20,11 +20,11 @@ public class RouteServiceImpl implements RouteService<Integer, Route> {
 		this.routeDao = routeDao;
 	}
 
-	public void delete(Integer id) {
+	public void deleteById(Integer id) {
 		// TODO Auto-generated method stub
 		log.debug("delete data "+this.getClass().getName());
 		try {
-			routeDao.delete(id);
+			routeDao.deleteById(id);
 		} catch (Exception e) {
 			// TODO: handle exception
 			log.error("delete data fail! "+this.getClass().getName());
@@ -89,6 +89,18 @@ public class RouteServiceImpl implements RouteService<Integer, Route> {
 			// TODO: handle exception
 			log.error("update data fail! "+this.getClass().getName());
 			throw new AppException("更新线路失败");
+		}
+	}
+
+	public void delete(Route entity) {
+		// TODO Auto-generated method stub
+		log.debug("delete data "+this.getClass().getName());
+		try {
+			routeDao.delete(entity);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("delete data fail! "+this.getClass().getName());
+			throw new AppException("删除线路失败");
 		}
 	}
 
