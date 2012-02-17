@@ -32,4 +32,12 @@ public interface StationService<K, E> extends BasicService<K, E> {
 	 */
 	List<E> getMainStaion();
 	
+	
+	/**
+	 * 获取指定线路的所有站点
+	 * @param routeId
+	 * @return
+	 */
+	List<E> getAllStationFromRoute(K routeId);
+	
 }
