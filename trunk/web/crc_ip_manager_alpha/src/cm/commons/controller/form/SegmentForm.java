@@ -2,38 +2,38 @@ package cm.commons.controller.form;
 
 public class SegmentForm {
 	private int id;//线段的id号（供监听故障变色处理使用）
-	private int startX;//该线段起始站点的x坐标
-	private int startY; //该线段起始站点的y坐标
-	private int endX; //该线段结束站点的x坐标
-	private int endY; //该线段结束站点的y坐标
+	private double startX;//该线段起始站点的x坐标
+	private double startY; //该线段起始站点的y坐标
+	private double endX; //该线段结束站点的x坐标
+	private double endY; //该线段结束站点的y坐标
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getStartX() {
+	public double getStartX() {
 		return startX;
 	}
-	public void setStartX(int startX) {
+	public void setStartX(double startX) {
 		this.startX = startX;
 	}
-	public int getStartY() {
+	public double getStartY() {
 		return startY;
 	}
-	public void setStartY(int startY) {
+	public void setStartY(double startY) {
 		this.startY = startY;
 	}
-	public int getEndX() {
+	public double getEndX() {
 		return endX;
 	}
-	public void setEndX(int endX) {
+	public void setEndX(double endX) {
 		this.endX = endX;
 	}
-	public int getEndY() {
+	public double getEndY() {
 		return endY;
 	}
-	public void setEndY(int endY) {
+	public void setEndY(double endY) {
 		this.endY = endY;
 	}
 	@Override

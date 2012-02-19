@@ -1,5 +1,7 @@
 package cm.commons.stat.service.impl;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -7,6 +9,7 @@ import org.apache.commons.logging.LogFactory;
 
 import cm.commons.exception.AppException;
 import cm.commons.pojos.Segment;
+import cm.commons.pojos.Station;
 import cm.commons.stat.dao.SegmentDao;
 import cm.commons.stat.service.SegmentService;
 
@@ -106,14 +109,12 @@ public class SegmentServiceImpl implements SegmentService<Integer, Segment> {
 		// TODO Auto-generated method stub
 		log.debug("get all segment from route "+this.getClass().getName());
 		try {
-			return segmentDao.getAllSegmentByRoute(routeId);
+			List<Segment> segments = segmentDao.getAllSegmentByRoute(routeId);
+			return segments;
 		} catch (Exception e) {
 			// TODO: handle exception
 			log.error("get all segment from route fail! "+this.getClass().getName(), e);
 			throw new AppException("获取线路"+routeId+"的所有线段失败");
 		}
 	}
-
-	
-
 }

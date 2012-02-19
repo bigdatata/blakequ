@@ -4,6 +4,14 @@ public class StationInfoForm {
 	private int rid;//所属线路id
 	private int st;//所包含站点数目
 	private int sg;//所包含线段数目
+	private String name;//线路名字
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public int getRid() {
 		return rid;
 	}

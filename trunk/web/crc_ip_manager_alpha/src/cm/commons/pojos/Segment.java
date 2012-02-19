@@ -79,4 +79,11 @@ public class Segment implements java.io.Serializable {
 		this.state = state;
 	}
 
+	@Override
+	public String toString() {
+		return "Segment [id=" + id + ", routeId=" + routeId + ", state="
+				+ state + ", stationByStation1Id=" + stationByStation1Id
+				+ ", stationByStation2Id=" + stationByStation2Id + "]";
+	}
+
 }

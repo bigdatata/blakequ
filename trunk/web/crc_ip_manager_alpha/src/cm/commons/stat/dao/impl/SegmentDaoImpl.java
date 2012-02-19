@@ -17,13 +17,13 @@ public class SegmentDaoImpl extends BasicDaoImpl<Integer, Segment> implements
 		super(Segment.class);
 	}
 	
-	public List<Segment> getAllSegmentByRoute(Integer routeId) {
+	public List<Segment> getAllSegmentByRoute(Integer routeId)  throws AppException{
 		// TODO Auto-generated method stub
 		log.debug("get segment by route id"+routeId);
 		try {
-			return getSession().createQuery("from Segment s where s.routeId = ?")
-				.setParameter(0, routeId)
-				.list();
+			return getSession().createQuery("from Segment s where s.routeId =?")
+						.setParameter(0, routeId)
+						.list();
 		} catch (Exception e) {
 			// TODO: handle exception
 			log.error("get segment by route id="+routeId+" fail!", e);

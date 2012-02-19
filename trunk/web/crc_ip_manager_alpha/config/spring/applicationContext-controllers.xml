@@ -13,4 +13,8 @@
            <bean id="computerController" class="cm.commons.controller.ComputerController"/>
            
            <bean id="routerController" class="cm.commons.controller.RouterController"/>
+           
+           <bean id="userController" class="cm.commons.controller.UserController"/>
+           
+           <bean id="stationRouterController" class="cm.commons.controller.StationRouteController"/>
 </beans>

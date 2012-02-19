@@ -18,7 +18,7 @@ public class Station implements java.io.Serializable {
 	private Integer state;
 	private String x;
 	private String y;
-	private Integer segmentNum;
+	private Integer segmentNum;//表示该站点出去或进来的线段条数：一般为2（一进一出）
 	private Set segmentsForStation2Id = new HashSet(0);
 	private Set segmentsForStation1Id = new HashSet(0);
 
@@ -130,6 +130,13 @@ public class Station implements java.io.Serializable {
 
 	public void setSegmentsForStation1Id(Set segmentsForStation1Id) {
 		this.segmentsForStation1Id = segmentsForStation1Id;
+	}
+
+	@Override
+	public String toString() {
+		return "Station [id=" + id + ", name=" + name + ", segmentNum="
+				+ segmentNum + ", state=" + state + ", x=" + x + ", y=" + y
+				+ "]";
 	}
 
 }

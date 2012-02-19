@@ -11,6 +11,6 @@ public interface SegmentService<K, E> extends BasicService<K, E> {
 	 * @param routeId
 	 * @return
 	 */
-	public List<E> getAllSegmentByRoute(K routeId);
+	List<E> getAllSegmentByRoute(K routeId);
 	
 }
