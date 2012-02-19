@@ -111,10 +111,11 @@ public class StationDaoImpl extends BasicDaoImpl<Integer, Station> implements
 		// TODO Auto-generated method stub
 		log.debug("get all station not in segment");
 		try {
-			List<Station> stations = getSession().createQuery("FROM Station s WHERE " +
-								"s.id NOT IN (SELECT s1.stationByStation1Id FROM Segment s1) AND " +
-								"s.id NOT IN (SELECT s2.stationByStation2Id FROM Segment s2)")
-										.list();
+			List<Station> stations = getSession().createQuery("FROM Station s WHERE NOT EXISTS"+
+								"(SELECT se.id FROM Segment se WHERE " +
+								"se.stationByStation1Id=s.id OR " +
+								"se.stationByStation2Id=s.id)")
+								.list();
 			return stations;
 		} catch (Exception e) {
 			// TODO: handle exception

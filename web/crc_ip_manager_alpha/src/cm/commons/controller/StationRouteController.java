@@ -68,11 +68,10 @@ public class StationRouteController {
 			return mv;
 		}
 		
-		//获取所有线段getAllSegmentByRoute
+		//获取所有线段
 		List<SegmentForm> segmentForms = getAllSegmentByRoute(route_id);
 		
 		System.out.println("****当前线路信息**********");
-		//当前线路信息
 		StationInfoForm sif = new StationInfoForm();
 		sif.setRid(route_id);
 		sif.setSg(segmentForms.size());//线段数目
@@ -80,11 +79,9 @@ public class StationRouteController {
 		sif.setName(r.getName());
 		
 		System.out.println("****所有线路信息**********");
-		//获取所有线路
 		List<Route> routes = routeService.getAll();
 		
 		System.out.println("****设置模型视图**********");
-		//设置模型视图
 		ModelAndView mv = new ModelAndView();
 		Map<String, Object> m = new HashMap<String, Object>();
 		m.put("all_route", routes);
@@ -166,7 +163,7 @@ public class StationRouteController {
 		String name = stationForm.getName();
 		//如果是主站点就加TDCS
 		if(stationForm.getIsMainStation()){
-			name +="TDCS";
+			name = "TDCS"+name;
 		}
 		s.setName(name);
 		s.setSegmentNum(2);
@@ -234,7 +231,7 @@ public class StationRouteController {
 	public ModelAndView showAddStation(HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
 		List<Route> routes = routeService.getAll();
-
+		
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("routes", routes);
 		mv.addAllObjects(model);
@@ -256,31 +253,6 @@ public class StationRouteController {
 		//单独站点
 		List<Station> lastStations = stationService.getStationsNotInSegment();
 		if(stations != null){
-//			Map<Integer, Integer> li = new HashMap<Integer, Integer>();
-//			if(mstation != null){
-//				for(Station ms:mstation){
-//					li.put(ms.getId(), -1);
-//				}
-//			}
-//			for(int i=0; i<stations.size(); i++){
-//				if(mstation != null && stations.get(i)!= null){
-//					int key = stations.get(i).getId();
-//					if(li.containsKey(key)){
-//						li.put(key, i);
-//					}
-//				}
-//			}
-//			//将主站放在最前
-//			if(li.size() != 0){
-//				Iterator i = li.entrySet().iterator();
-//				while(i.hasNext()){
-//					Entry<Integer, Integer> entry = (Entry<Integer, Integer>) i.next();
-//					if(entry.getValue() != -1){
-//						StationForm s = stationFroms.remove(entry.getValue().intValue());
-//						stationFroms.addFirst(s);
-//					}
-//				}
-//			}
 			if(lastStations != null){
 				stations.addAll(lastStations);
 			}
