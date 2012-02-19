@@ -15,4 +15,20 @@
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+	
+	<!--  **********************拦截器**********************-->
+	<!-- 
+		在里面需要实现，日志处理**，权限检查**，已经线路状态的监控
+		对还有admin的请求进行拦截处理
+	 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*/admin/*"/>
+			<bean class="cm.commons.controller.interceptor.UserOperatorIntercepter"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/*/log/*"/>
+			<bean class="cm.commons.controller.interceptor.LogInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>

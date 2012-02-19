@@ -49,5 +49,7 @@
            
            <bean id="stationService" class="cm.commons.stat.service.impl.StationServiceImpl">
            		<property name="stationDao" ref="stationDao"/>
+           		<property name="segmentDao" ref="segmentDao"/>
+           		<property name="routeDao" ref="routeDao"/>
            </bean>
 </beans>

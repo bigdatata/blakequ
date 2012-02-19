@@ -1,8 +1,12 @@
 package cm.commons.sys.service.test;
 
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import cm.commons.pojos.Segment;
+import cm.commons.pojos.Station;
 import cm.commons.stat.service.SegmentService;
 
 import junit.framework.TestCase;
@@ -24,5 +28,12 @@ public class SegmentServiceTest extends TestCase {
 	
 	public void testDelete(){
 		ss.deleteById(1);
+	}
+	
+	public void testGetAllSegmentByRoute(){
+		List<Station> ls = ss.getAllSegmentByRoute(3);
+		for(Station s:ls){
+			System.out.println(s);
+		}
 	}
 }

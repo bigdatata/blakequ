@@ -60,5 +60,7 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate/versioncheck.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate/xerces-2.6.2.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate/xml-apis.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/util/jstl.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/util/standard.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

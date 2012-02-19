@@ -50,4 +50,10 @@ public class Route implements java.io.Serializable {
 		this.stationNum = stationNum;
 	}
 
+	@Override
+	public String toString() {
+		return "Route [id=" + id + ", name=" + name + ", stationNum="
+				+ stationNum + "]";
+	}
+
 }

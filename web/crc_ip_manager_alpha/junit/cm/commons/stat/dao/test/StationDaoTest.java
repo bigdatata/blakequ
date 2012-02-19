@@ -1,5 +1,7 @@
 package cm.commons.stat.dao.test;
 
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -65,9 +67,31 @@ public class StationDaoTest extends TestCase{
 	
 	public void testAdd(){
 		Station s = new Station();
-		s.setName("ggg");
-		s.setSegmentNum(4);
-		s.setState(1);
+		s.setName("fdae4343");
+		s.setSegmentNum(3);
+		s.setState(0);
+		s.setX("44");
+		s.setY("46");
+		s.getSegmentsForStation1Id().add(sd.get(3));
+		s.getSegmentsForStation2Id().add(sd.get(4));
+		s.setSegmentsForStation1Id(s.getSegmentsForStation1Id());
+		s.setSegmentsForStation2Id(s.getSegmentsForStation2Id());
 		sd.saveOrUpdate(s);
+		
 	}
+	
+	public void testGetMainStationByRoute(){
+		List<Station> ls = sd.getMainStationByRoute(2);
+		for(Station s:ls){
+			System.out.println(s);
+		}
+	}
+	
+	public void testGetStationsNotInSegment(){
+		List<Station> ls = sd.getStationsNotInSegment();
+		for(Station s:ls){
+			System.out.println(s);
+		}
+	}
+	
 }
