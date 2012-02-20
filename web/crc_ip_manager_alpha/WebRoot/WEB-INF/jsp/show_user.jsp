@@ -36,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	function addItem() {
 		//window.self.location = "item_add.html";
-		window.location="<%=basePath %>admin/config/show_add_config.do";
+		window.location="<%=basePath %>show_add_user.do?flags=admin";
 	}
 	
 	function modifyItem() {
@@ -57,10 +57,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			return;
 		}
 		if (count > 1) {
-			alert("一次只能修改一个站点！");
+			alert("一次只能修改一个用户！");
 			return;
 		}
-		window.self.location = "<%=basePath %>admin/config/show_modify_config.do?id=" + selectFlags[index].value;
+		window.self.location = "<%=basePath %>show_modify_user.do?id=" + selectFlags[index].value;
 	}
 	
 	function deleteItem() {
@@ -79,23 +79,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			alert("请选择需要删除的数据！");
 			return;
 		}	
+		
 		//删除提示
-		if (window.confirm("确认删除？注：目前只能删除第一个选择的数据")) {
+		if (window.confirm("确认删除当前用户？注：目前只能删除第一个选择的数据")) {
 			with(document.forms[0]) {
-				action="<%=basePath %>admin/config/delete_config.do?id="+selectFlags[index].value;
+				action="<%=basePath %>admin/delete_user.do?user_id="+selectFlags[index].value;
 				method="post";
 				submit();
 			}
 		}
 	}	
-	
-	function backMain(){
-		with(document.forms[0]) {
-					action="<%=basePath %>main.do";
-					method="post";
-					submit();
-		}
-	}
 	</script>
   </head>
   
@@ -150,7 +143,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<input name="btnModify" class="button1" type="button"
 								id="btnModify" value="修改" onClick="modifyItem()">
 							<input name="btnBack" class="button1" type="button"
-								id="btnBack" value="返回" onClick="backMain()">
+								id="btnBack" value="返回" onClick="javascript:history.go(-1);">
 						</div>
 			</td>
 		</form>

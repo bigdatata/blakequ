@@ -102,7 +102,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	function userManager(){
 		with(document.forms[0]) {
-			action="<%=basePath%>user/all_user.do";
+			action="<%=basePath%>admin/all_user.do";
 			method="post";
 			submit();
 		}

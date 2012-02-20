@@ -89,14 +89,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 		}
 	}	
-	
-	function backMain(){
-		with(document.forms[0]) {
-					action="<%=basePath %>main.do";
-					method="post";
-					submit();
-		}
-	}
 	</script>
   </head>
   
@@ -146,7 +138,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<input name="btnModify" class="button1" type="button"
 								id="btnModify" value="ÐÞ¸Ä" onClick="modifyItem()">
 							<input name="btnBack" class="button1" type="button"
-								id="btnBack" value="·µ»Ø" onClick="backMain()">
+								id="btnBack" value="·µ»Ø" onClick="javascript:history.go(-1);">
 						</div>
 					</td>
 		</form>
