@@ -70,7 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			alert("一次只能修改一个站点！");
 			return;
 		}
-		window.self.location = "<%=basePath %>admin/modify_station.do?station_id=" + selectFlags[index].value;
+		window.self.location = "<%=basePath %>show_modify_station.do?station_id=" + selectFlags[index].value;
 	}
 	
 	function deleteItem() {
@@ -92,19 +92,53 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		//删除提示
 		if (window.confirm("确认删除？")) {
 			with(document.forms[0]) {
+				alert("请导入该条线路的配置文件");
 				action="admin/delete_station.do?station_id="+selectFlags[index].value;
 				method="post";
 				submit();
 			}
 		}
 	}	
+	
+	function userManager(){
+		with(document.forms[0]) {
+			action="<%=basePath%>user/all_user.do";
+			method="post";
+			submit();
+		}
+	}
+	
+	function systemConfig(){
+		with(document.forms[0]) {
+			action="<%=basePath%>admin/config/show_config.do";
+			method="post";
+			submit();
+		}
+	}
+	
+	function logManager(){
+		with(document.forms[0]) {
+			action="";
+			method="post";
+			submit();
+		}
+	}
 	</script>
   </head>
   
   <body>
-    This is my JSP page. <br>
-    <!-- <form action="main" method="post"> -->
    <form action="<%=basePath%>main.do" method="post" >
+   		<td nowrap class="rd19" width="10%">
+						<div align="center">
+							<input name="btnAdd" type="button" class="button1" id="btnAdd"
+								value="用户管理" onClick="userManager()">
+							<input name="btnDelete" class="button1" type="button"
+								id="btnDelete" value="系统配置" onClick="systemConfig()">
+							<input name="btnModify" class="button1" type="button"
+								id="btnModify" value="日志管理" onClick="logManager()">
+						</div>
+		</td>
+		</br>
     	 线路选择：<select name="route_id">
     		<c:forEach items="${all_route}" var="sif">
     			<option value="${sif.id}"

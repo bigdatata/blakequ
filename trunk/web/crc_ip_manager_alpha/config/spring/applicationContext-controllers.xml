@@ -17,4 +17,6 @@
            <bean id="userController" class="cm.commons.controller.UserController"/>
            
            <bean id="stationRouterController" class="cm.commons.controller.StationRouteController"/>
+           
+           <bean id="systemConfigController" class="cm.commons.controller.SystemConfigController"/>
 </beans>

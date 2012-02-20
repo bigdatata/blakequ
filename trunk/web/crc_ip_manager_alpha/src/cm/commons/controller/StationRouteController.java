@@ -58,7 +58,7 @@ public class StationRouteController {
 			route_id = Integer.parseInt(id);
 		}
 		
-		request.setAttribute("current_route_id", route_id);
+		request.getSession().setAttribute("current_route_id", route_id);
 		Route r = (Route) routeService.get(route_id);
 		//如果站点为空，返回
 		if(r.getStationNum() == 0){
@@ -124,9 +124,21 @@ public class StationRouteController {
 	 * 添加线路
 	 * @return
 	 */
-	@RequestMapping("admin/add_roue")
-	public String addRoute(){
-		return null;
+	@RequestMapping("admin/add_route")
+	public ModelAndView addRoute(@RequestParam String name, HttpServletRequest request){
+		Integer route_id = (Integer) request.getSession().getAttribute("current_route_id");
+		if(route_id == null){
+			String error = "显示页面失败！添加线路失败";
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("error", error);
+			mv.setViewName("error");
+			return mv;
+		}
+		Route r = new Route();
+		r.setName(name);
+		r.setStationNum(0);
+		routeService.save(r);
+		return new ModelAndView(new RedirectView("../main.do?route_id="+route_id));
 	}
 	
 	/**
@@ -137,9 +149,8 @@ public class StationRouteController {
 	public ModelAndView addStation(StationForm stationForm, BindingResult result, HttpServletRequest request){
 		Integer route_id = (Integer) request.getSession().getAttribute("current_route_id");
 		if(result.hasErrors() || route_id == null){
-			String error = "表单提交错误<^@^>";
+			String error = "表单提交错误<^@^>:"+result.getAllErrors();
 			if(route_id == null) error = "你没有选择添加站点的线路！添加站点失败";
-			System.out.println(result.getAllErrors());
 			ModelAndView mv = new ModelAndView();
 			mv.addObject("error", error);
 			mv.setViewName("error");
@@ -178,25 +189,71 @@ public class StationRouteController {
 	
 	/**
 	 * 删除站点(管理员)
+	 * 删除站点需要将该条线路重新导入，实际上是删除该条线路的所有数据并重新配置
+	 * 如果该站点关联两条线路，则两条线路都要重新导入
 	 * @return
 	 */
 	@RequestMapping("admin/delete_station")
 	public ModelAndView deleteStation(@RequestParam int station_id){
 		ModelAndView mv = new ModelAndView();
-		//注：要将线路站点减1
-		return null;
+		//在确定删除的时候，只有当验证导入数据合法后才能删除原来线路的数据
+		//注：要将该条线路站点置为0
+		return mv;
 	}
 	
 	
 	/**
-	 * 修改站点(管理员)
+	 * 显示修改站点
 	 * @param station_id
 	 * @return
 	 */
-	@RequestMapping("admin/modify_station")
-	public ModelAndView modifyStation(@RequestParam int station_id){
+	@RequestMapping("show_modify_station")
+	public ModelAndView showModifyStation(@RequestParam int station_id){
 		ModelAndView mv = new ModelAndView();
-		return null;
+		Station s = (Station) stationService.get(station_id);
+		StationForm sf = new StationForm();
+		sf.setId(s.getId());
+		String name = s.getName();
+		if(name.startsWith("TDCS")){
+			sf.setIsMainStation(true);
+		}else{
+			sf.setIsMainStation(false);
+		}
+		sf.setName(name);
+		sf.setStation1(s.getSegmentsForStation1Id());
+		sf.setStation2(s.getSegmentsForStation2Id());
+		sf.setX(Double.parseDouble(s.getX()));
+		sf.setY(Double.parseDouble(s.getY()));
+		mv.addObject("station", sf);
+		mv.setViewName("station_modify");
+		return mv;
+	}
+	
+	/**
+	 * 修改站点(管理员)
+	 * 只能修改x,y,name
+	 * @param station
+	 * @param result
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("admin/modify_station")
+	public ModelAndView modeifyStation(StationForm station, BindingResult result, HttpServletRequest request){
+		Integer route_id = (Integer) request.getSession().getAttribute("current_route_id");
+		if(result.hasErrors() || route_id == null){
+			String error = "表单提交错误<^@^>:"+result.getAllErrors();
+			if(route_id == null) error = "修改站点失败,线路id=null";
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("error", error);
+			mv.setViewName("error");
+			return mv;
+		}
+		Station s = (Station) stationService.get(station.getId());
+		s.setName(station.getName());
+		s.setX(station.getX()+"");
+		s.setY(station.getY()+"");
+		stationService.update(s);
+		return new ModelAndView(new RedirectView("../main.do?route_id="+route_id));
 	}
 	
 	
@@ -226,7 +283,11 @@ public class StationRouteController {
 		return mv;
 	}
 	
-	
+	/**
+	 * 显示增加页面
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("show_add_station")
 	public ModelAndView showAddStation(HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();

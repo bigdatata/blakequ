@@ -136,7 +136,7 @@ public class UserController {
 	private String checkUser(UserForm user, BindingResult result){
 		String error = null;
 		if(result.hasErrors()){
-			error = "表单提交错误！";
+			error = "表单提交错误！"+result.getAllErrors();
 		}
 		String username = user.getUsername();
 		String pwd = user.getPassword();

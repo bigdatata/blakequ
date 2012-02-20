@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'show_user.jsp' starting page</title>
+    <title>My JSP 'main.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -21,6 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	<script type="text/javascript">
+	
 	function AllQuery()
 	{
 		var checkBox=document.getElementById("ifAll");
@@ -100,8 +101,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  	<form action="" method="post" >
-        用户列表. <br>
+   <form action="" method="post" >
+    配置列表：<br>
     <table width="95%" border="1" cellspacing="0" cellpadding="0"
 				align="center" class="table1">
 				<tr>
@@ -112,36 +113,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						id
 					</td>
 					<td width="155" class="rd6">
-						名字
+						配置名称
 					</td>
 					<td width="155" class="rd6">
-						密码
-					</td>
-					<td width="155" class="rd6">
-						权限
+						配置属性
 					</td>
 				</tr>
-				<c:forEach items="${user_list}" var="item">
+				<c:forEach items="${systemConfig}" var="sif">
 					<tr>
 						<td class="rd8">
-							<input type="checkbox" name="selectFlag1" class="checkbox1" value="${item.id}">
+							<input type="checkbox" name="selectFlag1" class="checkbox1" value="${sif.id}">
 						</td>
 						<td class="rd8">
-							${item.id}
+							${sif.id}
 						</td>
 						<td class="rd8">
-							${item.username}
+							${sif.key}
 						</td>
 						<td class="rd8">
-							${item.password}
-						</td>
-						<td class="rd8">
-							${item.authority}
+							${sif.value}
 						</td>
 					</tr>
 				</c:forEach>
 			</table>
-			<td nowrap class="rd19" width="10%">
+			</table>
+					<td nowrap class="rd19" width="10%">
 						<div align="center">
 							<input name="btnAdd" type="button" class="button1" id="btnAdd"
 								value="添加" onClick="addItem()">
@@ -152,7 +148,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<input name="btnBack" class="button1" type="button"
 								id="btnBack" value="返回" onClick="backMain()">
 						</div>
-			</td>
+					</td>
 		</form>
   </body>
 </html>
