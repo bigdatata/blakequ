@@ -9,7 +9,7 @@
 	<head>
 		<base href="<%=basePath %>">
 		<meta http-equiv="Content-Type" content="text/html; charset=GB18030">
-		<title>添加站点</title>
+		<title>修改站点</title>
 		<script type="text/javascript">
 			function validateForm() {
 				if (document.form.name.value.length == 0) {
@@ -27,15 +27,12 @@
 					document.form.y.focus();
 					return false;
 				}
-				return true;	
-			}
-			
-			function getStations(){
-				with(document.forms[0]) {
-					action="<%=basePath %>route_station.do";
-					method="post";
-					submit();
+				if(document.form.main.value != "${station.isMainStation}"){
+					alert("你不能修改是否是主站点信息！");
+					document.form.main.focus();
+					return false;
 				}
+				return true;	
 			}
 			
 			function backMain(){
@@ -45,11 +42,17 @@
 					submit();
 				}
 			}
+			
+			function selectStation(){
+				with(document.forms[0]) {
+					alert("你不能修改连接站点，如果修改请重新导入配置文件");
+				}
+			}
 		</script>
 	</head>
 
 	<body class="body1">
-		<form action="<%=basePath%>admin/add_station.do" method="post" name="form" id="form" onsubmit="return validateForm()">
+		<form action="<%=basePath%>admin/modify_station.do" method="post" name="form" onsubmit="return validateForm()">
 			<input type="hidden" name="command" value="add">
 			<div align="center">
 				<table width="95%" border="0" cellspacing="2" cellpadding="2">
@@ -60,18 +63,9 @@
 					</tr>
 				</table>
 				
-		插入线路选择：<select name="route_id">
-		    			<option value="-1" selected="selected">请选择线路</option>
-		    		<c:forEach items="${routes}" var="route">
-		    			<option value="${route.id}"
-		    			<c:if test = "${route.id == current_route_id}" >
-		    				selected
-		    			</c:if>
-		    			>${route.name}</option>
-		    		</c:forEach>
-    			</select>
-    			<input type="button" value="确定" onclick="getStations()"/>
-
+		
+				<input name="id" type="text" class="text1" id="id" style= "visibility:hidden"
+								size="10" maxlength="20" value=${station.id}>
 				<hr width="97%" align="center" size=0>
 				<table width="95%" border="0" cellpadding="0" cellspacing="0">
 					<tr>
@@ -82,7 +76,7 @@
 						</td>
 						<td width="78%">
 							<input name="name" type="text" class="text1" id="name"
-								size="10" maxlength="20">
+								size="10" maxlength="20" value="${station.name}">
 						</td>
 					</tr>
 					<tr>
@@ -93,7 +87,7 @@
 						</td>
 						<td>
 							<input name="x" type="text" class="text1" id="x"
-								size="20" maxlength="20">
+								size="20" maxlength="20" value="${station.x}">
 						</td>
 					</tr>
 					<tr>
@@ -105,7 +99,20 @@
 						<td>
 							<label>
 								<input name="y" type="text" class="text1" id="y"
-									size="20" maxlength="20">
+									size="20" maxlength="20" value="${station.y}">
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<td height="26">
+							<div align="right">
+								<font color="#FF0000">*</font>是否主站点:&nbsp;
+							</div>
+						</td>
+						<td>
+							<label>
+								<input name="main" type="text" class="text1" id="main"
+									size="20" maxlength="20" value="${station.isMainStation}">
 							</label>
 						</td>
 					</tr>
@@ -116,12 +123,14 @@
 							</div>
 						</td>
 						<td>
-							<select name="station1" class="select1" id="station1">
-								<option value="-1">无</option>
-								<c:forEach items="${stations}" var="ic">
-									<option value="${ic.id}">${ic.name }</option>
-								</c:forEach>
-							</select>
+							<label>
+								<input name="station1" type="text" class="text1" id="station1"
+									size="20" maxlength="20" value="${station.station1}">
+							</label>
+							<label>
+								<input name="station1_select" type="button" class="text1" id="station1_select"
+									value="选择" onclick="selectStation()">
+							</label>
 						</td>
 					</tr>
 					<tr>
@@ -131,32 +140,22 @@
 							</div>
 						</td>
 						<td>
-							<select name="station2" class="select1" id="station2">
-								<option value="-1">无</option>
-								<c:forEach items="${stations}" var="iu">
-									<option value="${iu.id}">${iu.name }</option>
-								</c:forEach>
-							</select>
+							<label>
+								<input name="station2" type="text" class="text1" id="station2"
+									size="20" maxlength="20" value="${station.station2}">
+							</label>
+							<label>
+								<input name="station2_select" type="button" class="text1" id="station2_select"
+									value="选择" onclick="selectStation()">
+							</label>
 						</td>
 					</tr>
-					<tr>
-						<td height="26">
-							<div align="right">
-								<font color="#FF0000">*</font>是否是主站点:&nbsp;
-							</div>
-						</td>
-						<td>
-							<select name="isMainStation" class="select1" id="isMainStation">
-								<option value="false" selected="selected">false</option>
-								<option value="true">true</option>
-							</select>
-						</td>
-					</tr>
+					
 				</table>
 				<hr width="97%" align="center" size=0>
 				<div align="center">
 					<input name="btnAdd" class="button1" type="submit" id="btnAdd"
-						value="添加">
+						value="修改">
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<input name="btnBack" class="button1" type="button" id="btnBack"
 						value="返回" onClick="backMain()">
