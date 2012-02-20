@@ -37,14 +37,7 @@
 					submit();
 				}
 			}
-			
-			function backMain(){
-				with(document.forms[0]) {
-					action="<%=basePath %>main.do";
-					method="post";
-					submit();
-				}
-			}
+
 		</script>
 	</head>
 
@@ -159,7 +152,7 @@
 						value="Ìí¼Ó">
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<input name="btnBack" class="button1" type="button" id="btnBack"
-						value="·µ»Ø" onClick="backMain()">
+						value="·µ»Ø" onClick="javascript:history.go(-1);">
 				</div>
 			</div>
 		</form>

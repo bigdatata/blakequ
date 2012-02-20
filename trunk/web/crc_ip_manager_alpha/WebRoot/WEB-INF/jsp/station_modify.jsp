@@ -35,14 +35,6 @@
 				return true;	
 			}
 			
-			function backMain(){
-				with(document.forms[0]) {
-					action="<%=basePath %>main.do";
-					method="post";
-					submit();
-				}
-			}
-			
 			function selectStation(){
 				with(document.forms[0]) {
 					alert("你不能修改连接站点，如果修改请重新导入配置文件");
@@ -112,7 +104,7 @@
 						<td>
 							<label>
 								<input name="main" type="text" class="text1" id="main"
-									size="20" maxlength="20" value="${station.isMainStation}">
+									size="20" maxlength="20" value="${station.isMainStation}" readonly>
 							</label>
 						</td>
 					</tr>
@@ -125,7 +117,7 @@
 						<td>
 							<label>
 								<input name="station1" type="text" class="text1" id="station1"
-									size="20" maxlength="20" value="${station.station1}">
+									size="20" maxlength="20" value="${station.station1}" readonly>
 							</label>
 							<label>
 								<input name="station1_select" type="button" class="text1" id="station1_select"
@@ -142,7 +134,7 @@
 						<td>
 							<label>
 								<input name="station2" type="text" class="text1" id="station2"
-									size="20" maxlength="20" value="${station.station2}">
+									size="20" maxlength="20" value="${station.station2}" readonly>
 							</label>
 							<label>
 								<input name="station2_select" type="button" class="text1" id="station2_select"
@@ -158,7 +150,7 @@
 						value="修改">
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<input name="btnBack" class="button1" type="button" id="btnBack"
-						value="返回" onClick="backMain()">
+						value="返回" onClick="javascript:history.go(-1);">
 				</div>
 			</div>
 		</form>

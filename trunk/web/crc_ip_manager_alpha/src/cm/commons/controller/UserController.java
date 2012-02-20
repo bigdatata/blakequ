@@ -18,15 +18,37 @@ import cm.commons.controller.form.UserForm;
 import cm.commons.pojos.User;
 import cm.commons.sys.service.UserService;
 
+/**
+ * 用户模块很多是需要管理员才能看
+ * @author Administrator
+ *
+ */
 @Controller
-@RequestMapping("user")
 public class UserController {
 
 	@Autowired
 	private UserService userService;
 	
+	/**
+	 * 显示添加用户
+	 * @return
+	 */
+	@RequestMapping("show_add_user")
+	public String showAddUser(@RequestParam String flags, HttpServletRequest request){
+		//如果参数是admin,说明是用户管理时的跳转
+		request.setAttribute("flags", flags);
+		return "add_user";
+	}
+	
+	/**
+	 * 添加用户
+	 * @param user
+	 * @param result
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value="add_user")
-	public ModelAndView addUser(UserForm user, BindingResult result, HttpServletRequest request){
+	public ModelAndView addUser(@RequestParam String flags, UserForm user, BindingResult result, HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
 		String r = checkUser(user, result);
 		if(r != null){
@@ -45,14 +67,42 @@ public class UserController {
 		u.setAuthority(user.getAuthority());
 		userService.saveOrUpdate(u);
 		request.getSession().setAttribute("user", u);
-		mv.setViewName("main");
+		request.setAttribute("info", "点击登录按钮登录!");
+		if(flags.equals("admin")){
+			return new ModelAndView(new RedirectView("admin/all_user.do"));
+		}else{
+			mv.setViewName("login");
+		}
 		return mv;
-		
 	}
 	
+	/**
+	 * 删除用户
+	 * @param user_id
+	 */
 	@RequestMapping("admin/delete_user")
-	public void deleteUser(@RequestParam int user_id){
+	public ModelAndView deleteUser(@RequestParam int user_id, HttpServletRequest request){
 		userService.deleteById(user_id);
+		return new ModelAndView(new RedirectView("all_user.do"));
+	}
+	
+	
+	
+	/**
+	 * 显示修改用户界面
+	 * @return
+	 */
+	@RequestMapping("show_modify_user")
+	public ModelAndView showModifyUser(@RequestParam int id){
+		ModelAndView mv = new ModelAndView();
+		User u = (User) userService.get(id);
+		UserForm uf = new UserForm();
+		uf.setId(id);
+		uf.setUsername(u.getUsername());
+		uf.setPassword(u.getPassword());
+		mv.addObject("user", uf);
+		mv.setViewName("modify_user");
+		return mv;
 	}
 	
 	/**
@@ -67,27 +117,27 @@ public class UserController {
 	public ModelAndView modifyUser(UserForm user, BindingResult result, HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
 		String r = checkUser(user, result);
+		//判断原来密码是否正确，如果普通用户不能修改权限
 		if(r != null){
 			mv.setViewName("error");
 			mv.addObject("error", r);
 			return mv;
 		}
-		User currentUser = (User) request.getSession().getAttribute("user");
-		if(currentUser == null){
-			//如果还没登陆，跳转到登陆界面,这个后面交给拦截器处理
-			mv.setViewName("begin");
-			return mv;
-		}
-		User u = (User) userService.get(currentUser.getId());
+		
+		User u = new User();
+		u.setId(user.getId());
+		u.setUsername(user.getUsername());
 		u.setPassword(user.getPassword());
-//		u.setAuthority(user.getAuthority());权限只有管理员才能修改
+		u.setAuthority(user.getAuthority());
 		userService.update(u);
-		mv.addObject("error", "密码修改成功");
-		mv.setViewName("error");
-		return mv;
+		return new ModelAndView(new RedirectView("all_user.do"));
 	}
 	
-	@RequestMapping("all_user")
+	/**
+	 * 显示所有用户
+	 * @return
+	 */
+	@RequestMapping("admin/all_user")
 	public ModelAndView showAllUser(){
 		ModelAndView mv = new ModelAndView();
 		List<UserForm> userForms = new ArrayList<UserForm>();
@@ -104,34 +154,60 @@ public class UserController {
 		return mv;
 	}
 	
+	/**
+	 * 显示登录界面
+	 * @return
+	 */
+	@RequestMapping("show_login")
+	public ModelAndView showLogin(HttpServletRequest request){
+		ModelAndView mv = new ModelAndView();
+		User currentUser = (User) request.getSession().getAttribute("user");
+		if(currentUser != null){
+			UserForm uf = new UserForm();
+			uf.setId(currentUser.getId());
+			uf.setPassword(currentUser.getPassword());
+			uf.setUsername(currentUser.getUsername());
+			uf.setAuthority(currentUser.getAuthority());
+			mv.addObject("user", uf);
+		}
+		mv.setViewName("login");
+		return mv;
+	}
+	
+	/**
+	 * 登录
+	 * @param user
+	 * @param result
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("login")
 	public ModelAndView login(UserForm user, BindingResult result, HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
 		String r = checkUser(user, result);
 		if(r != null){
 			mv.setViewName("error");
-			mv.addObject("error", "表单提交错误！");
+			mv.addObject("error", r);
 			return mv;
 		}
 		User u = (User) userService.getByName(user.getUsername());
 		if(u == null){
-			mv.setViewName("error");
-			mv.addObject("error", "当前用户名:"+user.getUsername()+"不存在!");
+			mv.setViewName("login");
+			request.setAttribute("info", "当前用户名:"+user.getUsername()+"不存在!");
 			return mv;
 		}else if(!u.getPassword().equals(user.getPassword())){
-			mv.setViewName("error");
-			mv.addObject("error", "当前用户:"+user.getUsername()+"密码错误!");
+			mv.setViewName("login");
+			UserForm uf = new UserForm();
+			uf.setUsername(u.getUsername());
+			mv.addObject("user", uf);
+			request.setAttribute("info", "当前用户:"+user.getUsername()+"密码错误!");
 			return mv;
 		}else{
 			request.getSession().setAttribute("user", u);
 		}
-		return new ModelAndView(new RedirectView("../main.do?route_id=1"));
+		return new ModelAndView(new RedirectView("main.do?route_id=1"));
 	}
-	
-	@RequestMapping("begin")
-	public String showLogin(){
-		return "login";
-	}
+
 	
 	private String checkUser(UserForm user, BindingResult result){
 		String error = null;

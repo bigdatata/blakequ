@@ -31,6 +31,11 @@ public class UserForm {
 	public void setAuthority(String authority) {
 		this.authority = authority;
 	}
+	@Override
+	public String toString() {
+		return "UserForm [authority=" + authority + ", id=" + id
+				+ ", password=" + password + ", username=" + username + "]";
+	}
 	
 	
 }
