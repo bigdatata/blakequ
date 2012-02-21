@@ -22,5 +22,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     This is my JSP page. <br>
+    <form action="<%=basePath %>show_login.do" method="get">
+    	<input type="submit" value="µã»÷µÇÂ¼">
+    </form>
   </body>
 </html>

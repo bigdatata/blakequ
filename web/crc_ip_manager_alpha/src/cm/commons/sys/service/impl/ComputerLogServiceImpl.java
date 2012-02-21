@@ -97,5 +97,53 @@ public class ComputerLogServiceImpl implements ComputerLogService<Integer, Compu
 			throw new AppException("删除站点电脑日志失败");
 		}
 	}
+
+	public List<ComputerLog> getAllSortByComputer() {
+		// TODO Auto-generated method stub
+		log.debug("get all computer log sort by computer id "+this.getClass().getName());
+		try {
+			return computerLogDao.getAllSortByComputer();
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get all computer log sort by computer id fail! "+this.getClass().getName(), e);
+			throw new AppException("根据电脑排序获取日志失败");
+		}
+	}
+
+	public List<ComputerLog> getAllSortByTime() {
+		// TODO Auto-generated method stub
+		log.debug("get all computer log sort by time "+this.getClass().getName());
+		try {
+			return computerLogDao.getAllSortByTime();
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get all computer log sort by time fail! "+this.getClass().getName(), e);
+			throw new AppException("根据时间排序获取日志失败");
+		}
+	}
+
+	public List<ComputerLog> getComputerLog(Integer computerId) {
+		// TODO Auto-generated method stub
+		log.debug("get all computer log by computer id "+this.getClass().getName());
+		try {
+			return computerLogDao.getComputerLog(computerId);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get all computer log by computer id  fail! "+this.getClass().getName(), e);
+			throw new AppException("根据电脑id获取日志失败");
+		}
+	}
+
+	public List<ComputerLog> getComputerLogByStationNameOrId(String key) {
+		// TODO Auto-generated method stub
+		log.debug("get computer log by station name or id "+this.getClass().getName());
+		try {
+			return computerLogDao.getComputerLogByStationNameOrId(key);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get computer log by station name or id fail! "+this.getClass().getName(), e);
+			throw new AppException("根据站点名字或id："+key+"获取日志失败");
+		}
+	}
 	
 }

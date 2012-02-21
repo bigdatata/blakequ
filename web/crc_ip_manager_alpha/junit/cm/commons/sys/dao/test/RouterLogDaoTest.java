@@ -1,5 +1,7 @@
 package cm.commons.sys.dao.test;
 
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -31,6 +33,15 @@ public class RouterLogDaoTest extends TestCase {
 	
 	public void testDelete(){
 		rld.deleteById(1);
+	}
+	
+	public void testGetRouterLogByStationNameOrId(){
+		List<RouterLog> r = rld.getRouterLogByStationNameOrId("ggg");
+		if(r != null){
+			for(RouterLog rl:r){
+				System.out.println(r);
+			}
+		}
 	}
 
 }

@@ -1,9 +1,12 @@
 package cm.commons.sys.dao.test;
 
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cm.commons.pojos.ComputerLog;
+import cm.commons.pojos.RouterLog;
 import cm.commons.sys.dao.ComputerLogDao;
 import cm.commons.sys.dao.impl.ComputerLogDaoImpl;
 import junit.framework.TestCase;
@@ -32,6 +35,15 @@ public class ComputerLogDaoTest extends TestCase {
 	
 	public void testDelete(){
 		cld.deleteById(1);
+	}
+	
+	public void testGetComputerLogByStationNameOrId(){
+		List<ComputerLog> r = cld.getComputerLogByStationNameOrId("ggg");
+		if(r != null){
+			for(ComputerLog rl:r){
+				System.out.println(r);
+			}
+		}
 	}
 
 }
