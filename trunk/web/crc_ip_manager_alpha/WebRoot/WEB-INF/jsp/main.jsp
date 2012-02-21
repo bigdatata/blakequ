@@ -116,9 +116,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 	}
 	
-	function logManager(){
+	function logComputerManager(){
 		with(document.forms[0]) {
-			action="";
+			action="<%=basePath%>computer_log/get_log_by_time.do";
+			method="post";
+			submit();
+		}
+	}
+	
+	function logRouterManager(){
+		with(document.forms[0]) {
+			action="<%=basePath%>router_log/get_log_by_time.do";
 			method="post";
 			submit();
 		}
@@ -135,7 +143,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<input name="btnDelete" class="button1" type="button"
 								id="btnDelete" value="系统配置" onClick="systemConfig()">
 							<input name="btnModify" class="button1" type="button"
-								id="btnModify" value="日志管理" onClick="logManager()">
+								id="btnModify" value="站点电脑日志管理" onClick="logComputerManager()">
+							<input name="btnModify" class="button1" type="button"
+								id="btnModify" value="站点路由日志管理" onClick="logRouterManager()">
 						</div>
 		</td>
 		</br>

@@ -97,5 +97,53 @@ public class RouterLogServiceImpl implements RouterLogService<Integer, RouterLog
 			throw new AppException("删除路由日志失败");
 		}
 	}
+
+	public List<RouterLog> getAllSortByRouter() {
+		// TODO Auto-generated method stub
+		log.debug("get all router sort by router id "+this.getClass().getName());
+		try {
+			return routerLogDao.getAllSortByRouter();
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get all router sort by router id fail! "+this.getClass().getName(), e);
+			throw new AppException("根据路由排序获取日志失败");
+		}
+	}
+
+	public List<RouterLog> getAllSortByTime() {
+		// TODO Auto-generated method stub
+		log.debug("get all router sort by time "+this.getClass().getName());
+		try {
+			return routerLogDao.getAllSortByTime();
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get all router sort by time fail! "+this.getClass().getName(), e);
+			throw new AppException("根据时间排序获取日志失败");
+		}
+	}
+
+	public List<RouterLog> getRouterLog(Integer routerId) {
+		// TODO Auto-generated method stub
+		log.debug("get all router by router id "+this.getClass().getName());
+		try {
+			return routerLogDao.getRouterLog(routerId);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get all router by router id fail! "+this.getClass().getName(), e);
+			throw new AppException("根据路由id获取日志失败");
+		}
+	}
+
+	public List<RouterLog> getRouterLogByStationNameOrId(String key) {
+		// TODO Auto-generated method stub
+		log.debug("get router log by station name or id "+this.getClass().getName());
+		try {
+			return routerLogDao.getRouterLogByStationNameOrId(key);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get router log by station name or id fail! "+this.getClass().getName(), e);
+			throw new AppException("根据站点名字或id："+key+"获取日志失败");
+		}
+	}
 	
 }

@@ -26,6 +26,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     sorry! ${error} <br>
     ${station} <br>
     ${segment} <br>
+    ${computer}<br>
+    ${router}<br>
     <input type="button" name="back" onclick="javascript:history.go(-1);" value="·µ»Ø">
   </body>
 </html>
