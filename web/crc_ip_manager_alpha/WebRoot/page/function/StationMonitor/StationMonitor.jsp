@@ -318,7 +318,7 @@ for(cm.commons.controller.form.StationForm u: t){
 	<script type="text/javascript">
 	var cmenu = new contextMenu( {
 		menuID : "bmenu",
-		targetEle :
+		targetEle :"contextMenu"
 	}, {
 		bindings : {
 			'checkLink' : function(o) {
