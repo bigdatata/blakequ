@@ -74,7 +74,7 @@ public class RouterLogDaoImpl extends BasicDaoImpl<Integer, RouterLog> implement
 			list = getSession().createSQLQuery("SELECT rl.* FROM router_log rl " +
 					"JOIN router r ON r.id=rl.router_id " +
 					"JOIN station s ON s.id=r.station_id " +
-					"where s.name LIKE ? or s.id LIKE ?;")
+					"where s.name LIKE ? or s.id LIKE ? order by rl.curr_time;")
 					.addEntity(RouterLog.class)
 					.setParameter(0, "%"+key+"%")
 					.setParameter(1, "%"+key+"%")

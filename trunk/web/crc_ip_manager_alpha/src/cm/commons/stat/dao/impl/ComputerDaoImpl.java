@@ -42,4 +42,18 @@ public class ComputerDaoImpl extends BasicDaoImpl<Integer, Computer> implements
 			throw new AppException("获取IP="+ip+"的台账电脑失败");
 		}
 	}
+	public Computer getComputerByStationId(Integer stationId) {
+		// TODO Auto-generated method stub
+		log.debug("get computer by station id");
+		try {
+			Computer c = (Computer) getSession().createQuery("from Router r where r.station.id = ?")
+							.setParameter(0, stationId)
+							.uniqueResult();
+			return c;
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get computer by station id fail!", e);
+			throw new AppException("通过车站id"+stationId+"获取路由失败");
+		}
+	}
 }

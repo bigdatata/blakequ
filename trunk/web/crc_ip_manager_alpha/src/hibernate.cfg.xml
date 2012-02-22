@@ -28,6 +28,7 @@
 		<mapping resource="cm/commons/pojos/Port.hbm.xml" />
 		<mapping resource="cm/commons/pojos/Segment.hbm.xml" />
 		<mapping resource="cm/commons/pojos/Route.hbm.xml" />
+		<mapping resource="cm/commons/Port.hbm.xml" />
 
 	</session-factory>
 </hibernate-configuration>
