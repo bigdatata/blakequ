@@ -1,0 +1,83 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+width:1000px;
+margin:0 auto;
+font:normal normal normal 12px Simsun;}
+.layout{
+
+border:1px solid #999999;
+ background-color:#F1F5F8;
+ width:998px;
+}
+.title{
+border-bottom:1px solid #AED0EA;
+width:993;
+ font-weight:bold;
+ line-height:26px; 
+ font-size:14px;
+background:url(../image/head2.png) 0 0 repeat-x; padding-left:5px;}
+.content{
+padding:0 8px;
+width:982px;}
+.banner
+{
+ padding-left:5px ;
+ border-bottom:1px dashed #CCCCCC;
+ line-height:25px;
+}
+.content{
+padding:0 8px;
+width:882px;}
+
+.two_columns,.four_columns,.six_columns{
+border-bottom:1px dashed #CCCCCC;
+width:inherit;
+padding:5px 0;
+line-height:20px;}
+
+.two_columns_text{
+width:20%;
+float:left;
+text-align:right;}
+
+.two_columns_input{
+width:80%;
+float:left;
+}
+
+.two_columns_textarea{
+width:80%;padding:5px 0;
+float:left}
+
+textarea{
+width:500px;
+height:80px;}
+
+.four_columns_text{
+width:20%;
+float:left;
+text-align:right;}
+
+.four_columns_input{
+width:20%;
+float:left;
+}
+
+.six_columns_text{
+width:15%;
+float:left;}
+
+.six_columns_input{
+width:18%;
+float:left;}
+
+.clear{
+clear:both;}
+
+.button{
+width:150px;
+margin:0 auto;
+}
+.four_columns_file{
+float:left; width:218px;}
