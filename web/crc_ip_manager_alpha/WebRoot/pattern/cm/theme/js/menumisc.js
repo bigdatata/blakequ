@@ -164,7 +164,11 @@ function showleft2(id,t,url){
 function showtitle(){
 	var obj = document.getElementById('guide');
 	var guide = guides[cate];
-	var html = '<span class="fr s1" style="margin:0 16px">当前日期-2010年10月25日 | 用户: admin　级别: manager　|　<a class="s0" href="vbscript:parent.main.location.reload" >刷新</a> <a class="s0" href="#">退出</a></span>';
+	var myDate = new Date;
+	var year = myDate.getFullYear();
+	var month = myDate.getMonth()+1;
+	var date = myDate.getDate();
+	var html = '<span class="fr s1" style="margin:0 16px">当前日期-'+year+'年'+month+'月'+date+'日 | 用户: admin　级别: manager　|　<a class="s0" href="JavaScript:location.reload()" >刷新</a> <a class="s0" href="#">退出</a></span>';
 	if(action && type){
 		html += '<h1><span class="fr1">' + titles[action] + ' » ' + guide[action][type][0] + '</span></h1>';
 	} else {
