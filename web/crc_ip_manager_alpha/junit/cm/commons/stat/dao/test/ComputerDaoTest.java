@@ -32,5 +32,9 @@ public class ComputerDaoTest extends TestCase {
 		System.out.println(c.getStation());
 	}
 	
+	public void testGetComputerByStationId(){
+		System.out.println(cd.getComputerByStationId(1));
+	}
+	
 
 }

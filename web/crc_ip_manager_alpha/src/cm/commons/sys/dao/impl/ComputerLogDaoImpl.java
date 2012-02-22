@@ -73,7 +73,7 @@ public class ComputerLogDaoImpl extends BasicDaoImpl<Integer, ComputerLog> imple
 			list = getSession().createSQLQuery("SELECT cl.* FROM computer_log cl " +
 					"JOIN computer c ON c.id=cl.computer_id " +
 					"JOIN station s ON s.id=c.station_id " +
-					"where s.name LIKE ? or s.id LIKE ?;")
+					"where s.name LIKE ? or s.id LIKE ? order by cl.curr_time;")
 					.addEntity(ComputerLog.class)
 					.setParameter(0, "%"+key+"%")
 					.setParameter(1, "%"+key+"%")

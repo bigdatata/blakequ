@@ -112,8 +112,6 @@ public class RouterLogController {
 				rlf.setId(r.getId());
 				rlf.setCpuRate(r.getCpuRate());
 				rlf.setCurrTime(r.getCurrTime());
-				rlf.setErrorPacket(r.getErrorPacket());
-				rlf.setMemRate(r.getMemRate());
 				rlf.setRouterId(r.getRouter().getId());
 				rlf.setRouterInfo(r.getRouterInfo());
 				routerLogs.add(rlf);
@@ -135,7 +133,6 @@ public class RouterLogController {
 				rlf.setId(r.getId());
 				rlf.setCpuRate(r.getCpuRate());
 				rlf.setCurrTime(r.getCurrTime());
-				rlf.setErrorPacket(r.getErrorPacket());
 				rlf.setMemRate(r.getMemRate());
 				rlf.setRouterId(r.getRouter().getId());
 				rlf.setRouterInfo(r.getRouterInfo());
@@ -158,7 +155,6 @@ public class RouterLogController {
 				rlf.setId(r.getId());
 				rlf.setCpuRate(r.getCpuRate());
 				rlf.setCurrTime(r.getCurrTime());
-				rlf.setErrorPacket(r.getErrorPacket());
 				rlf.setMemRate(r.getMemRate());
 				rlf.setRouterId(r.getRouter().getId());
 				rlf.setRouterInfo(r.getRouterInfo());
@@ -181,7 +177,6 @@ public class RouterLogController {
 				rlf.setId(r.getId());
 				rlf.setCpuRate(r.getCpuRate());
 				rlf.setCurrTime(r.getCurrTime());
-				rlf.setErrorPacket(r.getErrorPacket());
 				rlf.setMemRate(r.getMemRate());
 				rlf.setRouterId(r.getRouter().getId());
 				rlf.setRouterInfo(r.getRouterInfo());

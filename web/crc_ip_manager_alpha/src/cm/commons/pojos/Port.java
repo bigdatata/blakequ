@@ -1,5 +1,6 @@
 package cm.commons.pojos;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 
@@ -14,10 +15,26 @@ public class Port implements java.io.Serializable {
 	private Integer id;
 	private Router router;
 	private Date getTime;
-	private Integer routerState;
-	private Integer inFlow;
-	private Integer outFlow;
-	private Integer portNumber;
+	private Integer ifIndex;
+	private String ifDescr;
+	/**
+	 * INTEGER {up(1),       
+	 * down(2),
+	 * testing(3),   
+	 * unknown(4),   
+	 * dormant(5),
+	 * notPresent(6),    
+	 * lowerLayerDown(7) 
+	 * }
+	 */
+	private Integer ifOperStatus;
+	private Integer ifInOctets;
+	private Integer locIfInCrc;
+	private String ipRouteDest;
+	private String portIp;
+	private Integer locIfInBitsSec;
+	private Integer locIfOutBitsSec;
+	private Integer ifOutOctets;
 
 	// Constructors
 
@@ -25,20 +42,24 @@ public class Port implements java.io.Serializable {
 	public Port() {
 	}
 
-	/** minimal constructor */
-	public Port(Router router) {
-		this.router = router;
-	}
 
 	/** full constructor */
-	public Port(Router router, Date getTime, Integer routerState,
-			Integer inFlow, Integer outFlow, Integer portNumber) {
+	public Port(Router router, Date getTime, Integer ifIndex,
+			String ifDescr, Integer ifOperStatus, Integer ifInOctets,
+			Integer locIfInCrc, String ipRouteDest, String portIp,
+			Integer locIfInBitsSec, Integer locIfOutBitsSec, Integer ifOutOctets) {
 		this.router = router;
 		this.getTime = getTime;
-		this.routerState = routerState;
-		this.inFlow = inFlow;
-		this.outFlow = outFlow;
-		this.portNumber = portNumber;
+		this.ifIndex = ifIndex;
+		this.ifDescr = ifDescr;
+		this.ifOperStatus = ifOperStatus;
+		this.ifInOctets = ifInOctets;
+		this.locIfInCrc = locIfInCrc;
+		this.ipRouteDest = ipRouteDest;
+		this.portIp = portIp;
+		this.locIfInBitsSec = locIfInBitsSec;
+		this.locIfOutBitsSec = locIfOutBitsSec;
+		this.ifOutOctets = ifOutOctets;
 	}
 
 	// Property accessors
@@ -51,59 +72,105 @@ public class Port implements java.io.Serializable {
 		this.id = id;
 	}
 
+
 	public Router getRouter() {
-		return this.router;
+		return router;
 	}
+
 
 	public void setRouter(Router router) {
 		this.router = router;
 	}
 
+
 	public Date getGetTime() {
-		return this.getTime;
+		return getTime;
 	}
+
 
 	public void setGetTime(Date getTime) {
 		this.getTime = getTime;
 	}
 
-	public Integer getRouterState() {
-		return this.routerState;
+
+	public Integer getIfIndex() {
+		return this.ifIndex;
 	}
 
-	public void setRouterState(Integer routerState) {
-		this.routerState = routerState;
+	public void setIfIndex(Integer ifIndex) {
+		this.ifIndex = ifIndex;
 	}
 
-	public Integer getInFlow() {
-		return this.inFlow;
+	public String getIfDescr() {
+		return this.ifDescr;
 	}
 
-	public void setInFlow(Integer inFlow) {
-		this.inFlow = inFlow;
+	public void setIfDescr(String ifDescr) {
+		this.ifDescr = ifDescr;
 	}
 
-	public Integer getOutFlow() {
-		return this.outFlow;
+	public Integer getIfOperStatus() {
+		return this.ifOperStatus;
 	}
 
-	public void setOutFlow(Integer outFlow) {
-		this.outFlow = outFlow;
+	public void setIfOperStatus(Integer ifOperStatus) {
+		this.ifOperStatus = ifOperStatus;
 	}
 
-	public Integer getPortNumber() {
-		return this.portNumber;
+	public Integer getIfInOctets() {
+		return this.ifInOctets;
 	}
 
-	public void setPortNumber(Integer portNumber) {
-		this.portNumber = portNumber;
+	public void setIfInOctets(Integer ifInOctets) {
+		this.ifInOctets = ifInOctets;
 	}
 
-	@Override
-	public String toString() {
-		return "Port [getTime=" + getTime + ", id=" + id + ", inFlow=" + inFlow
-				+ ", outFlow=" + outFlow + ", portNumber=" + portNumber
-				+ ", router=" + router + ", routerState=" + routerState + "]";
+	public Integer getLocIfInCrc() {
+		return this.locIfInCrc;
+	}
+
+	public void setLocIfInCrc(Integer locIfInCrc) {
+		this.locIfInCrc = locIfInCrc;
+	}
+
+	public String getIpRouteDest() {
+		return this.ipRouteDest;
+	}
+
+	public void setIpRouteDest(String ipRouteDest) {
+		this.ipRouteDest = ipRouteDest;
+	}
+
+	public String getPortIp() {
+		return this.portIp;
+	}
+
+	public void setPortIp(String portIp) {
+		this.portIp = portIp;
+	}
+
+	public Integer getLocIfInBitsSec() {
+		return this.locIfInBitsSec;
+	}
+
+	public void setLocIfInBitsSec(Integer locIfInBitsSec) {
+		this.locIfInBitsSec = locIfInBitsSec;
+	}
+
+	public Integer getLocIfOutBitsSec() {
+		return this.locIfOutBitsSec;
+	}
+
+	public void setLocIfOutBitsSec(Integer locIfOutBitsSec) {
+		this.locIfOutBitsSec = locIfOutBitsSec;
+	}
+
+	public Integer getIfOutOctets() {
+		return this.ifOutOctets;
+	}
+
+	public void setIfOutOctets(Integer ifOutOctets) {
+		this.ifOutOctets = ifOutOctets;
 	}
 
 }

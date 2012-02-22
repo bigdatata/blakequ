@@ -20,4 +20,11 @@ public interface ComputerDao<K extends Serializable, E> extends BasicDao<K, E> {
 	 * @param ip
 	 */
 	void deleteComputerByIp(String ip) throws AppException;
+	
+	/**
+	 * 通过车站id获取电脑
+	 * @param station_id
+	 * @return
+	 */
+	E getComputerByStationId(K station_id) throws AppException;
 }

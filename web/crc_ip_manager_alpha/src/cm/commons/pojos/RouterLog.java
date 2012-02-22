@@ -14,7 +14,6 @@ public class RouterLog implements java.io.Serializable {
 	private Integer id;
 	private Router router;
 	private Float cpuRate;
-	private Integer errorPacket;
 	private Float memRate;
 	private String routerInfo;
 	private Date currTime;
@@ -32,11 +31,10 @@ public class RouterLog implements java.io.Serializable {
 
 	/** full constructor */
 	public RouterLog(Router router, Float cpuRate,
-			Integer errorPacket, Float memRate, String routerInfo,
+			Float memRate, String routerInfo,
 			Date currTime) {
 		this.router = router;
 		this.cpuRate = cpuRate;
-		this.errorPacket = errorPacket;
 		this.memRate = memRate;
 		this.routerInfo = routerInfo;
 		this.currTime = currTime;
@@ -68,13 +66,6 @@ public class RouterLog implements java.io.Serializable {
 		this.cpuRate = cpuRate;
 	}
 
-	public Integer getErrorPacket() {
-		return this.errorPacket;
-	}
-
-	public void setErrorPacket(Integer errorPacket) {
-		this.errorPacket = errorPacket;
-	}
 
 	public Float getMemRate() {
 		return this.memRate;
@@ -103,7 +94,7 @@ public class RouterLog implements java.io.Serializable {
 	@Override
 	public String toString() {
 		return "RouterLog [cpuRate=" + cpuRate + ", currTime=" + currTime
-				+ ", errorPacket=" + errorPacket + ", id=" + id + ", memRate="
+				+ ", id=" + id + ", memRate="
 				+ memRate + ", router=" + router + ", routerInfo=" + routerInfo
 				+ "]";
 	}

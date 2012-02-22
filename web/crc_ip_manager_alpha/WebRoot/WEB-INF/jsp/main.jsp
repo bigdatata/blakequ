@@ -131,6 +131,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			submit();
 		}
 	}
+	
+	function computerManager(){
+		with(document.forms[0]) {
+			action="<%=basePath%>";
+			method="post";
+			submit();
+		}
+	}
+	
+	function routerManager(){
+		with(document.forms[0]) {
+			action="<%=basePath%>";
+			method="post";
+			submit();
+		}
+	}
 	</script>
   </head>
   
@@ -213,6 +229,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td width="155" class="rd6">
 						坐标
 					</td>
+					<td width="155" class="rd6">
+						站点路由和电脑管理
+					</td>
 				</tr>
 				<c:forEach items="${station_list}" var="item">
 					<tr>
@@ -228,6 +247,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</td>
 						<td class="rd8">
 							(${item.x}, ${item.y})
+						</td>
+						<td class="rd8">
+							<input name="btnComputer" class="button1" type="button"
+								id="btnComputer" value="电脑管理" onClick="computerManager()">
+							<input name="btnRouter" class="button1" type="button"
+								id="btnRouter" value="路由管理" onClick="routerManager()">
 						</td>
 					</tr>
 				</c:forEach>

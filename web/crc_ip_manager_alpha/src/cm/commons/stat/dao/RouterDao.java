@@ -21,4 +21,12 @@ public interface RouterDao<K extends Serializable, E> extends BasicDao<K, E> {
 	 */
 	void deleteRouterByIp(String ip)  throws AppException;
 	
+	/**
+	 * 通过车站id获取路由器
+	 * @param station_id
+	 * @return
+	 * @throws AppException
+	 */
+	E getRouterByStationId(K station_id) throws AppException;
+	
 }

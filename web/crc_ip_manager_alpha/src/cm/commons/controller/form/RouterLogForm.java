@@ -7,7 +7,6 @@ public class RouterLogForm {
 	private int id;
 	private int routerId;
 	private Float cpuRate;
-	private Integer errorPacket;
 	private Float memRate;
 	private String routerInfo;
 	private Date currTime;
@@ -28,12 +27,6 @@ public class RouterLogForm {
 	}
 	public void setCpuRate(Float cpuRate) {
 		this.cpuRate = cpuRate;
-	}
-	public Integer getErrorPacket() {
-		return errorPacket;
-	}
-	public void setErrorPacket(Integer errorPacket) {
-		this.errorPacket = errorPacket;
 	}
 	public Float getMemRate() {
 		return memRate;
@@ -56,7 +49,7 @@ public class RouterLogForm {
 	@Override
 	public String toString() {
 		return "RouterLogForm [cpuRate=" + cpuRate + ", currTime=" + currTime
-				+ ", errorPacket=" + errorPacket + ", id=" + id + ", memRate="
+				+ ", id=" + id + ", memRate="
 				+ memRate + ", routerId=" + routerId + ", routerInfo="
 				+ routerInfo + "]";
 	}

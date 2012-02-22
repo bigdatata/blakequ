@@ -44,4 +44,9 @@ public class RouterDaoImpl extends BasicDaoImpl<Integer, Router> implements
 		}
 	}
 
+	public Router getRouterByStationId(Integer stationId) throws AppException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
