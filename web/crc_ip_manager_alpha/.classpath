@@ -62,5 +62,6 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/util/log4j-1.2.14.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/util/mysql-connector-java-5.1.5-bin.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/util/standard.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/util/junit-4.10.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
