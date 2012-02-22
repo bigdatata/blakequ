@@ -89,7 +89,7 @@ public class StationRouteController {
 		m.put("segment_list", segmentForms);
 		m.put("station_list", getStationFromRoute(route_id));
 		mv.addAllObjects(m);
-		mv.setViewName("main");
+		mv.setViewName("StationMonitor/StationMonitor");
 		return mv;
 	}
 	
@@ -102,7 +102,7 @@ public class StationRouteController {
 		ModelAndView mv = new ModelAndView();
 		Station s = (Station) stationService.get(station_id);
 		mv.addObject("station", s);
-		mv.setViewName("error");
+		mv.setViewName("StationMonitor/StationInfo");
 		return mv;
 	}
 	
