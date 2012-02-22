@@ -1,0 +1,84 @@
+@charset "utf-8";
+/* CSS Document */
+
+body
+{
+  font:normal normal normal 12px Simsun;
+  margin:0;
+  padding:0;
+}
+.head,.left_nav,.main,.bottom
+{
+  position:absolute;
+}
+
+.head{
+width:inherit;
+top:0;
+left:0;
+right:0;
+height:76px;
+background:url(../image/head.png) 0 0 repeat-x;
+}
+.logo
+{
+  background:url(../image/loog.png) 0 0 no-repeat;
+  height:76px;
+  width:360px;
+  float:left;
+}
+.user{
+float:right;
+margin:10px 50px;}
+.clear{ clear:both;}
+.left_nav
+{
+top:77px;
+left:0;
+right:0;
+width:164px;
+bottom:49px;
+background:#e3ecf9;
+}
+.nav_sort_blod,.nav_sort_expand
+{
+  font-size:12px;
+  line-height:20px;
+  padding-left:15px;
+  cursor:pointer;
+}
+.nav_sort_blod
+{
+ background:url(../image/blod.gif) no-repeat 0 0;
+}
+.nav_sort_expand
+{
+  font-weight:bold;
+  background:url(../image/expand.gif) no-repeat 0 0;
+}
+.nav_sort
+{
+  font-size:12px;
+  line-height:20px;
+  padding-left:15px;
+}
+.left_nav a
+{
+color:#4D73A1;
+text-decoration:none;
+}
+#accordion h3{ padding-left:15px;}
+.main
+{top:87px;
+right:0;
+left:164px;
+bottom:49px;
+min-width: 868px;
+}
+.bottom{
+min-width:1024px;
+left:0;
+bottom:0;
+right:0;
+height:49px;
+}

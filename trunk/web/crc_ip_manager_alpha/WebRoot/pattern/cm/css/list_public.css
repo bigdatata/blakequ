@@ -1,0 +1,124 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	font:normal normal normal 12px Simsun;
+	margin:0;
+}
+#layout {
+	width:1000px;
+	margin:0 auto;
+	font:normal normal normal 12px Simsun;
+}
+.title {
+	width:986px;
+	margin-top:5px;
+	background: url(../image/wbg.gif) repeat-x top;
+	border: 1px solid #ccc;
+	border-bottom: 0px;
+	border-top: 0px;
+	padding:6px;
+	font-weight: bold;
+}
+.handle {
+	background: #fafafa url(../image/bg.gif) repeat-x top;
+	position: relative;
+	border: 1px solid #ccc;
+	border-bottom: 0px;
+	line-height:20px;
+}
+.add {
+	background: url(../image/add.png) 4px 3px no-repeat;
+	margin:1px;
+	padding:1px 2px 1px 22px;
+	float:left;
+}
+.delete {
+	background: url(../image/delete.png) 4px 3px no-repeat;
+	padding:1px 2px 1px 22px;
+	margin:1px;
+	float:left;
+}
+.add:hover {
+	background: url(../image/add.png) 3px 2px no-repeat;
+	padding: 0px 1px 0px 21px;
+	border: 1px solid #ccc;
+	cursor:pointer;
+}
+.delete:hover {
+	background: url(../image/delete.png) 3px 2px no-repeat;
+	padding: 0px 1px 0px 21px;
+	border: 1px solid #ccc;
+	cursor:pointer;
+}
+.search_btn {
+	background:url(../image/magnifier.png) center no-repeat;
+	width:18px;
+	float:right;
+	margin:1px 15px 1px 0;
+	height:22px;
+}
+.search_btn:hover {
+	border: 1px solid #ccc;
+	cursor:pointer;
+	height:20px;
+	margin-right:14px;
+}
+.line {
+	float: left;
+	height: 22px;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #fff;
+	margin: 1px;
+}
+#search {
+	width:inherit;
+	height:25px;
+	line-height:25px;
+}
+#search1, #search2, #search3 {
+	float:left;
+}
+.search_input{
+float:left;
+margin-left:5px;}
+.list {
+	width:inherit;
+}
+.clear {
+	clear:both;
+}
+.pageup {
+	background:url(../image/prev.gif) center no-repeat;
+	width:18px;
+	height:18px;
+	margin:2px;
+	float:left;
+}
+.pagedown {
+	background:url(../image/next.gif) center no-repeat;
+	width:18px;
+	height:18px;
+	margin:2px;
+	float:left;
+}
+.pageup:hover, .pagedown:hover {
+	width:16px;
+	height:16px;
+	border: 1px solid #ccc;
+	cursor:pointer;
+}
+#pages {
+	float:left;
+}
+#records {
+	float:left;
+}
+.bottom{
+background: #fafafa url(../image/bg.gif) repeat-x top;
+	position: relative;
+	border: 1px solid #ccc;
+	border-top: 0px;
+	line-height:20px;}
+form{
+margin:0;
+padding:0;}
