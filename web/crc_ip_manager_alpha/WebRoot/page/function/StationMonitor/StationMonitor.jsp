@@ -107,6 +107,7 @@ for(cm.commons.controller.form.StationForm u: t){
 		
 		 -->
 			<div id="sidebar">
+			<form action="<%=basePath%>main.do" method="post" >
 				<table width="120px">
 					<tr style="font-size: 18px">
 						<td>
@@ -180,6 +181,7 @@ for(cm.commons.controller.form.StationForm u: t){
 						</td>
 					</tr>
 				</table>
+			</form>
 			</div>
 			<div id="content">
 <!-- 
@@ -251,7 +253,7 @@ for(cm.commons.controller.form.StationForm u: t){
 					for (int i = 0; i < sxy_num; i++) {
 						if (i == 0) {
 							String sa = sxy[i].getName();
-							double sx = (sxy[i].getX() - 6 * sa.length());//将站名置于正中
+							double sx = (sxy[i].getX() - 8 * sa.length());//将站名置于正中
 							out
 									.print("<ellipse id=\""
 											+ sxy[i].getId()
