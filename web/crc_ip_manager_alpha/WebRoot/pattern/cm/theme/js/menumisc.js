@@ -9,6 +9,10 @@ var guides={
 	'StationModify' : {
 		'StationModify_' : {
 			'StationModify_1' : ['线路信息管理','/crc_ip_manager_alpha/page/function/StationModify/StationModify.jsp','']}},
+	'FrequencySetting' : {
+		'FrequencySetting_' : {
+			'FrequencySetting_1' : ['采集频率设置','/crc_ip_manager_alpha/page/function/FrequencySetting/FrequencySetting.jsp','']}},
+
 //	'tgfx' : {
 //		'tgfx_' : {
 //			'tjfx_1' : ['告警事件分布','/ips1.2/page/function/tjfx/allGjsjPieChart.jsp',''],
