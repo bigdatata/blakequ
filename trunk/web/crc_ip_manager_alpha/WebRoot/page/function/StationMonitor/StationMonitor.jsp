@@ -304,7 +304,7 @@ for(cm.commons.controller.form.StationForm u: t){
 					查看台账信息
 				</li>
 				<li id="edit">
-					查看路由
+					查看路由信息
 				</li>
 				<li id="del">
 					查看设备故障
