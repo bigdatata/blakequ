@@ -5,7 +5,10 @@ var guides={
 	'StationMonitor' : {
 		'StationMonitor_' : {
 			'StationMonitor_1' : ['线路监控','/crc_ip_manager_alpha/main.do','']}},
-	
+			
+	'AlarmManage' : {
+		'AlarmManage_' : {
+			'AlarmManage_1' : ['告警事件管理','/crc_ip_manager_alpha/page/function/AlarmManage/AlarmManage.jsp','']}},
 	'StationModify' : {
 		'StationModify_' : {
 			'StationModify_1' : ['线路信息管理','/crc_ip_manager_alpha/page/function/StationModify/StationModify.jsp','']}},

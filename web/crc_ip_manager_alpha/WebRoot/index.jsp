@@ -1,63 +1,76 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 %>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>环形冗余IP网络管理</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="pattern/cm/theme/style/css.css" rel="stylesheet" type="text/css" />
+<title>环形冗余IP数据网网管系统</title>
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-image: url(pattern/cm/image/login/login_01.gif);
+	overflow:hidden;
+}
+.STYLE3 {font-size: 12px; color: #FFFFFF; }
+.STYLE4 {
+	color: #FFFFFF;
+	font-family: "方正大黑简体";
+	font-size: 50px;
+}
+-->
+</style>
+<!--如果该页面在子框架中显示的时候，需要它回到父级框架显示-->
+<script language="javascript">
 
-
-<script type="text/javascript" src="<%=path%>/pattern/cm/js/svg/jquery-1.2.6.js"></script>
-<script type="text/javascript" src="<%=path%>/pattern/cm/js/svg/jquery.funkyUI.js"></script>
+  if (top.location != self.location) {
+     top.location=self.location; 
+  } 
+</script>
 </head>
+
 <body>
-<div id="header">
-  <div style="background:url(pattern/cm/theme/images/logo000.jpg) no-repeat;">
-    <div id="innerHeader">
-      <div id="innerHeaders"><!--备用--></div>
-      <div id="topguide">
-        <ul id="topguide-entry">
-         
-        
-       
-           <li id="StationMonitor" onMouseOver="showguide(this.id);"><a href="javascript:"
-           onClick="return initguide('StationMonitor');">线路监控</a></li>
-             <li id="AlarmManage" onMouseOver="showguide(this.id);"><a href="javascript:"
-           onClick="return initguide('AlarmManage');">告警信息管理</a></li>
-             <li id="StationModify" onMouseOver="showguide(this.id);"><a href="javascript:"
-           onClick="return initguide('StationModify');">线路信息管理</a></li>
-            <li id="FrequencySetting" onMouseOver="showguide(this.id);"><a href="javascript:"
-           onClick="return initguide('FrequencySetting');">采集频率设置</a></li>
-           <li id="UserManage" onMouseOver="showguide(this.id);"><a href="javascript:"
-           onClick="return initguide('UserManage');">用户管理</a></li>          
-        </ul>
-      </div>
-    </div>
-    <div class="c"></div>
-    <div id="guide"></div>
-  </div>
-</div>
-<div id="selector">
-  <div id="left" class="inner"></div>
-</div>
-<div id="gird">
-  <div class="inner">
-    <iframe name="main" frameborder="0" scrolling=yes style="height:85%;visibility:inherit;width:100%;z-index:1" src="index.jsp"></iframe>
-  </div>
-</div>
-<div id="footer">
-  <div id="innerFooter"></div>
-</div>
-<iframe name="notice" frameborder="0" style="height:0;width:0;"></iframe>
-<div id="menu" style="display:none"></div>
-<div id="showmenu" style="display:none"></div>
-<script language="JavaScript" src="pattern/cm/theme/js/menumisc.js"></script> 
-<script language="JavaScript" src="pattern/cm/theme/js/deployinit.js"></script>
+<form action="<%=path%>/crc.jsp" method="post">
+<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" background="pattern/cm/image/login/background.gif">
+                  <tr height=325>
+                  </tr>
+                  <tr>
+                  <td width=700>
+                  </td>
+                    <td ><input id="username" name="username" type="text" size="20" /></td>
+                  </tr> 
+                  <tr>
+                     <td>
+                  </td>
+                    <td ><input id="password" name="password" type="password" size="20" /></td>
+                   </tr>
+                 
+                 <tr>
+                 <td>
+                  </td>
+                    <td align="left"><input type="image"  src="pattern/cm/image/login/dl.gif" width="47" height="16" /></td>
+                 </tr>
+                 <tr>
+                 <td></td>
+                </tr>
+                  <tr height=28>
+                    <td ><input type="hidden"/></td>
+                    </tr>
+                    <tr>
+                    <td></td>
+                    <td ><a href="<%=path%>/page/function/yhgl/user_add.jsp" target="_blank"><img src="pattern/cm/image/login/zc.gif"width="47" height="16"></a></td>                 
+                  </tr>
+                  <tr height=500>
+                  </tr>
+</table>
+</form>
 </body>
 </html>
-
