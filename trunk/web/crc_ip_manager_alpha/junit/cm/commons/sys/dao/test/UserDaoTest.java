@@ -1,11 +1,14 @@
 package cm.commons.sys.dao.test;
 
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cm.commons.pojos.User;
 import cm.commons.sys.dao.UserDao;
 import cm.commons.sys.dao.impl.UserDaoImpl;
+import cm.commons.util.PageModel;
 
 import junit.framework.TestCase;
 
@@ -26,6 +29,14 @@ public class UserDaoTest extends TestCase {
 	
 	public void testDeleteByName(){
 		ud.deleteByName("111");
+	}
+	
+	public void testAll(){
+		PageModel pm = ud.getAll("", 2, 5);
+		System.out.println("*********");
+		for(User u: (List<User>)pm.getList()){
+			System.out.println(u);
+		}
 	}
 	
 	public void testGetUserByAuthority(){

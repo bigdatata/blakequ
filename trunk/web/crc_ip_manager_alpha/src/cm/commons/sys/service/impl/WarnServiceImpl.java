@@ -172,9 +172,19 @@ public class WarnServiceImpl implements WarnService<Integer, Warn> {
 		}
 	}
 
+	/**
+	 * 分页查询，可以通过告警内容关键字查询告警
+	 */
 	public PageModel<Warn> getAll(String queryString, int pageNo, int pageSize) {
 		// TODO Auto-generated method stub
-		return null;
+		log.debug("get all data by page "+this.getClass().getName());
+		try {
+			return warnDao.getAll(queryString, pageNo, pageSize);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get all data by page fail! "+this.getClass().getName(), e);
+			throw new AppException("通过分页获取所有数据失败");
+		}
 	}
 	
 

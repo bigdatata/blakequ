@@ -1,6 +1,7 @@
 package cm.commons.sys.dao.impl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import cm.commons.dao.basic.BasicDaoImpl;
 import cm.commons.exception.AppException;
 import cm.commons.pojos.Warn;
 import cm.commons.sys.dao.WarnDao;
+import cm.commons.util.PageModel;
 
 public class WarnDaoImpl extends BasicDaoImpl<Integer, Warn> implements WarnDao<Integer, Warn> {
 
@@ -114,5 +116,61 @@ public class WarnDaoImpl extends BasicDaoImpl<Integer, Warn> implements WarnDao<
 			throw new AppException("删除告警失败！");
 		}
 	}
+
+	/**
+	 * 可以通过告警的内容获取告警
+	 * @param queryString 如果为空，则查询所有告警
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public PageModel<Warn> getAll(String queryString, int pageNo, int pageSize)
+			throws AppException {
+		// TODO Auto-generated method stub
+		log.debug("get all data by page");
+		try {
+			List<Warn> list = new ArrayList<Warn>();
+			if (queryString != null && !"".equals(queryString)) {
+				list = getSession().createQuery("from Warn w " +
+						"where w.warncontent like ? " +
+						"order by w.warntime desc")
+						.setParameter(0, "%"+queryString+"%")
+						.setFirstResult((pageNo-1) * pageSize)
+						.setMaxResults(pageSize)
+						.list();
+			}else{
+				list = getSession().createQuery("from Warn w order by w.warntime desc")
+									.setFirstResult((pageNo-1) * pageSize)
+									.setMaxResults(pageSize)
+									.list();
+			}
+			
+			PageModel pageModel = new PageModel();
+			pageModel.setPageNo(pageNo);
+			pageModel.setPageSize(pageSize);
+			pageModel.setList(list);
+			pageModel.setTotalRecords(getTotalRecords(queryString));
+			return pageModel;
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get all data by page fail!", e);
+			throw new AppException("通过分页获取数据失败");
+		}
+	}
+
+	private int getTotalRecords(String queryString) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		if (queryString != null && !"".equals(queryString)) {
+			count = ((Long)getSession().createQuery("select count(*) from Warn w " +
+					"where w.warncontent like ? ")
+					.setParameter(0, "%"+queryString+"%")
+					.uniqueResult()).intValue();
+		}else{
+			count = ((Long)getSession().createQuery("select count(*) from Warn")
+					.uniqueResult()).intValue();
+		}
+		return count;
+	}
+	
 	
 }
