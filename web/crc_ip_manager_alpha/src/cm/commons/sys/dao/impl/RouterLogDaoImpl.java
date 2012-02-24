@@ -1,5 +1,6 @@
 package cm.commons.sys.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -12,6 +13,7 @@ import cm.commons.exception.AppException;
 import cm.commons.pojos.ComputerLog;
 import cm.commons.pojos.RouterLog;
 import cm.commons.sys.dao.RouterLogDao;
+import cm.commons.util.PageModel;
 
 public class RouterLogDaoImpl extends BasicDaoImpl<Integer, RouterLog> implements
 		RouterLogDao<Integer, RouterLog> {
@@ -86,5 +88,60 @@ public class RouterLogDaoImpl extends BasicDaoImpl<Integer, RouterLog> implement
 			throw new AppException("根据站点的名字或ID："+key+"获取日志失败");
 		}
 	}
+	
+	/**
+	 * 可以通过站点名字查询此站点路由的日志，按时间排序
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public PageModel<RouterLog> getAll(String queryString, int pageNo,
+			int pageSize) throws AppException {
+		// TODO Auto-generated method stub
+		log.debug("get all data by page");
+		try {
+			List<RouterLog> list = new ArrayList<RouterLog>();
+			if (queryString != null && !"".equals(queryString)) {
+				list = getSession().createQuery("from RouterLog rl " +
+						"where rl.router.station.name like ? " +
+						"order by rl.currTime desc")
+						.setParameter(0, "%"+queryString+"%")
+						.setFirstResult((pageNo-1) * pageSize)
+						.setMaxResults(pageSize)
+						.list();
+			}else{
+				list = getSession().createQuery("from RouterLog rl order by rl.currTime desc")
+									.setFirstResult((pageNo-1) * pageSize)
+									.setMaxResults(pageSize)
+									.list();
+			}
+			
+			PageModel pageModel = new PageModel();
+			pageModel.setPageNo(pageNo);
+			pageModel.setPageSize(pageSize);
+			pageModel.setList(list);
+			pageModel.setTotalRecords(getTotalRecords(queryString));
+			return pageModel;
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get all data by page fail!", e);
+			throw new AppException("通过分页获取数据失败(按时间排序)");
+		}
+	}
+	
+	private int getTotalRecords(String queryString) {
+		// TODO Auto-generated method stub
+		int count = 0;
+		if (queryString != null && !"".equals(queryString)) {
+			count = ((Long)getSession().createQuery("select count(*) from RouterLog rl " +
+					"where rl.router.station.name like ? ")
+					.setParameter(0, "%"+queryString+"%")
+					.uniqueResult()).intValue();
+		}else{
+			count = ((Long)getSession().createQuery("select count(*) from RouterLog c")
+					.uniqueResult()).intValue();
+		}
+		return count;
+	}
 
+	
 }

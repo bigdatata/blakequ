@@ -153,9 +153,19 @@ public class UserServiceImpl implements UserService<Integer, User> {
 		}
 	}
 
+	/**
+	 * 分页查询，可以通过根据用户名或者权限查询用户
+	 */
 	public PageModel<User> getAll(String queryString, int pageNo, int pageSize) {
 		// TODO Auto-generated method stub
-		return null;
+		log.debug("get all data by page "+this.getClass().getName());
+		try {
+			return userDao.getAll(queryString, pageNo, pageSize);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get all data by page fail! "+this.getClass().getName(), e);
+			throw new AppException("通过分页获取所有数据失败");
+		}
 	}
 
 }

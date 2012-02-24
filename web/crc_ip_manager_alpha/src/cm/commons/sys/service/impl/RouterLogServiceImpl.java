@@ -146,10 +146,20 @@ public class RouterLogServiceImpl implements RouterLogService<Integer, RouterLog
 		}
 	}
 
+	/**
+	 * 分页获取数据，可以通过车站名字获取路由日志
+	 */
 	public PageModel<RouterLog> getAll(String queryString, int pageNo,
 			int pageSize) {
 		// TODO Auto-generated method stub
-		return null;
+		log.debug("get all data by page "+this.getClass().getName());
+		try {
+			return routerLogDao.getAll(queryString, pageNo, pageSize);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get all data by page fail! "+this.getClass().getName(), e);
+			throw new AppException("通过分页获取所有数据失败");
+		}
 	}
 	
 }

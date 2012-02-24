@@ -2,12 +2,14 @@ package cm.commons.sys.dao.test;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cm.commons.pojos.Warn;
 import cm.commons.sys.dao.WarnDao;
+import cm.commons.util.PageModel;
 
 import junit.framework.TestCase;
 
@@ -57,6 +59,14 @@ public class WarnDaoTest extends TestCase {
 	
 	public void testGetWarnByStation(){
 		System.out.println(wd.getWarnByStation(4));
+	}
+	
+	public void testAll(){
+		PageModel pm = wd.getAll("2", 1, 4);
+		System.out.println("************");
+		for(Warn w:(List<Warn>)pm.getList()){
+			System.out.println(w);
+		}
 	}
 	
 }

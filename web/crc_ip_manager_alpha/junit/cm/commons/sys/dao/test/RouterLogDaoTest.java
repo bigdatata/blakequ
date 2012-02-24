@@ -8,6 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import cm.commons.pojos.RouterLog;
 import cm.commons.sys.dao.RouterLogDao;
 import cm.commons.sys.dao.impl.RouterLogDaoImpl;
+import cm.commons.util.PageModel;
 import junit.framework.TestCase;
 
 public class RouterLogDaoTest extends TestCase {
@@ -41,6 +42,14 @@ public class RouterLogDaoTest extends TestCase {
 			for(RouterLog rl:r){
 				System.out.println(r);
 			}
+		}
+	}
+	
+	public void testAll(){
+		PageModel pm = rld.getAll("ggg", 0, 2);
+		System.out.println("**********");
+		for(RouterLog rl: (List<RouterLog>)pm.getList()){
+			System.out.println(rl);
 		}
 	}
 
