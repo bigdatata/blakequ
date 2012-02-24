@@ -12,11 +12,22 @@
            
            <bean id="computerController" class="cm.commons.controller.ComputerController"/>
            
+           <bean id="computerLogController" class="cm.commons.controller.ComputerLogController"/>
+           
            <bean id="routerController" class="cm.commons.controller.RouterController"/>
+           
+           <bean id="routerLogController" class="cm.commons.controller.RouterLogController"/>
+           
+           <bean id="portController" class="cm.commons.controller.PortController"/>
            
            <bean id="userController" class="cm.commons.controller.UserController"/>
            
            <bean id="stationRouterController" class="cm.commons.controller.StationRouteController"/>
            
            <bean id="systemConfigController" class="cm.commons.controller.SystemConfigController"/>
+           
+           <bean id="alarmController" class="cm.commons.controller.AlarmController"/>
+           
+           <!-- 处理客户端请求 -->
+           <bean id="requestController" class="cm.commons.controller.dorequest.RequestController"/>
 </beans>

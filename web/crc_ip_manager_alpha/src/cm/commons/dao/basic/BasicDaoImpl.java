@@ -7,8 +7,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import cm.commons.exception.AppException;
+import cm.commons.util.PageModel;
 
-public class BasicDaoImpl<K extends Serializable, E>  extends HibernateDaoSupport implements BasicDao<K,E>{
+public abstract class BasicDaoImpl<K extends Serializable, E>  extends HibernateDaoSupport implements BasicDao<K,E>{
 
 	private static Log log = LogFactory.getLog(BasicDaoImpl.class);
 	private Class<? extends E> entityClass;
@@ -116,4 +117,9 @@ public class BasicDaoImpl<K extends Serializable, E>  extends HibernateDaoSuppor
 		}
 	}
 
+	public PageModel<E> getAll(String queryString, int pageNo, int pageSize)
+			throws AppException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

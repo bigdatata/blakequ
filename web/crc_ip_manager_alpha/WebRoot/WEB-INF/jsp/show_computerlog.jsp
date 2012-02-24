@@ -66,7 +66,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	function sortByComputerId(){
 		with(document.forms[0]) {
-				action="<%=basePath %>computer_log/get_log_by_id.do";
+				action="<%=basePath %>computer_log/get_by_station_name.do";
 				method="post";
 				submit();
 			}
@@ -74,10 +74,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	function searchComputerItem(){
 		with(document.forms[0]) {
-				action="<%=basePath %>computer_log/get_single_log.do";
+				action="<%=basePath %>computer_log/get_by_time.do?pageNo=1&queryString=";
 				method="post";
 				submit();
 			}
+	}
+	
+	function topPage() {
+		//var searchStr = document.getElementsByName("searchStr");
+		window.location = "<%=basePath %>computer_log/get_by_time.do?pageNo=1&queryString=";
+	}
+	
+	function previousPage() {
+		if(${pageModel.pageNo==1}){
+			alert("已经到达第一页!");
+		}else{
+			window.location = "<%=basePath %>computer_log/get_by_time.do?pageNo=${pageModel.pageNo-1}&queryString=";
+		}
+	}
+	
+	function nextPage() {
+		if(${pageModel.pageNo==pageModel.pageSize+1}){
+			alert("已经到达最后一页!");
+		}else{
+			window.location = "<%=basePath %>computer_log/get_by_time.do?pageNo=${pageModel.pageNo+1}&queryString=";
+		}
+	}
+	
+	function bottomPage() {
+		window.location = "<%=basePath %>computer_log/get_by_time.do?pageNo=${pageModel.buttomPageNo}&queryString=";
 	}
 
 	</script>
@@ -97,7 +122,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</td>
 						<td width="57%">
 							<input name="searchStr" type="text" class="text1"
-								id="searchStr" size="50" maxlength="50">
+								id="searchStr" size="50" maxlength="50" value="${queryStr}">
 						</td>
 						<td width="26%">
 							<div align="left">
@@ -165,8 +190,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</c:forEach>
 			</table>
 			</div>
-			<td nowrap class="rd19" width="10%">
+			<table width="95%" height="30" border="0" align="center"
+				cellpadding="0" cellspacing="0" class="rd1">
+				<tr>
+					<td nowrap class="rd19" height="2" width="36%">
+						<div align="left">
+							<font color="#000000">&nbsp;共&nbsp${pageModel.totalPages}&nbsp页</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<font color="#000000">当前第</font>&nbsp
+							<font color="#FF0000">${pageModel.pageNo }</font>&nbsp
+							<font color="#000000">页</font>
+						</div>
+					</td>
+					<td nowrap class="rd19" width="64%">
 						<div align="center">
+							<input name="btnTopPage" class="button1" type="button"
+								id="btnTopPage" value="|&lt;&lt; " title="首页"
+								onClick="topPage()">
+							<input name="btnPreviousPage" class="button1" type="button"
+								id="btnPreviousPage" value=" &lt;  " title="上页"
+								onClick="previousPage()">
+							<input name="btnNextPage" class="button1" type="button"
+								id="btnNextPage" value="  &gt; " title="下页" onClick="nextPage()">
+							<input name="btnBottomPage" class="button1" type="button"
+								id="btnBottomPage" value=" &gt;&gt;|" title="尾页"
+								onClick="bottomPage()">
 							<input name="btnDelete" class="button1" type="button"
 								id="btnDelete" value="删除" onClick="deleteComputerItem()">
 							<input name="btnBack" class="button1" type="button"
@@ -174,7 +221,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<input name="btnBack" class="button1" type="button"
 								id="btnBack" value="返回" onClick="javascript:history.go(-1);">
 						</div>
-			</td>
+					</td>
+				</tr>
+			</table>
 		</form>
   </body>
 </html>

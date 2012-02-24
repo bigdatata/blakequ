@@ -9,6 +9,7 @@ import cm.commons.exception.AppException;
 import cm.commons.pojos.Route;
 import cm.commons.stat.dao.RouteDao;
 import cm.commons.stat.service.RouteService;
+import cm.commons.util.PageModel;
 
 public class RouteServiceImpl implements RouteService<Integer, Route> {
 
@@ -102,6 +103,11 @@ public class RouteServiceImpl implements RouteService<Integer, Route> {
 			log.error("delete data fail! "+this.getClass().getName());
 			throw new AppException("删除线路失败");
 		}
+	}
+
+	public PageModel<Route> getAll(String queryString, int pageNo, int pageSize) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

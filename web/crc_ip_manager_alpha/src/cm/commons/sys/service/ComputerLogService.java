@@ -4,6 +4,7 @@ import java.util.List;
 
 import cm.commons.exception.AppException;
 import cm.commons.service.basic.BasicService;
+import cm.commons.util.PageModel;
 
 public interface ComputerLogService<K, E>  extends BasicService<K, E>{
 
@@ -31,4 +32,11 @@ public interface ComputerLogService<K, E>  extends BasicService<K, E>{
 	 * @return
 	 */
 	public List<E> getComputerLogByStationNameOrId(String key);
+	
+	/**
+	 * 获取所有日志按所属电脑排序，分页
+	 * @return
+	 */
+	public PageModel<E> getAllSortByComputer(String queryString, int pageNo,
+			int pageSize) throws AppException;
 }

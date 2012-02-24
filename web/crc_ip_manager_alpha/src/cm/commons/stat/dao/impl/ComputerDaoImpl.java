@@ -46,7 +46,7 @@ public class ComputerDaoImpl extends BasicDaoImpl<Integer, Computer> implements
 		// TODO Auto-generated method stub
 		log.debug("get computer by station id");
 		try {
-			Computer c = (Computer) getSession().createQuery("from Router r where r.station.id = ?")
+			Computer c = (Computer) getSession().createQuery("from Computer c where c.station.id = ?")
 							.setParameter(0, stationId)
 							.uniqueResult();
 			return c;

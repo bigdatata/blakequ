@@ -17,6 +17,7 @@ import cm.commons.stat.dao.RouteDao;
 import cm.commons.stat.dao.SegmentDao;
 import cm.commons.stat.dao.StationDao;
 import cm.commons.stat.service.StationService;
+import cm.commons.util.PageModel;
 
 public class StationServiceImpl implements StationService<Integer, Station> {
 
@@ -265,6 +266,12 @@ public class StationServiceImpl implements StationService<Integer, Station> {
 			log.error("get all station from route fail! "+this.getClass().getName(), e);
 			throw new AppException("获取线路id="+routeId+"的所有站点失败");
 		}
+	}
+
+	public PageModel<Station> getAll(String queryString, int pageNo,
+			int pageSize) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

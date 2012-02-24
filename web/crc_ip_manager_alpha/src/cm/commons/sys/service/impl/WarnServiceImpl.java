@@ -8,9 +8,9 @@ import org.apache.commons.logging.LogFactory;
 
 import cm.commons.exception.AppException;
 import cm.commons.pojos.Warn;
-import cm.commons.service.basic.BasicServiceAbstImpl;
 import cm.commons.sys.dao.WarnDao;
 import cm.commons.sys.service.WarnService;
+import cm.commons.util.PageModel;
 
 public class WarnServiceImpl implements WarnService<Integer, Warn> {
 	private static Log log = LogFactory.getLog(WarnServiceImpl.class);
@@ -170,6 +170,11 @@ public class WarnServiceImpl implements WarnService<Integer, Warn> {
 			log.error("delete data fail! "+this.getClass().getName(), e);
 			throw new AppException("删除告警失败");
 		}
+	}
+
+	public PageModel<Warn> getAll(String queryString, int pageNo, int pageSize) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

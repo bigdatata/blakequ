@@ -46,7 +46,17 @@ public class RouterDaoImpl extends BasicDaoImpl<Integer, Router> implements
 
 	public Router getRouterByStationId(Integer stationId) throws AppException {
 		// TODO Auto-generated method stub
-		return null;
+		log.debug("get router by station id");
+		try {
+			Router r = (Router) getSession().createQuery("from Router r where r.station.id = ?")
+							.setParameter(0, stationId)
+							.uniqueResult();
+			return r;
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get router by station id fail!", e);
+			throw new AppException("通过站点id："+stationId+"获取路由失败");
+		}
 	}
 
 }

@@ -5,9 +5,9 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import cm.commons.service.basic.BasicServiceAbstImpl;
 import cm.commons.sys.dao.SystemDao;
 import cm.commons.sys.service.SystemService;
+import cm.commons.util.PageModel;
 import cm.commons.exception.AppException;
 import cm.commons.pojos.System;
 
@@ -139,6 +139,10 @@ public class SystemServiceImpl implements SystemService<Integer, System> {
 			log.error("delete by id fail! "+this.getClass().getName(), e);
 			throw new AppException("删除系统配置失败");
 		}
+	}
+	public PageModel<System> getAll(String queryString, int pageNo, int pageSize) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

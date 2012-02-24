@@ -17,9 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import cm.commons.controller.form.ComputerLogForm;
+import cm.commons.controller.form.PageModelForm;
 import cm.commons.pojos.ComputerLog;
 import cm.commons.stat.service.ComputerService;
 import cm.commons.sys.service.ComputerLogService;
+import cm.commons.util.PageModel;
 
 /**
  * 日志管理(管理员查看和删除，普通用户只查看)
@@ -37,48 +39,63 @@ public class ComputerLogController {
 	private ComputerService computerService;
 	
 	/**
-	 * 所有日志按时间排序
-	 * @return
-	 */
-	@RequestMapping("get_log_by_time")
-	public ModelAndView showAllLogByTime(){
-		ModelAndView mv = new ModelAndView();
-		Map<String,Object> modelMap = new HashMap<String,Object>();
-		modelMap.put("computerLogs", this.getAllComputerLogByTime());
-		mv.addAllObjects(modelMap);
-		mv.setViewName("show_computerlog");
-		return mv;
-	}
-	
-	/**
-	 * 所有日志按所在站点(电脑)id排序
-	 * @return
-	 */
-	@RequestMapping("get_log_by_id")
-	public ModelAndView showAllLogById(){
-		ModelAndView mv = new ModelAndView();
-		Map<String,Object> modelMap = new HashMap<String,Object>();
-		modelMap.put("computerLogs", this.getAllComputerLogById());
-		mv.addAllObjects(modelMap);
-		mv.setViewName("show_computerlog");
-		return mv;
-	}
-	
-	/**
-	 * 查询获取单个站点电脑的日志
+	 * 查询获取站点电脑的日志,按站点排序
 	 * @param computer_id
 	 * @return
 	 */
-	@RequestMapping("get_single_log")
-	public ModelAndView showComputerLog(String searchStr){
+	@RequestMapping("get_by_station_name")
+	public ModelAndView showComputerLog(String searchStr, @RequestParam int pageNo, @RequestParam String queryString, HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
-		Map<String,Object> modelMap = new HashMap<String,Object>();
-		System.out.println("searchStr:"+searchStr);
-		modelMap.put("computerLogs", this.getComputerLogByStationNameOrId(searchStr));
-		mv.addAllObjects(modelMap);
+		String str = "";
+		if(searchStr == null || searchStr.equals("")){
+			str = (queryString == null || queryString.equals(""))?"":queryString;
+		}else{
+			str = searchStr;
+		}
+		int pageSize = Integer.parseInt(request.getSession().getServletContext().getInitParameter("page-size"));
+		PageModelForm<ComputerLogForm> pmf = this.getAllComputerLogByName(str, pageNo, pageSize);
+		mv.addObject("pageModel", pmf);
+		mv.addObject("computerLogs", pmf.getData());
 		mv.setViewName("show_computerlog");
 		return mv;
 	}
+	
+	/**
+	 * 获取所有数据通过分页,按时间排序
+	 * @return
+	 */
+	@RequestMapping("get_by_time")
+	public ModelAndView getAllByPage(String searchStr, @RequestParam int pageNo, @RequestParam String queryString, HttpServletRequest request){
+		ModelAndView mv = new ModelAndView();
+		String str = "";
+		if(searchStr == null || searchStr.equals("")){
+			str = (queryString == null || queryString.equals(""))?"":queryString;
+		}else{
+			str = searchStr;
+		}
+		//从web.xml的配置中配置页面大小
+		int pageSize = Integer.parseInt(request.getSession().getServletContext().getInitParameter("page-size"));
+		
+		PageModelForm<ComputerLogForm> pmf = this.getAllComputerLogByTime(str, pageNo, pageSize);
+		mv.addObject("pageModel", pmf);
+		mv.addObject("computerLogs", pmf.getData());
+		mv.addObject("queryStr", str);
+		mv.setViewName("show_computerlog");
+		return mv;
+	}
+	
+	/**
+	 * detail_computer.do?computer_id=3
+	 * @return
+	 */
+	@RequestMapping("detail_computer")
+	public ModelAndView showLogDetail(@RequestParam int computer_id){
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("computer", computerService.get(computer_id));
+		mv.setViewName("error");
+		return mv;
+	}
+	
 	
 	/**
 	 * 删除日志
@@ -92,46 +109,16 @@ public class ComputerLogController {
 		mv.setView(new RedirectView("../get_log_by_time.do"));
 		return mv;
 	}
-	
-	/**
-	 * 显示站点电脑
-	 * @param computer_id
-	 * @return
-	 */
-	@RequestMapping("detail_computer")
-	public ModelAndView detailComputerById(@RequestParam int computer_id){
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("computer", computerService.get(computer_id));
-		mv.setViewName("error");
-		return mv;
-	}
-	
 	//**********************映射表单类封装*********************
-	/**
-	 * 获取所有电脑日志（按时间）
-	 */
-	private List<ComputerLogForm> getAllComputerLogByTime(){
-		List<ComputerLog> list = computerLogService.getAllSortByTime();
-		List<ComputerLogForm> computerLogs = new ArrayList<ComputerLogForm>();
-		if(list != null){
-			for(ComputerLog cl:list){
-				ComputerLogForm clf = new ComputerLogForm();
-				clf.setComputer_id(cl.getComputer().getId());
-				clf.setCupRate(cl.getCupRate());
-				clf.setCurrTime(cl.getCurrTime());
-				clf.setId(cl.getId());
-				clf.setMemRate(cl.getMemRate());
-				computerLogs.add(clf);
-			}
-		}
-		return computerLogs;
-	}
 	
 	/**
-	 * 获取所有电脑日志（按站点）
+	 * 获取所有电脑日志（按站点）,分页
 	 */
-	private List<ComputerLogForm> getAllComputerLogById(){
-		List<ComputerLog> list = computerLogService.getAllSortByComputer();
+	private PageModelForm<ComputerLogForm> getAllComputerLogByName(String queryString,int pageNo,int pageSize){
+		PageModel<ComputerLog> pm = computerLogService.getAllSortByComputer(queryString, pageNo, pageSize);
+		PageModelForm<ComputerLogForm> pmf = new PageModelForm<ComputerLogForm>();
+		
+		List<ComputerLog> list = pm.getList();
 		List<ComputerLogForm> computerLogs = new ArrayList<ComputerLogForm>();
 		if(list != null){
 			for(ComputerLog cl:list){
@@ -144,14 +131,23 @@ public class ComputerLogController {
 				computerLogs.add(clf);
 			}
 		}
-		return computerLogs;
+		pmf.setData(computerLogs);
+		pmf.setButtomPageNo(pm.getButtomPageNo());
+		pmf.setTotalPages(pm.getTotalPages());
+		pmf.setPageNo(pageNo);
+		pmf.setPageSize(pageSize);
+		return pmf;
 	}
+
 	
 	/**
-	 * 获取指定电脑日志
+	 * 获取指定电脑日志,通过站点名字
 	 */
-	private List<ComputerLogForm> getComputerLogById(int computerId){
-		List<ComputerLog> list = computerLogService.getComputerLog(computerId);
+	private PageModelForm<ComputerLogForm> getAllComputerLogByTime(String queryString,int pageNo,int pageSize){
+		PageModel<ComputerLog> pm = computerLogService.getAll(queryString, pageNo, pageSize);
+		PageModelForm<ComputerLogForm> pmf = new PageModelForm<ComputerLogForm>();
+		
+		List<ComputerLog> list = pm.getList();
 		List<ComputerLogForm> computerLogs = new ArrayList<ComputerLogForm>();
 		if(list != null){
 			for(ComputerLog cl:list){
@@ -164,12 +160,18 @@ public class ComputerLogController {
 				computerLogs.add(clf);
 			}
 		}
-		return computerLogs;
+		pmf.setData(computerLogs);
+		pmf.setButtomPageNo(pm.getButtomPageNo());
+		pmf.setTotalPages(pm.getTotalPages());
+		pmf.setPageNo(pageNo);
+		pmf.setPageSize(pageSize);
+		return pmf;
 	}
 	
 	/**
 	 * 获取指定电脑日志,通过站点名字或id
 	 */
+	/*
 	private List<ComputerLogForm> getComputerLogByStationNameOrId(String searchStr){
 		List<ComputerLog> list = computerLogService.getComputerLogByStationNameOrId(searchStr);
 		List<ComputerLogForm> computerLogs = new ArrayList<ComputerLogForm>();
@@ -186,5 +188,5 @@ public class ComputerLogController {
 		}
 		return computerLogs;
 	}
-	
+	*/
 }

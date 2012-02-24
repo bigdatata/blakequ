@@ -118,7 +118,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	function logComputerManager(){
 		with(document.forms[0]) {
-			action="<%=basePath%>computer_log/get_log_by_time.do";
+			//action="<%=basePath%>computer_log/get_log_by_time.do";
+			action="<%=basePath%>computer_log/get_by_time.do?pageNo=1&queryString="
 			method="post";
 			submit();
 		}
@@ -134,7 +135,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	function computerManager(){
 		with(document.forms[0]) {
-			action="<%=basePath%>";
+			action="<%=basePath%>computer/show_detail.do";
 			method="post";
 			submit();
 		}
@@ -142,7 +143,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	function routerManager(){
 		with(document.forms[0]) {
-			action="<%=basePath%>";
+			action="<%=basePath%>router/show_detail.do";
 			method="post";
 			submit();
 		}
@@ -239,6 +240,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<input type="checkbox" name="selectFlag2" class="checkbox2" value="${item.id}">
 						</td>
 						<td class="rd8">
+							<input type="text" name="station_id" style= "visibility:hidden" value="${item.id}"/><br/>
 							<a href="#"
 								onClick="window.open('detail_station.do?station_id=${item.id}', 'Õ¾µãÏêÏ¸ÐÅÏ¢', 'width=400, height=400, scrollbars=no');return false;">${item.id}</a>
 						</td>

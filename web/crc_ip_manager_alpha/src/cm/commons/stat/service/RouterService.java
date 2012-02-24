@@ -1,5 +1,6 @@
 package cm.commons.stat.service;
 
+import cm.commons.exception.AppException;
 import cm.commons.pojos.Router;
 import cm.commons.service.basic.BasicService;
 
@@ -17,4 +18,10 @@ public interface RouterService<K, E> extends BasicService<K, E> {
 	 */
 	void deleteRouterByIp(String ip);
 	
+	/**
+	 * 通过车站id获取路由器
+	 * @param station_id
+	 * @return
+	 */
+	E getRouterByStationId(K station_id);
 }

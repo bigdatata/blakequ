@@ -17,4 +17,11 @@ public interface ComputerService<K, E> extends BasicService<K, E>{
 	 * @param ip
 	 */
 	void deleteComputerByIp(String ip);
+	
+	/**
+	 * 通过车站id获取电脑
+	 * @param station_id
+	 * @return
+	 */
+	E getComputerByStationId(K station_id);
 }

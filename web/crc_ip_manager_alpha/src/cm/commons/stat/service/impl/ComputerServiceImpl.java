@@ -9,6 +9,7 @@ import cm.commons.exception.AppException;
 import cm.commons.pojos.Computer;
 import cm.commons.stat.dao.ComputerDao;
 import cm.commons.stat.service.ComputerService;
+import cm.commons.util.PageModel;
 
 public class ComputerServiceImpl implements ComputerService<Integer, Computer> {
 	private static Log log = LogFactory.getLog(ComputerServiceImpl.class);
@@ -125,6 +126,24 @@ public class ComputerServiceImpl implements ComputerService<Integer, Computer> {
 			log.error("delete data fail! "+this.getClass().getName(), e);
 			throw new AppException("删除站点电脑失败");
 		}
+	}
+
+	public Computer getComputerByStationId(Integer stationId) {
+		// TODO Auto-generated method stub
+		log.debug("get computer by station id"+this.getClass().getName());
+		try {
+			return (Computer) computerDao.getComputerByStationId(stationId);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get computer by station id fail! "+this.getClass().getName(), e);
+			throw new AppException("根据车站id："+stationId+"获取电脑失败");
+		}
+	}
+
+	public PageModel<Computer> getAll(String queryString, int pageNo,
+			int pageSize) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
