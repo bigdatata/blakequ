@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import cm.commons.controller.form.PageModelForm;
 import cm.commons.controller.form.UserForm;
 import cm.commons.pojos.User;
 import cm.commons.sys.service.UserService;
+import cm.commons.util.PageModel;
 
 /**
  * 用户模块很多是需要管理员才能看
@@ -155,6 +157,33 @@ public class UserController {
 	}
 	
 	/**
+	 * 分页显示用户
+	 * @param searchStr
+	 * @param pageNo
+	 * @param queryString 查询的关键词，用户名或者权限
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("admin/all_user_by_page")
+	public ModelAndView showAllUserByPage(String searchStr, @RequestParam int pageNo, @RequestParam String queryString, HttpServletRequest request){
+		ModelAndView mv = new ModelAndView();
+		String str = "";
+		if(searchStr == null || searchStr.equals("")){
+			str = (queryString == null || queryString.equals(""))?"":queryString;
+		}else{
+			str = searchStr;
+		}
+		//从web.xml的配置中配置页面大小
+		int pageSize = Integer.parseInt(request.getSession().getServletContext().getInitParameter("page-size"));
+		PageModelForm<UserForm> pmf = this.getAllUserByPage(queryString, pageNo, pageSize);
+		mv.addObject("pageModel", pmf);
+		mv.addObject("user_list", pmf.getData());
+		mv.addObject("queryStr", str);
+		mv.setViewName("show_user");
+		return mv;
+	}
+	
+	/**
 	 * 显示登录界面
 	 * @return
 	 */
@@ -220,5 +249,33 @@ public class UserController {
 			error = "当前用户名或密码不能为空！";
 		}
 		return error;
+	}
+	
+	/**
+	 * 通过分页获取用户
+	 * @return
+	 */
+	private PageModelForm<UserForm> getAllUserByPage(String queryString,int pageNo,int pageSize){
+		PageModel<User> pm = userService.getAll(queryString, pageNo, pageSize);
+		PageModelForm<UserForm> pmf = new PageModelForm<UserForm>();
+		
+		List<User> list = pm.getList();
+		List<UserForm> userForms = new ArrayList<UserForm>();
+		if(list != null){
+			for(User u:list){
+				UserForm uf = new UserForm();
+				uf.setAuthority(u.getAuthority());
+				uf.setPassword(uf.getPassword());
+				uf.setUsername(u.getUsername());
+				uf.setId(u.getId());
+				userForms.add(uf);
+			}
+		}
+		pmf.setButtomPageNo(pm.getButtomPageNo());
+		pmf.setData(userForms);
+		pmf.setPageNo(pageNo);
+		pmf.setPageSize(pageSize);
+		pmf.setTotalPages(pm.getTotalPages());
+		return pmf;
 	}
 }
