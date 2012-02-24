@@ -85,7 +85,6 @@ public class ComputerLogController {
 	}
 	
 	/**
-	 * detail_computer.do?computer_id=3
 	 * @return
 	 */
 	@RequestMapping("detail_computer")
