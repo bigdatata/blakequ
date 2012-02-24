@@ -49,19 +49,19 @@ ul,li {
 	padding: 0px;
 }
 
-#container {
+.container {
 	margin: 0 auto;
 	width: 100%;
 }
 
-#sidebar {
+.sidebar {
 	float: right;
 	width: 150px;
 	height: 590px;
 	background: #9c6;
 }
 
-#content {
+.content {
 	margin-right: 155px !important;
 	margin-right: 152px;
 	height: 590px;
