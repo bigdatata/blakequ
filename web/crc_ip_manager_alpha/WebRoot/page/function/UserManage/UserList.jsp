@@ -22,6 +22,103 @@
 		<script src="<%=path%>/pattern/cm/js/list_public.js"
 			language="javascript" type="text/javascript"></script>
 		<title>用户列表</title>
+	<script type="text/javascript">
+		function AllQuery()
+	{
+		var checkBox=document.getElementById("ifAll");
+		var checkBoxAll=document.getElementsByTagName('input');
+		for(var i = 0 ; i < checkBoxAll.length ; i++)
+		{
+			if(checkBoxAll[i].type == "checkbox")
+			{
+				checkBoxAll[i].checked = checkBox.checked;
+			}
+		}
+	}
+	
+	
+	function addItem() {
+		//window.self.location = "item_add.html";
+		window.location="<%=basePath %>show_add_user.do?flags=admin";
+	}
+	
+	function modifyItem() {
+		var selectFlags = document.getElementsByName("selectFlag1");
+		//计数器
+		var count = 0;
+		//记录选中的checkbox索引号
+		var index = 0;
+		for (var i=0; i<selectFlags.length; i++) {
+			if (selectFlags[i].checked) {
+			    //记录选中的checkbox
+				count++;
+				index = i;
+			}
+		}
+		if(count == 0) {
+			alert("请选择需要修改的数据！");
+			return;
+		}
+		if (count > 1) {
+			alert("一次只能修改一个用户！");
+			return;
+		}
+		window.self.location = "<%=basePath %>show_modify_user.do?id=" + selectFlags[index].value;
+	}
+	
+	function deleteItem() {
+		var selectFlags = document.getElementsByName("selectFlag1");
+		var flag = false;
+		var index = 0;
+		for (var i=0; i<selectFlags.length; i++) {
+			if (selectFlags[i].checked) {
+			    //已经有选中的checkbox
+				flag = true;
+				index = i;
+				break;
+			}
+		}
+		if (!flag) {
+			alert("请选择需要删除的数据！");
+			return;
+		}	
+		
+		//删除提示
+		if (window.confirm("确认删除当前用户？注：目前只能删除第一个选择的数据")) {
+			with(document.forms[0]) {
+				action="<%=basePath %>admin/delete_user.do?user_id="+selectFlags[index].value;
+				method="post";
+				submit();
+			}
+		}
+	}	
+	
+	function topPage() {
+		//var searchStr = document.getElementsByName("searchStr");
+		window.location = "<%=basePath%>computer_log/get_by_time.do?pageNo=1&queryString=";
+	}
+	
+	function previousPage() {
+		if(${pageModel.pageNo==1}){
+			alert("已经到达第一页!");
+		}else{
+			window.location = "<%=basePath%>computer_log/get_by_time.do?pageNo=${pageModel.pageNo-1}&queryString=";
+		}
+	}
+	
+	function nextPage() {
+		if(${pageModel.pageNo==pageModel.pageSize+1}){
+			alert("已经到达最后一页!");
+		}else{
+			window.location = "<%=basePath%>computer_log/get_by_time.do?pageNo=${pageModel.pageNo+1}&queryString=";
+		}
+	}
+	
+	function bottomPage() {
+		window.location = "<%=basePath%>computer_log/get_by_time.do?pageNo=${pageModel.buttomPageNo}&queryString=";
+	}
+
+	</script>
 	</head>
 	<body>
 
@@ -63,46 +160,35 @@
 						<thead>
 							<tr>
 								<th width="40">
-									标记
+									<input type="checkbox" name="ifAll" id="ifAll"
+										onClick="AllQuery()">
+								</th>
+								<th width="100">
+									id
 								</th>
 								<th width="100">
 									用户名
 								</th>
 								<th width="200">
-									用户了类型
-								</th>
-								<th width="92">
-									操作
-								</th>
-								
+									权限
+								</th>								
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach items="${user_list}" var="user">
 								<tr>
-									<td>
-										<input type="checkbox" value="${user.id}">
+									<td >
+							<input type="checkbox" name="selectFlag1" class="checkbox1" value="${item.id}">
 									</td>
+									<td>
+							${item.id}
+						</td>
 									<td >
 										${user.username}
 									</td>
 									<td>
 										${user.authority}
 									</td>
-								
-									<td>
-									
-									<c:if test="${current_user.authority == 'admin'}">
-		    				
-		    			
-									&nbsp;
-										<a
-											href="<%=path%>/fhq/fhqgzInfo.action?type=delete&ids="+${user.id}>删除</a>&nbsp;&nbsp;
-										&nbsp;
-										
-										</c:if>									
-									</td>
-									
 								</tr>
 							</c:forEach>
 							
@@ -111,17 +197,37 @@
 				</form>
 			</div>
 			<div class="bottom">
+				<div class="pagefirst"
+					onclick="topPage()"></div>
 				<div class="pageup"
-					onclick="window.location.href='<%=basePath%>attackLogList.action?type=find_all_desc&currentPage=${previousPage}'"></div>
+					onclick="previousPage()"></div>
 				<div id="pages">
-					${currentPage} of ${totalPages}
+					${pageModel.pageNo } of ${pageModel.totalPages}
 				</div>
 				<div class="pagedown"
-					onclick="window.location.href='<%=basePath%>attackLogList.action?type=find_all_desc&currentPage=${nextPage}'"></div>
+					onclick="nextPage()"></div>
+				<div class="pagelast"
+					onclick="bottomPage()"></div>
 				<div id="records">
-					共有 ${totalRows} 条记录
+					共有 ${pageModel.totalPages} 页
+				</div>
+				<div class="blank"></div>
+				<div class="blank"></div>
+				<div class="blank"></div>
+				<c:if test="${current_user.authority == 'admin'}">
+				<div id="records">
+					删除选中用户
+				</div>
+				<div class="delete"
+					onclick="deleteItem()"></div>
+				</c:if>
+				<div class="return"
+					onclick="javascript:history.go(-1);"></div>
+				<div id="records" style="float:right">
+					返回
 				</div>
 				<div class="clear"></div>
+				
 			</div>
 		</div>
 	</body>
