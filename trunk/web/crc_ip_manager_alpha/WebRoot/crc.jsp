@@ -29,6 +29,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            onClick="return initguide('StationMonitor');">线路监控</a></li>
              <li id="AlarmManage" onMouseOver="showguide(this.id);"><a href="javascript:"
            onClick="return initguide('AlarmManage');">告警信息管理</a></li>
+           <li id="ShowComputer" onMouseOver="showguide(this.id);"><a href="javascript:"
+           onClick="return initguide('ShowComputer');">站点电脑信息</a></li>
              <li id="StationModify" onMouseOver="showguide(this.id);"><a href="javascript:"
            onClick="return initguide('StationModify');">线路信息管理</a></li>
             <li id="FrequencySetting" onMouseOver="showguide(this.id);"><a href="javascript:"
