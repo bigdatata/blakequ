@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import cm.commons.exception.AppException;
+import cm.commons.util.PageModel;
 
 public interface BasicDao<K extends Serializable, E> {
 
@@ -52,5 +53,14 @@ public interface BasicDao<K extends Serializable, E> {
 	 * @throws AppException
 	 */
 	void delete(E entity) throws AppException;
+	
+	/**
+	 * 分页查询对象,默认按时间排序
+	 * @param queryString 查询条件,查询条件为空时，查询全部对象
+	 * @param pageNo 页数
+	 * @param pageSize 页面大小
+	 * @return
+	 */
+	PageModel<E> getAll(String queryString, int pageNo, int pageSize) throws AppException;
 	
 }

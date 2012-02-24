@@ -3,6 +3,7 @@ package cm.commons.service.basic;
 import java.util.List;
 
 import cm.commons.exception.AppException;
+import cm.commons.util.PageModel;
 
 public interface BasicService<K, E> {
 	/**
@@ -51,6 +52,13 @@ public interface BasicService<K, E> {
 	 */
 	void delete(E entity);
 	
-	
+	/**
+	 * 分页查询对象
+	 * @param queryString 查询条件
+	 * @param pageNo 页数
+	 * @param pageSize 页面大小
+	 * @return
+	 */
+	PageModel<E> getAll(String queryString, int pageNo, int pageSize);
 	
 }

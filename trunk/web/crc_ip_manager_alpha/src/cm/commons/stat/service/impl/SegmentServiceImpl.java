@@ -12,6 +12,7 @@ import cm.commons.pojos.Segment;
 import cm.commons.pojos.Station;
 import cm.commons.stat.dao.SegmentDao;
 import cm.commons.stat.service.SegmentService;
+import cm.commons.util.PageModel;
 
 public class SegmentServiceImpl implements SegmentService<Integer, Segment> {
 	private static Log log = LogFactory.getLog(SegmentServiceImpl.class);
@@ -116,5 +117,11 @@ public class SegmentServiceImpl implements SegmentService<Integer, Segment> {
 			log.error("get all segment from route fail! "+this.getClass().getName(), e);
 			throw new AppException("获取线路"+routeId+"的所有线段失败");
 		}
+	}
+
+	public PageModel<Segment> getAll(String queryString, int pageNo,
+			int pageSize) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

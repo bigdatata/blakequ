@@ -9,6 +9,7 @@ import cm.commons.exception.AppException;
 import cm.commons.pojos.Router;
 import cm.commons.stat.dao.RouterDao;
 import cm.commons.stat.service.RouterService;
+import cm.commons.util.PageModel;
 
 public class RouterServiceImpl implements RouterService<Integer, Router>{
 
@@ -125,6 +126,23 @@ public class RouterServiceImpl implements RouterService<Integer, Router>{
 			log.error("delete data fail! "+this.getClass().getName(), e);
 			throw new AppException("删除路由失败");
 		}
+	}
+
+	public Router getRouterByStationId(Integer stationId) {
+		// TODO Auto-generated method stub
+		log.debug("get router by station id "+this.getClass().getName());
+		try {
+			return (Router) routerDao.getRouterByStationId(stationId);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get router by station id fail! "+this.getClass().getName(), e);
+			throw new AppException("通过车站id:"+stationId+"获取路由失败");
+		}
+	}
+
+	public PageModel<Router> getAll(String queryString, int pageNo, int pageSize) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

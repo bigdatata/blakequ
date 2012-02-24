@@ -7,9 +7,9 @@ import org.apache.commons.logging.LogFactory;
 
 import cm.commons.exception.AppException;
 import cm.commons.pojos.ComputerLog;
-import cm.commons.service.basic.BasicServiceAbstImpl;
 import cm.commons.sys.dao.ComputerLogDao;
 import cm.commons.sys.service.ComputerLogService;
+import cm.commons.util.PageModel;
 
 public class ComputerLogServiceImpl implements ComputerLogService<Integer, ComputerLog> {
 	private static Log log = LogFactory.getLog(ComputerLogServiceImpl.class);
@@ -143,6 +143,32 @@ public class ComputerLogServiceImpl implements ComputerLogService<Integer, Compu
 			// TODO: handle exception
 			log.error("get computer log by station name or id fail! "+this.getClass().getName(), e);
 			throw new AppException("根据站点名字或id："+key+"获取日志失败");
+		}
+	}
+
+	public PageModel<ComputerLog> getAll(String queryString, int pageNo,
+			int pageSize) {
+		// TODO Auto-generated method stub
+		log.debug("get all data by page "+this.getClass().getName());
+		try {
+			return computerLogDao.getAll(queryString, pageNo, pageSize);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get all data by page fail! "+this.getClass().getName(), e);
+			throw new AppException("按分页获取数据失败(按时间)");
+		}
+	}
+
+	public PageModel<ComputerLog> getAllSortByComputer(String queryString,
+			int pageNo, int pageSize) throws AppException {
+		// TODO Auto-generated method stub
+		log.debug("get all data by page "+this.getClass().getName());
+		try {
+			return computerLogDao.getAllSortByComputer(queryString, pageNo, pageSize);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get all data by page fail! "+this.getClass().getName(), e);
+			throw new AppException("按分页获取数据失败(按站点)");
 		}
 	}
 	

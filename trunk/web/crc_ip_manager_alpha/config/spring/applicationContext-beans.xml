@@ -6,9 +6,6 @@
 	     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
-         <bean id="basicDao" class="cm.commons.dao.basic.BasicDaoImpl">
-         	<property name="sessionFactory" ref="sessionFactory"/>
-         </bean>
          
          <bean id="systemDao" class="cm.commons.sys.dao.impl.SystemDaoImpl">
          	<property name="sessionFactory" ref="sessionFactory"/>

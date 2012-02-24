@@ -58,4 +58,8 @@ public class RouterDaoTest extends TestCase {
 			System.out.println(p);
 		}
 	}
+	
+	public void testGetRouterByStationId(){
+		System.out.println(rd.getRouterByStationId(1));
+	}
 }

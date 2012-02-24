@@ -9,6 +9,7 @@ import cm.commons.exception.AppException;
 import cm.commons.pojos.Port;
 import cm.commons.stat.dao.PortDao;
 import cm.commons.stat.service.PortService;
+import cm.commons.util.PageModel;
 
 public class PortServiceImpl implements PortService<Integer, Port> {
 	private static Log log = LogFactory.getLog(PortServiceImpl.class);
@@ -101,6 +102,11 @@ public class PortServiceImpl implements PortService<Integer, Port> {
 			log.error("delete data fail! "+this.getClass().getName(), e);
 			throw new AppException("删除端口数据失败");
 		}
+	}
+
+	public PageModel<Port> getAll(String queryString, int pageNo, int pageSize) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

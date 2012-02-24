@@ -7,9 +7,9 @@ import org.apache.commons.logging.LogFactory;
 
 import cm.commons.exception.AppException;
 import cm.commons.pojos.RouterLog;
-import cm.commons.service.basic.BasicServiceAbstImpl;
 import cm.commons.sys.dao.RouterLogDao;
 import cm.commons.sys.service.RouterLogService;
+import cm.commons.util.PageModel;
 
 public class RouterLogServiceImpl implements RouterLogService<Integer, RouterLog> {
 	private static Log log = LogFactory.getLog(RouterLogServiceImpl.class);
@@ -144,6 +144,12 @@ public class RouterLogServiceImpl implements RouterLogService<Integer, RouterLog
 			log.error("get router log by station name or id fail! "+this.getClass().getName(), e);
 			throw new AppException("根据站点名字或id："+key+"获取日志失败");
 		}
+	}
+
+	public PageModel<RouterLog> getAll(String queryString, int pageNo,
+			int pageSize) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

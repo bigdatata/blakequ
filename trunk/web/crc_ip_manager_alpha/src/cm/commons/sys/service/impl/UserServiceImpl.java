@@ -7,9 +7,9 @@ import org.apache.commons.logging.LogFactory;
 
 import cm.commons.exception.AppException;
 import cm.commons.pojos.User;
-import cm.commons.service.basic.BasicServiceAbstImpl;
 import cm.commons.sys.dao.UserDao;
 import cm.commons.sys.service.UserService;
+import cm.commons.util.PageModel;
 
 public class UserServiceImpl implements UserService<Integer, User> {
 	private static Log log = LogFactory.getLog(UserServiceImpl.class);
@@ -151,6 +151,11 @@ public class UserServiceImpl implements UserService<Integer, User> {
 			log.error("delete data fail! "+this.getClass().getName(), e);
 			throw new AppException("删除用户失败");
 		}
+	}
+
+	public PageModel<User> getAll(String queryString, int pageNo, int pageSize) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

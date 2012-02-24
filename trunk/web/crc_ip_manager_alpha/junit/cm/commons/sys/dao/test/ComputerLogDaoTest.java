@@ -9,6 +9,7 @@ import cm.commons.pojos.ComputerLog;
 import cm.commons.pojos.RouterLog;
 import cm.commons.sys.dao.ComputerLogDao;
 import cm.commons.sys.dao.impl.ComputerLogDaoImpl;
+import cm.commons.util.PageModel;
 import junit.framework.TestCase;
 
 public class ComputerLogDaoTest extends TestCase {
@@ -43,6 +44,19 @@ public class ComputerLogDaoTest extends TestCase {
 			for(ComputerLog rl:r){
 				System.out.println(r);
 			}
+		}
+	}
+	
+	public void testGetAll(){
+		PageModel pm = cld.getAll("gg", 0, 2);
+		System.out.println("**********");
+		for(ComputerLog cl:(List<ComputerLog>)pm.getList()){
+			System.out.println(cl);
+		}
+		PageModel pm1 = cld.getAll("gg", 1, 3);
+		System.out.println("**********");
+		for(ComputerLog cl:(List<ComputerLog>)pm1.getList()){
+			System.out.println(cl);
 		}
 	}
 
