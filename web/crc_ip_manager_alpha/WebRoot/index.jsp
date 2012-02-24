@@ -38,25 +38,29 @@ body {
 </head>
 
 <body>
-<form action="<%=path%>/crc.jsp" method="post">
+<form action="<%=basePath %>login.do" method="post" name="form" id="form" onsubmit="return validateForm()">
 <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" background="pattern/cm/image/login/background.gif">
                   <tr height=325>
                   </tr>
                   <tr>
                   <td width=700>
                   </td>
-                    <td ><input id="username" name="username" type="text" size="20" /></td>
+                    <td >
+                    <input name="username" type="text" class="text1" id="username"
+								size="20" maxlength="20" value="${user.username}"/>
+					</td>
                   </tr> 
                   <tr>
                      <td>
                   </td>
-                    <td ><input id="password" name="password" type="password" size="20" /></td>
+                    <td ><input name="password" type="password" class="text1" id="password"
+								size="20" maxlength="20" value="${user.password}"/></td>
                    </tr>
                  
                  <tr>
                  <td>
                   </td>
-                    <td align="left"><input type="image"  src="pattern/cm/image/login/dl.gif" width="47" height="16" /></td>
+                    <td align="left"><input type="image" name="btnAdd" id="btnAdd" value="登录" src="pattern/cm/image/login/dl.gif" width="47" height="16" /></td>
                  </tr>
                  <tr>
                  <td></td>
@@ -66,7 +70,8 @@ body {
                     </tr>
                     <tr>
                     <td></td>
-                    <td ><a href="<%=path%>/page/function/yhgl/user_add.jsp" target="_blank"><img src="pattern/cm/image/login/zc.gif"width="47" height="16"></a></td>                 
+                    <td ><input name="btnBack" type="image" id="btnBack"
+						value="注册" onClick="register()"src="pattern/cm/image/login/zc.gif" width="47" height="16"></td>                 
                   </tr>
                   <tr height=500>
                   </tr>
