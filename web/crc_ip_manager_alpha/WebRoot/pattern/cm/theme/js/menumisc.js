@@ -13,6 +13,11 @@ var guides={
 		'StationModify_' : {
 			'StationModify_1' : ['站点修改','/crc_ip_manager_alpha/page/function/StationModify/StationModify.jsp',''],
 			'StationModify_2' : ['站点增加','/crc_ip_manager_alpha/page/function/StationModify/StationAdd.jsp','']}},
+	'ShowComputer' : {
+		'ShowComputer_' : {
+			'ShowComputer_1' : ['站点电脑列表','/crc_ip_manager_alpha/page/function/ShowComputer/ShowComputer.jsp',''],
+			'ShowComputer_2' : ['站点电脑详细信息','/crc_ip_manager_alpha/page/function/ShowComputer/ShowComputerLog.jsp','']}},
+			
 	'FrequencySetting' : {
 		'FrequencySetting_' : {
 			'FrequencySetting_1' : ['采集频率设置','/crc_ip_manager_alpha/page/function/FrequencySetting/FrequencySetting.jsp','']}},
