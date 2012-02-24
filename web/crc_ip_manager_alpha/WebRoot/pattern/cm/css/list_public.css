@@ -32,24 +32,14 @@ body {
 	padding:1px 2px 1px 22px;
 	float:left;
 }
-.delete {
-	background: url(../image/delete.png) 4px 3px no-repeat;
-	padding:1px 2px 1px 22px;
-	margin:1px;
-	float:left;
-}
+
 .add:hover {
 	background: url(../image/add.png) 3px 2px no-repeat;
 	padding: 0px 1px 0px 21px;
 	border: 1px solid #ccc;
 	cursor:pointer;
 }
-.delete:hover {
-	background: url(../image/delete.png) 3px 2px no-repeat;
-	padding: 0px 1px 0px 21px;
-	border: 1px solid #ccc;
-	cursor:pointer;
-}
+
 .search_btn {
 	background:url(../image/magnifier.png) center no-repeat;
 	width:18px;
@@ -101,7 +91,49 @@ margin-left:5px;}
 	margin:2px;
 	float:left;
 }
-.pageup:hover, .pagedown:hover {
+.pagefirst {
+	background:url(../image/first.gif) center no-repeat;
+	width:18px;
+	height:18px;
+	margin:2px;
+	float:left;
+}
+.pagelast {
+	background:url(../image/last.gif) center no-repeat;
+	width:18px;
+	height:18px;
+	margin:2px;
+	float:left;
+}
+.delete {
+	background: url(../image/delete.png) center no-repeat;
+	width:18px;
+	height:18px;
+	margin:2px;
+	float:left;
+}
+.blank {
+	
+	width:18px;
+	height:18px;
+	margin:2px;
+	float:left;
+}
+.return {
+	background: url(../image/return1.png) center no-repeat;
+	width:18px;
+	height:18px;
+	margin:2px;
+	float:right;
+}
+.computer {
+	background: url(../image/computer.jpg) center no-repeat;
+	width:18px;
+	height:18px;
+	margin:2px;
+	float:left;
+}
+.pageup:hover, .pagedown:hover, .pagefirst:hover, .pagelast:hover, .delete:hover, .return:hover, .computer:hover{
 	width:16px;
 	height:16px;
 	border: 1px solid #ccc;
