@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="config"/>
 	<classpathentry kind="src" path="junit"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate/ant-1.6.5.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate/ant-antlr-1.6.5.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate/ant-junit-1.6.5.jar"/>
@@ -43,6 +41,11 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate/versioncheck.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate/xerces-2.6.2.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate/xml-apis.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/ezmorph-1.0.3.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/json_simple-1.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/json-lib-2.2.2-jdk15143977.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/json.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/jsonplugin-0.32.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/aspectjrt.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/aspectjweaver.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/org.springframework.asm-3.1.0.RELEASE.jar"/>
@@ -62,6 +65,9 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/util/log4j-1.2.14.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/util/mysql-connector-java-5.1.5-bin.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/util/standard.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/util/junit-4.10.jar"/>
-	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
+	<classpathentry kind="output" path="bin"/>
 </classpath>
