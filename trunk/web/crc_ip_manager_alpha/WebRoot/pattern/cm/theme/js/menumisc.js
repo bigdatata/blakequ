@@ -16,12 +16,12 @@ var guides={
 		'FrequencySetting_' : {
 			'FrequencySetting_1' : ['采集频率设置','/crc_ip_manager_alpha/page/function/FrequencySetting/FrequencySetting.jsp','']}},
 
-//	'tgfx' : {
-//		'tgfx_' : {
-//			'tjfx_1' : ['告警事件分布','/ips1.2/page/function/tjfx/allGjsjPieChart.jsp',''],
-//			'tjfx_2' : ['告警月分布情况','/ips1.2/page/function/tjfx/allGjsjByMonthTimeChart.jsp',''],
-//			'tjfx_3' : ['告警日分布情况','/ips1.2/page/function/tjfx/allGjsjByDayTimeChart.jsp','']
-//			}}
+	'UserManage' : {
+		'UserManage_' : {
+			'UserManage_1' : ['用户列表','/crc_ip_manager_alpha/page/function/UserManage/UserList.jsp',''],
+			'UserManage_2' : ['用户注册','/crc_ip_manager_alpha/page/function/UserManage/UserAdd.jsp',''],
+			'UserManage_3' : ['修改密码','/crc_ip_manager_alpha/page/function/UserManage/UserModify.jsp','']
+			}}
 }
 var titles={
 	'StationMonitor_' : '线路监控',
