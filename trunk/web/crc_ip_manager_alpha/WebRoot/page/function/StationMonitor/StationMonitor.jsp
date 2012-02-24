@@ -100,13 +100,13 @@ for(cm.commons.controller.form.StationForm u: t){
  }
 %>
 	<body>
-		<div id="container">
+		<div class="container">
 		<!-- 
 		
 ----------这部分是右侧边栏的代码--------
 		
 		 -->
-			<div id="sidebar">
+			<div class="sidebar">
 			<form action="<%=basePath%>main.do" method="post" >
 				<table width="120px">
 					<tr style="font-size: 18px">
@@ -183,7 +183,7 @@ for(cm.commons.controller.form.StationForm u: t){
 				</table>
 			</form>
 			</div>
-			<div id="content">
+			<div class="content">
 <!-- 
 这部分是画图的主页面
 画图技术：svg
