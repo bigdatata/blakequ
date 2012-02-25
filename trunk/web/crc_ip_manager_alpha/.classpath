@@ -41,11 +41,6 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate/versioncheck.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate/xerces-2.6.2.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate/xml-apis.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/ezmorph-1.0.3.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/json_simple-1.1.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/json-lib-2.2.2-jdk15143977.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/json.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/jsonplugin-0.32.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/aspectjrt.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/aspectjweaver.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/org.springframework.asm-3.1.0.RELEASE.jar"/>
@@ -71,5 +66,10 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/commons-collections-3.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/commons-lang-2.5.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/ezmorph-1.0.3.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/json-lib-2.2.2-jdk15143977.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/json.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/json_simple-1.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/jsonplugin-0.32.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

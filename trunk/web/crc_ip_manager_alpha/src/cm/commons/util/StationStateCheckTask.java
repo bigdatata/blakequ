@@ -23,6 +23,12 @@ public class StationStateCheckTask extends TimerTask{
 	 * second
 	 */
 	private int timeToWarn;
+	
+	public StationStateCheckTask(int frequency){
+		this.frequency=frequency;
+		this.timeToWarn=0;
+	}
+	
 	/**
 	 * 
 	 * @param frequency second
@@ -30,16 +36,19 @@ public class StationStateCheckTask extends TimerTask{
 	 */
 	public StationStateCheckTask(int frequency,int timeToWarn){
 		this.frequency=frequency;
+		this.timeToWarn=timeToWarn;
 	}
+	
 	public void addOrRefreshTime(String stationName){
 		nameLastTime.put(stationName, new Date());
 	}
+	/**
+	 * start task
+	 */
 	public void startCheckTask(){
 		
 		Timer timer=new Timer();
-		timer.schedule(this, 0, frequency*SECOND_TO_MILLISECOND);
-		
-		
+		timer.schedule(this, timeToWarn, frequency*SECOND_TO_MILLISECOND);
 	}
 	public void setFrequency(int frequency){
 		this.frequency=frequency;
