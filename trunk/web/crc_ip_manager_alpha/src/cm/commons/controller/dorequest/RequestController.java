@@ -1,6 +1,8 @@
 package cm.commons.controller.dorequest;
 
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -70,6 +72,14 @@ public class RequestController {
 			task.setFrequency(fgy);
 		}
 		
+		try {
+			PrintWriter pw = response.getWriter();
+			pw.print(frequency);
+			pw.flush();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		//String data = request.getParameter("data");获取数据*********
 		
 		response.setContentType("text/html");//注意加上  
