@@ -25,6 +25,7 @@ public class StationStateCheckTask extends TimerTask{
 			task=new StationStateCheckTask(frequency);
 			task.startCheckTask();
 		}
+		task.setFrequency(frequency);
 		return task;
 	}
 	
@@ -34,6 +35,11 @@ public class StationStateCheckTask extends TimerTask{
 	 */
 	private int timeToWarn;
 	
+	
+	public int getFrequency() {
+		return frequency;
+	}
+
 	private StationStateCheckTask(int frequency){
 		this.frequency=frequency;
 		this.timeToWarn=0;
