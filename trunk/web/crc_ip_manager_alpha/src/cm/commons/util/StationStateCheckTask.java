@@ -11,12 +11,28 @@ import java.util.TimerTask;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-
+/**
+ * 
+ * 每隔frequency秒执行一次获取报警的站点的名称
+ * 判断一个站是否报警的原则是检查的当前时间与获得请求的时间差大于timeToWarn就要报警
+ * 每次接收到新的请求时需要调用addOrRefreshTime()来更新或者添加上次接受到请求的时间
+ *
+ */
 public class StationStateCheckTask extends TimerTask{
-	private static long SECOND_TO_MILLISECOND=1000;
+	private final static long SECOND_TO_MILLISECOND=1000;
 	private static Log log = LogFactory.getLog(StationStateCheckTask.class);
 	private  Map<String,Date> nameLastTime=new HashMap<String,Date>();
 	private  Set<String> warnStation=new HashSet<String>();
+	/**
+	 * second 执行任务的周期，间隔frequency秒执行一次
+	 */
+	private int frequency;
+	/**
+	 * second  多久没收到请求才报警，检查的当前时间与获得请求的时间差大于timeToWarn就要报警
+	 */
+	private int timeToWarn;
+	
+	private final static int DEFAULT_SECOND_TO_WARN=300;
 	
 	private static StationStateCheckTask task;
 	
@@ -28,12 +44,13 @@ public class StationStateCheckTask extends TimerTask{
 		task.setFrequency(frequency);
 		return task;
 	}
-	
-	private int frequency;
-	/**
-	 * second
-	 */
-	private int timeToWarn;
+	public static StationStateCheckTask getStateCheckTask(int frequency,int timeToWarn){
+		if(task==null){
+			task=new StationStateCheckTask(frequency,timeToWarn);
+			task.startCheckTask();
+		}
+		return task;
+	}
 	
 	
 	public int getFrequency() {
@@ -42,7 +59,7 @@ public class StationStateCheckTask extends TimerTask{
 
 	private StationStateCheckTask(int frequency){
 		this.frequency=frequency;
-		this.timeToWarn=0;
+		this.timeToWarn=DEFAULT_SECOND_TO_WARN;
 	}
 	
 	/**
@@ -64,7 +81,7 @@ public class StationStateCheckTask extends TimerTask{
 	private void startCheckTask(){
 		
 		Timer timer=new Timer();
-		timer.schedule(this, timeToWarn, frequency*SECOND_TO_MILLISECOND);
+		timer.schedule(this, 0, frequency*SECOND_TO_MILLISECOND);
 	}
 	public void setFrequency(int frequency){
 		this.frequency=frequency;
