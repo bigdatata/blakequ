@@ -15,8 +15,18 @@ import org.apache.commons.logging.LogFactory;
 public class StationStateCheckTask extends TimerTask{
 	private static long SECOND_TO_MILLISECOND=1000;
 	private static Log log = LogFactory.getLog(StationStateCheckTask.class);
-	private Map<String,Date> nameLastTime=new HashMap<String,Date>();
-	private Set<String> warnStation=new HashSet<String>();
+	private  Map<String,Date> nameLastTime=new HashMap<String,Date>();
+	private  Set<String> warnStation=new HashSet<String>();
+	
+	private static StationStateCheckTask task;
+	
+	public static StationStateCheckTask getStateCheckTask(int frequency){
+		if(task==null){
+			task=new StationStateCheckTask(frequency);
+			task.startCheckTask();
+		}
+		return task;
+	}
 	
 	private int frequency;
 	/**
@@ -24,7 +34,7 @@ public class StationStateCheckTask extends TimerTask{
 	 */
 	private int timeToWarn;
 	
-	public StationStateCheckTask(int frequency){
+	private StationStateCheckTask(int frequency){
 		this.frequency=frequency;
 		this.timeToWarn=0;
 	}
@@ -34,7 +44,7 @@ public class StationStateCheckTask extends TimerTask{
 	 * @param frequency second
 	 * @param timeToWarn second
 	 */
-	public StationStateCheckTask(int frequency,int timeToWarn){
+	private StationStateCheckTask(int frequency,int timeToWarn){
 		this.frequency=frequency;
 		this.timeToWarn=timeToWarn;
 	}
@@ -45,7 +55,7 @@ public class StationStateCheckTask extends TimerTask{
 	/**
 	 * start task
 	 */
-	public void startCheckTask(){
+	private void startCheckTask(){
 		
 		Timer timer=new Timer();
 		timer.schedule(this, timeToWarn, frequency*SECOND_TO_MILLISECOND);

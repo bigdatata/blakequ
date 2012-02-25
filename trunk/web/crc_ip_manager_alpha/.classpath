@@ -71,5 +71,6 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/json.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/json_simple-1.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/jsonplugin-0.32.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/util/junit-4.10.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
