@@ -6,6 +6,9 @@ package cm.commons.util;
 public class StationStateCheckTaskTest {
 
 	public void test() throws InterruptedException{
+		/**
+		 * 
+		 */
 		StationStateCheckTask checkTask=new StationStateCheckTask(4,4);
 		checkTask.startCheckTask();
 		checkTask.addOrRefreshTime("成都市");
