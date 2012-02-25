@@ -1,11 +1,15 @@
 package cm.commons.json.parse;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
+
 import org.json.simple.parser.ParseException;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -101,5 +105,29 @@ public class BeanConverter {
 		JSONObject jsonObject = new JSONObject(data);
 		Map<String, String> datas = toMap(jsonObject);
 		return toJavaBean(javabean, datas);
-	}
+	}	
+
+	
+	/**
+	 * 将json string转换为javaBean
+	 * @param jsonString json数组
+	 * @param clazz 实体类
+	 * @return
+	 * @throws JSONException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 * @throws InstantiationException 
+	 */
+	public static List arrayToJavaBean(String jsonString, Class s) throws JSONException, IllegalAccessException, InstantiationException{ 
+		JSONObject jo = new JSONObject(jsonString);
+		Object ay = jo.get("portDatas");
+		JSONArray ja = new JSONArray(ay.toString());
+		List list = new ArrayList();
+		for(int i = 0; i < ja.length(); i++){ 
+			JSONObject jsonObject = ja.getJSONObject(i); 
+			Map<String, String> datas = toMap(jsonObject);
+			list.add(toJavaBean(s.newInstance(), datas));
+		} 
+		return list;
+	} 
 }

@@ -61,13 +61,15 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/spring.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/util/commons-logging.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/util/jstl.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/util/junit-3.8.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/util/log4j-1.2.14.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/util/mysql-connector-java-5.1.5-bin.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/util/standard.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
 	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/util/junit-4.10.jar"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/commons-beanutils.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/commons-lang-2.5.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

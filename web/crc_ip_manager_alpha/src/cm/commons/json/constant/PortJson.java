@@ -28,6 +28,25 @@ public class PortJson {
 	private String locIfInBitsSec;
 	private String locIfOutBitsSec;
 	private String ifOutOctets;
+	
+	public PortJson(){}
+	public PortJson(String routerIp, String ifIndex, String ifDescr,
+			String ifOperStatus, String ifInOctets, String locIfInCRC,
+			String ipRouteDest, String portIp, String locIfInBitsSec,
+			String locIfOutBitsSec, String ifOutOctets) {
+		super();
+		this.routerIp = routerIp;
+		this.ifIndex = ifIndex;
+		this.ifDescr = ifDescr;
+		this.ifOperStatus = ifOperStatus;
+		this.ifInOctets = ifInOctets;
+		this.locIfInCRC = locIfInCRC;
+		this.ipRouteDest = ipRouteDest;
+		this.portIp = portIp;
+		this.locIfInBitsSec = locIfInBitsSec;
+		this.locIfOutBitsSec = locIfOutBitsSec;
+		this.ifOutOctets = ifOutOctets;
+	}
 	public String getRouterIp() {
 		return routerIp;
 	}
