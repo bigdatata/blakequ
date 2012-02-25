@@ -10,7 +10,7 @@ public class RouterJson {
 	private String router_ip;
 	private String router_info;
 	private String router_state;
-	private String router_cup_usage;
+	private String router_cpu_usage;
 	private String router_mem_usage;
 	private String router_port_number;
 	public String getRouter_ip() {
@@ -31,12 +31,7 @@ public class RouterJson {
 	public void setRouter_state(String routerState) {
 		router_state = routerState;
 	}
-	public String getRouter_cup_usage() {
-		return router_cup_usage;
-	}
-	public void setRouter_cup_usage(String routerCupUsage) {
-		router_cup_usage = routerCupUsage;
-	}
+	
 	public String getRouter_mem_usage() {
 		return router_mem_usage;
 	}
@@ -49,9 +44,16 @@ public class RouterJson {
 	public void setRouter_port_number(String routerPortNumber) {
 		router_port_number = routerPortNumber;
 	}
+	
+	public String getRouter_cpu_usage() {
+		return router_cpu_usage;
+	}
+	public void setRouter_cpu_usage(String routerCpuUsage) {
+		router_cpu_usage = routerCpuUsage;
+	}
 	@Override
 	public String toString() {
-		return "RouterJson [router_cup_usage=" + router_cup_usage
+		return "RouterJson [router_cup_usage=" + router_cpu_usage
 				+ ", router_info=" + router_info + ", router_ip=" + router_ip
 				+ ", router_mem_usage=" + router_mem_usage
 				+ ", router_port_number=" + router_port_number

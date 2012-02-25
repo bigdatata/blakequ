@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import cm.commons.controller.form.AlarmForm;
 import cm.commons.controller.form.SegmentForm;
 import cm.commons.controller.form.StationForm;
 import cm.commons.controller.form.StationInfoForm;
@@ -33,6 +34,7 @@ import cm.commons.stat.service.RouteService;
 import cm.commons.stat.service.SegmentService;
 import cm.commons.stat.service.StationService;
 import cm.commons.sys.service.WarnService;
+import cm.commons.util.AlarmUtil;
 
 @Controller
 public class StationRouteController {
@@ -84,8 +86,10 @@ public class StationRouteController {
 		System.out.println("****设置模型视图**********");
 		ModelAndView mv = new ModelAndView();
 		Map<String, Object> m = new HashMap<String, Object>();
+		List<AlarmForm> list = AlarmUtil.getAllAlarm();
 		m.put("all_route", routes);
 		m.put("station_info", sif);
+		m.put("alarm_list", list);
 		m.put("segment_list", segmentForms);
 		m.put("station_list", getStationFromRoute(route_id));
 		mv.addAllObjects(m);
