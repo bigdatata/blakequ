@@ -1,12 +1,10 @@
 package cm.commons.util;
 
 
-import org.junit.Test;
 
 
 public class StationStateCheckTaskTest {
 
-	@Test
 	public void test() throws InterruptedException{
 		StationStateCheckTask checkTask=new StationStateCheckTask(4,4);
 		checkTask.startCheckTask();
