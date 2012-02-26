@@ -30,12 +30,12 @@
 		abc.setAttribute("style", "fill:red");
 		alert("asdasd!");
 	}
-//**********************************
-//
-//关于动态弹窗的说明
-//右击选择查看台账信息，传入元素id通过AJAX动态获取数据并进行显示
-//
-//**********************************
+	//**********************************
+	//
+	//关于动态弹窗的说明
+	//右击选择查看台账信息，传入元素id通过AJAX动态获取数据并进行显示
+	//
+	//**********************************
 	function b(o) {
 		var xmlhttp;
 		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -53,31 +53,39 @@
 		xmlhttp.open("POST", "detail_station.do?station_id=" + o.id, true);
 		xmlhttp.send();
 	}
-//***********
-//
-//关于告警信息的说明：
-//页面加载时获取告警信息。
-//若是站点告警则使用document.getElementsByName的方法进行查找
-//若是线段告警则使用document.getElementById的方法进行查找
-//
-//***********	
+	//***********
+	//
+	//关于告警信息的说明：
+	//页面加载时获取告警信息。
+	//若是站点告警则使用document.getElementsByName的方法进行查找
+	//若是线段告警则使用document.getElementById的方法进行查找
+	//
+	//***********	
 	window.onload = function() {
-	var ab;
-		ab = document.getElementsByName("8");
-		ab[0].setAttribute("style", "fill:red");
-	
-	var a = document.getElementById('al').value ;
-	if(al.name)
-	{
-		var abc;
-		abc = document.getElementById(al.id);
-		abc.setAttribute("style", "fill:red");
-	}
+		setInterval(function() {
+			//ajax请求 
+				var xmlhttp;
+				if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+					xmlhttp = new XMLHttpRequest();
+				} else {// code for IE6, IE5
+					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xmlhttp.onreadystatechange = function() {
+					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+						//添加获取后台数据代码
+						//document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+					}
+				}
+
+				xmlhttp.open("POST", "main.do",true);
+				xmlhttp.send();
+			}, 5000);
+
 	};
 </script>
 	</head>
 
-<%	
+	<%	
 //**********************
 //
 //获取线段和站点坐标信息
@@ -101,90 +109,91 @@ for(cm.commons.controller.form.StationForm u: t){
 %>
 	<body>
 		<div class="container">
-		<!-- 
+			<!-- 
 		
 ----------这部分是右侧边栏的代码--------
 		
 		 -->
 			<div class="sidebar">
-			<form action="<%=basePath%>main.do" method="post" >
-				<table width="120px">
-					<tr style="font-size: 18px">
-						<td>
-							当前线路：
-						</td>
-					</tr>
-					<tr style="font-size: 18px; color: red">
-						<td>
-							<strong> <c:forEach items="${all_route}" var="sif">
+				<form action="<%=basePath%>main.do" method="post">
+					<table width="120px">
+						<tr style="font-size: 18px">
+							<td>
+								当前线路：
+							</td>
+						</tr>
+						<tr style="font-size: 18px; color: red">
+							<td>
+								<strong> <c:forEach items="${all_route}" var="sif">
 
-									<c:if test="${sif.id == current_route_id}">
+										<c:if test="${sif.id == current_route_id}">
 		    				${sif.name}
 		    			</c:if>
 
-								</c:forEach> </strong>
-						</td>
-					</tr>
-					<tr>
-						<td style="color: white">
-							========================
-						</td>
-					</tr>
-					<tr>
-						<td style="font-size: 18px">
-							请选择查看的线路
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<select name="route_id">
-								<c:forEach items="${all_route}" var="sif">
-									<option value="${sif.id}"
-										<c:if test = "${sif.id == current_route_id}" >
+									</c:forEach> </strong>
+							</td>
+						</tr>
+						<tr>
+							<td style="color: white">
+								========================
+							</td>
+						</tr>
+						<tr>
+							<td style="font-size: 18px">
+								请选择查看的线路
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<select name="route_id">
+									<c:forEach items="${all_route}" var="sif">
+										<option value="${sif.id}"
+											<c:if test = "${sif.id == current_route_id}" >
 		    				selected
 		    			</c:if>>
-										${sif.name}
-									</option>
+											${sif.name}
+										</option>
 
-								</c:forEach>
+									</c:forEach>
 
-							</select>
-							<input type="submit" value="确定" />
-						</td>
-					</tr>
-					<tr>
-						<td style="color: white">
-							========================
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<button type="button" onclick=
+								</select>
+								<input type="submit" value="确定" />
+							</td>
+						</tr>
+						<tr>
+							<td style="color: white">
+								========================
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<button type="button" onclick=
 	;
 >
-								前一条线路
-							</button>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<button type="button" onclick=
+									前一条线路
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<button type="button" onclick=
 	;
 >
-								后一条线路
-							</button>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<input type="hidden" value="<%=request.getAttribute("alarm")%>" id="al"/>
-						</td>
-					</tr>
-				</table>
-			</form>
+									后一条线路
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="hidden" value="<%=request.getAttribute("alarm")%>"
+									id="al" />
+							</td>
+						</tr>
+					</table>
+				</form>
 			</div>
 			<div class="content">
-<!-- 
+				<!-- 
 这部分是画图的主页面
 画图技术：svg
 
@@ -320,7 +329,7 @@ for(cm.commons.controller.form.StationForm u: t){
 	<script type="text/javascript">
 	var cmenu = new contextMenu( {
 		menuID : "bmenu",
-		targetEle :"contextMenu"
+		targetEle : "contextMenu"
 	}, {
 		bindings : {
 			'checkLink' : function(o) {
