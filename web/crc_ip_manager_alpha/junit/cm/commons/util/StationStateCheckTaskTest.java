@@ -1,14 +1,14 @@
 package cm.commons.util;
 
-import org.junit.Test;
+import junit.framework.TestCase;
 
 
 
 
-public class StationStateCheckTaskTest {
+
+public class StationStateCheckTaskTest extends TestCase{
 
 	
-	@Test
 	public void test() throws InterruptedException{
 		/**
 		 * 
