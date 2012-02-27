@@ -163,6 +163,12 @@ public class RequestController {
 				}
 			}
 			
+			System.out.println("****************warn*******************");
+			List<AlarmForm> aff = AlarmUtil.getAllAlarm();
+			for(AlarmForm a: aff){
+				System.out.println(a);
+			}
+			
 	    } catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -328,6 +334,10 @@ public class RequestController {
 		return flag.toString();
 	}
 	
+	/**
+	 * 将告警存储到数据库
+	 * @param af
+	 */
 	private void saveWarnToDB(AlarmForm af){
 		Warn w = new Warn();
 		w.setStationId(af.getStation_id());

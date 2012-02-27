@@ -33,7 +33,8 @@ public class AlarmController {
 	private WarnService warnService;
 	
 	/**
-	 * 获取当前的告警信息
+	 * 获取当前的告警信息,有告警则会跳转到主页面刷新视图
+	 * 没有则什么都不做
 	 * @return
 	 */
 	@RequestMapping("get_current_warn")

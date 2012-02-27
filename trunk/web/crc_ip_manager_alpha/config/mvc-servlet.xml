@@ -23,6 +23,10 @@
 	 -->
 	<mvc:interceptors>
 		<mvc:interceptor>
+			<mvc:mapping path="*"/>
+			<bean class="cm.commons.controller.interceptor.LoginTestInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
 			<mvc:mapping path="/*/admin/*"/>
 			<bean class="cm.commons.controller.interceptor.UserOperatorIntercepter"/>
 		</mvc:interceptor>

@@ -89,7 +89,7 @@ public class StationRouteController {
 		List<AlarmForm> list = AlarmUtil.getAllAlarm();
 		m.put("all_route", routes);
 		m.put("station_info", sif);
-		m.put("alarm_list", list);
+		m.put("alarm_list", list);//这是告警信息
 		m.put("segment_list", segmentForms);
 		m.put("station_list", getStationFromRoute(route_id));
 		mv.addAllObjects(m);

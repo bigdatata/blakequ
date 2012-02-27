@@ -152,7 +152,7 @@ public class UserController {
 			userForms.add(uf);
 		}
 		mv.addObject("user_list", userForms);
-		mv.setViewName("show_user");
+		mv.setViewName("show_user");//UserManage/UserList
 		return mv;
 	}
 	
