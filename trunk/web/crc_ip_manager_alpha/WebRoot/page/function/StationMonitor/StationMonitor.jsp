@@ -63,22 +63,13 @@
 	//***********	
 	window.onload = function() {
 		setInterval(function() {
+			//执行告警信息的请求
+			//if(告警信息!=null)
+			//{
+			//变色&声音告警
+			//}
 			//ajax请求 
-				var xmlhttp;
-				if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-					xmlhttp = new XMLHttpRequest();
-				} else {// code for IE6, IE5
-					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-				}
-				xmlhttp.onreadystatechange = function() {
-					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-						//添加获取后台数据代码
-						//document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
-					}
-				}
-
-				xmlhttp.open("POST", "main.do",true);
-				xmlhttp.send();
+				
 			}, 5000);
 
 	};
