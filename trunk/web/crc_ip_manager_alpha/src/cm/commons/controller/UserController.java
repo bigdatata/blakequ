@@ -234,7 +234,7 @@ public class UserController {
 		}else{
 			request.getSession().setAttribute("user", u);
 		}
-		return new ModelAndView(new RedirectView("main.do?route_id=1"));
+		return new ModelAndView(new RedirectView("crc.jsp?route_id=1"));
 	}
 
 	
