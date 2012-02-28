@@ -58,7 +58,7 @@
 		//删除提示
 		if (window.confirm("确认删除当前数据？注：目前只能删除第一个选择的数据")) {
 			with(document.forms[0]) {
-				action="<%=basePath%>computer_log/admin/delete_log.do?computer_id="+selectFlags[index].value;
+				action="<%=basePath%>alarm/admin/delete_log.do?computer_id="+selectFlags[index].value;
 				method="post";
 				submit();
 			}
@@ -66,18 +66,9 @@
 	}	
 	
 	
-	
-	function sortByComputerId(){
-		with(document.forms[0]) {
-				action="<%=basePath%>computer_log/get_by_station_name.do";
-				method="post";
-				submit();
-			}
-	}
-	
 	function searchComputerItem(){
 		with(document.forms[0]) {
-				action="<%=basePath%>computer_log/get_by_time.do?pageNo=1&queryString=";
+				action="<%=basePath%>alarm/get_log_by_page.do?pageNo=1&queryString=";
 				method="post";
 				submit();
 			}
@@ -85,14 +76,14 @@
 	
 	function topPage() {
 		//var searchStr = document.getElementsByName("searchStr");
-		window.location = "<%=basePath%>computer_log/get_by_time.do?pageNo=1&queryString=";
+		window.location = "<%=basePath%>alarm/get_log_by_page.do?pageNo=1&queryString=";
 	}
 	
 	function previousPage() {
 		if(${pageModel.pageNo==1}){
 			alert("已经到达第一页!");
 		}else{
-			window.location = "<%=basePath%>computer_log/get_by_time.do?pageNo=${pageModel.pageNo-1}&queryString=";
+			window.location = "<%=basePath%>alarm/get_log_by_page.do?pageNo=${pageModel.pageNo-1}&queryString=";
 		}
 	}
 	
@@ -100,12 +91,12 @@
 		if(${pageModel.pageNo==pageModel.pageSize+1}){
 			alert("已经到达最后一页!");
 		}else{
-			window.location = "<%=basePath%>computer_log/get_by_time.do?pageNo=${pageModel.pageNo+1}&queryString=";
+			window.location = "<%=basePath%>alarm/get_log_by_page.do?pageNo=${pageModel.pageNo+1}&queryString=";
 		}
 	}
 	
 	function bottomPage() {
-		window.location = "<%=basePath%>computer_log/get_by_time.do?pageNo=${pageModel.buttomPageNo}&queryString=";
+		window.location = "<%=basePath%>alarm/get_log_by_page.do?pageNo=${pageModel.buttomPageNo}&queryString=";
 	}
 
 	</script>
@@ -155,19 +146,22 @@
 									<input type="checkbox" name="ifAll" id="ifAll"
 										onClick="AllQuery()">
 								</th>
-								<th width="155">
-									computer_ID
+								<th width="80">
+									alarm_ID
 								</th>
-								<th width="100">
+								<th width="80">
 									ID
 								</th>
-								<th width="100">
+								<th width="80">
 									告警站点
+								</th>
+								<th width="80">
+									告警线段
 								</th>
 								<th width="200">
 									告警类容
 								</th>
-								<th width="92">
+								<th width="50">
 									告警状态
 								</th>
 								<th width="150">
@@ -179,33 +173,35 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${routerLogs}" var="item">
+							<c:forEach items="${alarm_list}" var="item">
 								<tr>
 									<td>
 										<input type="checkbox" name="selectFlag1" class="checkbox1"
-											value="${item.id}">
+											value="">
 									</td>
 									<td>
 										<a href="#"
-											onClick="window.open('computer_log/detail_computer.do?computer_id=${item.computer_id}', '站点详细信息', 'width=400, height=400, scrollbars=no');return false;">${item.computer_id}</a>
+											onClick="window.open('computer_log/detail_computer.do?computer_id=${item.station_id}', '站点详细信息', 'width=400, height=400, scrollbars=no');return false;">${item.station_id}</a>
 									</td>
 									<td>
-										${item.id}
 									</td>
 									<td>
-										${item.name}
+										${item.station_id}
 									</td>
 									<td>
-										${item.warncontent}
+										${item.segment_id}
 									</td>
 									<td>
-										${item.warnstate}
+										${item.info}
 									</td>
 									<td>
-										${item.warntime}
+										${item.state}
 									</td>
 									<td>
-										${item.warnroute}
+										${item.time}
+									</td>
+									<td>
+										
 									</td>
 								</tr>
 							</c:forEach>
@@ -225,13 +221,6 @@
 				<div id="records">
 					共有 ${pageModel.totalPages} 页
 				</div>
-				<div class="blank"></div>
-				<div class="blank"></div>
-				<div class="blank"></div>
-				<div id="records">
-					按电脑ID排序
-				</div>
-				<div class="computer" onclick="sortByComputerId()"></div>
 				<div class="blank"></div>
 				<div class="blank"></div>
 				<div class="blank"></div>

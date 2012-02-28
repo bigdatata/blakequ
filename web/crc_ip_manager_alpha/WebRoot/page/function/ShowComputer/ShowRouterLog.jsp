@@ -80,6 +80,32 @@
 				submit();
 			}
 	}
+	
+	function topPage() {
+		//var searchStr = document.getElementsByName("searchStr");
+		window.location = "<%=basePath %>router_log/get_log_by_page.do?pageNo=1&queryString=";
+	}
+	
+	function previousPage() {
+		if(${pageModel.pageNo==1}){
+			alert("已经到达第一页!");
+		}else{
+			window.location = "<%=basePath %>router_log/get_log_by_page.do?pageNo=${pageModel.pageNo-1}&queryString=";
+		}
+	}
+	
+	function nextPage() {
+		if(${pageModel.pageNo==pageModel.pageSize+1}){
+			alert("已经到达最后一页!");
+		}else{
+			window.location = "<%=basePath %>router_log/get_log_by_page.do?pageNo=${pageModel.pageNo+1}&queryString=";
+		}
+	}
+	
+	function bottomPage() {
+		window.location = "<%=basePath %>router_log/get_log_by_page.do?pageNo=${pageModel.buttomPageNo}&queryString=";
+	}
+	
 	</script>
 	</head>
 	<body>
