@@ -16,7 +16,8 @@ var guides={
 	'ShowComputer' : {
 		'ShowComputer_' : {
 			'ShowComputer_1' : ['站点编辑','/crc_ip_manager_alpha/page/function/ShowComputer/ShowComputer.jsp',''],
-			'ShowComputer_2' : ['站点电脑详细信息','/crc_ip_manager_alpha/page/function/ShowComputer/ShowComputerLog.jsp','']}},
+			'ShowComputer_2' : ['站点电脑详细信息','/crc_ip_manager_alpha/computer_log/get_by_time.do?pageNo=1&queryString=',''],
+			'ShowComputer_3' : ['站点路由详细信息','/crc_ip_manager_alpha/router_log/get_log_by_page.do?pageNo=1&queryString=','']}},
 			
 	'FrequencySetting' : {
 		'FrequencySetting_' : {
