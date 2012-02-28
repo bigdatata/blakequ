@@ -17,6 +17,7 @@
 		</property>
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.hbm2ddl.auto">true</property>
+		
 		<mapping resource="cm/commons/pojos/Warn.hbm.xml" />
 		<mapping resource="cm/commons/pojos/ComputerLog.hbm.xml" />
 		<mapping resource="cm/commons/pojos/User.hbm.xml" />

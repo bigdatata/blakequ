@@ -49,7 +49,7 @@ public class RouterController {
 		ModelAndView mv = new ModelAndView();
 		if(result.hasErrors()){
 			mv.addObject("error", "提交表单失败"+result.getAllErrors());
-			mv.setViewName("error");
+			mv.setViewName("../public/error");
 			return mv;
 		}
 		Router router = new Router();
@@ -74,7 +74,7 @@ public class RouterController {
 		ModelAndView mv = new ModelAndView();
 		if(result.hasErrors()){
 			mv.addObject("error", "提交表单失败"+result.getAllErrors());
-			mv.setViewName("error");
+			mv.setViewName("../public/error");
 			return mv;
 		}
 		Router router = (Router) routerService.get(routerForm.getId());

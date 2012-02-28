@@ -48,7 +48,7 @@ public class ComputerController {
 		ModelAndView mv = new ModelAndView();
 		if(result.hasErrors()){
 			mv.addObject("error", "提交表单失败"+result.getAllErrors());
-			mv.setViewName("error");
+			mv.setViewName("../public/error");
 			return mv;
 		}
 		Computer computer = new Computer();
@@ -61,19 +61,19 @@ public class ComputerController {
 		return mv;
 	}
 	
-	@RequestMapping("delete_computer")
+	@RequestMapping("admin/delete_computer")
 	public void deleteComputer(@RequestParam int computer_id ,HttpServletRequest request){
 //		ModelAndView mv = new ModelAndView();
 		computerService.deleteById(computer_id);
 //		return mv;
 	}
 	
-	@RequestMapping("modify_computer")
+	@RequestMapping("admin/modify_computer")
 	public ModelAndView modifyComputer(ComputerForm computerForm, BindingResult result, HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
 		if(result.hasErrors()){
 			mv.addObject("error", "提交表单失败"+result.getAllErrors());
-			mv.setViewName("error");
+			mv.setViewName("../public/error");
 			return mv;
 		}
 		Computer computer = (Computer) computerService.get(computerForm.getId());

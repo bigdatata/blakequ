@@ -85,7 +85,7 @@ public class SystemConfigController {
 		if(result.hasErrors() && form.getId() != 0){
 			String error = "表单提交错误<^@^>:"+result.getAllErrors();
 			mv.addObject("error", error);
-			mv.setViewName("error");
+			mv.setViewName("../public/error");
 			return mv;
 		}
 		System s = new System();

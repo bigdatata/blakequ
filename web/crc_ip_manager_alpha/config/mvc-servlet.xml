@@ -21,17 +21,20 @@
 		在里面需要实现，日志处理**，权限检查**，已经线路状态的监控
 		对还有admin的请求进行拦截处理
 	 -->
+	 <mvc:interceptors>
+	 	<bean class="cm.commons.controller.interceptor.LoginTestInterceptor"/>
+	 </mvc:interceptors>
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="*"/>
+			<mvc:mapping path="/**/*.do"/><!-- 匹配任何do请求 -->
 			<bean class="cm.commons.controller.interceptor.LoginTestInterceptor"/>
 		</mvc:interceptor>
 		<mvc:interceptor>
-			<mvc:mapping path="/*/admin/*"/>
+			<mvc:mapping path="/**/admin/**"/><!-- 匹配含有admin请求 -->
 			<bean class="cm.commons.controller.interceptor.UserOperatorIntercepter"/>
 		</mvc:interceptor>
 		<mvc:interceptor>
-			<mvc:mapping path="/*/log/*"/>
+			<mvc:mapping path="/**/log/**"/><!-- 匹配含有log请求 -->
 			<bean class="cm.commons.controller.interceptor.LogInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
