@@ -181,9 +181,9 @@
 							<input type="checkbox" name="selectFlag1" class="checkbox1" value="${item.id}">
 									</td>
 									<td>
-							${item.id}
-						</td>
-									<td >
+										${item.id}
+									</td>
+									<td>
 										${user.username}
 									</td>
 									<td>
