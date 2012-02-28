@@ -19,16 +19,16 @@ public class LoginTestInterceptor extends HandlerInterceptorAdapter {
 			HttpServletResponse response, Object handler) throws Exception {
 		// TODO Auto-generated method stub
 		User loginUser = (User) request.getSession().getAttribute("user");
-		ModelAndView mav = new ModelAndView("WEB-INF/index.jsp");
-		System.out.println("检查用户是否登录");
-		if(loginUser == null){
+		ModelAndView mav = new ModelAndView("../public/login");
+		String str = request.getRequestURI();
+		int last = str.lastIndexOf("/")+1;
+		System.out.println("当前用户为："+loginUser);
+		if(!str.subSequence(last, str.length()).equals("login.do") && loginUser == null){
 			System.out.println("当前用户还没有登录!");
 			mav.addObject("error", "你还没有登录!");
 			throw new ModelAndViewDefiningException(mav);
 		}
 		return true;
 	}
-
-	
 
 }

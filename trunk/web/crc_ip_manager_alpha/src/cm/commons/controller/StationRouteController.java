@@ -65,7 +65,7 @@ public class StationRouteController {
 		//如果站点为空，返回
 		if(r.getStationNum() == 0){
 			ModelAndView mv = new ModelAndView();
-			mv.setViewName("error");
+			mv.setViewName("../public/error");
 			mv.addObject("error", "对不起，该条线路还没有站点！");
 			return mv;
 		}
@@ -120,7 +120,7 @@ public class StationRouteController {
 		ModelAndView mv = new ModelAndView();
 		Segment s = (Segment) segmentService.get(segment_id);
 		mv.addObject("segment", s);
-		mv.setViewName("error");
+		mv.setViewName("../public/error");
 		return mv;
 	}
 	
@@ -135,7 +135,7 @@ public class StationRouteController {
 			String error = "显示页面失败！添加线路失败";
 			ModelAndView mv = new ModelAndView();
 			mv.addObject("error", error);
-			mv.setViewName("error");
+			mv.setViewName("../public/error");
 			return mv;
 		}
 		Route r = new Route();
@@ -157,7 +157,7 @@ public class StationRouteController {
 			if(route_id == null) error = "你没有选择添加站点的线路！添加站点失败";
 			ModelAndView mv = new ModelAndView();
 			mv.addObject("error", error);
-			mv.setViewName("error");
+			mv.setViewName("../public/error");
 			return mv;
 		}
 		
@@ -229,7 +229,7 @@ public class StationRouteController {
 		sf.setX(Double.parseDouble(s.getX()));
 		sf.setY(Double.parseDouble(s.getY()));
 		mv.addObject("station", sf);
-		mv.setViewName("station_modify");
+		mv.setViewName("StationModify/StationModify");//station_modify
 		return mv;
 	}
 	
@@ -249,7 +249,7 @@ public class StationRouteController {
 			if(route_id == null) error = "修改站点失败,线路id=null";
 			ModelAndView mv = new ModelAndView();
 			mv.addObject("error", error);
-			mv.setViewName("error");
+			mv.setViewName("../public/error");
 			return mv;
 		}
 		Station s = (Station) stationService.get(station.getId());
@@ -325,8 +325,18 @@ public class StationRouteController {
 				StationForm sf = new StationForm();
 				sf.setId(stations.get(i).getId());
 				sf.setName(stations.get(i).getName());
-				sf.setX(Double.parseDouble(stations.get(i).getX()));
-				sf.setY(Double.parseDouble(stations.get(i).getY()));
+				String x = stations.get(i).getX();
+				if(x != null && !"".equals(x)){
+					sf.setX(Double.parseDouble(x));
+				}else{
+					sf.setX(0);
+				}
+				String y = stations.get(i).getY();
+				if(y != null && !"".equals(y)){
+					sf.setY(Double.parseDouble(y));
+				}else{
+					sf.setY(0);
+				}
 				stationFroms.add(sf);
 			}
 		}

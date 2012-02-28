@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+	<!-- http://hi.baidu.com/zzticzh/blog/item/f6ddfd24d034e32f8644f954.html -->
+	<!-- 引用ehCache的配置 -->
+	<bean id="defaultCacheManager"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation">
+			<value>classpath:ehcache.xml</value>
+		</property>
+	</bean>
+
+	<!-- 定义ehCache的工厂，并设置所使用的Cache name -->
+	<bean id="ehCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager">
+			<ref local="defaultCacheManager" />
+		</property>
+		<property name="cacheName">
+			<value>DEFAULT_CACHE</value>
+		</property>
+	</bean>
+
+	<!-- find/create cache拦截器 -->
+	<bean id="methodCacheInterceptor" class="cm.commons.cache.MethodCacheInterceptor">
+		<property name="cache">
+			<ref local="ehCache" />
+		</property>
+	</bean>
+
+	<!-- flush cache拦截器 -->
+	<bean id="methodCacheAfterAdvice" class="cm.commons.cache.MethodCacheAfterAdvice">
+		<property name="cache">
+			<ref local="ehCache" />
+		</property>
+	</bean>
+
+	<!-- 缓存横切面设置 (get)-->
+	<bean id="methodCachePointCut"
+		class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+		<property name="advice">
+			<ref local="methodCacheInterceptor" />
+		</property>
+		<property name="patterns">
+			<list>
+				<value>.*get.*</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 缓存更新横切面(update,delete..) -->
+	<bean id="methodCachePointCutAdvice"
+		class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+		<property name="advice">
+			<ref local="methodCacheAfterAdvice" />
+		</property>
+		<property name="patterns">
+			<list>
+				<value>.*save.*</value>
+				<value>.*update.*</value>
+				<value>.*delete.*</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 自动代理 -->
+	<bean id="autoproxy"
+		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<!-- 可以是Service或DAO层（最好是针对业务层*Service） -->
+		<property name="beanNames">
+			<list>
+				<value>*Service</value>
+			</list>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>methodCachePointCut</value>
+				<value>methodCachePointCutAdvice</value>
+				<value>transactionInterceptor</value>
+			</list>
+		</property>
+	</bean>
+
+	<!--定义Spring的事务拦截器TransactionInterceptor -->
+	<bean id="transactionInterceptor"
+		class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<!--  依赖注入上面定义的事务管理器transactionManager -->
+		<property name="transactionManager" ref="transactionManager" />
+		<!-- 定义需要进行事务拦截的方法及所采用的事务控制类型 -->
+		<property name="transactionAttributes">
+			<props>
+				<!-- 以browse、list、load、get及is开头的所有方法采用只读型事务控制类型 -->
+				<prop key="load*">PROPAGATION_REQUIRED,readOnly</prop>
+				<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+				<!-- 所有方法均进行事务控制，如果当前没有事务，则新建一个事务 -->
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+
+
+
+	<!-- 定义BeanNameAutoProxyCreatorf进行Spring的事务处理-->
+	<bean
+		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<!--  针对指定的bean自动生成业务代理 -->
+		<property name="beanNames">
+			<list>
+				<value>*Service</value>
+			</list>
+		</property>
+		<!--  这个属性为true时，表示被代理的是目标类本身而不是目标类的接口 -->
+		<property name="proxyTargetClass">
+			<value>false</value>
+		</property>
+		<!--  依赖注入上面定义的事务拦截器transactionInterceptor -->
+		<property name="interceptorNames">
+			<list>
+				<value>transactionInterceptor</value>
+			</list>
+		</property>
+	</bean>
+</beans>

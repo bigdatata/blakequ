@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-异常
+异常:${error}
 </body>
 </html>

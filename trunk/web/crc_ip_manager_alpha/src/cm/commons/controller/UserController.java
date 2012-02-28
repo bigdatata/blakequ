@@ -54,12 +54,12 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 		String r = checkUser(user, result);
 		if(r != null){
-			mv.setViewName("error");
+			mv.setViewName("../public/error");
 			mv.addObject("error", r);
 			return mv;
 		}
 		if(userService.getByName(user.getUsername()) != null){
-			mv.setViewName("error");
+			mv.setViewName("../public/error");
 			mv.addObject("error", "当前用户名:"+user.getUsername()+"已经存在!");
 			return mv;
 		}
@@ -121,7 +121,7 @@ public class UserController {
 		String r = checkUser(user, result);
 		//判断原来密码是否正确，如果普通用户不能修改权限
 		if(r != null){
-			mv.setViewName("error");
+			mv.setViewName("../public/error");
 			mv.addObject("error", r);
 			return mv;
 		}
@@ -152,7 +152,7 @@ public class UserController {
 			userForms.add(uf);
 		}
 		mv.addObject("user_list", userForms);
-		mv.setViewName("show_user");//UserManage/UserList
+		mv.setViewName("UserManage/UserList");//show_user
 		return mv;
 	}
 	
@@ -199,7 +199,7 @@ public class UserController {
 			uf.setAuthority(currentUser.getAuthority());
 			mv.addObject("user", uf);
 		}
-		mv.setViewName("login");
+		mv.setViewName("../public/login");
 		return mv;
 	}
 	
@@ -215,7 +215,7 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 		String r = checkUser(user, result);
 		if(r != null){
-			mv.setViewName("error");
+			mv.setViewName("../public/error");
 			mv.addObject("error", r);
 			return mv;
 		}
@@ -231,9 +231,8 @@ public class UserController {
 			mv.addObject("user", uf);
 			request.setAttribute("info", "当前用户:"+user.getUsername()+"密码错误!");
 			return mv;
-		}else{
-			request.getSession().setAttribute("user", u);
 		}
+		request.getSession().setAttribute("user", u);
 		return new ModelAndView(new RedirectView("crc.jsp?route_id=1"));
 	}
 
