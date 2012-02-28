@@ -107,4 +107,16 @@ public class PortServiceImpl implements PortService<Integer, Port> {
 		return null;
 	}
 
+	public List<Port> getPortsByRouter(Integer routerId) {
+		// TODO Auto-generated method stub
+		log.debug("get port by router id");
+		try {
+			return portDao.getPortsByRouter(routerId);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get port by router id fail!", e);
+			throw new AppException("通过路由id获取端口失败");
+		}
+	}
+
 }

@@ -173,4 +173,11 @@ public class Port implements java.io.Serializable {
 		this.ifOutOctets = ifOutOctets;
 	}
 
+
+	@Override
+	public String toString() {
+		return "Port [id=" + id + ", ifIndex=" + ifIndex + ", ifOperStatus="
+				+ ifOperStatus + ", portIp=" + portIp + "]";
+	}
+
 }
