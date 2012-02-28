@@ -1,5 +1,6 @@
 package cm.commons.util;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * @author Administrator
  *
  */
-public class PageModel<T> {
+public class PageModel<T> implements Serializable{
 	
 	//结果集
 	private List<T> list;
