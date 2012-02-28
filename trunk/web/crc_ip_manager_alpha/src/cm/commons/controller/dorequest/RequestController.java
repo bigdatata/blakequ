@@ -73,29 +73,15 @@ public class RequestController {
 			PrintWriter pw = response.getWriter();
 			pw.print(frequency);
 			pw.flush();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		//String data = request.getParameter("data");获取数据*********
-		
-		response.setContentType("text/html");//注意加上  
-	    BufferedReader reader = null;
-	    try {  
-	        reader = request.getReader();//获得字符流  
-	        StringBuffer content= new StringBuffer();
-	        String line;  
-	        while ((line = reader.readLine()) != null){  
-	            content.append(line+"\r\n");
-	        }
-	        System.out.println(content.toString());
+			String content = request.getParameter("data");//获取数据*********
+	        System.out.println("******"+content);
 	        ComputerJson computerJson = new ComputerJson();
 	        StationJson stationJson = new StationJson();
 	        RouterJson routerJson = new RouterJson();
-	        computerJson = (ComputerJson) BeanConverter.toJavaBean(computerJson, content.toString());
-	        stationJson = (StationJson) BeanConverter.toJavaBean(stationJson, content.toString());
-	        routerJson = (RouterJson) BeanConverter.toJavaBean(routerJson, content.toString());
-	        List<PortJson> portJsonList = BeanConverter.arrayToJavaBean(content.toString(), PortJson.class);
+	        computerJson = (ComputerJson) BeanConverter.toJavaBean(computerJson, content);
+	        stationJson = (StationJson) BeanConverter.toJavaBean(stationJson, content);
+	        routerJson = (RouterJson) BeanConverter.toJavaBean(routerJson, content);
+	        List<PortJson> portJsonList = BeanConverter.arrayToJavaBean(content, PortJson.class);
 	        System.out.println("saveWarnToDB:"+computerJson);
 	        System.out.println("stationJson:"+stationJson);
 	        System.out.println("routerJson:"+routerJson);
@@ -174,17 +160,12 @@ public class RequestController {
 				System.out.println(a);
 			}
 			
+	    }catch(IOException e){
+	    	e.printStackTrace();
 	    } catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally{  
-	        try {  
-	            reader.close();  
-	            reader = null;  
-	        } catch (Exception e) {  
-	      
-	        }  
-	    }  
+		} 
 	}
 	
 	/**
