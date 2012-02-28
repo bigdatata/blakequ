@@ -1,0 +1,1 @@
+{"pc_ip":"192.168.1.29","pc_state":1,"pc_info":"windows33,win-7,pentium--4400","pc_cpu_usage":12,"pc_mem_usage":45.4877,"station_name":"³É¶¼Õ¾","flag_value":1}
