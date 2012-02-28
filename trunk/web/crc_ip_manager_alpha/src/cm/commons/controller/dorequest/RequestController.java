@@ -202,7 +202,6 @@ public class RequestController {
 			af.setTime(new Date(System.currentTimeMillis()));
 			af.setInfo("站点:"+name+"状态未知！");
 			AlarmUtil.addToMap(name, af);
-			System.out.println("____________位置状态站点——————————————"+af);
 		}
 	}
 	
