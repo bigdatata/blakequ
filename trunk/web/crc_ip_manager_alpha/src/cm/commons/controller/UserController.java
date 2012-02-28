@@ -204,6 +204,17 @@ public class UserController {
 	}
 	
 	/**
+	 * 退出系统
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("login_out")
+	public String loginOut(HttpServletRequest request){
+		request.getSession().removeAttribute("user");
+		return "../login";
+	}
+	
+	/**
 	 * 登录
 	 * @param user
 	 * @param result
