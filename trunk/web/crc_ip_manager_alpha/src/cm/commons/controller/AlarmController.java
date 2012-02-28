@@ -47,7 +47,8 @@ public class AlarmController {
 			View view = new RedirectView("../main.do?route_id="+list.get(0).getStation_id());
 			mv.setView(view);
 		}else{
-			mv.setViewName("../main.do");//无告警信息，默认首页
+			View view = new RedirectView("../main.do");//无告警信息，默认首页
+			mv.setView(view);
 		}
 		return mv;
 	}
