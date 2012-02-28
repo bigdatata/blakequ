@@ -114,7 +114,7 @@
 
 		<div id="layout">
 			<div class="title">
-				站点电脑日志列表
+				告警信息管理
 			</div>
 			<div class="handle">
 
