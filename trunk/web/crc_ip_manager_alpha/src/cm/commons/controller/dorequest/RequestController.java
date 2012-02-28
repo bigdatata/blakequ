@@ -335,8 +335,10 @@ public class RequestController {
 			if(!ports[i].equals("11") && !ports[i].equals("22")){
 				if(ports[i].startsWith("1")){
 					flag.append(i+":状态由UP-->DOWN ");
-				}else{
+				}else if(ports[i].startsWith("2")){
 					flag.append(i+":状态由DOWN-->UP ");
+				}else{
+					flag.append(i+":状态由INIT-->UP(DOWN) ");
 				}
 			}
 		}
