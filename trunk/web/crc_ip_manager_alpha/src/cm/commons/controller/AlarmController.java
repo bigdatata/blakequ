@@ -76,7 +76,7 @@ public class AlarmController {
 		mv.addObject("pageModel", pmf);
 		mv.addObject("queryStr", str);
 		mv.addObject("alarm_list", pmf.getData());
-		mv.setViewName("show_alarm");
+		mv.setViewName("AlarmManage/AlarmManage");
 		return mv;
 	}
 	

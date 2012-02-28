@@ -8,7 +8,7 @@ var guides={
 			
 	'AlarmManage' : {
 		'AlarmManage_' : {
-			'AlarmManage_1' : ['告警事件管理','/crc_ip_manager_alpha/page/function/AlarmManage/AlarmManage.jsp','']}},
+			'AlarmManage_1' : ['告警事件管理','/crc_ip_manager_alpha/alarm/get_log_by_page.do?pageNo=1&queryString=','']}},
 	'StationModify' : {
 		'StationModify_' : {
 			'StationModify_1' : ['站点修改','/crc_ip_manager_alpha/page/function/StationModify/StationModify.jsp',''],
