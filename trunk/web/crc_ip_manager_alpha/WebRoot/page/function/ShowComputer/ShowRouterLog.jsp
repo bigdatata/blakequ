@@ -26,7 +26,13 @@
 		<script type="text/javascript">
 	function AllQuery()
 	{
-		var checkBox=document.getElementById("ifAll2");
+		var checkBox=document.getElementById("ifAll");
+		if(!checkBox.checked){
+			checkBox.checked=true;
+		}else{
+			checkBox.checked=false;
+		}
+
 		var checkBoxAll=document.getElementsByTagName('input');
 		for(var i = 0 ; i < checkBoxAll.length ; i++)
 		{
@@ -36,7 +42,6 @@
 			}
 		}
 	}
-	
 	function deleteRouterItem(){
 		var selectFlags = document.getElementsByName("selectFlag2");
 		var flag = false;
@@ -172,7 +177,7 @@
 							<c:forEach items="${routerLogs}" var="item">
 								<tr>
 									<td >
-							<input type="checkbox" name="selectFlag2" class="checkbox1" value="${item.id}">
+							<input type="checkbox" name="selectFlag1" class="checkbox1" value="${item.id}">
 						</td>
 						<td >
 							<a href="#"

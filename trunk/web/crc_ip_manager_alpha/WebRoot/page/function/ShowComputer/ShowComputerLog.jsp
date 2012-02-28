@@ -27,6 +27,12 @@
 	function AllQuery()
 	{
 		var checkBox=document.getElementById("ifAll");
+		if(!checkBox.checked){
+			checkBox.checked=true;
+		}else{
+			checkBox.checked=false;
+		}
+
 		var checkBoxAll=document.getElementsByTagName('input');
 		for(var i = 0 ; i < checkBoxAll.length ; i++)
 		{
