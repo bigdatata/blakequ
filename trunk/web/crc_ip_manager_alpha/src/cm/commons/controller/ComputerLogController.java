@@ -56,7 +56,7 @@ public class ComputerLogController {
 		PageModelForm<ComputerLogForm> pmf = this.getAllComputerLogByName(str, pageNo, pageSize);
 		mv.addObject("pageModel", pmf);
 		mv.addObject("computerLogs", pmf.getData());
-		mv.setViewName("show_computerlog");
+		mv.setViewName("ShowComputer/ShowComputerLog");
 		return mv;
 	}
 	
@@ -80,7 +80,7 @@ public class ComputerLogController {
 		mv.addObject("pageModel", pmf);
 		mv.addObject("queryStr", str);
 		mv.addObject("computerLogs", pmf.getData());
-		mv.setViewName("show_computerlog");
+		mv.setViewName("ShowComputer/ShowComputerLog");
 		return mv;
 	}
 	

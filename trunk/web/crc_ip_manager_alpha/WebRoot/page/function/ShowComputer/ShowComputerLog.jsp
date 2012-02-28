@@ -58,7 +58,7 @@
 		//删除提示
 		if (window.confirm("确认删除当前数据？注：目前只能删除第一个选择的数据")) {
 			with(document.forms[0]) {
-				action="<%=basePath%>computer_log/admin/delete_log.do?computer_id="+selectFlags[index].value;
+				action="<%=basePath %>computer_log/admin/delete_log.do?computer_id="+selectFlags[index].value;
 				method="post";
 				submit();
 			}
@@ -69,7 +69,7 @@
 	
 	function sortByComputerId(){
 		with(document.forms[0]) {
-				action="<%=basePath%>computer_log/get_by_station_name.do";
+				action="<%=basePath %>computer_log/get_by_station_name.do";
 				method="post";
 				submit();
 			}
@@ -77,7 +77,7 @@
 	
 	function searchComputerItem(){
 		with(document.forms[0]) {
-				action="<%=basePath%>computer_log/get_by_time.do?pageNo=1&queryString=";
+				action="<%=basePath %>computer_log/get_by_time.do?pageNo=1&queryString=";
 				method="post";
 				submit();
 			}
@@ -85,14 +85,14 @@
 	
 	function topPage() {
 		//var searchStr = document.getElementsByName("searchStr");
-		window.location = "<%=basePath%>computer_log/get_by_time.do?pageNo=1&queryString=";
+		window.location = "<%=basePath %>computer_log/get_by_time.do?pageNo=1&queryString=";
 	}
 	
 	function previousPage() {
 		if(${pageModel.pageNo==1}){
 			alert("已经到达第一页!");
 		}else{
-			window.location = "<%=basePath%>computer_log/get_by_time.do?pageNo=${pageModel.pageNo-1}&queryString=";
+			window.location = "<%=basePath %>computer_log/get_by_time.do?pageNo=${pageModel.pageNo-1}&queryString=";
 		}
 	}
 	
@@ -100,12 +100,12 @@
 		if(${pageModel.pageNo==pageModel.pageSize+1}){
 			alert("已经到达最后一页!");
 		}else{
-			window.location = "<%=basePath%>computer_log/get_by_time.do?pageNo=${pageModel.pageNo+1}&queryString=";
+			window.location = "<%=basePath %>computer_log/get_by_time.do?pageNo=${pageModel.pageNo+1}&queryString=";
 		}
 	}
 	
 	function bottomPage() {
-		window.location = "<%=basePath%>computer_log/get_by_time.do?pageNo=${pageModel.buttomPageNo}&queryString=";
+		window.location = "<%=basePath %>computer_log/get_by_time.do?pageNo=${pageModel.buttomPageNo}&queryString=";
 	}
 
 	</script>
