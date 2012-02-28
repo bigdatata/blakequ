@@ -24,17 +24,24 @@
 			language="javascript" type="text/javascript"></script>
 		<title>无标题文档</title>
 		<script type="text/javascript">
+		$(document).ready( function() {
+		    $("#ifAll").click( function() {
+		        $(":checkbox","#gridContainer #aaa").attr("checked","checked");
+		        
+		        var checkBoxAll=document.getElementsByTagName('input');
+				for(var i = 0 ; i < checkBoxAll.length ; i++)
+				{
+					if(checkBoxAll[i].type == "checkbox")
+					{
+						checkBoxAll[i].checked = checkBox.checked;
+					}
+				}
+		    });
+		});
 	function AllQuery()
 	{
 		var checkBox=document.getElementById("ifAll");
-		var checkBoxAll=document.getElementsByTagName('input');
-		for(var i = 0 ; i < checkBoxAll.length ; i++)
-		{
-			if(checkBoxAll[i].type == "checkbox")
-			{
-				checkBoxAll[i].checked = checkBox.checked;
-			}
-		}
+		
 	}
 	
 	
@@ -88,7 +95,7 @@
 	}
 	
 	function nextPage() {
-		if(${pageModel.pageNo==pageModel.pageSize+1}){
+		if(${pageModel.pageNo==pageModel.totalPages}){
 			alert("已经到达最后一页!");
 		}else{
 			window.location = "<%=basePath%>alarm/get_log_by_page.do?pageNo=${pageModel.pageNo+1}&queryString=";
