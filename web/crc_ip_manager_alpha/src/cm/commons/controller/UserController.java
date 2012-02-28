@@ -73,7 +73,7 @@ public class UserController {
 		if(flags.equals("admin")){
 			return new ModelAndView(new RedirectView("admin/all_user.do"));
 		}else{
-			mv.setViewName("login");
+			mv.setViewName("../public/success");
 		}
 		return mv;
 	}
@@ -132,7 +132,7 @@ public class UserController {
 		u.setPassword(user.getPassword());
 		u.setAuthority(user.getAuthority());
 		userService.update(u);
-		return new ModelAndView(new RedirectView("all_user.do"));
+		return new ModelAndView(new RedirectView("admin/all_user_by_page.do"));
 	}
 	
 	/**
@@ -179,7 +179,7 @@ public class UserController {
 		mv.addObject("pageModel", pmf);
 		mv.addObject("user_list", pmf.getData());
 		mv.addObject("queryStr", str);
-		mv.setViewName("show_user");
+		mv.setViewName("UserManage/UserList");
 		return mv;
 	}
 	
