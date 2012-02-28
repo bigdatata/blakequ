@@ -95,14 +95,14 @@
 	
 	function topPage() {
 		//var searchStr = document.getElementsByName("searchStr");
-		window.location = "<%=basePath%>computer_log/get_by_time.do?pageNo=1&queryString=";
+		window.location = "<%=basePath%>admin/all_user_by_page.do?pageNo=1&queryString=";
 	}
 	
 	function previousPage() {
 		if(${pageModel.pageNo==1}){
 			alert("已经到达第一页!");
 		}else{
-			window.location = "<%=basePath%>computer_log/get_by_time.do?pageNo=${pageModel.pageNo-1}&queryString=";
+			window.location = "<%=basePath%>admin/all_user_by_page.do?pageNo=${pageModel.pageNo-1}&queryString=";
 		}
 	}
 	
@@ -110,12 +110,12 @@
 		if(${pageModel.pageNo==pageModel.pageSize+1}){
 			alert("已经到达最后一页!");
 		}else{
-			window.location = "<%=basePath%>computer_log/get_by_time.do?pageNo=${pageModel.pageNo+1}&queryString=";
+			window.location = "<%=basePath%>admin/all_user_by_page.do?pageNo=${pageModel.pageNo+1}&queryString=";
 		}
 	}
 	
 	function bottomPage() {
-		window.location = "<%=basePath%>computer_log/get_by_time.do?pageNo=${pageModel.buttomPageNo}&queryString=";
+		window.location = "<%=basePath%>admin/all_user_by_page.do?pageNo=${pageModel.buttomPageNo}&queryString=";
 	}
 
 	</script>
@@ -163,9 +163,7 @@
 									<input type="checkbox" name="ifAll" id="ifAll"
 										onClick="AllQuery()">
 								</th>
-								<th width="100">
-									id
-								</th>
+								
 								<th width="100">
 									用户名
 								</th>
@@ -180,9 +178,7 @@
 									<td >
 							<input type="checkbox" name="selectFlag1" class="checkbox1" value="${item.id}">
 									</td>
-									<td>
-										${item.id}
-									</td>
+								
 									<td>
 										${user.username}
 									</td>
