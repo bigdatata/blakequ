@@ -19,13 +19,20 @@
 			src="<%=path%>/pattern/jquery-ui-1.7.1.custom/js/jquery-1.3.2.min.js"></script>
 		<script type="text/javascript"
 			src="<%=path%>/pattern/flexigrid/flexigrid.js"></script>
-		<script src="<%=path%>/pattern/cm/js/list_public.js"
+	  	<script src="<%=path%>/pattern/cm/js/list_public.js"
 			language="javascript" type="text/javascript"></script>
 		<title>用户列表</title>
 	<script type="text/javascript">
+	
 		function AllQuery()
 	{
 		var checkBox=document.getElementById("ifAll");
+		if(!checkBox.checked){
+			checkBox.checked=true;
+		}else{
+			checkBox.checked=false;
+		}
+
 		var checkBoxAll=document.getElementsByTagName('input');
 		for(var i = 0 ; i < checkBoxAll.length ; i++)
 		{
@@ -107,7 +114,7 @@
 	}
 	
 	function nextPage() {
-		if(${pageModel.pageNo==pageModel.pageSize+1}){
+		if(${pageModel.pageNo==pageModel.totalPages}){
 			alert("已经到达最后一页!");
 		}else{
 			window.location = "<%=basePath%>admin/all_user_by_page.do?pageNo=${pageModel.pageNo+1}&queryString=";
@@ -160,8 +167,7 @@
 						<thead>
 							<tr>
 								<th width="40">
-									<input type="checkbox" name="ifAll" id="ifAll"
-										onClick="AllQuery()">
+									<input type="checkbox" id="ifAll" onClick="AllQuery()"/>
 								</th>
 								
 								<th width="100">
@@ -176,7 +182,7 @@
 							<c:forEach items="${user_list}" var="user">
 								<tr>
 									<td >
-							<input type="checkbox" name="selectFlag1" class="checkbox1" value="${item.id}">
+							<input type="checkbox" name="selectFlag1" class="checkbox1" value="${item.id}"/>
 									</td>
 								
 									<td>
@@ -222,7 +228,7 @@
 				<div id="records" style="float:right">
 					返回
 				</div>
-				<div class="clear"></div>
+				<!--  --><div class="clear"></div>
 				
 			</div>
 		</div>

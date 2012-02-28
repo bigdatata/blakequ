@@ -64,13 +64,6 @@
 		}
 	}
 	
-	function sortByRouterId(){
-		with(document.forms[0]) {
-				action="<%=basePath %>router_log/get_log_by_id.do";
-				method="post";
-				submit();
-			}
-	}
 	
 	
 	function searchRouterItem(){
@@ -95,7 +88,7 @@
 	}
 	
 	function nextPage() {
-		if(${pageModel.pageNo==pageModel.pageSize+1}){
+		if(${pageModel.pageNo==pageModel.totalPages}){
 			alert("已经到达最后一页!");
 		}else{
 			window.location = "<%=basePath %>router_log/get_log_by_page.do?pageNo=${pageModel.pageNo+1}&queryString=";
@@ -225,11 +218,7 @@
 				<div class="blank"></div>
 				<div class="blank"></div>
 				<div class="blank"></div>
-				<div id="records">
-					按路由ID排序
-				</div>
-				<div class="computer"
-					onclick="sortByRouterId()"></div>
+				
 				<div class="blank"></div>
 				<div class="blank"></div>
 				<div class="blank"></div>

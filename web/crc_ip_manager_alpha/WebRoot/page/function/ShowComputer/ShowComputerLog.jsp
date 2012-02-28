@@ -97,7 +97,7 @@
 	}
 	
 	function nextPage() {
-		if(${pageModel.pageNo==pageModel.pageSize+2}){
+		if(${pageModel.pageNo==pageModel.totalPages}){
 			alert("已经到达最后一页!");
 		}else{
 			window.location = "<%=basePath %>computer_log/get_by_time.do?pageNo=${pageModel.pageNo+1}&queryString=";
