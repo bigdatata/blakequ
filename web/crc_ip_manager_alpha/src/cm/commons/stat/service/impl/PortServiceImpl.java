@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import cm.commons.exception.AppException;
 import cm.commons.pojos.Port;
@@ -13,12 +14,9 @@ import cm.commons.util.PageModel;
 
 public class PortServiceImpl implements PortService<Integer, Port> {
 	private static Log log = LogFactory.getLog(PortServiceImpl.class);
+	@Autowired
 	private PortDao portDao;
 	
-
-	public void setPortDao(PortDao portDao) {
-		this.portDao = portDao;
-	}
 
 	public void deleteById(Integer id) {
 		// TODO Auto-generated method stub

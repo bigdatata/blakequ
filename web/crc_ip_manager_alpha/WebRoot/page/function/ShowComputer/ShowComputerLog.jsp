@@ -69,7 +69,7 @@
 	
 	function sortByComputerId(){
 		with(document.forms[0]) {
-				action="<%=basePath %>computer_log/get_by_station_name.do";
+				action="<%=basePath %>computer_log/get_by_station_name.do?pageNo=1&queryString=";
 				method="post";
 				submit();
 			}
@@ -97,7 +97,7 @@
 	}
 	
 	function nextPage() {
-		if(${pageModel.pageNo==pageModel.pageSize+1}){
+		if(${pageModel.pageNo==pageModel.pageSize+2}){
 			alert("已经到达最后一页!");
 		}else{
 			window.location = "<%=basePath %>computer_log/get_by_time.do?pageNo=${pageModel.pageNo+1}&queryString=";

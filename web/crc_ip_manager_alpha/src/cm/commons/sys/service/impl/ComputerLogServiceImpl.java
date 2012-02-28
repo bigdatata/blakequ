@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import cm.commons.exception.AppException;
 import cm.commons.pojos.ComputerLog;
@@ -13,10 +14,9 @@ import cm.commons.util.PageModel;
 
 public class ComputerLogServiceImpl implements ComputerLogService<Integer, ComputerLog> {
 	private static Log log = LogFactory.getLog(ComputerLogServiceImpl.class);
+	@Autowired
 	private ComputerLogDao computerLogDao;
-	public void setComputerLogDao(ComputerLogDao computerLogDao) {
-		this.computerLogDao = computerLogDao;
-	}
+	
 	
 	public void deleteById(Integer id) {
 		// TODO Auto-generated method stub
