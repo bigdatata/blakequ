@@ -21,7 +21,7 @@ var guides={
 			
 	'FrequencySetting' : {
 		'FrequencySetting_' : {
-			'FrequencySetting_1' : ['采集频率设置','/crc_ip_manager_alpha/page/function/FrequencySetting/FrequencySetting.jsp','']}},
+			'FrequencySetting_1' : ['采集频率设置','/crc_ip_manager_alpha/admin/config/FrequencySetting.do','']}},
 
 	'UserManage' : {
 		'UserManage_' : {
