@@ -18,6 +18,20 @@
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.hbm2ddl.auto">true</property>
 		
+		<property name="hibernate.connection.provider_class">
+			org.hibernate.connection.C3P0ConnectionProvider
+		</property>
+		<property name="c3p0.min_size">5</property>
+		<property name="c3p0.max_size">50</property>
+		<property name="c3p0.time_out">28000</property><!-- seconds -->
+		<property name="c3p0.max_statement">100</property><!-- default: 0 -->
+		<property name="c3p0.acquire_increment">5</property><!-- default: 1 -->
+		<!--每60秒检查所有连接池中的空闲连接。Default: 0 -->
+		<property name="c3p0.idle_test_period">60</property><!-- seconds -->		
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+		
+		
 		<mapping resource="cm/commons/pojos/Warn.hbm.xml" />
 		<mapping resource="cm/commons/pojos/ComputerLog.hbm.xml" />
 		<mapping resource="cm/commons/pojos/User.hbm.xml" />

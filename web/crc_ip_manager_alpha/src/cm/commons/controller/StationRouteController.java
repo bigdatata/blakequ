@@ -87,11 +87,13 @@ public class StationRouteController {
 		ModelAndView mv = new ModelAndView();
 		Map<String, Object> m = new HashMap<String, Object>();
 		List<AlarmForm> list = AlarmUtil.getAllAlarm();
+		List<StationForm> station_list=getStationFromRoute(route_id);
+		System.out.println(route_id+"  "+station_list);
 		m.put("all_route", routes);
 		m.put("station_info", sif);
 		m.put("alarm_list", list);//这是告警信息
 		m.put("segment_list", segmentForms);
-		m.put("station_list", getStationFromRoute(route_id));
+		m.put("station_list", station_list);
 		mv.addAllObjects(m);
 		mv.setViewName("StationMonitor/StationMonitor");
 		return mv;
