@@ -3,6 +3,8 @@ package cm.commons.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -11,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import cm.commons.sys.service.SystemService;
 import cm.commons.controller.form.ConfigForm;
 import cm.commons.pojos.System;
+import cm.commons.sys.service.SystemService;
+import cm.commons.util.NullUtil;
 
 /**
  * 系统配置(管理员修改，删除)
@@ -105,5 +108,34 @@ public class SystemConfigController {
 	public ModelAndView deleteConfig(@RequestParam int id){
 		systemService.deleteById(id);
 		return new ModelAndView(new RedirectView("show_config.do"));
+	}
+	/**
+	 * 设置采集频率
+	 */
+	@RequestMapping("FrequencySetting")
+	
+	public String frequencySetting(HttpServletRequest request){
+		String key="frequency";
+		String value="";
+		String newValue=request.getParameter(key);
+		if(NullUtil.notNull(newValue)&&Integer.valueOf(newValue)>0){
+			
+			System system=systemService.getSystemConfigByKey(key);
+			system.setConfigValue(newValue);
+			systemService.saveOrUpdate(system);
+			value=newValue;
+		}else{
+			System system=systemService.getSystemConfigByKey(key);
+			if(NullUtil.notNull(system)){
+				value=system.getConfigValue();
+			}
+		}	
+		//默认是5分钟 5*60*1000
+		if(NullUtil.isNull(value)){
+			value="300000";
+		}
+		request.setAttribute(key, value);
+		return "FrequencySetting/FrequencySetting";
+		
 	}
 }
