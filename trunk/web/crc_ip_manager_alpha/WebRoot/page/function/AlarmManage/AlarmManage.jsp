@@ -24,24 +24,23 @@
 			language="javascript" type="text/javascript"></script>
 		<title>无标题文档</title>
 		<script type="text/javascript">
-		$(document).ready( function() {
-		    $("#ifAll").click( function() {
-		        $(":checkbox","#gridContainer #aaa").attr("checked","checked");
-		        
-		        var checkBoxAll=document.getElementsByTagName('input');
-				for(var i = 0 ; i < checkBoxAll.length ; i++)
-				{
-					if(checkBoxAll[i].type == "checkbox")
-					{
-						checkBoxAll[i].checked = checkBox.checked;
-					}
-				}
-		    });
-		});
-	function AllQuery()
+		function AllQuery()
 	{
 		var checkBox=document.getElementById("ifAll");
-		
+		if(!checkBox.checked){
+			checkBox.checked=true;
+		}else{
+			checkBox.checked=false;
+		}
+
+		var checkBoxAll=document.getElementsByTagName('input');
+		for(var i = 0 ; i < checkBoxAll.length ; i++)
+		{
+			if(checkBoxAll[i].type == "checkbox")
+			{
+				checkBoxAll[i].checked = checkBox.checked;
+			}
+		}
 	}
 	
 	
