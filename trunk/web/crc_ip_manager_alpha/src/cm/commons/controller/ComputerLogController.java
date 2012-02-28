@@ -102,10 +102,10 @@ public class ComputerLogController {
 	 * @return
 	 */
 	@RequestMapping("admin/delete_log")
-	public ModelAndView deleteComputerLog(@RequestParam int computer_id){
+	public ModelAndView deleteComputerLog(@RequestParam int computer_id, HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
 		computerLogService.deleteById(computer_id);
-		mv.setView(new RedirectView("../get_log_by_time.do"));
+		mv.setView(new RedirectView("../get_by_time.do?pageNo=1&queryString="));
 		return mv;
 	}
 	//**********************映射表单类封装*********************

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import cm.commons.exception.AppException;
 import cm.commons.pojos.User;
@@ -14,12 +15,9 @@ import cm.commons.util.PageModel;
 public class UserServiceImpl implements UserService<Integer, User> {
 	private static Log log = LogFactory.getLog(UserServiceImpl.class);
 	
+	@Autowired
 	private UserDao userDao;
 	
-
-	public void setUserDao(UserDao userDao) {
-		this.userDao = userDao;
-	}
 
 	public void deleteByName(String username) {
 		// TODO Auto-generated method stub

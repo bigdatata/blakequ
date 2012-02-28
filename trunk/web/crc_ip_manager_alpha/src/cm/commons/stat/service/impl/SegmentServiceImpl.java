@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import cm.commons.exception.AppException;
 import cm.commons.pojos.Segment;
@@ -16,11 +17,9 @@ import cm.commons.util.PageModel;
 
 public class SegmentServiceImpl implements SegmentService<Integer, Segment> {
 	private static Log log = LogFactory.getLog(SegmentServiceImpl.class);
+	@Autowired
 	private SegmentDao segmentDao;
 
-	public void setsegmentDao(SegmentDao segmentDao) {
-		this.segmentDao = segmentDao;
-	}
 
 	public void deleteById(Integer id) {
 		// TODO Auto-generated method stub

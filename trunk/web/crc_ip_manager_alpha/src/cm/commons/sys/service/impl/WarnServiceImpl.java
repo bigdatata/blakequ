@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import cm.commons.exception.AppException;
 import cm.commons.pojos.Warn;
@@ -14,11 +15,8 @@ import cm.commons.util.PageModel;
 
 public class WarnServiceImpl implements WarnService<Integer, Warn> {
 	private static Log log = LogFactory.getLog(WarnServiceImpl.class);
-	
+	@Autowired
 	private WarnDao warnDao;
-	public void setWarnDao(WarnDao warnDao) {
-		this.warnDao = warnDao;
-	}
 	
 	public void deleteByState(int warnState) {
 		// TODO Auto-generated method stub

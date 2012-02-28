@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import cm.commons.exception.AppException;
 import cm.commons.pojos.Router;
@@ -14,11 +15,8 @@ import cm.commons.util.PageModel;
 public class RouterServiceImpl implements RouterService<Integer, Router>{
 
 	private static Log log = LogFactory.getLog(RouterServiceImpl.class);
+	@Autowired
 	private RouterDao routerDao;
-
-	public void setRouterDao(RouterDao routerDao) {
-		this.routerDao = routerDao;
-	}
 
 	public void deleteRouterByIp(String ip) {
 		// TODO Auto-generated method stub

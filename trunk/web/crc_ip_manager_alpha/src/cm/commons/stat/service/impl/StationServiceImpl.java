@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import cm.commons.exception.AppException;
 import cm.commons.pojos.Route;
@@ -22,21 +23,12 @@ import cm.commons.util.PageModel;
 public class StationServiceImpl implements StationService<Integer, Station> {
 
 	private static Log log = LogFactory.getLog(StationServiceImpl.class);
+	@Autowired
 	private StationDao stationDao;
+	@Autowired
 	private SegmentDao segmentDao;
+	@Autowired
 	private RouteDao routeDao;
-	public void setStationDao(StationDao stationDao) {
-		this.stationDao = stationDao;
-	}
-
-	public void setSegmentDao(SegmentDao segmentDao) {
-		this.segmentDao = segmentDao;
-	}
-
-
-	public void setRouteDao(RouteDao routeDao) {
-		this.routeDao = routeDao;
-	}
 
 	public int getErrorStationCount() {
 		// TODO Auto-generated method stub

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import cm.commons.sys.dao.SystemDao;
 import cm.commons.sys.service.SystemService;
@@ -13,11 +14,9 @@ import cm.commons.pojos.System;
 
 public class SystemServiceImpl implements SystemService<Integer, System> {
 	private static Log log = LogFactory.getLog(SystemServiceImpl.class);
-	
+	@Autowired
 	private SystemDao systemDao;
-	public void setSystemDao(SystemDao systemDao) {
-		this.systemDao = systemDao;
-	}
+	
 	public void deleteByConfigKey(String configKey) {
 		// TODO Auto-generated method stub
 		log.debug("delete by config key "+this.getClass().getName());
