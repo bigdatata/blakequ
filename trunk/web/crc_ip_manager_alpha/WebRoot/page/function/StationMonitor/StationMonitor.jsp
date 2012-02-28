@@ -7,12 +7,14 @@
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
+	//response.setHeader("")
 %>
 <%@ page import="fb.info.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=GB18030">
+		<meta http-equiv="refresh" content="5;url=<%=path%>/main.do?route_id=${current_route_id}">
 		<title>Insert title here</title>
 
 		<link href="<%=path%>/pattern/cm/css/svg.css" rel="stylesheet"
@@ -63,14 +65,16 @@
 	//***********	
 	window.onload = function() {
 		setInterval(function() {
+			//alert('ok');
+			//System.out.println(new Date());
+			//window.location="<%=path%>/alarm/get_current_warn.do";
 			//执行告警信息的请求
 			//if(告警信息!=null)
 			//{
 			//变色&声音告警
 			//}
-			//ajax请求 
-				
-			}, 5000);
+			//ajax请求 	
+			}, 1000);
 
 	};
 </script>
@@ -87,13 +91,16 @@ fbStation[] sxy = new fbStation[100];
 fbSegment[] sg = new fbSegment[100];
 int sxy_num=0;
 int sg_num=0;
+System.out.println(sxy_num);
 List<cm.commons.controller.form.SegmentForm> o = (List<cm.commons.controller.form.SegmentForm>)request.getAttribute("segment_list");
 for(cm.commons.controller.form.SegmentForm u: o){
+	System.out.println(sg_num+"----------------------------------------segment_list");
 	sg[sg_num] = new fbSegment(u.getId(),u.getStartX(),u.getStartY(),u.getEndX(),u.getEndY());
 	sg_num++;
 }		
 List<cm.commons.controller.form.StationForm> t = (List<cm.commons.controller.form.StationForm>)request.getAttribute("station_list");
 for(cm.commons.controller.form.StationForm u: t){
+	System.out.println(sxy_num+"----------------------------------------station_list");
   	sxy[sxy_num] = new fbStation(u.getId(),u.getName(),u.getX(),u.getY());
 	sxy_num++;
  }
