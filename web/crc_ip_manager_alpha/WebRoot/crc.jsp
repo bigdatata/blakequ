@@ -54,6 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 <div id="footer">
   <div id="innerFooter"></div>
+  <input id="userame" type="hidden" value="${user.username}"/>
 </div>
 <iframe name="notice" frameborder="0" style="height:0;width:0;"></iframe>
 <div id="menu" style="display:none"></div>
