@@ -127,10 +127,10 @@
 									<input type="checkbox" name="ifAll" id="ifAll"
 										onClick="AllQuery()">
 								</th>
-								<th width="155" >
+								<th width="100" >
 									router_ID
 								</th>
-								<th width="155" >
+								<th width="100" >
 									ID
 								</th>
 								<th width="155" >
