@@ -33,6 +33,7 @@ var titles={
 	'StationMonitor_' : '线路监控',
 	'AlarmManage_' : '告警信息管理',	
 	'StationModify_' : '线路信息管理',	
+	'ShowComputer_' : '站点电脑列表',
 	'FrequencySetting_' : '采集频率设置',
 	'UserManage_' : '用户管理'
 	}
