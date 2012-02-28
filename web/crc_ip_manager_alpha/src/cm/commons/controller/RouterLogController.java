@@ -46,7 +46,7 @@ public class RouterLogController {
 		Map<String,Object> modelMap = new HashMap<String,Object>();
 		modelMap.put("routerLogs", this.getAllRouterLogByTime());
 		mv.addAllObjects(modelMap);
-		mv.setViewName("show_routerlog");
+		mv.setViewName("ShowComputer/ShowRouterLog");
 		return mv;
 	}
 	
@@ -73,7 +73,7 @@ public class RouterLogController {
 		mv.addObject("pageModel", rmf);
 		mv.addObject("routerLogs", rmf.getData());
 		mv.addObject("queryStr", str);
-		mv.setViewName("show_routerlog");
+		mv.setViewName("ShowComputer/ShowRouterLog");
 		return mv;
 	}
 	
@@ -87,7 +87,7 @@ public class RouterLogController {
 		Map<String,Object> modelMap = new HashMap<String,Object>();
 		modelMap.put("routerLogs", this.getAllRouterLogById());
 		mv.addAllObjects(modelMap);
-		mv.setViewName("show_routerlog");
+		mv.setViewName("ShowComputer/ShowRouterLog");
 		return mv;
 	}
 	
@@ -111,7 +111,7 @@ public class RouterLogController {
 		System.out.println("searchStr:"+searchStr);
 		modelMap.put("routerLogs", this.getRouterLogByStationNameOrId(searchStr));
 		mv.addAllObjects(modelMap);
-		mv.setViewName("show_routerlog");
+		mv.setViewName("ShowComputer/ShowRouterLog");
 		return mv;
 	}
 
