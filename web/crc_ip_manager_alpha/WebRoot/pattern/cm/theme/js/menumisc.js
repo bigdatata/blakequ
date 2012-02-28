@@ -25,7 +25,7 @@ var guides={
 
 	'UserManage' : {
 		'UserManage_' : {
-			'UserManage_1' : ['用户列表','/crc_ip_manager_alpha/page/function/UserManage/UserList.jsp',''],
+			'UserManage_1' : ['用户列表','/crc_ip_manager_alpha/admin/all_user_by_page.do?pageNo=1&queryString=',''],
 			'UserManage_2' : ['用户注册','/crc_ip_manager_alpha/page/function/UserManage/UserAdd.jsp',''],
 			'UserManage_3' : ['修改密码','/crc_ip_manager_alpha/page/function/UserManage/UserModify.jsp','']
 			}}
