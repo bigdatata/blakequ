@@ -38,10 +38,9 @@ import cm.commons.sys.service.SystemService;
 import cm.commons.sys.service.WarnService;
 import cm.commons.util.AlarmUtil;
 import cm.commons.util.StationStateCheckTask;
-import cm.commons.util.StationStateCheckTaskTest;
 
+@SuppressWarnings("unchecked")
 @Controller
-@RequestMapping("update")
 public class RequestController {
 
 	private StationStateCheckTask task;
@@ -62,15 +61,13 @@ public class RequestController {
 	/**
 	 * 处理来自客户端的站点数据
 	 */
-	@RequestMapping("commit")
+	@RequestMapping("commit_data")
 	public void doRequestData(HttpServletRequest request, HttpServletResponse response){
 		
-		task = StationStateCheckTask.getStateCheckTask(5);//默认5分钟
+		task = StationStateCheckTask.getStateCheckTask(60);//默认5秒
 		String frequency = configService.getSystemConfigByKey("frequency").getConfigValue();//获取更新频率
 		int fgy = Integer.parseInt(frequency);
-		if(fgy != task.getFrequency()){
-			task.setFrequency(fgy);
-		}
+		task.setTimeToWarn(fgy*2);
 		
 		try {
 			PrintWriter pw = response.getWriter();
@@ -86,7 +83,7 @@ public class RequestController {
 	    BufferedReader reader = null;
 	    try {  
 	        reader = request.getReader();//获得字符流  
-	        StringBuffer content= new StringBuffer();   
+	        StringBuffer content= new StringBuffer();
 	        String line;  
 	        while ((line = reader.readLine()) != null){  
 	            content.append(line+"\r\n");
@@ -142,11 +139,19 @@ public class RequestController {
 				}
 				//台账文件
 				if(fileFlag.equals("0") || fileFlag.equals("")){
-					wf.setInfo(wf.getInfo()+" 站点"+station.getName()+"台账文件读取异常!");
+					if(wf.getInfo() == null){
+						wf.setInfo("站点"+station.getName()+"台账文件读取异常!");
+					}else{
+						wf.setInfo(wf.getInfo()+" 站点"+station.getName()+"台账文件读取异常!");
+					}
 				}
 				//端口
 				if(portState.length()>2){
-					wf.setInfo(wf.getInfo()+" "+portState);
+					if(wf.getInfo() == null){
+						wf.setInfo(portState);
+					}else{
+						wf.setInfo(wf.getInfo()+" "+portState);
+					}
 				}
 				wf.setStation_id(station.getId());
 				wf.setState(1);
@@ -197,6 +202,7 @@ public class RequestController {
 			af.setTime(new Date(System.currentTimeMillis()));
 			af.setInfo("站点:"+name+"状态未知！");
 			AlarmUtil.addToMap(name, af);
+			System.out.println("____________位置状态站点——————————————"+af);
 		}
 	}
 	
@@ -221,7 +227,10 @@ public class RequestController {
         if(station == null){
         	station = new Station();
         	station.setName(stationJson.getStation_name());
-        	station.setState(Integer.parseInt(stationJson.getFlag_value()));//这个还有待验证（由三个决定）
+        	station.setState(0);//这个还有待验证（由三个决定）
+        	station.setX("0");
+        	station.setY("0");
+        	station.setSegmentNum(0);
         	stationService.save(station);
         	station = (Station) stationService.getStationByName(station.getName());
         }
@@ -270,11 +279,12 @@ public class RequestController {
 	 */
 	private Port toPort(PortJson pj, Map<Integer, Port> maps){
 		Port p = null;
-		if(!maps.containsKey(pj.getIfIndex())) {
+		Integer key = Integer.valueOf(pj.getIfIndex());
+		if(!maps.containsKey(key)) {
 			p = new Port();
 		}
 		else{
-			p = maps.get(pj.getIfIndex());
+			p = maps.get(key);
 		}
 		p.setGetTime(new Date(System.currentTimeMillis()));
 		p.setIfDescr(pj.getIfDescr());
@@ -323,7 +333,7 @@ public class RequestController {
 	private String checkPort(String[] ports){
 		StringBuilder flag = new StringBuilder("端口");
 		for(int i=0; i<ports.length; i++){
-			if(!ports[i].equals("11") || !ports[i].equals("22")){
+			if(!ports[i].equals("11") && !ports[i].equals("22")){
 				if(ports[i].startsWith("1")){
 					flag.append(i+":状态由UP-->DOWN ");
 				}else{

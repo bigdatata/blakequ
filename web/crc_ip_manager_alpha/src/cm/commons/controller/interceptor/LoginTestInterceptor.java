@@ -23,7 +23,13 @@ public class LoginTestInterceptor extends HandlerInterceptorAdapter {
 		String str = request.getRequestURI();
 		int last = str.lastIndexOf("/")+1;
 		System.out.println("当前用户为："+loginUser);
-		if(!str.subSequence(last, str.length()).equals("login.do") && loginUser == null){
+		CharSequence rq = str.subSequence(last, str.length());
+		if(rq.equals("commit_data.do")){
+			System.out.println("来自站点:"+request.getLocalName()+" "+request.getLocalAddr()+":"+request.getLocalPort()+"数据请求！");
+			return true;
+		}
+		
+		if(!rq.equals("login.do") && loginUser == null){
 			System.out.println("当前用户还没有登录!");
 			mav.addObject("error", "你还没有登录!");
 			throw new ModelAndViewDefiningException(mav);
