@@ -36,14 +36,12 @@
 				document.form.pwd.focus();
 				return false;
 			}
-			alert(document.form.pwd.value+"hello");
-			alert(document.form.oldpassword.value);
 			if(document.form.pwd.value!=document.form.oldpassword.value){
-					alert("输入原先的密码不正确！");
-				}
+				alert("输入原先的密码不正确！");
 				document.form.pwd.focus();
 				return false;
 			}
+				
 			
 			if(document.form.password.value.length == 0){
 				alert("新密码不能为空！");
@@ -93,8 +91,8 @@
 								</div>
 							</td>
 							<td width="78%">
-							<!--  	<input type="hidden" name="oldpassword" id="oldpassword" value="${user.password}"/>
-							--><input name="pwd" type="password" class="text1" id="pwd" size="10" maxlength="20" />
+							<input type="hidden" name="oldpassword" id="oldpassword" value="${user.password}"/>
+							<input name="pwd" type="password" class="text1" id="pwd" size="10" maxlength="20" value=""/>
 							</td>
 						</tr>
 						<tr>
@@ -118,24 +116,7 @@
 								<input name="password1" type="password" class="text1"
 									id="password1" size="10" maxlength="20" />
 							</td>
-						</tr>
-						<tr>
-							<td width="22%" height="29">
-								<div align="right">
-									权限:&nbsp;
-								</div>
-							</td>
-							<td width="78%">
-								<select name="authority">
-									<option value="user">
-										普通用户
-									</option>
-									<option value="admin">
-										管理员
-									</option>
-								</select>
-							</td>
-
+							<input type="hidden" name="authority" value="${user.username}"/>
 						</tr>
 					</table>
 					<hr width="97%" align="center" size=0>

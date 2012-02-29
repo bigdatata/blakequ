@@ -25,6 +25,16 @@ public class UserOperatorIntercepter extends HandlerInterceptorAdapter {
 		ModelAndView mav = new ModelAndView("../public/error");
 		mav.addObject("error", "当前用户没有权限执行该操作！");
 		User u = (User) request.getSession().getAttribute("user");
+		String path = request.getContextPath();
+		String modifyUserPath = path + "/admin/modify_user.do";
+		System.out.println(modifyUserPath);
+		System.out.println(request.getRequestURL());
+		int index=request.getRequestURI().indexOf(modifyUserPath);
+		System.out.println(index);
+		String name=request.getParameter("username");
+		if(u.getUsername().equals(name)&&index!=-1){
+			return true;
+		}
 		if(u.getAuthority().equals("user")){
 			System.out.println("postHandle:检查用户"+u.getUsername()+",权限异常操作");
 			throw new ModelAndViewDefiningException(mav);
