@@ -15,7 +15,7 @@
 	<head>
 	
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta http-equiv="refresh" content="1;url=<%=path%>/main.do?route_id=${current_route_id}">
+		<meta http-equiv="refresh" content="5;url=<%=path%>/main.do?route_id=${current_route_id}">
 		<title>Insert title here</title>
 
 		<link href="<%=path%>/pattern/cm/css/svg.css" rel="stylesheet"
@@ -74,20 +74,20 @@
 //JSP中嵌套java代码,通过request获取后台传来的数据，保存在建好的类中
 //
 //***********************
-fbStation[] sxy = new fbStation[100];
-fbSegment[] sg = new fbSegment[100];
+List<cm.commons.controller.form.SegmentForm> o = (List<cm.commons.controller.form.SegmentForm>)request.getAttribute("segment_list");
+List<cm.commons.controller.form.StationForm> t = (List<cm.commons.controller.form.StationForm>)request.getAttribute("station_list");
+
+fbStation[] sxy = new fbStation[o.size()+2];
+fbSegment[] sg = new fbSegment[t.size()+2];
 int sxy_num=0;
 int sg_num=0;
-System.out.println(sxy_num);
-List<cm.commons.controller.form.SegmentForm> o = (List<cm.commons.controller.form.SegmentForm>)request.getAttribute("segment_list");
+System.out.println(o.size());
+System.out.println(t.size());
 for(cm.commons.controller.form.SegmentForm u: o){
-	System.out.println(sg_num+"----------------------------------------segment_list");
 	sg[sg_num] = new fbSegment(u.getId(),u.getStartX(),u.getStartY(),u.getEndX(),u.getEndY());
 	sg_num++;
 }		
-List<cm.commons.controller.form.StationForm> t = (List<cm.commons.controller.form.StationForm>)request.getAttribute("station_list");
 for(cm.commons.controller.form.StationForm u: t){
-	System.out.println(sxy_num+"----------------------------------------station_list");
   	sxy[sxy_num] = new fbStation(u.getId(),u.getName(),u.getX(),u.getY());
 	sxy_num++;
  }
@@ -267,7 +267,7 @@ for(cm.commons.controller.form.StationForm u: t){
 									.print("<circle id=\""
 											+ sxy[i].getId()
 											+ "\" name=\""
-											+ sxy[i].getId()
+								    		+ sxy[i].getId()
 											+ "\" cx=\""
 											+ sxy[i].getX()
 											+ "\" cy=\""
@@ -280,7 +280,7 @@ for(cm.commons.controller.form.StationForm u: t){
 					}
 				%>
 
-				<circle id="me" name="ass" cx="20" cy="20" r="10" stroke="black"
+				<circle id="me" cx="100" cy="100" r="10" stroke="black"
 					stroke-width="2" style="fill:blue" />
 				</svg>
 			</div>
