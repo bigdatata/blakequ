@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=GB18030"
-	pageEncoding="GB18030"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
@@ -12,27 +12,27 @@
 		<link href="<%=path%>/pattern/cm/css/add.css" type="text/css"
 			rel="stylesheet" />
 		<base href="<%=basePath%>">
-		<meta http-equiv="Content-Type" content="text/html; charset=GB18030">
-		<title>ĞŞ¸ÄÕ¾µã</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>ä¿®æ”¹ç«™ç‚¹</title>
 		<script type="text/javascript">
 			function validateForm() {
 				if (document.form.name.value.length == 0) {
-					alert("ÏßÂ·Ãû×Ö²»ÄÜÎª¿Õ£¡");
+					alert("çº¿è·¯åå­—ä¸èƒ½ä¸ºç©ºï¼");
 					document.form.name.focus();
 					return false;
 				}
 				if (document.form.x.value.length == 0) {
-					alert("ÏßÂ·×ø±ê²»ÄÜÎª¿Õ£¡");
+					alert("çº¿è·¯åæ ‡ä¸èƒ½ä¸ºç©ºï¼");
 					document.form.x.focus();
 					return false;
 				}
 				if(document.form.y.value.length == 0){
-					alert("ÏßÂ·×ø±ê²»ÄÜÎª¿Õ£¡");
+					alert("çº¿è·¯åæ ‡ä¸èƒ½ä¸ºç©ºï¼");
 					document.form.y.focus();
 					return false;
 				}
 				if(document.form.main.value != "${station.isMainStation}"){
-					alert("Äã²»ÄÜĞŞ¸ÄÊÇ·ñÊÇÖ÷Õ¾µãĞÅÏ¢£¡");
+					alert("ä½ ä¸èƒ½ä¿®æ”¹æ˜¯å¦æ˜¯ä¸»ç«™ç‚¹ä¿¡æ¯ï¼");
 					document.form.main.focus();
 					return false;
 				}
@@ -41,7 +41,7 @@
 			
 			function selectStation(){
 				with(document.forms[0]) {
-					alert("Äã²»ÄÜĞŞ¸ÄÁ¬½ÓÕ¾µã£¬Èç¹ûĞŞ¸ÄÇëÖØĞÂµ¼ÈëÅäÖÃÎÄ¼ş");
+					alert("ä½ ä¸èƒ½ä¿®æ”¹è¿æ¥ç«™ç‚¹ï¼Œå¦‚æœä¿®æ”¹è¯·é‡æ–°å¯¼å…¥é…ç½®æ–‡ä»¶");
 				}
 			}
 		</script>
@@ -52,7 +52,7 @@
 			name="form" onsubmit="return validateForm()">
 			<div class="layout">
 				<div class="title">
-					Õ¾µãĞŞ¸Ä
+					ç«™ç‚¹ä¿®æ”¹
 				</div>
 
 				<div id="content">
@@ -75,7 +75,7 @@
 							<tr>
 								<td width="22%" height="29">
 									<div align="right">
-										<font color="#FF0000">*</font>Õ¾µãÃû×Ö:&nbsp;
+										<font color="#FF0000">*</font>ç«™ç‚¹åå­—:&nbsp;
 									</div>
 								</td>
 								<td width="78%">
@@ -86,7 +86,7 @@
 							<tr>
 								<td height="26">
 									<div align="right">
-										<font color="#FF0000">*</font>ÏßÂ·X×ø±ê:&nbsp;
+										<font color="#FF0000">*</font>çº¿è·¯Xåæ ‡:&nbsp;
 									</div>
 								</td>
 								<td>
@@ -97,7 +97,7 @@
 							<tr>
 								<td height="26">
 									<div align="right">
-										<font color="#FF0000">*</font>ÏßÂ·Y×ø±ê:&nbsp;
+										<font color="#FF0000">*</font>çº¿è·¯Yåæ ‡:&nbsp;
 									</div>
 								</td>
 								<td>
@@ -110,7 +110,7 @@
 							<tr>
 								<td height="26">
 									<div align="right">
-										<font color="#FF0000">*</font>ÊÇ·ñÖ÷Õ¾µã:&nbsp;
+										<font color="#FF0000">*</font>æ˜¯å¦ä¸»ç«™ç‚¹:&nbsp;
 									</div>
 								</td>
 								<td>
@@ -124,7 +124,7 @@
 							<tr>
 								<td height="26">
 									<div align="right">
-										<font color="#FF0000">*</font>ÉÏĞĞÕ¾µã:&nbsp;
+										<font color="#FF0000">*</font>ä¸Šè¡Œç«™ç‚¹:&nbsp;
 									</div>
 								</td>
 								<td>
@@ -134,14 +134,14 @@
 									</label>
 									<label>
 										<input name="station1_select" type="button" class="text1"
-											id="station1_select" value="Ñ¡Ôñ" onclick="selectStation()">
+											id="station1_select" value="é€‰æ‹©" onclick="selectStation()">
 									</label>
 								</td>
 							</tr>
 							<tr>
 								<td height="26">
 									<div align="right">
-										<font color="#FF0000">*</font>ÏÂĞĞÕ¾µã:&nbsp;
+										<font color="#FF0000">*</font>ä¸‹è¡Œç«™ç‚¹:&nbsp;
 									</div>
 								</td>
 								<td>
@@ -151,7 +151,7 @@
 									</label>
 									<label>
 										<input name="station2_select" type="button" class="text1"
-											id="station2_select" value="Ñ¡Ôñ" onclick="selectStation()">
+											id="station2_select" value="é€‰æ‹©" onclick="selectStation()">
 									</label>
 								</td>
 							</tr>
@@ -160,10 +160,10 @@
 						<hr width="97%" align="center" size=0>
 						<div align="center">
 							<input name="btnAdd" class="button1" type="submit" id="btnAdd"
-								value="ĞŞ¸Ä">
+								value="ä¿®æ”¹">
 							&nbsp;&nbsp;&nbsp;&nbsp;
 							<input name="btnBack" class="button1" type="button" id="btnBack"
-								value="·µ»Ø" onClick="javascript:history.go(-1);">
+								value="è¿”å›" onClick="javascript:history.go(-1);">
 						</div>
 					</div>
 				</div>

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=GB18030"
-	pageEncoding="GB18030"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
@@ -12,22 +12,22 @@
 		<link href="<%=path%>/pattern/cm/css/add.css" type="text/css"
 			rel="stylesheet" />
 		<base href="<%=basePath%>">
-		<meta http-equiv="Content-Type" content="text/html; charset=GB18030">
-		<title>����վ��</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>添加站点</title>
 		<script type="text/javascript">
 			function validateForm() {
 				if (document.form.name.value.length == 0) {
-					alert("��·���ֲ���Ϊ�գ�");
+					alert("线路名字不能为空！");
 					document.form.name.focus();
 					return false;
 				}
 				if (document.form.x.value.length == 0) {
-					alert("��·���겻��Ϊ�գ�");
+					alert("线路坐标不能为空！");
 					document.form.x.focus();
 					return false;
 				}
 				if(document.form.y.value.length == 0){
-					alert("��·���겻��Ϊ�գ�");
+					alert("线路坐标不能为空！");
 					document.form.y.focus();
 					return false;
 				}
@@ -51,7 +51,7 @@
 			name="form" id="form" onsubmit="return validateForm()">
 			<div class="layout">
 				<div class="title">
-					վ������
+					站点增加
 				</div>
 
 				<div id="content">
@@ -65,10 +65,10 @@
 							</tr>
 						</table>
 
-						������·ѡ��
+						插入线路选择：
 						<select name="route_id">
 							<option value="-1" selected="selected">
-								��ѡ����·
+								请选择线路
 							</option>
 							<c:forEach items="${routes}" var="route">
 								<option value="${route.id}"
@@ -79,14 +79,14 @@
 								</option>
 							</c:forEach>
 						</select>
-						<input type="button" value="ȷ��" onclick="getStations()" />
+						<input type="button" value="确定" onclick="getStations()" />
 
 						<hr width="97%" align="center" size=0>
 						<table width="95%" border="0" cellpadding="0" cellspacing="0">
 							<tr>
 								<td width="22%" height="29">
 									<div align="right">
-										<font color="#FF0000">*</font>վ������:&nbsp;
+										<font color="#FF0000">*</font>站点名字:&nbsp;
 									</div>
 								</td>
 								<td width="78%">
@@ -97,7 +97,7 @@
 							<tr>
 								<td height="26">
 									<div align="right">
-										<font color="#FF0000">*</font>��·X����:&nbsp;
+										<font color="#FF0000">*</font>线路X坐标:&nbsp;
 									</div>
 								</td>
 								<td>
@@ -108,7 +108,7 @@
 							<tr>
 								<td height="26">
 									<div align="right">
-										<font color="#FF0000">*</font>��·Y����:&nbsp;
+										<font color="#FF0000">*</font>线路Y坐标:&nbsp;
 									</div>
 								</td>
 								<td>
@@ -121,13 +121,13 @@
 							<tr>
 								<td height="26">
 									<div align="right">
-										<font color="#FF0000">*</font>����վ��:&nbsp;
+										<font color="#FF0000">*</font>上行站点:&nbsp;
 									</div>
 								</td>
 								<td>
 									<select name="station1" class="select1" id="station1">
 										<option value="-1">
-											��
+											无
 										</option>
 										<c:forEach items="${stations}" var="ic">
 											<option value="${ic.id}">
@@ -140,13 +140,13 @@
 							<tr>
 								<td height="26">
 									<div align="right">
-										<font color="#FF0000">*</font>����վ��:&nbsp;
+										<font color="#FF0000">*</font>下行站点:&nbsp;
 									</div>
 								</td>
 								<td>
 									<select name="station2" class="select1" id="station2">
 										<option value="-1">
-											��
+											无
 										</option>
 										<c:forEach items="${stations}" var="iu">
 											<option value="${iu.id}">
@@ -159,7 +159,7 @@
 							<tr>
 								<td height="26">
 									<div align="right">
-										<font color="#FF0000">*</font>�Ƿ�����վ��:&nbsp;
+										<font color="#FF0000">*</font>是否是主站点:&nbsp;
 									</div>
 								</td>
 								<td>
@@ -177,10 +177,10 @@
 						<hr width="97%" align="center" size=0>
 						<div align="center">
 							<input name="btnAdd" class="button1" type="submit" id="btnAdd"
-								value="����">
+								value="添加">
 							&nbsp;&nbsp;&nbsp;&nbsp;
 							<input name="btnBack" class="button1" type="button" id="btnBack"
-								value="����" onClick="javascript:history.go(-1);">
+								value="返回" onClick="javascript:history.go(-1);">
 						</div>
 					</div>
 				</div>
