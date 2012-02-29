@@ -177,19 +177,21 @@ function showleft2(id,t,url){
 	return false;
 }
 function showtitle(){
-	var obj = document.getElementById('guide');
+	var obj = document.getElementById('guidenavigate');
 	var guide = guides[cate];
 	var myDate = new Date;
 	var year = myDate.getFullYear();
 	var month = myDate.getMonth()+1;
 	var date = myDate.getDate();
-	var html = '<span class="fr s1" style="margin:0 16px">当前日期-'+year+'年'+month+'月'+date+'日 | 用户: admin　级别: manager　|　<a class="s0" href="JavaScript:location.reload()" >刷新</a> <a class="s0" href="/crc_ip_manager_alpha/login_out.do">退出</a></span>';
+	var html='';
+	//var html = '<span class="fr s1" style="margin:0 16px">当前日期-'+year+'年'+month+'月'+date+'日 | 用户: ${user.username}　级别: ${user.authority}　|　<a class="s0" href="JavaScript:location.reload()" >刷新</a> <a class="s0" href="/crc_ip_manager_alpha/login_out.do">退出</a></span>';
 	if(action && type){
 		html += '<h1><span class="fr1">' + titles[action] + ' » ' + guide[action][type][0] + '</span></h1>';
 	} else {
 		html += '<h1><span class="fr1">欢迎页面</span></h1>';
 	}
-	obj.innerHTML = html;
+	
+	obj.innerHTML =html;
 }
 function initguide(id,t,url){
 	showleft(id,t,url);

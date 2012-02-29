@@ -28,6 +28,18 @@ body {
 </style></head>
 
 <script type="text/javascript" language= "javascript" >
+
+	var path=location.href;
+	var basePath=path.substring(0,path.indexOf("//")+2);
+	path=path.substring(path.indexOf("//")+2,path.length);
+	basePath=basePath+path.substring(0,path.indexOf("/")+1);
+	path=path.substring(path.indexOf("/")+1,path.length);
+	basePath=basePath+path.substring(0,path.indexOf("/")+1);
+	window.onload=function(){
+		if (window != top){
+      		top.location.href = basePath+'index.jsp'; 
+      		}
+	}
 function  checkvalue()
   {
      if (document.loginform.username.value=="" )
