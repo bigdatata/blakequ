@@ -13,8 +13,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
+	<meta http-equiv="refresh" content="5;url=<%=path%>/main.do?route_id=${current_route_id}">
 		<meta http-equiv="Content-Type" content="text/html; charset=GB18030">
-		<meta http-equiv="refresh" content="5;url=<%=path%>/main.do?route_id=${current_route_id}">
+		<meta http-equiv="refresh" content="1;url=<%=path%>/main.do?route_id=${current_route_id}">
 		<title>Insert title here</title>
 
 		<link href="<%=path%>/pattern/cm/css/svg.css" rel="stylesheet"
@@ -63,20 +64,6 @@
 	//若是线段告警则使用document.getElementById的方法进行查找
 	//
 	//***********	
-	window.onload = function() {
-		setInterval(function() {
-			//alert('ok');
-			//System.out.println(new Date());
-			//window.location="<%=path%>/alarm/get_current_warn.do";
-			//执行告警信息的请求
-			//if(告警信息!=null)
-			//{
-			//变色&声音告警
-			//}
-			//ajax请求 	
-			}, 1000);
-
-	};
 </script>
 	</head>
 
@@ -242,7 +229,7 @@ for(cm.commons.controller.form.StationForm u: t){
 					}
 						out
 								.print("<line id=\""
-										+ i
+										+ sg[i].getId()
 										+ "\" x1=\""
 										+ x1
 										+ "\" y1=\""
@@ -260,7 +247,7 @@ for(cm.commons.controller.form.StationForm u: t){
 					for (int i = 0; i < sxy_num; i++) {
 						if (i == 0) {
 							String sa = sxy[i].getName();
-							double sx = (sxy[i].getX() - 8 * sa.length());//将站名置于正中
+							double sx = (sxy[i].getX() - 6 * sa.length());//将站名置于正中
 							out
 									.print("<ellipse id=\""
 											+ sxy[i].getId()
