@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -27,17 +27,17 @@
 		
 		function validateForm() {
 			if(document.form.username.value.length == 0){
-				alert("ÓÃ»§Ãû²»ÄÜÎª¿Õ£¡");
+				alert("ç”¨æˆ·åä¸èƒ½ä¸ºç©ºï¼");
 				document.form.username.focus();
 				return false;
 			}
 			if(document.form.password.value.length == 0){
-				alert("ÃÜÂë²»ÄÜÎª¿Õ");
+				alert("å¯†ç ä¸èƒ½ä¸ºç©º");
 				document.form.password.focus();
 				return false;
 			}
 			if(document.form.password.value != document.form.password1.value){
-				alert("Á½´ÎÃÜÂëÊäÈë²»Ò»ÖÂ£¬ÇëÖØÐÂÊäÈë£¡");
+				alert("ä¸¤æ¬¡å¯†ç è¾“å…¥ä¸ä¸€è‡´ï¼Œè¯·é‡æ–°è¾“å…¥ï¼");
 				document.form.password.focus();
 				return false;
 			}
@@ -53,7 +53,7 @@
 			name="form" id="form" onsubmit="return validateForm()">
 			<div class="layout">
 				<div class="title">
-					ÓÃ»§×¢²á
+					ç”¨æˆ·æ³¨å†Œ
 				</div>
 				<div id="content">
 					<hr width="97%" align="center" size=0>
@@ -61,7 +61,7 @@
 						<tr>
 							<td width="22%" height="29">
 								<div align="right">
-									<font color="#FF0000">*</font>ÓÃ»§Ãû:&nbsp;
+									<font color="#FF0000">*</font>ç”¨æˆ·å:&nbsp;
 								</div>
 							</td>
 							<td width="78%">
@@ -72,7 +72,7 @@
 						<tr>
 							<td width="22%" height="29">
 								<div align="right">
-									<font color="#FF0000">*</font>ÃÜÂë:&nbsp;
+									<font color="#FF0000">*</font>å¯†ç :&nbsp;
 								</div>
 							</td>
 							<td width="78%">
@@ -83,7 +83,7 @@
 						<tr>
 							<td width="22%" height="29">
 								<div align="right">
-									<font color="#FF0000">*</font>ÔÙ´ÎÊäÈëÃÜÂë:&nbsp;
+									<font color="#FF0000">*</font>å†æ¬¡è¾“å…¥å¯†ç :&nbsp;
 								</div>
 							</td>
 							<td width="78%">
@@ -95,16 +95,16 @@
 						<tr>
 							<td width="22%" height="29">
 								<div align="right">
-									<font color="#FF0000">*</font>È¨ÏÞ:&nbsp;
+									<font color="#FF0000">*</font>æƒé™:&nbsp;
 								</div>
 							</td>
 							<td width="78%">
 								<select name="authority">
 									<option value="user">
-										ÆÕÍ¨ÓÃ»§
+										æ™®é€šç”¨æˆ·
 									</option>
 									<option value="admin">
-										¹ÜÀíÔ±
+										ç®¡ç†å‘˜
 									</option>
 								</select>
 							</td>
@@ -114,10 +114,10 @@
 					<hr width="97%" align="center" size=0>
 					<div align="center">
 						<input name="btnAdd" class="button1" type="submit" id="btnAdd"
-							value="×¢²á">
+							value="æ³¨å†Œ">
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<input name="btnBack" class="button1" type="button" id="btnBack"
-							value="·µ»Ø" onClick="javascript:history.go(-1);">
+							value="è¿”å›ž" onClick="javascript:history.go(-1);">
 					</div>
 				</div>
 			</div>
