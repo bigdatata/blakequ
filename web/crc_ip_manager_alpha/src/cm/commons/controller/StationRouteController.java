@@ -93,6 +93,9 @@ public class StationRouteController {
 		m.put("station_info", sif);
 		m.put("alarm_list", list);//这是告警信息
 		m.put("segment_list", segmentForms);
+		List<StationForm> l = getStationFromRoute(route_id);
+		System.out.println("******************size:"+l.size());
+		m.put("station_list", l);
 		m.put("station_list", station_list);
 		mv.addAllObjects(m);
 		mv.setViewName("StationMonitor/StationMonitor");
@@ -317,12 +320,9 @@ public class StationRouteController {
 //		List<Station> mstation = stationService.getMainStationByRoute(route_id);
 		//在线路上的站点
 		List<Station> stations = stationService.getAllStationByRoute(route_id);
-		//单独站点
-		List<Station> lastStations = stationService.getStationsNotInSegment();
+		//单独站点不添加到里面
+		//List<Station> lastStations = stationService.getStationsNotInSegment();
 		if(stations != null){
-			if(lastStations != null){
-				stations.addAll(lastStations);
-			}
 			for(int i=0; i<stations.size(); i++){
 				StationForm sf = new StationForm();
 				sf.setId(stations.get(i).getId());
