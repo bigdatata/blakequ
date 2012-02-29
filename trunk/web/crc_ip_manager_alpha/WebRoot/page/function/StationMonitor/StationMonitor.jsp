@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*"
 	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="cm.commons.controller.form.SegmentForm"%>
-<%@ page import="cm.commons.util.NUllUtil" %>
+<%@ page import="cm.commons.util.NullUtil" %>
 <%@ page import="cm.commons.util.AlarmStyleUtil" %>
 <%@ page import="cm.commons.controller.form.AlarmForm" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -22,7 +22,7 @@
 	<head>
 	
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta http-equiv="refresh" content="5;url=<%=path%>/main.do?route_id=${current_route_id}">
+		<meta http-equiv="" content="5;url=<%=path%>/main.do?route_id=${current_route_id}">
 		<title>Insert title here</title>
 
 		<link href="<%=path%>/pattern/cm/css/svg.css" rel="stylesheet"
@@ -59,7 +59,6 @@
 				//document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
 			}
 		}
-
 		xmlhttp.open("POST", "detail_station.do?station_id=" + o.id, true);
 		xmlhttp.send();
 	}
@@ -189,6 +188,7 @@ for(cm.commons.controller.form.StationForm u: t){
 画图技术：svg
 
  -->
+ 
 				<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
 				<% 
 					//**********************************绘制线段********************************
@@ -244,7 +244,7 @@ for(cm.commons.controller.form.StationForm u: t){
 										+ x2
 										+ "\" y2=\""
 										+ y2
-										+ "\" style=\"stroke:rgb(99,99,99);stroke-width:7\" />");
+										+ "\" style=\"stroke:"+AlarmStyleUtil.getSegmentColor(sg[i],alarmList)+";stroke-width:7\" />");
 					}
 
 					//***********************下面是绘制站点和站点名****************//
@@ -278,7 +278,7 @@ for(cm.commons.controller.form.StationForm u: t){
 											+ sxy[i].getX()
 											+ "\" cy=\""
 											+ sxy[i].getY()
-											+ "\" r=\"10\" stroke=\"black\" stroke-width=\"2\" style=\"fill:blue\"/>");
+											+ "\" r=\"10\" stroke=\"black\" stroke-width=\"2\" style=\"fill:"+AlarmStyleUtil.getStationColor(sxy[i],alarmList)+"\"/>");
 							out.print("<text id=\"" + sxy[i].getId() + "\" x=\"" + sx
 									+ "\" y=\"" + sy + "\">"
 									+ sxy[i].getName() + "</text>");
@@ -286,8 +286,7 @@ for(cm.commons.controller.form.StationForm u: t){
 					}
 				%>
 
-				<circle id="me" cx="100" cy="100" r="10" stroke="black"
-					stroke-width="2" style="fill:blue" />
+				
 				</svg>
 			</div>
 
@@ -296,7 +295,7 @@ for(cm.commons.controller.form.StationForm u: t){
 		---下面是右击菜单的div
 		---在右击的情况下触发
 		---
-		-->
+	-->	
 		<div id="bmenu"
 			style="position: absolute; display: none; top: 0px; left: 0px; width: 150px; margin: 0px; padding: 2px; border: 1px solid #cccccc; background-color: #CEE2FF;">
 			<ul>
