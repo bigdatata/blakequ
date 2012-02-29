@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--这是一条线路上的所有站点都在这里面配置-->
+<stations count="5" route="所属线路名字"> <!--count是站点数量，route是所属线路-->
+		<station>
+			<name>站点名字</name>
+			<x>x坐标</x>
+			<y>y坐标</y>
+			<main>true</main><!--是否是主站点-->
+			<segnum>线段数量</segnum><!--是出入该站的线段条数-->
+		</station>
+		<station>
+			<name>成都站</name>
+			<x>x坐标</x>
+			<y>y坐标</y>
+			<main>false</main>
+			<segnum>线段数量</segnum>
+		</station>
+		<station>
+			<name>拐点3</name>
+			<x>x坐标</x>
+			<y>y坐标</y>
+			<main>false</main>
+			<segnum>线段数量</segnum>
+		</station>
+		<station>
+			<name>站点4</name>
+			<x>x坐标</x>
+			<y>y坐标</y>
+			<main>false</main>
+			<segnum>线段数量</segnum>
+		</station>
+		<station>
+			<name>站点5</name>
+			<x>x坐标</x>
+			<y>y坐标</y>
+			<main>false</main>
+			<segnum>线段数量</segnum>
+		</station>
+</stations>
