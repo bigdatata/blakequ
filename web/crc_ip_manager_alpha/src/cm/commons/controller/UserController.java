@@ -211,7 +211,7 @@ public class UserController {
 	@RequestMapping("login_out")
 	public String loginOut(HttpServletRequest request){
 		request.getSession().removeAttribute("user");
-		return "../public/login";
+		return "../../index";
 	}
 	
 	/**
