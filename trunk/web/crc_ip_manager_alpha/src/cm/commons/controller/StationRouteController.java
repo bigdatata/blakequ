@@ -93,9 +93,7 @@ public class StationRouteController {
 		m.put("station_info", sif);
 		m.put("alarm_list", list);//这是告警信息
 		m.put("segment_list", segmentForms);
-		List<StationForm> l = getStationFromRoute(route_id);
-		System.out.println("******************size:"+l.size());
-		m.put("station_list", l);
+		m.put("station_list", getStationFromRoute(route_id));
 		m.put("station_list", station_list);
 		mv.addAllObjects(m);
 		mv.setViewName("StationMonitor/StationMonitor");
