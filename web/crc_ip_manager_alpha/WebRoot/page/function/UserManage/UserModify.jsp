@@ -67,7 +67,7 @@
 						<tr>
 							<td width="22%" height="29">
 								<div align="right">
-									<font color="#FF0000">*</font>用户名:&nbsp;
+									用户名:&nbsp;
 								</div>
 							</td>
 							<td width="78%">
@@ -80,7 +80,7 @@
 						<tr>
 							<td width="22%" height="29">
 								<div align="right">
-									<font color="#FF0000">*</font>输入原先密码:&nbsp;
+									输入原先密码:&nbsp;
 								</div>
 							</td>
 							<td width="78%">
@@ -91,7 +91,7 @@
 						<tr>
 							<td width="22%" height="29">
 								<div align="right">
-									<font color="#FF0000">*</font>输入新密码:&nbsp;
+									输入新密码:&nbsp;
 								</div>
 							</td>
 							<td width="78%">
@@ -102,7 +102,7 @@
 						<tr>
 							<td width="22%" height="29">
 								<div align="right">
-									<font color="#FF0000">*</font>再次输入新密码:&nbsp;
+									再次输入新密码:&nbsp;
 								</div>
 							</td>
 							<td width="78%">
@@ -113,7 +113,7 @@
 						<tr>
 							<td width="22%" height="29">
 								<div align="right">
-									<font color="#FF0000">*</font>权限:&nbsp;
+									权限:&nbsp;
 								</div>
 							</td>
 							<td width="78%">
