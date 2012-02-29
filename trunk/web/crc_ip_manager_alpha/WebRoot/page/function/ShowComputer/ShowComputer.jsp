@@ -99,7 +99,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tr>
 					<td width="22%" height="29">
 						<div align="right">
-							<font color="#FF0000">*</font>IP:&nbsp;
+							IP:&nbsp;
 						</div>
 					</td>
 					<td width="78%">
@@ -112,7 +112,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tr>
 					<td width="22%" height="29">
 						<div align="right">
-							<font color="#FF0000">*</font>操作系统:&nbsp;
+							操作系统:&nbsp;
 						</div>
 					</td>
 					<td width="78%">
@@ -123,7 +123,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tr>
 					<td width="22%" height="29">
 						<div align="right">
-							<font color="#FF0000">*</font>当前状态:&nbsp;
+							当前状态:&nbsp;
 						</div>
 					</td>
 					<td width="78%">
@@ -134,7 +134,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tr>
 					<td width="22%" height="29">
 						<div align="right">
-							<font color="#FF0000">*</font>日志查看:&nbsp;
+							日志查看:&nbsp;
 						</div>
 					</td>
 					<td width="78%">

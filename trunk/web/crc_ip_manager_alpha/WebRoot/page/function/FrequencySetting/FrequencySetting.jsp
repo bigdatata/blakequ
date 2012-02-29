@@ -23,7 +23,7 @@
 		<form action="<%=basePath %>/admin/config/FrequencySetting.do" method="post">
 			<div class="layout">
 				<div class="title"> 
-					=采集频率设置 
+					采集频率设置 
 				</div>
 				
 				<div id="content">

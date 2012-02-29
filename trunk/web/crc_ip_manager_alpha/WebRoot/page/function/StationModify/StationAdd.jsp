@@ -86,7 +86,7 @@
 							<tr>
 								<td width="22%" height="29">
 									<div align="right">
-										<font color="#FF0000">*</font>站点名字:&nbsp;
+										站点名字:&nbsp;
 									</div>
 								</td>
 								<td width="78%">
@@ -97,7 +97,7 @@
 							<tr>
 								<td height="26">
 									<div align="right">
-										<font color="#FF0000">*</font>线路X坐标:&nbsp;
+										线路X坐标:&nbsp;
 									</div>
 								</td>
 								<td>
@@ -108,7 +108,7 @@
 							<tr>
 								<td height="26">
 									<div align="right">
-										<font color="#FF0000">*</font>线路Y坐标:&nbsp;
+										线路Y坐标:&nbsp;
 									</div>
 								</td>
 								<td>
@@ -121,7 +121,7 @@
 							<tr>
 								<td height="26">
 									<div align="right">
-										<font color="#FF0000">*</font>上行站点:&nbsp;
+										上行站点:&nbsp;
 									</div>
 								</td>
 								<td>
@@ -140,7 +140,7 @@
 							<tr>
 								<td height="26">
 									<div align="right">
-										<font color="#FF0000">*</font>下行站点:&nbsp;
+										下行站点:&nbsp;
 									</div>
 								</td>
 								<td>
@@ -159,7 +159,7 @@
 							<tr>
 								<td height="26">
 									<div align="right">
-										<font color="#FF0000">*</font>是否是主站点:&nbsp;
+										是否是主站点:&nbsp;
 									</div>
 								</td>
 								<td>
