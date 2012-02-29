@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.text.SimpleDateFormat"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -41,7 +42,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </div>
     </div>
     <div class="c"></div>
-    <div id="guide"></div>
+    <div id="guide">
+    	<span class="fr s1" style="margin:0 16px">
+    		当前日期-<%=new SimpleDateFormat("yyyy年MM月dd日").format(new Date()) %> | 用户: ${user.username}　级别: ${user.authority}　|　
+    		<a class="s0" href="JavaScript:location.reload()" >刷新</a> 
+    		<a class="s0" href="/crc_ip_manager_alpha/login_out.do">退出</a>
+    	</span>
+    	<div id="guidenavigate"></div>
+    </div>
   </div>
 </div>
 <div id="selector">

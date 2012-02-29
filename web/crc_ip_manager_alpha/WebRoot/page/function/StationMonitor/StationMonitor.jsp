@@ -1,13 +1,20 @@
 <%@ page language="java" import="java.util.*"
 	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="cm.commons.controller.form.SegmentForm"%>
+<%@ page import="cm.commons.util.NUllUtil" %>
+<%@ page import="cm.commons.util.AlarmStyleUtil" %>
+<%@ page import="cm.commons.controller.form.AlarmForm" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
-	//response.setHeader("")
+	List<AlarmForm> alarmList=(List<AlarmForm>)request.getAttribute("alarm_list");
+	AlarmStyleUtil.setList(alarmList);
+	//AlarmStyleUtil.setSegmentColors()
+	//AlarmStyleUtil.setStationColors()
+	//AlarmStyleUtil.getColor( new fbSegment();
 %>
 <%@ page import="fb.info.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -169,8 +176,7 @@ for(cm.commons.controller.form.StationForm u: t){
 							</td>
 						</tr>
 						<tr>
-							<td>
-								<input type="hidden" value="<%=request.getAttribute("alarm")%>"
+							<td><input type="hidden" value="<%=request.getAttribute("alarm")%>"
 									id="al" />
 							</td>
 						</tr>
