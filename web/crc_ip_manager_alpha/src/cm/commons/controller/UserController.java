@@ -237,7 +237,7 @@ public class UserController {
 			request.setAttribute("info", "当前用户名:"+user.getUsername()+"不存在!");
 			return mv;
 		}else if(!u.getPassword().equals(user.getPassword())){
-			mv.setViewName("login");
+			mv.setViewName("../../index");
 			UserForm uf = new UserForm();
 			uf.setUsername(u.getUsername());
 			mv.addObject("user", uf);
