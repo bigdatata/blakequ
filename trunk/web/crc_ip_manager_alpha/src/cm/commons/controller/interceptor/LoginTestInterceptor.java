@@ -19,7 +19,7 @@ public class LoginTestInterceptor extends HandlerInterceptorAdapter {
 			HttpServletResponse response, Object handler) throws Exception {
 		// TODO Auto-generated method stub
 		User loginUser = (User) request.getSession().getAttribute("user");
-		ModelAndView mav = new ModelAndView("../public/login");
+		ModelAndView mav = new ModelAndView("../../index");
 		String str = request.getRequestURI();
 		int last = str.lastIndexOf("/")+1;
 		System.out.println("当前用户为："+loginUser);
