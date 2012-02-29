@@ -27,10 +27,7 @@ public class UserOperatorIntercepter extends HandlerInterceptorAdapter {
 		User u = (User) request.getSession().getAttribute("user");
 		String path = request.getContextPath();
 		String modifyUserPath = path + "/admin/modify_user.do";
-		System.out.println(modifyUserPath);
-		System.out.println(request.getRequestURL());
 		int index=request.getRequestURI().indexOf(modifyUserPath);
-		System.out.println(index);
 		String name=request.getParameter("username");
 		if(u.getUsername().equals(name)&&index!=-1){
 			return true;
