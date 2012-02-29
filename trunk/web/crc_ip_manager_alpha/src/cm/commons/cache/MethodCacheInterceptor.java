@@ -1,6 +1,7 @@
 package cm.commons.cache;
 
 import java.io.Serializable;
+import java.util.List;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.Element;
@@ -49,14 +50,13 @@ public class MethodCacheInterceptor implements MethodInterceptor,
 	           
 	        String cacheKey = getCacheKey(targetName, methodName, arguments);   
 	        Element element = cache.get(cacheKey);   
-	  
 	        long startTime = System.currentTimeMillis();
 	        //如果在缓存中没有，则从数据库获取数据并放入cache
 	        if (element == null) {   
 	            logger.debug("Hold up method , Get method result and create cache........!");   
 	            result = invocation.proceed();   
 	            element = new Element(cacheKey, (Serializable) result);   
-	            cache.put(element);   
+	            cache.put(element);  
 	            long endTime = System.currentTimeMillis();
 	            logger.info(targetName + "." + methodName + " 方法被首次调用并被缓存，耗时"
 	              + (endTime - startTime) + "毫秒" + " cacheKey:"
