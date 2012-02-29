@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -24,22 +24,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		function validateForm() {
 			if(document.form.username.value.length == 0){
-				alert("ÓÃ»§Ãû²»ÄÜÎª¿Õ£¡");
+				alert("ç”¨æˆ·åä¸èƒ½ä¸ºç©ºï¼");
 				document.form.key.focus();
 				return false;
 			}
 			if(document.form.pwd.value.length == 0){
-				alert("Ô­ÏÈµÄÃÜÂë²»ÄÜÎª¿Õ£¡");
+				alert("åŸå…ˆçš„å¯†ç ä¸èƒ½ä¸ºç©ºï¼");
 				document.form.pwd.focus();
 				return false;
 			}
 			if(document.form.password.value.length == 0){
-				alert("ĞÂÃÜÂë²»ÄÜÎª¿Õ£¡");
+				alert("æ–°å¯†ç ä¸èƒ½ä¸ºç©ºï¼");
 				document.form.password.focus();
 				return false;
 			}
 			if(document.form.password.value != document.form.password1.value){
-				alert("Á½´ÎÃÜÂëÊäÈë²»Ò»ÖÂ£¬ÇëÖØĞÂÊäÈë£¡");
+				alert("ä¸¤æ¬¡å¯†ç è¾“å…¥ä¸ä¸€è‡´ï¼Œè¯·é‡æ–°è¾“å…¥ï¼");
 				document.form.password.focus();
 				return false;
 			}
@@ -84,7 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			onsubmit="return validateForm()">
 			<div class="layout">
 				<div class="title">
-					Õ¾µãµçÄÔ
+					ç«™ç‚¹ç”µè„‘
 				</div>
 				
 				<div id="content">
@@ -112,7 +112,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tr>
 					<td width="22%" height="29">
 						<div align="right">
-							<font color="#FF0000">*</font>²Ù×÷ÏµÍ³:&nbsp;
+							<font color="#FF0000">*</font>æ“ä½œç³»ç»Ÿ:&nbsp;
 						</div>
 					</td>
 					<td width="78%">
@@ -123,7 +123,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tr>
 					<td width="22%" height="29">
 						<div align="right">
-							<font color="#FF0000">*</font>µ±Ç°×´Ì¬:&nbsp;
+							<font color="#FF0000">*</font>å½“å‰çŠ¶æ€:&nbsp;
 						</div>
 					</td>
 					<td width="78%">
@@ -134,28 +134,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tr>
 					<td width="22%" height="29">
 						<div align="right">
-							<font color="#FF0000">*</font>ÈÕÖ¾²é¿´:&nbsp;
+							<font color="#FF0000">*</font>æ—¥å¿—æŸ¥çœ‹:&nbsp;
 						</div>
 					</td>
 					<td width="78%">
 						<input name="log" type="button" class="text1" id="log" size="10"
-							maxlength="20" value="²é¿´ÈÕÖ¾" onclick="showLog()" />
+							maxlength="20" value="æŸ¥çœ‹æ—¥å¿—" onclick="showLog()" />
 					</td>
 				</tr>
 			</table>
 			<hr width="97%" align="center" size=0>
 			<div align="center">
 				<input name="btnAdd" class="button1" type="submit" id="btnAdd"
-					value="Ôö¼Ó" onclick="addComputer()">
+					value="å¢åŠ " onclick="addComputer()">
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				<input name="btnDel" class="button1" type="submit" id="btnAdd"
-					value="É¾³ı" onclick="deleteComputer()">
+					value="åˆ é™¤" onclick="deleteComputer()">
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				<input name="btnModify" class="button1" type="submit" id="btnAdd"
-					value="ĞŞ¸Ä" onclick="modifyComputer()">
+					value="ä¿®æ”¹" onclick="modifyComputer()">
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				<input name="btnBack" class="button1" type="button" id="btnBack"
-					value="·µ»Ø" onClick="javascript:history.go(-1);">
+					value="è¿”å›" onClick="javascript:history.go(-1);">
 			</div>
 			</div>
 		</div>
