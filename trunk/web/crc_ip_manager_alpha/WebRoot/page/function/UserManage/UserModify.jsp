@@ -36,6 +36,15 @@
 				document.form.pwd.focus();
 				return false;
 			}
+			alert(document.form.pwd.value+"hello");
+			alert(document.form.oldpassword.value);
+			if(document.form.pwd.value!=document.form.oldpassword.value){
+					alert("输入原先的密码不正确！");
+				}
+				document.form.pwd.focus();
+				return false;
+			}
+			
 			if(document.form.password.value.length == 0){
 				alert("新密码不能为空！");
 				document.form.password.focus();
@@ -84,8 +93,8 @@
 								</div>
 							</td>
 							<td width="78%">
-								<input name="pwd" type="password" class="text1" id="pwd"
-									size="10" maxlength="20" />
+							<!--  	<input type="hidden" name="oldpassword" id="oldpassword" value="${user.password}"/>
+							--><input name="pwd" type="password" class="text1" id="pwd" size="10" maxlength="20" />
 							</td>
 						</tr>
 						<tr>

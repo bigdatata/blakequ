@@ -120,8 +120,9 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 		String r = checkUser(user, result);
 		//判断原来密码是否正确，如果普通用户不能修改权限
+		
 		if(r != null){
-			mv.setViewName("../public/error");
+			mv.setViewName("../page/public/error.jsp");
 			mv.addObject("error", r);
 			return mv;
 		}
@@ -132,7 +133,7 @@ public class UserController {
 		u.setPassword(user.getPassword());
 		u.setAuthority(user.getAuthority());
 		userService.update(u);
-		return new ModelAndView(new RedirectView("admin/all_user_by_page.do"));
+		return new ModelAndView(new RedirectView("../page/public/success.jsp"));
 	}
 	
 	/**
