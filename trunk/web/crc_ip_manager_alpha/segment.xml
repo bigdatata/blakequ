@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<segments count="4" route="所属线路"> <!--count是线段的数量-->
+	<segment>
+		<stationup>起始站点</stationup><!--该路线的第一条线段起始站点-->
+		<stationdown>终止站点</stationdown><!--终止站点-->
+	</segment>
+	<segment>
+		<stationup>成都站</stationup>
+		<stationdown>绵阳站</stationdown>
+	</segment>
+	<segment>
+		<stationup>绵阳站</stationup>
+		<stationdown>广元站</stationdown>
+	</segment>
+	<segment>
+		<stationup>广元站</stationup>
+		<stationdown>汉中站</stationdown>
+	</segment>
+</segments>
