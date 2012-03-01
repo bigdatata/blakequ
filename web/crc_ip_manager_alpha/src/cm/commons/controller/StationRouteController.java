@@ -194,20 +194,6 @@ public class StationRouteController {
 		return new ModelAndView(new RedirectView("../main.do?route_id="+route_id));
 	}
 	
-	/**
-	 * 删除站点(管理员)
-	 * 删除站点需要将该条线路重新导入，实际上是删除该条线路的所有数据并重新配置
-	 * 如果该站点关联两条线路，则两条线路都要重新导入
-	 * @return
-	 */
-	@RequestMapping("admin/delete_station")
-	public ModelAndView deleteStation(@RequestParam int station_id){
-		ModelAndView mv = new ModelAndView();
-		//在确定删除的时候，只有当验证导入数据合法后才能删除原来线路的数据
-		//注：要将该条线路站点置为0
-		return mv;
-	}
-	
 	
 	/**
 	 * 显示修改站点
