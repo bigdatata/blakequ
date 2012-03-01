@@ -22,7 +22,11 @@ var guides={
 	'FrequencySetting' : {
 		'FrequencySetting_' : {
 			'FrequencySetting_1' : ['采集频率设置','/crc_ip_manager_alpha/admin/config/FrequencySetting.do','']}},
-
+			
+	'ConfigFileImport' : {
+		'ConfigFileImport_' : {
+			'ConfigFileImport_1' : ['配置文件导入','/crc_ip_manager_alpha/page/function/ConfigFileImport/ConfigFileImport.jsp','']}},
+				
 	'UserManage' : {
 		'UserManage_' : {
 			'UserManage_1' : ['用户列表','/crc_ip_manager_alpha/admin/all_user_by_page.do?pageNo=1&queryString=',''],
@@ -36,6 +40,7 @@ var titles={
 	'StationModify_' : '线路信息管理',	
 	'ShowComputer_' : '站点信息',
 	'FrequencySetting_' : '采集频率设置',
+	'ConfigFileImport_' : '配置文件导入',	
 	'UserManage_' : '用户管理'
 	}
 
