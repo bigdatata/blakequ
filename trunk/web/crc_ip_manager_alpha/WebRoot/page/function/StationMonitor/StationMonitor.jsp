@@ -253,7 +253,7 @@ for(cm.commons.controller.form.StationForm u: t){
 					for (int i = 0; i < sxy_num; i++) {
 						if (i == 0) {
 							String sa = sxy[i].getName();
-							double sx = (sxy[i].getX() - 6 * sa.length());//将站名置于正中
+							double sx = (sxy[i].getX() - 9 * sa.length());//将站名置于正中
 							out
 									.print("<ellipse id=\""
 											+ sxy[i].getId()
@@ -266,7 +266,9 @@ for(cm.commons.controller.form.StationForm u: t){
 									+ "\" y=\"" + sxy[i].getY() + "\""
 									+ "style=\"font-size:24\">" + sxy[i].getName()
 									+ "</text>");
-						} else {
+						} else if(!sxy[i].getName().substring(0,2).equals("拐点"))
+						{
+							System.out.print(sxy[i].getName().substring(0,2));
 							double sx = (sxy[i].getX() + 10);//将站名置于右边
 							double sy = (sxy[i].getY() + 5);
 							out
