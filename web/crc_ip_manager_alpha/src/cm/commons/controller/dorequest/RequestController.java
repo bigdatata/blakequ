@@ -73,6 +73,7 @@ public class RequestController {
 			PrintWriter pw = response.getWriter();
 			pw.print(frequency);
 			pw.flush();
+			request.setCharacterEncoding("utf-8");
 			String content = request.getParameter("data");//获取数据*********
 	        System.out.println("******"+content);
 	        ComputerJson computerJson = new ComputerJson();
