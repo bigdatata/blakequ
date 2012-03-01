@@ -9,6 +9,14 @@ public class ComputerLogForm {
 	private Float memRate;
 	private Float cupRate;
 	private Date currTime;
+	private String stationName;
+	
+	public String getStationName() {
+		return stationName;
+	}
+	public void setStationName(String stationName) {
+		this.stationName = stationName;
+	}
 	public int getId() {
 		return id;
 	}

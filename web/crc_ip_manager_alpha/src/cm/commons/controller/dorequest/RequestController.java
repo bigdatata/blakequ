@@ -81,13 +81,7 @@ public class RequestController {
 	        computerJson = (ComputerJson) BeanConverter.toJavaBean(computerJson, content);
 	        stationJson = (StationJson) BeanConverter.toJavaBean(stationJson, content);
 	        routerJson = (RouterJson) BeanConverter.toJavaBean(routerJson, content);
-	        List<PortJson> portJsonList = BeanConverter.arrayToJavaBean(content, PortJson.class);
-	        System.out.println("saveWarnToDB:"+computerJson);
-	        System.out.println("stationJson:"+stationJson);
-	        System.out.println("routerJson:"+routerJson);
-	        for(PortJson p: portJsonList){
-	        	System.out.println(p);
-	        }
+	        List<PortJson> portJsonList = BeanConverter.arrayToJavaBean(content, PortJson.class, "portDatas");
 	        
 	        //********save or update station, computer,log********
 	        Station station = this.saveOrUpdateComputer(stationJson, computerJson);

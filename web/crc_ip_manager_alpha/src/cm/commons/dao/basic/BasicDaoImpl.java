@@ -48,7 +48,7 @@ public abstract class BasicDaoImpl<K extends Serializable, E>  extends Hibernate
 		// TODO Auto-generated method stub
 		log.debug("get from class "+entityClass.getName());
 		try {
-			return (E) getHibernateTemplate().load(entityClass, id);
+			return (E) getHibernateTemplate().get(entityClass, id);
 		} catch (Exception e) {
 			// TODO: handle exception
 			log.error("find id="+id+" from class "+entityClass.getName()+" fail!", e);
