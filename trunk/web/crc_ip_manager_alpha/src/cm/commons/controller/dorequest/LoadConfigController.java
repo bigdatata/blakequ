@@ -24,6 +24,7 @@ import cm.commons.pojos.Station;
 import cm.commons.stat.service.RouteService;
 import cm.commons.stat.service.SegmentService;
 import cm.commons.stat.service.StationService;
+import cm.commons.util.FileUtil;
 
 /**
  * 请求导入配置文件
@@ -33,6 +34,8 @@ import cm.commons.stat.service.StationService;
 @Controller
 public class LoadConfigController {
 
+	private static final String SEGMENT = "segment.txt";
+	private static final String STATION = "station.txt";
 	@Autowired
 	private StationService stationService;
 	@Autowired
@@ -40,7 +43,12 @@ public class LoadConfigController {
 	@Autowired
 	private SegmentService segmentService;
 	
-	@RequestMapping("load_config")
+	/**
+	 * 初始化配置
+	 * @param path
+	 * @return
+	 */
+	@RequestMapping("admin/load_config")
 	public ModelAndView loadConfig(@RequestParam String path){
 		ModelAndView mv = new ModelAndView();
 		ParseAllData pd = new ParseAllData(path);
@@ -81,6 +89,53 @@ public class LoadConfigController {
 			return this.checkError();
 		}
 		mv.addObject("error", "配置文件导入成功");
+		mv.setViewName("../public/error");
+		return mv;
+	}
+	
+
+	/**
+	 * 修改线路时，需要重新导入该线路的两个配置文件
+	 * station.txt 和  segment.txt
+	 * 将这两个文件放入一文件夹
+	 * @param path 文件夹路径
+	 * @return
+	 */
+	@RequestMapping("admin/modify_route")
+	public ModelAndView modifyRoute(@RequestParam String path){
+		ModelAndView mv = new ModelAndView();
+		Map<String, String> ssMap = FileUtil.readFileFromDirectory(path, new String[]{SEGMENT, STATION});
+		if(ssMap == null || ssMap.size() != 2) return checkError();
+		try {
+			StationParse stationParse = new StationParse();
+			stationParse.parseJson(ssMap.get(STATION));
+			Route route = (Route) routeService.getRouteByName(stationParse.getRoute());
+			List<Station> stations  = stationService.getAllStationByRoute(route.getId());
+			if(stations != null && stations.size()>0){
+				for(Station station:stations){
+					stationService.delete(station);
+				}
+			}
+			this.saveStationToDB(stationParse);
+			
+			SegmentParse segmentParse = new SegmentParse();
+			segmentParse.parseJson(ssMap.get(SEGMENT));
+			this.saveSegmentToDB(segmentParse);
+			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return checkError();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return checkError();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return checkError();
+		}
+		mv.addObject("error", "修改线路成功");
 		mv.setViewName("../public/error");
 		return mv;
 	}
