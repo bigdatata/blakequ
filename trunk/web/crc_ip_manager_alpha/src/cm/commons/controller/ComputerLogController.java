@@ -127,6 +127,7 @@ public class ComputerLogController {
 				clf.setCurrTime(cl.getCurrTime());
 				clf.setId(cl.getId());
 				clf.setMemRate(cl.getMemRate());
+				clf.setStationName(cl.getComputer().getStation().getName());
 				computerLogs.add(clf);
 			}
 		}
@@ -156,6 +157,7 @@ public class ComputerLogController {
 				clf.setCurrTime(cl.getCurrTime());
 				clf.setId(cl.getId());
 				clf.setMemRate(cl.getMemRate());
+				clf.setStationName(cl.getComputer().getStation().getName());
 				computerLogs.add(clf);
 			}
 		}

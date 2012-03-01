@@ -16,10 +16,13 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import cm.commons.controller.form.AlarmForm;
 import cm.commons.controller.form.PageModelForm;
+import cm.commons.pojos.Station;
 import cm.commons.pojos.Warn;
+import cm.commons.stat.service.StationService;
 import cm.commons.sys.service.WarnService;
 import cm.commons.util.AlarmUtil;
 import cm.commons.util.PageModel;
+import cm.commons.util.StationStateCheckTask;
 
 /**
  * 告警控制器(会定时从数据库读取状态)
@@ -31,6 +34,19 @@ public class AlarmController {
 	
 	@Autowired
 	private WarnService warnService;
+	@Autowired
+	private StationService stationService;
+	
+	/**
+	 * 删除告警
+	 * @return
+	 */
+	public ModelAndView deleteAlarm(@RequestParam int alarmId){
+		ModelAndView mv = new ModelAndView();
+		warnService.deleteById(alarmId);
+		mv.setView(new RedirectView("get_log_by_page.do?pageNo=1&queryString="));
+		return mv;
+	}
 	
 	/**
 	 * 获取当前的告警信息,有告警则会跳转到主页面刷新视图
@@ -89,11 +105,17 @@ public class AlarmController {
 		if(list != null){
 			for(Warn w:list){
 				AlarmForm af = new AlarmForm();
+				af.setId(w.getId());
 				af.setStation_id(w.getStationId());
 				af.setSegment_id(0);
 				af.setInfo(w.getWarncontent());
 				af.setTime(w.getWarntime());
 				af.setState(w.getWarnstate());
+				Station s = (Station)stationService.get(w.getStationId());
+				if(s != null){
+					String name = s.getName();
+					af.setStationName(name);
+				}
 				lists.add(af);
 			}
 		}

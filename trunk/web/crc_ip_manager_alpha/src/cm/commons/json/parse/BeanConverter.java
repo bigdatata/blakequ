@@ -112,16 +112,21 @@ public class BeanConverter {
 	 * 将json string转换为javaBean
 	 * @param jsonString json数组
 	 * @param clazz 实体类
+	 * @param arrayName 数组名字，如果为空，默认jsonString就是一个数组
 	 * @return
 	 * @throws JSONException 
 	 * @throws IllegalAccessException 
 	 * @throws InstantiationException 
-	 * @throws InstantiationException 
 	 */
-	public static List arrayToJavaBean(String jsonString, Class s) throws JSONException, IllegalAccessException, InstantiationException{ 
-		JSONObject jo = new JSONObject(jsonString);
-		Object ay = jo.get("portDatas");
-		JSONArray ja = new JSONArray(ay.toString());
+	public static List arrayToJavaBean(String jsonString, Class s, String arrayName) throws JSONException, IllegalAccessException, InstantiationException{ 
+		JSONArray ja = null;
+		if(arrayName != null && !arrayName.equals("")){
+			JSONObject jo = new JSONObject(jsonString);
+			Object ay = jo.get(arrayName);
+			ja = new JSONArray(ay.toString());
+		}else{
+			ja = new JSONArray(jsonString);
+		}
 		List list = new ArrayList();
 		for(int i = 0; i < ja.length(); i++){ 
 			JSONObject jsonObject = ja.getJSONObject(i); 

@@ -107,4 +107,16 @@ public class RouteServiceImpl implements RouteService<Integer, Route> {
 		return null;
 	}
 
+	public Route getRouteByName(String name) {
+		// TODO Auto-generated method stub
+		log.debug("get route by name");
+		try {
+			return (Route) routeDao.getRouteByName(name);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get route by name fail!", e);
+			throw new AppException("获取线路:"+name+"失败");
+		}
+	}
+
 }

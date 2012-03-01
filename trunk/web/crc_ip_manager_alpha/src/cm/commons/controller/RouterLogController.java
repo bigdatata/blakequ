@@ -145,6 +145,7 @@ public class RouterLogController {
 				rlf.setCurrTime(r.getCurrTime());
 				rlf.setRouterId(r.getRouter().getId());
 				rlf.setRouterInfo(r.getRouterInfo());
+				rlf.setStationName(r.getRouter().getStation().getName());
 				routerLogs.add(rlf);
 			}
 		}
@@ -167,6 +168,7 @@ public class RouterLogController {
 				rlf.setMemRate(r.getMemRate());
 				rlf.setRouterId(r.getRouter().getId());
 				rlf.setRouterInfo(r.getRouterInfo());
+				rlf.setStationName(r.getRouter().getStation().getName());
 				routerLogs.add(rlf);
 			}
 		}
@@ -189,6 +191,7 @@ public class RouterLogController {
 				rlf.setMemRate(r.getMemRate());
 				rlf.setRouterId(r.getRouter().getId());
 				rlf.setRouterInfo(r.getRouterInfo());
+				rlf.setStationName(r.getRouter().getStation().getName());
 				routerLogs.add(rlf);
 			}
 		}
@@ -211,6 +214,7 @@ public class RouterLogController {
 				rlf.setMemRate(r.getMemRate());
 				rlf.setRouterId(r.getRouter().getId());
 				rlf.setRouterInfo(r.getRouterInfo());
+				rlf.setStationName(r.getRouter().getStation().getName());
 				routerLogs.add(rlf);
 			}
 		}
@@ -232,6 +236,7 @@ public class RouterLogController {
 				rlf.setMemRate(rl.getMemRate());
 				rlf.setRouterId(rl.getRouter().getId());
 				rlf.setRouterInfo(rl.getRouterInfo());
+				rlf.setStationName(rl.getRouter().getStation().getName());
 				lists.add(rlf);
 			}
 		}

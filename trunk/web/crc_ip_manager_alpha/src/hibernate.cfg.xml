@@ -29,7 +29,6 @@
 		<!--每60秒检查所有连接池中的空闲连接。Default: 0 -->
 		<property name="c3p0.idle_test_period">60</property><!-- seconds -->		
 		<property name="show_sql">true</property>
-		<property name="format_sql">true</property>
 		
 		
 		<mapping resource="cm/commons/pojos/Warn.hbm.xml" />

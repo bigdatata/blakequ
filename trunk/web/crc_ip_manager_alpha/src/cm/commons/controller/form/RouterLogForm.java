@@ -10,6 +10,14 @@ public class RouterLogForm {
 	private Float memRate;
 	private String routerInfo;
 	private Date currTime;
+	private String stationName;
+	
+	public String getStationName() {
+		return stationName;
+	}
+	public void setStationName(String stationName) {
+		this.stationName = stationName;
+	}
 	public int getId() {
 		return id;
 	}

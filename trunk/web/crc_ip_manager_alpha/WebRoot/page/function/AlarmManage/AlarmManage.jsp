@@ -128,7 +128,7 @@
 							<div id="search1" style="display: ">
 								<form>
 									<div class="search_input">
-										站点名称/ID:
+										站点名称:
 										<input name="searchStr" type="text" class="text1"
 											id="searchStr" size="50" maxlength="50" value="${queryStr}">
 									</div>
@@ -153,9 +153,6 @@
 										onClick="AllQuery()">
 								</th>
 								<th width="80">
-									alarm_ID
-								</th>
-								<th width="80">
 									ID
 								</th>
 								<th width="80">
@@ -165,16 +162,13 @@
 									告警线段
 								</th>
 								<th width="200">
-									告警类容
+									告警内容
 								</th>
 								<th width="50">
 									告警状态
 								</th>
 								<th width="150">
 									告警时间
-								</th>
-								<th width="105">
-									所属线路
 								</th>
 							</tr>
 						</thead>
@@ -183,16 +177,13 @@
 								<tr>
 									<td>
 										<input type="checkbox" name="selectFlag1" class="checkbox1"
-											value="">
+											value="${item.id}">
 									</td>
 									<td>
-										<a href="#"
-											onClick="window.open('computer_log/detail_computer.do?computer_id=${item.station_id}', '站点详细信息', 'width=400, height=400, scrollbars=no');return false;">${item.station_id}</a>
+										${item.id}
 									</td>
 									<td>
-									</td>
-									<td>
-										${item.station_id}
+									   ${item.stationName}
 									</td>
 									<td>
 										${item.segment_id}
@@ -205,9 +196,6 @@
 									</td>
 									<td>
 										${item.time}
-									</td>
-									<td>
-										
 									</td>
 								</tr>
 							</c:forEach>

@@ -3,12 +3,27 @@ package cm.commons.controller.form;
 import java.util.Date;
 
 public class AlarmForm {
+	private int id;//告警id
 	private int station_id;//站点id
 	private int segment_id;//如果是线段
 	private int state;//故障状态，包括未知，故障，0(正常),1(异常),2(未知)等
 	private String info;
 	private Date time;
+	private String stationName;
 	
+	
+	public String getStationName() {
+		return stationName;
+	}
+	public void setStationName(String stationName) {
+		this.stationName = stationName;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public Date getTime() {
 		return time;
 	}

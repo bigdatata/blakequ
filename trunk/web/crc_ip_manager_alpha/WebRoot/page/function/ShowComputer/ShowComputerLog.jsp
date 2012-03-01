@@ -176,6 +176,9 @@
 								<th width="155" >
 									日志记录时间
 								</th>
+								<th width="155" >
+									所属站点
+								</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -200,6 +203,9 @@
 									</td>
 									<td >
 										${item.currTime}
+									</td>
+									<td>
+										${item.stationName}
 									</td>
 								</tr>
 							</c:forEach>
