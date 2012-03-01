@@ -32,6 +32,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            onClick="return initguide('ShowComputer');">站点电脑信息</a></li>
              <li id="StationModify" onMouseOver="showguide(this.id);"><a href="javascript:"
            onClick="return initguide('StationModify');">线路信息管理</a></li>
+           	<li id="ConfigFileImport" onMouseOver="showguide(this.id);"><a href="javascript:"
+           onClick="return initguide('ConfigFileImport');">配置文件导入</a></li>
             <li id="FrequencySetting" onMouseOver="showguide(this.id);"><a href="javascript:"
            onClick="return initguide('FrequencySetting');">采集频率设置</a></li>
            <li id="UserManage" onMouseOver="showguide(this.id);"><a href="javascript:"
