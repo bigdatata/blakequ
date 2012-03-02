@@ -59,7 +59,7 @@
   
   <context-param>
   	<param-name>page-size</param-name>
-  	<param-value>2</param-value>
+  	<param-value>10</param-value>
   </context-param>	
   
   <filter>
