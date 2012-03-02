@@ -154,9 +154,6 @@
 								<th width="100" >
 									router_ID
 								</th>
-								<th width="100" >
-									ID
-								</th>
 								<th width="155" >
 									CUP占有率
 								</th>
@@ -177,17 +174,15 @@
 						</thead>
 						<tbody>
 							<c:forEach items="${routerLogs}" var="item">
-								<tr>
-									<td >
+						<tr>
+						<td >
 							<input type="checkbox" name="selectFlag1" class="checkbox1" value="${item.id}">
 						</td>
 						<td >
 							<a href="#"
 								onClick="window.open('router_log/detail_router.do?router_id=${item.routerId}', '站点详细信息', 'width=400, height=400, scrollbars=no');return false;">${item.routerId}</a>
 						</td>
-						<td >
-							${item.id}
-						</td>
+
 						<td >
 							${item.cpuRate}
 						</td>

@@ -95,7 +95,7 @@ public class RouterLogController {
 	public ModelAndView deleteRouterLog(@RequestParam int router_id){
 		ModelAndView mv = new ModelAndView();
 		routerLogService.deleteById(router_id);
-		mv.setView(new RedirectView("../get_log_by_time.do"));
+		mv.setView(new RedirectView("../get_log_by_page.do?pageNo=1"));
 		return mv;
 	}
 	

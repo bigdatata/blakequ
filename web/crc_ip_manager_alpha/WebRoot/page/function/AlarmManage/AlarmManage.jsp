@@ -64,7 +64,7 @@
 		//删除提示
 		if (window.confirm("确认删除当前数据？注：目前只能删除第一个选择的数据")) {
 			with(document.forms[0]) {
-				action="<%=basePath%>alarm/admin/delete_log.do?computer_id="+selectFlags[index].value;
+				action="<%=basePath%>alarm/admin/delete_by_id.do?computer_id="+selectFlags[index].value;
 				method="post";
 				submit();
 			}
@@ -153,9 +153,6 @@
 										onClick="AllQuery()">
 								</th>
 								<th width="80">
-									ID
-								</th>
-								<th width="80">
 									告警站点
 								</th>
 								<th width="80">
@@ -184,9 +181,6 @@
 									</td>
 									<td>
 									   ${item.stationName}
-									</td>
-									<td>
-										${item.segment_id}
 									</td>
 									<td>
 										${item.info}
