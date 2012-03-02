@@ -161,20 +161,20 @@
 									<input type="checkbox" name="ifAll" id="ifAll"
 										onClick="AllQuery()">
 								</th>
-								<th width="100" >
-									computer_ID
+								<th width="200" >
+									电脑名称
 								</th>
 
-								<th width="155" >
+								<th width="200" >
 									CUP占有率
 								</th>
-								<th width="155" >
+								<th width="200" >
 									内存占有率
 								</th>
-								<th width="155" >
+								<th width="200" >
 									日志记录时间
 								</th>
-								<th width="155" >
+								<th width="200" >
 									所属站点
 								</th>
 							</tr>
@@ -187,8 +187,7 @@
 											value="${item.id}">
 									</td>
 									<td>
-										<a href="#"
-											onClick="window.open('computer_log/detail_computer.do?computer_id=${item.computer_id}', '站点详细信息', 'width=400, height=400, scrollbars=no');return false;">${item.stationName}</a>
+									${item.stationName}的电脑
 									</td>
 									<td >
 										${item.cupRate}
