@@ -1,18 +1,19 @@
 @charset "utf-8";
 /* CSS Document */
 body{
-width:1000px;
+width:1100px;
 margin:0 auto;
 font:normal normal normal 12px Simsun;}
 .layout{
 
 border:1px solid #999999;
  background-color:#F1F5F8;
- width:998px;
+ margin:0 auto;
+ width:1100px;
 }
 .title{
 border-bottom:1px solid #AED0EA;
-width:993;
+width:1090;
  font-weight:bold;
  line-height:26px; 
  font-size:14px;
