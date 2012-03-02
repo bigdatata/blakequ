@@ -16,6 +16,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import cm.commons.controller.form.PageModelForm;
 import cm.commons.controller.form.RouterLogForm;
+import cm.commons.pojos.Router;
 import cm.commons.pojos.RouterLog;
 import cm.commons.stat.service.ComputerService;
 import cm.commons.stat.service.RouterService;
@@ -130,9 +131,15 @@ public class RouterLogController {
 				rlf.setId(r.getId());
 				rlf.setCpuRate(r.getCpuRate());
 				rlf.setCurrTime(r.getCurrTime());
-				rlf.setRouterId(r.getRouter().getId());
 				rlf.setRouterInfo(r.getRouterInfo());
-				rlf.setStationName(r.getRouter().getStation().getName());
+				Router router = r.getRouter();
+				if(router != null){
+					rlf.setRouterId(router.getId());
+					rlf.setStationName(router.getStation().getName());
+				}else{
+					rlf.setRouterId(0);
+					rlf.setStationName("");
+				}
 				routerLogs.add(rlf);
 			}
 		}
@@ -153,9 +160,15 @@ public class RouterLogController {
 				rlf.setCpuRate(r.getCpuRate());
 				rlf.setCurrTime(r.getCurrTime());
 				rlf.setMemRate(r.getMemRate());
-				rlf.setRouterId(r.getRouter().getId());
 				rlf.setRouterInfo(r.getRouterInfo());
-				rlf.setStationName(r.getRouter().getStation().getName());
+				Router router = r.getRouter();
+				if(router != null){
+					rlf.setRouterId(router.getId());
+					rlf.setStationName(router.getStation().getName());
+				}else{
+					rlf.setRouterId(0);
+					rlf.setStationName("");
+				}
 				routerLogs.add(rlf);
 			}
 		}
@@ -176,9 +189,15 @@ public class RouterLogController {
 				rlf.setCpuRate(r.getCpuRate());
 				rlf.setCurrTime(r.getCurrTime());
 				rlf.setMemRate(r.getMemRate());
-				rlf.setRouterId(r.getRouter().getId());
 				rlf.setRouterInfo(r.getRouterInfo());
-				rlf.setStationName(r.getRouter().getStation().getName());
+				Router router = r.getRouter();
+				if(router != null){
+					rlf.setRouterId(router.getId());
+					rlf.setStationName(router.getStation().getName());
+				}else{
+					rlf.setRouterId(0);
+					rlf.setStationName("");
+				}
 				routerLogs.add(rlf);
 			}
 		}
@@ -199,9 +218,15 @@ public class RouterLogController {
 				rlf.setCpuRate(r.getCpuRate());
 				rlf.setCurrTime(r.getCurrTime());
 				rlf.setMemRate(r.getMemRate());
-				rlf.setRouterId(r.getRouter().getId());
 				rlf.setRouterInfo(r.getRouterInfo());
-				rlf.setStationName(r.getRouter().getStation().getName());
+				Router router = r.getRouter();
+				if(router != null){
+					rlf.setRouterId(router.getId());
+					rlf.setStationName(router.getStation().getName());
+				}else{
+					rlf.setRouterId(0);
+					rlf.setStationName("");
+				}
 				routerLogs.add(rlf);
 			}
 		}
@@ -221,9 +246,15 @@ public class RouterLogController {
 				rlf.setCurrTime(rl.getCurrTime());
 				rlf.setId(rl.getId());
 				rlf.setMemRate(rl.getMemRate());
-				rlf.setRouterId(rl.getRouter().getId());
+				Router router = rl.getRouter();
+				if(router != null){
+					rlf.setRouterId(router.getId());
+					rlf.setStationName(router.getStation().getName());
+				}else{
+					rlf.setRouterId(0);
+					rlf.setStationName("");
+				}
 				rlf.setRouterInfo(rl.getRouterInfo());
-				rlf.setStationName(rl.getRouter().getStation().getName());
 				lists.add(rlf);
 			}
 		}
