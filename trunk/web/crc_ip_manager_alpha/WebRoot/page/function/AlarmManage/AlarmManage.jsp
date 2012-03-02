@@ -64,7 +64,7 @@
 		//删除提示
 		if (window.confirm("确认删除当前数据？注：目前只能删除第一个选择的数据")) {
 			with(document.forms[0]) {
-				action="<%=basePath%>alarm/admin/delete_by_id.do?computer_id="+selectFlags[index].value;
+				action="<%=basePath%>alarm/admin/delete_by_id.do?alarmId="+selectFlags[index].value;
 				method="post";
 				submit();
 			}
