@@ -31,16 +31,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	/**
-	 * 显示添加用户
-	 * @return
-	 */
-	@RequestMapping("show_add_user")
-	public String showAddUser(@RequestParam String flags, HttpServletRequest request){
-		//如果参数是admin,说明是用户管理时的跳转
-		request.setAttribute("flags", flags);
-		return "add_user";
-	}
+
 	
 	/**
 	 * 添加用户
@@ -136,26 +127,7 @@ public class UserController {
 		return new ModelAndView(new RedirectView("../page/public/success.jsp"));
 	}
 	
-	/**
-	 * 显示所有用户
-	 * @return
-	 */
-	@RequestMapping("admin/all_user")
-	public ModelAndView showAllUser(){
-		ModelAndView mv = new ModelAndView();
-		List<UserForm> userForms = new ArrayList<UserForm>();
-		for(User u: (List<User>)userService.getAll()){
-			UserForm uf = new UserForm();
-			uf.setId(u.getId());
-			uf.setAuthority(u.getAuthority());
-			uf.setPassword(u.getPassword());
-			uf.setUsername(u.getUsername());
-			userForms.add(uf);
-		}
-		mv.addObject("user_list", userForms);
-		mv.setViewName("UserManage/UserList");//show_user
-		return mv;
-	}
+
 	
 	/**
 	 * 分页显示用户
@@ -184,25 +156,6 @@ public class UserController {
 		return mv;
 	}
 	
-	/**
-	 * 显示登录界面
-	 * @return
-	 */
-	@RequestMapping("show_login")
-	public ModelAndView showLogin(HttpServletRequest request){
-		ModelAndView mv = new ModelAndView();
-		User currentUser = (User) request.getSession().getAttribute("user");
-		if(currentUser != null){
-			UserForm uf = new UserForm();
-			uf.setId(currentUser.getId());
-			uf.setPassword(currentUser.getPassword());
-			uf.setUsername(currentUser.getUsername());
-			uf.setAuthority(currentUser.getAuthority());
-			mv.addObject("user", uf);
-		}
-		mv.setViewName("../public/login");
-		return mv;
-	}
 	
 	/**
 	 * 退出系统

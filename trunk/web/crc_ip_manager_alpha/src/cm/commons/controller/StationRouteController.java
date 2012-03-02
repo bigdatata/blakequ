@@ -55,7 +55,6 @@ public class StationRouteController {
 	public ModelAndView getRoute(HttpServletRequest request){
 		int route_id = 1;//默认线路
 		String id = request.getParameter("route_id");
-		System.out.println("****id="+id);
 		if(id != null || "".equals(id)){
 			route_id = Integer.parseInt(id);
 		}
@@ -88,7 +87,6 @@ public class StationRouteController {
 		Map<String, Object> m = new HashMap<String, Object>();
 		List<AlarmForm> list = AlarmUtil.getAllAlarm();
 		List<StationForm> station_list=getStationFromRoute(route_id);
-		System.out.println(route_id+"  "+station_list);
 		m.put("all_route", routes);
 		m.put("station_info", sif);
 		m.put("alarm_list", list);//这是告警信息

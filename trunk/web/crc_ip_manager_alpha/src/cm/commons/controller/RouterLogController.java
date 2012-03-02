@@ -36,19 +36,6 @@ public class RouterLogController {
 	private RouterLogService routerLogService;
 	@Autowired
 	private RouterService routerService;
-	/**
-	 * 所有日志按时间排序
-	 * @return
-	 */
-	@RequestMapping("get_log_by_time")
-	public ModelAndView showAllLogByTime(){
-		ModelAndView mv = new ModelAndView();
-		Map<String,Object> modelMap = new HashMap<String,Object>();
-		modelMap.put("routerLogs", this.getAllRouterLogByTime());
-		mv.addAllObjects(modelMap);
-		mv.setViewName("ShowComputer/ShowRouterLog");
-		return mv;
-	}
 	
 	
 	/**

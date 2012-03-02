@@ -33,9 +33,5 @@
 			<mvc:mapping path="/**/admin/**"/><!-- 匹配含有admin请求 -->
 			<bean class="cm.commons.controller.interceptor.UserOperatorIntercepter"/>
 		</mvc:interceptor>
-		<mvc:interceptor>
-			<mvc:mapping path="/**/log/**"/><!-- 匹配含有log请求 -->
-			<bean class="cm.commons.controller.interceptor.LogInterceptor"/>
-		</mvc:interceptor>
 	</mvc:interceptors>
 </beans>
