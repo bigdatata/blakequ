@@ -5,12 +5,12 @@ body {
 	margin:0;
 }
 #layout {
-	width:1000px;
+	width:1120px;
 	margin:0 auto;
 	font:normal normal normal 12px Simsun;
 }
 .title {
-	width:986px;
+	width:1106px;
 	margin-top:5px;
 	background: url(../image/wbg.gif) repeat-x top;
 	border: 1px solid #ccc;
