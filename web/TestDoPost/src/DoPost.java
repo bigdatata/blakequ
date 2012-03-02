@@ -1,11 +1,16 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+
 
 
 public class DoPost {
@@ -17,30 +22,39 @@ public class DoPost {
 		// TODO Auto-generated method stub
 		String content = null;
 		try {
-			content = readFromFile();
+			content = readFromFile("c:/4.txt");
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}//传输的内容
-		String urlPath = "http://localhost:8080/crc_ip_manager_alpha/commit_data.do?data="+content; //服务器地址     
+		}
+		
+        
 	    StringBuffer sbf = new StringBuffer();     
-	    BufferedReader reader = null;  
-	    HttpURLConnection uc = null;  
+	    BufferedReader reader = null; 
+	    URLConnection conn = null;
 	    try {     
-	        URL url = new URL(urlPath);     
-	        uc = (HttpURLConnection)url.openConnection();            
-	        uc.setDoOutput(true);     
+
+	    	// Construct data
+	        String data = "data" + "=" + URLEncoder.encode(content, "UTF-8");
+	    
+	        // Send data
+	        URL url = new URL("http://localhost:8080/crc_ip_manager_alpha/commit_data.do");
+	        conn = url.openConnection();
+	        conn.setDoOutput(true);
+	        OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+	        wr.write(data);
+	        wr.flush();
+	        
 	        reader = new BufferedReader(  
-	                new InputStreamReader(uc.getInputStream()));//读取服务器响应信息     
+	                new InputStreamReader(conn.getInputStream()));
 	        String line;     
 	        while ((line = reader.readLine()) != null){     
 	            sbf.append(line);     
 	        }     
 	        reader.close();     
-	        uc.disconnect();     
 	        System.out.println("___________end___________response:"+sbf.toString());
 	    } catch (Exception e) {     
-	        sbf.append("服务器连接失败！请稍后重新操作");
+	        sbf.append("");
 	    } 
 	    finally{     
 	    	if (reader != null) {  
@@ -56,28 +70,39 @@ public class DoPost {
 	}
 	
 	
-	private static String readFromFile() throws IOException{
+	
+	/**
+	 * 璇诲彇鏂囦欢鍐呭
+	 * @return
+	 * @throws IOException 
+	 */
+	public static String readFromFile(String path) throws IOException{
 		BufferedReader reader = null;
 		StringBuffer sb = null;
+		FileInputStream in = null;
 		try { 
-			reader = new java.io.BufferedReader(new FileReader("c:/1.txt"));
-			String s =  reader.readLine();
-			sb = new StringBuffer();
-			while (s != null)
-			{
-			  sb.append(s);
-			  sb.append("\r\n");
-			  s = reader.readLine();
+			File file = new File(path);
+			if(!file.exists() || !file.canRead()){
+				return null;
 			}
-			System.out.println("**sb:"+sb.toString());
-			s = reader.readLine();
+			if(file.isDirectory()){
+				return null;
+			}
+			in = new FileInputStream(file); 
+			reader = new BufferedReader(new UnicodeReader(in, "UTF-8"));
+            String line = new String();
+            sb = new StringBuffer();
+            while ((line = reader.readLine()) != null) {  
+                sb.append(line);  
+            }  
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally{
 			reader.close();
+			in.close();
 		}
-		return sb.toString();
+		return sb.toString().trim();
 	}
 
 }
