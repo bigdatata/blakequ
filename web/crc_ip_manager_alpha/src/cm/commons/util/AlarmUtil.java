@@ -2,6 +2,7 @@ package cm.commons.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -14,6 +15,7 @@ import cm.commons.controller.form.AlarmForm;
  */
 public class AlarmUtil {
 
+	public static final String SEGMENTKEY = "@";
 	/**
 	 * 用于全局存储所有告警信息
 	 */
@@ -57,6 +59,37 @@ public class AlarmUtil {
 				alarms.remove(s);
 			}
 		}
+	}
+	
+	/**
+	 * 获取所有线段告警
+	 */
+	public static List<AlarmForm> getAlarmSegment(){
+		List<AlarmForm> list = new ArrayList<AlarmForm>();
+		Iterator i = alarms.keySet().iterator();
+		while(i.hasNext()){
+			String key = (String) i.next();
+			if(key.startsWith(SEGMENTKEY)){
+				list.add(alarms.get(key));
+			}
+		}
+		return list;
+	}
+	
+	/**
+	 * 获取所有站点告警
+	 * @return
+	 */
+	public static List<AlarmForm> getAlarmStation(){
+		List<AlarmForm> list = new ArrayList<AlarmForm>();
+		Iterator i = alarms.keySet().iterator();
+		while(i.hasNext()){
+			String key = (String) i.next();
+			if(!key.startsWith(SEGMENTKEY)){
+				list.add(alarms.get(key));
+			}
+		}
+		return list;
 	}
 	
 	/**

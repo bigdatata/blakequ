@@ -3,6 +3,7 @@ package cm.commons.controller.dorequest;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -28,11 +29,13 @@ import cm.commons.pojos.ComputerLog;
 import cm.commons.pojos.Port;
 import cm.commons.pojos.Router;
 import cm.commons.pojos.RouterLog;
+import cm.commons.pojos.Segment;
 import cm.commons.pojos.Station;
 import cm.commons.pojos.Warn;
 import cm.commons.stat.service.ComputerService;
 import cm.commons.stat.service.PortService;
 import cm.commons.stat.service.RouterService;
+import cm.commons.stat.service.SegmentService;
 import cm.commons.stat.service.StationService;
 import cm.commons.sys.service.SystemService;
 import cm.commons.sys.service.WarnService;
@@ -56,6 +59,8 @@ public class RequestController {
 	private SystemService configService;
 	@Autowired
 	private WarnService warnService;
+	@Autowired
+	private SegmentService segmentService;
 	
 	
 	/**
@@ -91,6 +96,7 @@ public class RequestController {
 	        //*********save or update router,log******************
 	        Router router = this.saveOrUpdateRouter(routerJson, station);
 
+	        System.out.println("****router:"+router);
 	        //*********save or update port,log********************
 	        this.saveOrUpdatePort(router, portJsonList);
 	       
@@ -134,9 +140,14 @@ public class RequestController {
 						wf.setInfo(wf.getInfo()+" "+portState);
 					}
 				}
+				wf.setStationName(station.getName());
 				wf.setStation_id(station.getId());
+				wf.setSegment_id(0);
 				wf.setState(1);
 				wf.setTime(new Date(System.currentTimeMillis()));
+				//检查线段告警
+				this.checkSegmentWarm(station);
+				
 				//加入告警
 				AlarmUtil.addToMap(stationJson.getStation_name(), wf);
 				saveWarnToDB(wf);
@@ -148,6 +159,9 @@ public class RequestController {
 					AlarmUtil.removeStation(station.getName());
 				}
 			}
+			
+			//移除没有告警的线段告警
+			this.removeSegmentWarn();
 			
 			System.out.println("****************warn*******************");
 			List<AlarmForm> aff = AlarmUtil.getAllAlarm();
@@ -182,18 +196,22 @@ public class RequestController {
 	}
 	
 	private void saveOrUpdatePort(Router router, List<PortJson> portJsonList){
-		 Set<Port> ports = router.getPorts();
+		Map<Integer, Port> maps = null;
+		Set<Port> ports = router.getPorts();
+		 if(ports != null){
 	        Iterator iterator = ports.iterator();
-	        Map<Integer, Port> maps = new HashMap<Integer, Port>();
+	        maps = new HashMap<Integer, Port>();
 	        while(iterator.hasNext()){
 	        	Port p = (Port) iterator.next();
 	        	maps.put(p.getIfIndex(), p);
 	        }
-	        for(PortJson pj:portJsonList){
-	        	Port p = this.toPort(pj, maps);
-	        	p.setRouter(router);
-	        	portService.saveOrUpdate(p);
-	        }
+		 }
+	     for(PortJson pj:portJsonList){
+	    	Port p = this.toPort(pj, maps);
+	        p.setRouter(router);
+	        portService.saveOrUpdate(p);
+	     }
+		 
 	}
 	
 	private Station saveOrUpdateComputer(StationJson stationJson, ComputerJson computerJson){
@@ -255,11 +273,10 @@ public class RequestController {
 	private Port toPort(PortJson pj, Map<Integer, Port> maps){
 		Port p = null;
 		Integer key = Integer.valueOf(pj.getIfIndex());
-		if(!maps.containsKey(key)) {
-			p = new Port();
-		}
-		else{
+		if(maps != null && maps.containsKey(key)) {
 			p = maps.get(key);
+		}else{
+			p = new Port();
 		}
 		p.setGetTime(new Date(System.currentTimeMillis()));
 		p.setIfDescr(pj.getIfDescr());
@@ -333,4 +350,62 @@ public class RequestController {
 		w.setWarntime(af.getTime());
 		warnService.save(w);
 	}
+	
+	/**
+	 * 检查线段异常
+	 * @param station
+	 * @return
+	 */
+	private void checkSegmentWarm(Station station){
+		int id = station.getId();
+		List<Segment> list = segmentService.getSegmentByStation(id);
+		List<AlarmForm> alarmList = AlarmUtil.getAllAlarm();
+		for(Segment s:list){
+			for(AlarmForm af : alarmList){
+				//看s1,s2是不是也在alarmList，如果是则说明该线段有异常
+				int s1 = s.getStationByStation1Id().getId();
+				int s2 = s.getStationByStation2Id().getId();
+				if((s1 == id && s2 == af.getStation_id()) || (s2 == id && s1 == af.getStation_id())){
+					System.out.println("_______有线段告警：");
+					AlarmForm wff = new AlarmForm();
+					wff.setInfo("线段id="+s.getId()+"告警，位于站点："+station.getName());
+					wff.setSegment_id(s.getId());
+					wff.setSg1(s1);
+					wff.setSg2(s2);
+					wff.setStation_id(0);
+					wff.setState(1);
+					wff.setStationName(station.getName());
+					wff.setTime(new Date(System.currentTimeMillis()));
+					AlarmUtil.addToMap(AlarmUtil.SEGMENTKEY+s.getId(), wff);
+					saveWarnToDB(wff);
+				}
+			}
+		}
+	}
+	
+	/**
+	 * 移除没有告警的线段
+	 */
+	private void removeSegmentWarn(){
+		List<AlarmForm> all = AlarmUtil.getAlarmStation();
+		List<AlarmForm> alarmList = AlarmUtil.getAlarmSegment();
+		for(AlarmForm af:alarmList){
+			int id = af.getSegment_id();
+			int sg1 = af.getSg1();
+			int sg2 = af.getSg2();
+			int count = 0;
+			for(AlarmForm a:all){
+				if(a.getStation_id() == sg1 || a.getStation_id() == sg2){
+					count++;
+				}
+			}
+			//移除线段(如果线段两端的站点都有问题说明还是异常线段)
+			if(count != 2){
+				System.out.println("______remove segment______");
+				AlarmUtil.removeStation(AlarmUtil.SEGMENTKEY+id);
+			}
+		}
+	}
+	
+	
 }

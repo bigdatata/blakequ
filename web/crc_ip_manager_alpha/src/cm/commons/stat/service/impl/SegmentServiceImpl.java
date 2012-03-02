@@ -123,4 +123,16 @@ public class SegmentServiceImpl implements SegmentService<Integer, Segment> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public List<Segment> getSegmentByStation(Integer stationId) {
+		// TODO Auto-generated method stub
+		log.debug("get segment by station id");
+		try {
+			return segmentDao.getSegmentByStation(stationId);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get segment by station id fail!", e);
+			throw new AppException("通过车站id="+stationId+"获取所有线段");
+		}
+	}
 }

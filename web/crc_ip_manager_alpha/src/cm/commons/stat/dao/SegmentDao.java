@@ -15,5 +15,11 @@ public interface SegmentDao<K extends Serializable, E> extends BasicDao<K, E> {
 	 */
 	public List<E> getAllSegmentByRoute(K routeId)  throws AppException;
 	
-	
+	/**
+	 * 获取所有线段根据车站id
+	 * @param stationId
+	 * @return
+	 * @throws AppException
+	 */
+	public List<E> getSegmentByStation(K stationId)  throws AppException;
 }
