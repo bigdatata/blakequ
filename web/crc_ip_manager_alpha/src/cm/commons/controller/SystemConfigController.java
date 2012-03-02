@@ -135,7 +135,7 @@ public class SystemConfigController {
 			value="300000";
 		}
 		request.setAttribute(key, value);
-		return "FrequencySetting/FrequencySetting";
+		return "ConfigSetting/FrequencySetting";
 		
 	}
 }
