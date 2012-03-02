@@ -170,10 +170,10 @@
 									<input type="checkbox" id="ifAll" onClick="AllQuery()"/>
 								</th>
 								
-								<th width="100">
+								<th width="200">
 									用户名
 								</th>
-								<th width="200">
+								<th width="840">
 									权限
 								</th>								
 							</tr>
