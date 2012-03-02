@@ -16,7 +16,19 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>acceptance_data</title>
 		<link href="<%=path%>/pattern/cm/css/add.css" type="text/css"
-			rel="stylesheet" />		
+			rel="stylesheet" />
+<script type="text/javascript">
+function a()
+{
+var path;
+path = document.getElementById("path").value;
+var aa= window.confirm("请再次确认站点配置文件和线段配置文件已经放入指定目录下");
+if (aa) {
+window.location = "<%=basePath %>admin/load_config.do?path="+path;
+}
+else window.alert("请重新导入完整的配置文件！");
+}
+</script>	
 	</head>
 	<body>
 		<form action="<%=basePath %>admin/load_config.do?path=" encType=multipart/form-data method="post">
@@ -31,13 +43,14 @@
 							填写路径:
 						</div>
 						<div class="four_columns_input">
-							<input name="path" type=text value="C:\">
+							<input id="path" type=text value="C:/">
 
 
 						</div>
 						<div class="four_columns_input">
-							<input type="submit" value="加载配置文件">
+							<input type="button" onclick="a()"value="扫描配置文件">
 						</div>
+					
 						<div class="clear"></div>
 					</div>
 				</div>
