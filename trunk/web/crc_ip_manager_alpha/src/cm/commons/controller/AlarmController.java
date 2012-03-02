@@ -41,7 +41,7 @@ public class AlarmController {
 	 * 删除告警
 	 * @return
 	 */
-	@RequestMapping("delete_by_id")
+	@RequestMapping("admin/delete_by_id")
 	public ModelAndView deleteAlarm(@RequestParam int alarmId){
 		ModelAndView mv = new ModelAndView();
 		warnService.deleteById(alarmId);

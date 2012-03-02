@@ -164,9 +164,7 @@
 								<th width="100" >
 									computer_ID
 								</th>
-								<th width="100" >
-									ID
-								</th>
+
 								<th width="155" >
 									CUP占有率
 								</th>
@@ -190,10 +188,7 @@
 									</td>
 									<td>
 										<a href="#"
-											onClick="window.open('computer_log/detail_computer.do?computer_id=${item.computer_id}', '站点详细信息', 'width=400, height=400, scrollbars=no');return false;">${item.computer_id}</a>
-									</td>
-									<td >
-										${item.id}
+											onClick="window.open('computer_log/detail_computer.do?computer_id=${item.computer_id}', '站点详细信息', 'width=400, height=400, scrollbars=no');return false;">${item.stationName}</a>
 									</td>
 									<td >
 										${item.cupRate}
