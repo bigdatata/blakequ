@@ -161,7 +161,7 @@
 						
 						
 //						$(this.colCopy).css({position:'absolute',float:'left',display:'none', textAlign: obj.align});
-						$('body').append(this.colCopy);
+					//	$('body').append(this.colCopy);
 						$(this.cDrag).hide();
 						
 					}
