@@ -151,22 +151,22 @@
 									<input type="checkbox" name="ifAll" id="ifAll"
 										onClick="AllQuery()">
 								</th>
-								<th width="100" >
+								<th width="150" >
 									router_ID
 								</th>
-								<th width="155" >
+								<th width="150" >
 									CUP占有率
 								</th>
-								<th width="155" >
+								<th width="150" >
 									内存占有率
 								</th>
-								<th width="155" >
+								<th width="250" >
 									路由信息
 								</th>
-								<th width="155" >
+								<th width="150" >
 									日志记录时间
 								</th>
-								<th width="155" >
+								<th width="150" >
 									所属站点
 								</th>
 								
@@ -179,8 +179,7 @@
 							<input type="checkbox" name="selectFlag1" class="checkbox1" value="${item.id}">
 						</td>
 						<td >
-							<a href="#"
-								onClick="window.open('router_log/detail_router.do?router_id=${item.routerId}', '站点详细信息', 'width=400, height=400, scrollbars=no');return false;">${item.routerId}</a>
+						${item.stationName}的路由
 						</td>
 
 						<td >
