@@ -140,7 +140,13 @@ public class UserController {
 	}
 	
 
-	
+	@RequestMapping("admin/query_user_by_page")
+	public ModelAndView showQueryUserByPage(UserForm condition, @RequestParam int pageNo,HttpServletRequest request){
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("condition", condition);
+		
+		return mv;
+	}
 	/**
 	 * 分页显示用户
 	 * @param searchStr

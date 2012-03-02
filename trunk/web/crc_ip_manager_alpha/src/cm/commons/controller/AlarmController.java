@@ -21,6 +21,7 @@ import cm.commons.pojos.Warn;
 import cm.commons.stat.service.StationService;
 import cm.commons.sys.service.WarnService;
 import cm.commons.util.AlarmUtil;
+import cm.commons.util.NullUtil;
 import cm.commons.util.PageModel;
 import cm.commons.util.StationStateCheckTask;
 
@@ -41,10 +42,16 @@ public class AlarmController {
 	 * 删除告警
 	 * @return
 	 */
-	@RequestMapping("admin/delete_by_id")
-	public ModelAndView deleteAlarm(@RequestParam int alarmId){
+	@RequestMapping("admin/delete_by_ids")
+	public ModelAndView deleteAlarm(@RequestParam String alarmIds){
 		ModelAndView mv = new ModelAndView();
-		warnService.deleteById(alarmId);
+		if(NullUtil.notNull(alarmIds)){
+			for(String id:alarmIds.split(",")){
+				if(NullUtil.notNull(id)){
+					warnService.deleteById(Integer.valueOf(id));
+				}
+			}
+		}
 		mv.setView(new RedirectView("../get_log_by_page.do?pageNo=1&queryString="));
 		return mv;
 	}

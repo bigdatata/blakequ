@@ -48,12 +48,14 @@
 		var selectFlags = document.getElementsByName("selectFlag1");
 		var flag = false;
 		var index = 0;
+		var ids='';
 		for (var i=0; i<selectFlags.length; i++) {
 			if (selectFlags[i].checked) {
 			    //已经有选中的checkbox
 				flag = true;
 				index = i;
-				break;
+				ids+=selectFlags[i].value;
+				ids+=',';
 			}
 		}
 		if (!flag) {
@@ -62,9 +64,9 @@
 		}	
 		
 		//删除提示
-		if (window.confirm("确认删除当前数据？注：目前只能删除第一个选择的数据")) {
+		if (window.confirm("确认删除当前数据？")) {
 			with(document.forms[0]) {
-				action="<%=basePath%>alarm/admin/delete_by_id.do?alarmId="+selectFlags[index].value;
+				action='<%=basePath%>alarm/admin/delete_by_ids.do?alarmIds='+ids;
 				method="post";
 				submit();
 			}
