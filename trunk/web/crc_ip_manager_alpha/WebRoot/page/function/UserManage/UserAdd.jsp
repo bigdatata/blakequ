@@ -77,7 +77,7 @@
 							</td>
 							<td width="78%">
 								<input name="password" type="password" class="text1"
-									id="password" size="10" maxlength="20" />
+									id="password" value="" size="10" maxlength="20" />
 							</td>
 						</tr>
 						<tr>
