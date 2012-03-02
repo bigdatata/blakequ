@@ -16,11 +16,10 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>acceptance_data</title>
 		<link href="<%=path%>/pattern/cm/css/add.css" type="text/css"
-			rel="stylesheet" />
-			
+			rel="stylesheet" />		
 	</head>
 	<body>
-		<form action="<%=basePath %>/admin/config/FrequencySetting.do" encType=multipart/form-data method="post">
+		<form action="<%=basePath %>admin/load_config.do?path=" encType=multipart/form-data method="post">
 			<div class="layout">
 				<div class="title"> 
 					配置文件导入 
@@ -29,14 +28,15 @@
 				<div id="content">
 					<div class="four_columns">
 						<div class="four_columns_text">
-							选择配置文件:
+							填写路径:
 						</div>
 						<div class="four_columns_input">
-							<input type="file" name="selPicture" style="width: 330px; height: 23px; font-size: 16px"> 
+							<input name="path" type=text value="C:\">
+
 
 						</div>
 						<div class="four_columns_input">
-							<input type="submit" name="upload" id="upload" value="上传" style="width: 70px; height: 25px"> 
+							<input type="submit" value="加载配置文件">
 						</div>
 						<div class="clear"></div>
 					</div>
