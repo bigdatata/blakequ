@@ -152,19 +152,19 @@
 									<input type="checkbox" name="ifAll" id="ifAll"
 										onClick="AllQuery()">
 								</th>
-								<th width="80">
+								<th width="100">
 									告警站点
 								</th>
-								<th width="80">
+								<th width="200">
 									告警线段
 								</th>
-								<th width="200">
+								<th width="400">
 									告警内容
 								</th>
-								<th width="50">
+								<th width="100">
 									告警状态
 								</th>
-								<th width="150">
+								<th width="200">
 									告警时间
 								</th>
 							</tr>
