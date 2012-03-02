@@ -143,4 +143,9 @@ public class RouterServiceImpl implements RouterService<Integer, Router>{
 		return null;
 	}
 
+	public void deleteItem(Integer[] ids) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -171,5 +171,16 @@ public class ComputerLogServiceImpl implements ComputerLogService<Integer, Compu
 			throw new AppException("按分页获取数据失败(按站点)");
 		}
 	}
+	public void deleteItem(Integer[] ids) {
+		// TODO Auto-generated method stub
+		log.debug("delete item array"+this.getClass().getName());
+		try {
+			computerLogDao.deleteItem(ids);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("delete item array fail! "+this.getClass().getName(), e);
+			throw new AppException("删除多个实体失败");
+		}
+	}
 	
 }

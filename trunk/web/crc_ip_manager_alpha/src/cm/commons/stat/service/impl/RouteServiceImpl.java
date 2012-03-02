@@ -119,4 +119,9 @@ public class RouteServiceImpl implements RouteService<Integer, Route> {
 		}
 	}
 
+	public void deleteItem(Integer[] ids) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

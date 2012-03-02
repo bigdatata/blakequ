@@ -265,6 +265,11 @@ public class StationServiceImpl implements StationService<Integer, Station> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public void deleteItem(Integer[] ids) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 

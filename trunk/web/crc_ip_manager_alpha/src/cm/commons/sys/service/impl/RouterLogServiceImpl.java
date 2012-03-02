@@ -160,5 +160,16 @@ public class RouterLogServiceImpl implements RouterLogService<Integer, RouterLog
 			throw new AppException("通过分页获取所有数据失败");
 		}
 	}
+	public void deleteItem(Integer[] ids) {
+		// TODO Auto-generated method stub
+		log.debug("delete item array"+this.getClass().getName());
+		try {
+			routerLogDao.deleteItem(ids);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("delete item array fail! "+this.getClass().getName(), e);
+			throw new AppException("删除多个实体失败");
+		}
+	}
 	
 }

@@ -40,6 +40,19 @@ public class ComputerLogController {
 	private ComputerService computerService;
 	
 	/**
+	 * 删除多个日志记录
+	 * @param ids
+	 * @return
+	 */
+	@RequestMapping("admin/delete_multi_log")
+	public ModelAndView deleteItems(@RequestParam Integer[] ids){
+		ModelAndView mv = new ModelAndView();
+		computerLogService.deleteItem(ids);
+		mv.setView(new RedirectView("../get_by_time.do?pageNo=1&queryString="));
+		return mv;
+	}
+	
+	/**
 	 * 查询获取站点电脑的日志,按站点排序
 	 * @param computer_id
 	 * @return
