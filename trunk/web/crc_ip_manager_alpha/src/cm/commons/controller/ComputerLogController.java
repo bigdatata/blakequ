@@ -18,6 +18,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import cm.commons.controller.form.ComputerLogForm;
 import cm.commons.controller.form.PageModelForm;
+import cm.commons.pojos.Computer;
 import cm.commons.pojos.ComputerLog;
 import cm.commons.stat.service.ComputerService;
 import cm.commons.sys.service.ComputerLogService;
@@ -122,12 +123,18 @@ public class ComputerLogController {
 		if(list != null){
 			for(ComputerLog cl:list){
 				ComputerLogForm clf = new ComputerLogForm();
-				clf.setComputer_id(cl.getComputer().getId());
 				clf.setCupRate(cl.getCupRate());
 				clf.setCurrTime(cl.getCurrTime());
 				clf.setId(cl.getId());
 				clf.setMemRate(cl.getMemRate());
-				clf.setStationName(cl.getComputer().getStation().getName());
+				Computer computer = cl.getComputer();
+				if(computer != null){
+					clf.setComputer_id(computer.getId());
+					clf.setStationName(computer.getStation().getName());
+				}else{
+					clf.setComputer_id(0);
+					clf.setStationName("");
+				}
 				computerLogs.add(clf);
 			}
 		}
@@ -152,12 +159,18 @@ public class ComputerLogController {
 		if(list != null){
 			for(ComputerLog cl:list){
 				ComputerLogForm clf = new ComputerLogForm();
-				clf.setComputer_id(cl.getComputer().getId());
 				clf.setCupRate(cl.getCupRate());
 				clf.setCurrTime(cl.getCurrTime());
 				clf.setId(cl.getId());
 				clf.setMemRate(cl.getMemRate());
-				clf.setStationName(cl.getComputer().getStation().getName());
+				Computer computer = cl.getComputer();
+				if(computer != null){
+					clf.setComputer_id(computer.getId());
+					clf.setStationName(computer.getStation().getName());
+				}else{
+					clf.setComputer_id(0);
+					clf.setStationName("");
+				}
 				computerLogs.add(clf);
 			}
 		}
