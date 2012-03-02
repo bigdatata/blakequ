@@ -31,4 +31,22 @@ public class SegmentDaoImpl extends BasicDaoImpl<Integer, Segment> implements
 		}
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Segment> getSegmentByStation(Integer stationId)
+			throws AppException {
+		// TODO Auto-generated method stub
+		log.debug("get segment by station id");
+		try {
+			List<Segment> list = getSession().createQuery("from Segment s where s.stationByStation1Id.id=? or s.stationByStation2Id.id=?")
+										.setParameter(0, stationId)
+										.setParameter(1, stationId)
+										.list();
+			return list;
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get segment by station id fail!", e);
+			throw new AppException("通过车站id="+stationId+"获取所有线段");
+		}
+	}
+
 }

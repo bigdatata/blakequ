@@ -5,6 +5,8 @@ import java.util.Date;
 public class AlarmForm {
 	private int id;//告警id
 	private int station_id;//站点id
+	private int sg1;//如果是线段，开始站点
+	private int sg2;//如果是线段，终止站点
 	private int segment_id;//如果是线段
 	private int state;//故障状态，包括未知，故障，0(正常),1(异常),2(未知)等
 	private String info;
@@ -12,6 +14,18 @@ public class AlarmForm {
 	private String stationName;
 	
 	
+	public int getSg1() {
+		return sg1;
+	}
+	public void setSg1(int sg1) {
+		this.sg1 = sg1;
+	}
+	public int getSg2() {
+		return sg2;
+	}
+	public void setSg2(int sg2) {
+		this.sg2 = sg2;
+	}
 	public String getStationName() {
 		return stationName;
 	}
