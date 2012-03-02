@@ -34,5 +34,5 @@ function display_search(){
 	}
 }
 $(document).ready(function(){
-         $(".flexme1").flexigrid({height: 230});
+         $(".flexme1").flexigrid({height: 400});
 		});
