@@ -50,7 +50,7 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/org.springframework.expression-3.1.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/org.springframework.web-3.1.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/org.springframework.web.portlet-3.1.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/org.springframework.web.servlet-3.1.0.RELEASE.jar" sourcepath="D:/Documents and Settings/luotao/.m2/repository/org/springframework/spring-webmvc/3.1.0.RELEASE/spring-webmvc-3.1.0.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/org.springframework.web.servlet-3.1.0.RELEASE.jar" sourcepath="F:/ssh/spring/资料/spring-src.zip"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/org.springframework.web.struts-3.1.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/spring.jar" sourcepath="F:/ssh/spring/资料/spring-src.zip"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/util/commons-logging.jar"/>
