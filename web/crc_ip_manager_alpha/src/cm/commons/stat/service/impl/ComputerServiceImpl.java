@@ -143,4 +143,9 @@ public class ComputerServiceImpl implements ComputerService<Integer, Computer> {
 		return null;
 	}
 
+	public void deleteItem(Integer[] ids) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

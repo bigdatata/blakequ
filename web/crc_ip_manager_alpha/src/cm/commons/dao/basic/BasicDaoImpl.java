@@ -117,6 +117,21 @@ public abstract class BasicDaoImpl<K extends Serializable, E>  extends Hibernate
 		}
 	}
 
+	
+	public void deleteItem(K[] ids) throws AppException {
+		// TODO Auto-generated method stub
+		log.debug("delete from class "+entityClass.getName());
+		try {
+			for(int i=0; i<ids.length; i++){
+				getHibernateTemplate().delete(getHibernateTemplate().load(entityClass, ids[i]));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("delete entity "+entityClass.getName()+" fail!", e);
+			throw new AppException("删除多个实体失败");
+		}
+	}
+
 	public PageModel<E> getAll(String queryString, int pageNo, int pageSize)
 			throws AppException {
 		// TODO Auto-generated method stub

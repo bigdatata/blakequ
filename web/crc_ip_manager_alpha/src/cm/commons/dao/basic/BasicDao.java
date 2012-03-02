@@ -48,6 +48,13 @@ public interface BasicDao<K extends Serializable, E> {
 	void deleteById(K id) throws AppException;
 	
 	/**
+	 * 删除多个实体对象
+	 * @param ids
+	 * @throws AppException
+	 */
+	void deleteItem(K[] ids) throws AppException;
+	
+	/**
 	 * 删除实体对象
 	 * @param entity
 	 * @throws AppException

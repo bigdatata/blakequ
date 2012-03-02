@@ -143,5 +143,16 @@ public class SystemServiceImpl implements SystemService<Integer, System> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public void deleteItem(Integer[] ids) {
+		// TODO Auto-generated method stub
+		log.debug("delete item array"+this.getClass().getName());
+		try {
+			systemDao.deleteItem(ids);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("delete item array fail! "+this.getClass().getName(), e);
+			throw new AppException("删除多个实体失败");
+		}
+	}
 	
 }

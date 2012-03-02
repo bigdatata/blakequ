@@ -38,6 +38,18 @@ public class RouterLogController {
 	@Autowired
 	private RouterService routerService;
 	
+	/**
+	 * 删除多个日志记录
+	 * @param ids
+	 * @return
+	 */
+	@RequestMapping("admin/delete_multi_log")
+	public ModelAndView deleteItems(@RequestParam Integer[] ids){
+		ModelAndView mv = new ModelAndView();
+		routerLogService.deleteItem(ids);
+		mv.setView(new RedirectView("../get_log_by_page.do?pageNo=1"));
+		return mv;
+	}
 	
 	/**
 	 * 分页显示所有日志，时间排序

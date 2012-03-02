@@ -135,4 +135,9 @@ public class SegmentServiceImpl implements SegmentService<Integer, Segment> {
 			throw new AppException("通过车站id="+stationId+"获取所有线段");
 		}
 	}
+
+	public void deleteItem(Integer[] ids) {
+		// TODO Auto-generated method stub
+		
+	}
 }

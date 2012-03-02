@@ -32,6 +32,18 @@ public class UserController {
 	private UserService userService;
 	
 
+	/**
+	 * 删除多个用户
+	 * @param ids
+	 * @return
+	 */
+	@RequestMapping("admin/delete_multi_user")
+	public ModelAndView deleteItems(@RequestParam Integer[] ids){
+		ModelAndView mv = new ModelAndView();
+		userService.deleteItem(ids);
+		mv.setView(new RedirectView("all_user_by_page.do?pageNo=1&queryString="));
+		return mv;
+	}
 	
 	/**
 	 * 添加用户
@@ -76,7 +88,7 @@ public class UserController {
 	@RequestMapping("admin/delete_user")
 	public ModelAndView deleteUser(@RequestParam int user_id, HttpServletRequest request){
 		userService.deleteById(user_id);
-		return new ModelAndView(new RedirectView("all_user.do"));
+		return new ModelAndView(new RedirectView("all_user_by_page.do?pageNo=1&queryString="));
 	}
 	
 	

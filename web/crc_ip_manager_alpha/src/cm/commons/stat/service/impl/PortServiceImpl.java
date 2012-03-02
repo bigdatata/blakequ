@@ -119,4 +119,9 @@ public class PortServiceImpl implements PortService<Integer, Port> {
 		}
 	}
 
+	public void deleteItem(Integer[] ids) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
