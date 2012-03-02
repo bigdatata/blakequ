@@ -45,7 +45,7 @@ public class AlarmController {
 	public ModelAndView deleteAlarm(@RequestParam int alarmId){
 		ModelAndView mv = new ModelAndView();
 		warnService.deleteById(alarmId);
-		mv.setView(new RedirectView("get_log_by_page.do?pageNo=1&queryString="));
+		mv.setView(new RedirectView("../get_log_by_page.do?pageNo=1&queryString="));
 		return mv;
 	}
 	
