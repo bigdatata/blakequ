@@ -71,7 +71,7 @@ public class AlarmStyleUtil {
 		}
 		int segmentId=segment.getId();	
 		for(AlarmForm alarm:list){
-			if(alarm.getStation_id()==segmentId){
+			if(alarm.getSegment_id()==segmentId){
 				int state=alarm.getState();
 				return segmentColors[state];
 			}
