@@ -133,14 +133,7 @@
 			<div class="title">
 				用户列表
 			</div>
-			<div class="handle">
-
-				<div class="line"></div>
-				
-				<div class="search_btn" onclick="display_search()"></div>
-				<div class="clear"></div>
-			</div>
-			<div class="handle" id="search" style="display: none">
+			<div class="handle" id="search" >
 				<table width="98%" border="0" cellspacing="0" cellpadding="0"
 					align="center">
 					<tr>
@@ -148,12 +141,24 @@
 							<div id="search1" style="display: ">
 								<form action="<%=path%>/input/jcd/jcdList.do" method="post">
 									<div class="search_input">
-										请输入查询条件 ：
-										<input style="width: 200px; height: 12px;" type="text" name="condition"/>
+										ID：
+										<input style="width:100px" type="text" name="id"/>
+									</div>
+									<div class="search_input">
+										用户名：
+										<input style="width:100px" type="text" name="username"/>
+									</div>
+									<div class="search_input">
+										权限：
+										<select style="width:100px"" name="authority">
+											<option value="" selected>全部</option>
+											<option value="admin" selected>管理员</option>
+											<option value="user" selected>普通用户</option>
+										</select>
 									</div>
 									<div class="search_input">
 										<input type="hidden" name="type" value="find_like">
-										<input type="submit" style="width: 50px; height: 20px;" value="查询" />
+										<input type="submit"  value="查询" />
 									</div>
 								</form>
 							</div>
@@ -164,27 +169,30 @@
 			<div class="list" id="list">
 				<form name="data" method="post">
 					<table class="flexme1">
-						<thead>
+					<thead>
 							<tr>
 								<th width="40">
 									<input type="checkbox" id="ifAll" onClick="AllQuery()"/>
 								</th>
-								
 								<th width="200">
+									ID
+								</th>
+								<th width="100">
 									用户名
 								</th>
 								<th width="840">
 									权限
 								</th>								
 							</tr>
-						</thead>
-						<tbody>
+							</thead>
 							<c:forEach items="${user_list}" var="user">
 								<tr>
 									<td >
 							<input type="checkbox" name="selectFlag1" class="checkbox1" value="${item.id}"/>
 									</td>
-								
+									<td>
+										${user.id}
+									</td>
 									<td>
 										${user.username}
 									</td>
@@ -193,18 +201,18 @@
 									</td>
 								</tr>
 							</c:forEach>
-							
-						</tbody>
 					</table>
 				</form>
 			</div>
+			
 			<div class="bottom">
+				<!--  <div class="search_btn" style="float:left" onclick="display_search()"></div>-->
 				<div class="pagefirst"
 					onclick="topPage()"></div>
 				<div class="pageup"
 					onclick="previousPage()"></div>
 				<div id="pages">
-					${pageModel.pageNo } of ${pageModel.totalPages}
+					${pageModel.pageNo } / ${pageModel.totalPages}
 				</div>
 				<div class="pagedown"
 					onclick="nextPage()"></div>
