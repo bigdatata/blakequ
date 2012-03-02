@@ -51,14 +51,6 @@ public class SystemConfigController {
 		return mv;
 	}
 	
-	/**
-	 * 显示增加配置
-	 * @return
-	 */
-	@RequestMapping("show_add_config")
-	public String showAddConfig(){
-		return "add_config";
-	}
 	
 	/**
 	 * 显示修改配置
