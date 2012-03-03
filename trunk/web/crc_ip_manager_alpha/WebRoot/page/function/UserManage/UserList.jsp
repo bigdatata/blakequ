@@ -93,7 +93,7 @@
 		//删除提示
 		if (window.confirm("确认删除当前用户？注：目前只能删除第一个选择的数据")) {
 			with(document.forms[0]) {
-				action="<%=basePath %>admin/delete_user.do?user_id="+selectFlags[index].value;
+				action="<%=basePath %>admin/delete_user.do?id=${condition.id}&username=${condition.username}&authority=${condition.authority}&user_id="+selectFlags[index].value;
 				method="post";
 				submit();
 			}
@@ -102,14 +102,14 @@
 	
 	function topPage() {
 		//var searchStr = document.getElementsByName("searchStr");
-		window.location = "<%=basePath%>admin/all_user_by_page.do?pageNo=1&queryString=";
+		window.location = "<%=basePath%>admin/query_user_by_page.do?pageNo=1&id=${condition.id}&username=${condition.username}&authority=${condition.authority}";
 	}
 	
 	function previousPage() {
 		if(${pageModel.pageNo==1}){
 			alert("已经到达第一页!");
 		}else{
-			window.location = "<%=basePath%>admin/all_user_by_page.do?pageNo=${pageModel.pageNo-1}&queryString=";
+			window.location = "<%=basePath%>admin/query_user_by_page.do?pageNo=${pageModel.pageNo-1}&id=${condition.id}&username=${condition.username}&authority=${condition.authority}";
 		}
 	}
 	
@@ -117,12 +117,12 @@
 		if(${pageModel.pageNo==pageModel.totalPages}){
 			alert("已经到达最后一页!");
 		}else{
-			window.location = "<%=basePath%>admin/all_user_by_page.do?pageNo=${pageModel.pageNo+1}&queryString=";
+			window.location = "<%=basePath%>admin/query_user_by_page.do?pageNo=${pageModel.pageNo+1}&id=${condition.id}&username=${condition.username}&authority=${condition.authority}";
 		}
 	}
 	
 	function bottomPage() {
-		window.location = "<%=basePath%>admin/all_user_by_page.do?pageNo=${pageModel.buttomPageNo}&queryString=";
+		window.location = "<%=basePath%>admin/query_user_by_page.do?pageNo=${pageModel.buttomPageNo}&id=${condition.id}&username=${condition.username}&authority=${condition.authority}";
 	}
 
 	</script>
@@ -139,21 +139,29 @@
 					<tr>
 						<td width="86%">
 							<div id="search1" style="display: ">
-								<form action="<%=path%>/input/jcd/jcdList.do" method="post">
+								<form action="<%=basePath%>admin/query_user_by_page.do?pageNo=1" method="post">
 									<div class="search_input">
 										ID：
-										<input style="width:100px" type="text" name="id"/>
+										<input style="width:100px" type="text" name="id" value="${condition.id!=null?condition.id:'' }"/>
 									</div>
 									<div class="search_input">
 										用户名：
-										<input style="width:100px" type="text" name="username"/>
+										<input style="width:100px" type="text" name="username" value="${condition.username!=null?condition.username:'' }"/>
 									</div>
 									<div class="search_input">
 										权限：
 										<select style="width:100px"" name="authority">
-											<option value="" selected>全部</option>
-											<option value="admin" selected>管理员</option>
-											<option value="user" selected>普通用户</option>
+											<option value=""  selected >全部</option>
+											<option value="admin"
+											<c:if test = "${condition.authority=='admin'}" >
+											     selected
+											</c:if>
+											>管理员</option>
+											<option value="user"
+											<c:if test = "${condition.authority=='user'}" >
+											     selected
+											</c:if>
+											>普通用户</option>
 										</select>
 									</div>
 									<div class="search_input">
@@ -240,6 +248,7 @@
 				
 			</div>
 		</div>
+		
 	</body>
 
 </html>

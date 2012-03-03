@@ -70,4 +70,6 @@ public interface BasicDao<K extends Serializable, E> {
 	 */
 	PageModel<E> getAll(String queryString, int pageNo, int pageSize) throws AppException;
 	
+	int getCounts(String hql);
+	
 }

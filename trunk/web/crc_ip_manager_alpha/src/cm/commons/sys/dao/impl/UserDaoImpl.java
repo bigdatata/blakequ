@@ -6,11 +6,14 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import cm.commons.controller.form.UserForm;
 import cm.commons.dao.basic.BasicDao;
 import cm.commons.dao.basic.BasicDaoImpl;
 import cm.commons.exception.AppException;
 import cm.commons.pojos.User;
 import cm.commons.sys.dao.UserDao;
+import cm.commons.util.NullUtil;
+import cm.commons.util.ObjectUtil;
 import cm.commons.util.PageModel;
 
 public class UserDaoImpl extends BasicDaoImpl<Integer, User> implements UserDao<Integer, User> {
@@ -141,6 +144,35 @@ public class UserDaoImpl extends BasicDaoImpl<Integer, User> implements UserDao<
 					.uniqueResult()).intValue();
 		}
 		return count;
+	}
+
+	public PageModel<User> getPagedUserByUserCondition(User user, int pageNo, int pageSize)
+			throws AppException {
+		System.out.println(user);
+		StringBuilder hql=new StringBuilder("from User ");
+		String[] conditions={"id","username","authority"};
+		boolean isFirstCondition=true;
+		for(String condition:conditions){
+			Object value=ObjectUtil.getFieldValueByName(condition, user);
+			
+			if(NullUtil.notNull(value)){
+				if(isFirstCondition){
+					isFirstCondition=false;
+					hql.append(" where ").append(condition).append(" = '").append(value).append("'");
+				}else{
+					hql.append(" and ").append(condition).append(" = '").append(value).append("'");
+				}
+			}
+		}
+		log.debug(hql.toString());
+		List<User> list=(List<User>) getSession().createQuery(hql.toString()).setFirstResult((pageNo-1) * pageSize)
+		.setMaxResults(pageSize).list();
+		PageModel pageModel = new PageModel();
+		pageModel.setPageNo(pageNo);
+		pageModel.setPageSize(pageSize);
+		pageModel.setList(list);
+		pageModel.setTotalRecords(getCounts(hql.toString()));
+		return pageModel;
 	}
 
 	

@@ -137,4 +137,7 @@ public abstract class BasicDaoImpl<K extends Serializable, E>  extends Hibernate
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public int getCounts(String hql){
+		return getSession().createQuery(hql.toString()).list().size();
+	}
 }
