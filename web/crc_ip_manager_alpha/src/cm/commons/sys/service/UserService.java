@@ -2,8 +2,10 @@ package cm.commons.sys.service;
 
 import java.util.List;
 
+import cm.commons.controller.form.UserForm;
 import cm.commons.pojos.User;
 import cm.commons.service.basic.BasicService;
+import cm.commons.util.PageModel;
 
 public interface UserService<K, E>  extends BasicService<K, E>{
 	/**
@@ -29,4 +31,6 @@ public interface UserService<K, E>  extends BasicService<K, E>{
 	 * @return
 	 */
 	E getByName(String username);
+	
+	PageModel<User> getPagedUserByUserCondition(User user, int pageNo, int pageSize);
 }

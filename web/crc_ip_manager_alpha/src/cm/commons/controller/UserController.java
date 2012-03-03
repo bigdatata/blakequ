@@ -18,6 +18,7 @@ import cm.commons.controller.form.PageModelForm;
 import cm.commons.controller.form.UserForm;
 import cm.commons.pojos.User;
 import cm.commons.sys.service.UserService;
+import cm.commons.util.NullUtil;
 import cm.commons.util.PageModel;
 
 /**
@@ -141,10 +142,28 @@ public class UserController {
 	
 
 	@RequestMapping("admin/query_user_by_page")
-	public ModelAndView showQueryUserByPage(UserForm condition, @RequestParam int pageNo,HttpServletRequest request){
+	public ModelAndView showQueryUserByPage(@RequestParam int pageNo,HttpServletRequest request){
+		User condition=new User();
+		String id=request.getParameter("id");
+		if(NullUtil.notNull(id)){
+			condition.setId(Integer.valueOf(id));
+		}
+		String username=request.getParameter("username");
+		if(NullUtil.notNull(username)){
+			condition.setUsername(username);
+		}
+		String authority=request.getParameter("authority");
+		if(NullUtil.notNull(authority)){
+			condition.setAuthority(authority);
+		}
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("condition", condition);
-		
+		//从web.xml的配置中配置页面大小
+		int pageSize = Integer.parseInt(request.getSession().getServletContext().getInitParameter("page-size"));
+		PageModel<User> pageModel=userService.getPagedUserByUserCondition(condition, pageNo, pageSize);
+		mv.addObject("pageModel", pageModel);
+		mv.addObject("user_list", pageModel.getList());
+		mv.setViewName("UserManage/UserList");
 		return mv;
 	}
 	/**

@@ -6,6 +6,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import cm.commons.controller.form.UserForm;
 import cm.commons.exception.AppException;
 import cm.commons.pojos.User;
 import cm.commons.sys.dao.UserDao;
@@ -176,6 +177,12 @@ public class UserServiceImpl implements UserService<Integer, User> {
 			log.error("delete item array fail! "+this.getClass().getName(), e);
 			throw new AppException("删除多个实体失败");
 		}
+	}
+
+	public PageModel<User> getPagedUserByUserCondition(User user,
+			int pageNo, int pageSize) {
+		return userDao.getPagedUserByUserCondition(user, pageNo, pageSize);
+		
 	}
 
 }

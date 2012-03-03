@@ -17,6 +17,9 @@ public class User implements java.io.Serializable {
 
 	/** default constructor */
 	public User() {
+		username="";
+		password="";
+		authority="";
 	}
 
 	/** minimal constructor */
