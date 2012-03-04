@@ -38,10 +38,16 @@ public class UserController {
 	 * @param ids
 	 * @return
 	 */
-	@RequestMapping("admin/delete_multi_user")
-	public ModelAndView deleteItems(@RequestParam Integer[] ids){
+	@RequestMapping("admin/delete_user_by_ids")
+	public ModelAndView deleteItems(@RequestParam String userIds){
 		ModelAndView mv = new ModelAndView();
-		userService.deleteItem(ids);
+		if(NullUtil.notNull(userIds)){
+			for(String id:userIds.split(",")){
+				if(NullUtil.notNull(id)){
+					userService.deleteById(Integer.valueOf(id));
+				}
+			}
+		}
 		mv.setView(new RedirectView("all_user_by_page.do?pageNo=1&queryString="));
 		return mv;
 	}
