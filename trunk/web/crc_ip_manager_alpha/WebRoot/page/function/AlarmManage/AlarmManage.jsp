@@ -67,7 +67,7 @@
 		//删除提示
 		if (window.confirm("确认删除当前数据？")) {
 			with(document.forms[0]) {
-				action='<%=basePath%>alarm/admin/delete_by_ids.do?alarmIds='+ids;
+				action='<%=basePath%>alarm/admin/delete_alarm_by_ids.do?alarmIds='+ids;
 				method="post";
 				submit();
 			}
