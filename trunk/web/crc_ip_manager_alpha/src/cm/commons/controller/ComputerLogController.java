@@ -22,6 +22,7 @@ import cm.commons.pojos.Computer;
 import cm.commons.pojos.ComputerLog;
 import cm.commons.stat.service.ComputerService;
 import cm.commons.sys.service.ComputerLogService;
+import cm.commons.util.NullUtil;
 import cm.commons.util.PageModel;
 
 /**
@@ -41,17 +42,22 @@ public class ComputerLogController {
 	
 	/**
 	 * 删除多个日志记录
-	 * @param ids
+	 * @param computerLogIds
 	 * @return
 	 */
-	@RequestMapping("admin/delete_multi_log")
-	public ModelAndView deleteItems(@RequestParam Integer[] ids){
+	@RequestMapping("admin/delete_computer_log_by_ids")
+	public ModelAndView deleteItems(@RequestParam String computerLogIds){
 		ModelAndView mv = new ModelAndView();
-		computerLogService.deleteItem(ids);
+		if(NullUtil.notNull(computerLogIds)){
+			for(String id:computerLogIds.split(",")){
+				if(NullUtil.notNull(id)){
+					computerLogService.deleteById(Integer.valueOf(id));
+				}
+			}
+		}
 		mv.setView(new RedirectView("../get_by_time.do?pageNo=1&queryString="));
 		return mv;
 	}
-	
 	/**
 	 * 查询获取站点电脑的日志,按站点排序
 	 * @param computer_id

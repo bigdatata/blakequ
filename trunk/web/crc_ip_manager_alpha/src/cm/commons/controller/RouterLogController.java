@@ -21,6 +21,7 @@ import cm.commons.pojos.RouterLog;
 import cm.commons.stat.service.ComputerService;
 import cm.commons.stat.service.RouterService;
 import cm.commons.sys.service.RouterLogService;
+import cm.commons.util.NullUtil;
 import cm.commons.util.PageModel;
 
 /**
@@ -40,17 +41,22 @@ public class RouterLogController {
 	
 	/**
 	 * 删除多个日志记录
-	 * @param ids
+	 * @param routerLogIds
 	 * @return
 	 */
-	@RequestMapping("admin/delete_multi_log")
-	public ModelAndView deleteItems(@RequestParam Integer[] ids){
+	@RequestMapping("admin/delete_router_log_by_ids")
+	public ModelAndView deleteItems(@RequestParam String routerLogIds){
 		ModelAndView mv = new ModelAndView();
-		routerLogService.deleteItem(ids);
-		mv.setView(new RedirectView("../get_log_by_page.do?pageNo=1"));
+		if(NullUtil.notNull(routerLogIds)){
+			for(String id:routerLogIds.split(",")){
+				if(NullUtil.notNull(id)){
+					routerLogService.deleteById(Integer.valueOf(id));
+				}
+			}
+		}
+		mv.setView(new RedirectView("../get_log_by_page.do?pageNo=1&queryString="));
 		return mv;
 	}
-	
 	/**
 	 * 分页显示所有日志，时间排序
 	 * 可以显示指定站点日志
