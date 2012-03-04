@@ -73,16 +73,18 @@
 		window.self.location = "<%=basePath %>show_modify_user.do?id=" + selectFlags[index].value;
 	}
 	
-	function deleteItem() {
+	function deleteUserItem(){
 		var selectFlags = document.getElementsByName("selectFlag1");
 		var flag = false;
 		var index = 0;
+		var ids='';
 		for (var i=0; i<selectFlags.length; i++) {
 			if (selectFlags[i].checked) {
 			    //已经有选中的checkbox
 				flag = true;
 				index = i;
-				break;
+				ids+=selectFlags[i].value;
+				ids+=',';
 			}
 		}
 		if (!flag) {
@@ -91,13 +93,13 @@
 		}	
 		
 		//删除提示
-		if (window.confirm("确认删除当前用户？注：目前只能删除第一个选择的数据")) {
+		if (window.confirm("确认删除当前数据？")) {
 			with(document.forms[0]) {
-				action="<%=basePath %>admin/delete_user.do?id=${condition.id}&username=${condition.username}&authority=${condition.authority}&user_id="+selectFlags[index].value;
+				action='<%=basePath%>admin/delete_user_by_ids.do?userIds='+ids;
 				method="post";
 				submit();
 			}
-		}
+		}	
 	}	
 	
 	function topPage() {
@@ -196,7 +198,7 @@
 							<c:forEach items="${user_list}" var="user">
 								<tr>
 									<td >
-							<input type="checkbox" name="selectFlag1" class="checkbox1" value="${item.id}"/>
+							<input type="checkbox" name="selectFlag1" class="checkbox1" value="${user.id}"/>
 									</td>
 									<td>
 										${user.id}
@@ -231,14 +233,12 @@
 				</div>
 				<div class="blank"></div>
 				<div class="blank"></div>
-				<div class="blank"></div>
-				<c:if test="${current_user.authority == 'admin'}">
+				<div class="blank"></div>				
 				<div id="records">
 					删除选中用户
 				</div>
 				<div class="delete"
-					onclick="deleteItem()"></div>
-				</c:if>
+					onclick="deleteUserItem()"></div>
 				<div class="return"
 					onclick="javascript:history.go(-1);"></div>
 				<div id="records" style="float:right">
