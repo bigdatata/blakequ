@@ -67,16 +67,14 @@
 
 						插入线路选择：
 						<select name="route_id">
-							<option value="-1" selected="selected">
-								请选择线路
-							</option>
-							<c:forEach items="${routes}" var="route">
-								<option value="${route.id}"
-									<c:if test = "${route.id == current_route_id}" >
+							<c:forEach items="${routes}" var="sif">
+								<option value="${sif.id}"
+									<c:if test="${sif.id == current_route_id}">
 		    				selected
-		    			</c:if>>
-									${route.name}
+		    					</c:if>>
+									${sif.name}
 								</option>
+
 							</c:forEach>
 						</select>
 						<input type="button" value="确定" onclick="getStations()" />
