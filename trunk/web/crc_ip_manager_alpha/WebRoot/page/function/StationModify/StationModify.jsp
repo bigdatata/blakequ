@@ -6,6 +6,7 @@
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
+	request.setCharacterEncoding("UTF-8");
 %>
 <html>
 	<head>
@@ -38,12 +39,38 @@
 				}
 				return true;	
 			}
-			
+			function showStations(id){
+				var xmlhttp;
+				if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+					xmlhttp = new XMLHttpRequest();
+				} else {// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+				xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					document.getElementById("showStation").innerHTML=xmlhttp.responseText;
+					}
+				}
+				xmlhttp.open("POST", "route_station.do?route_id=" + id, true);
+				xmlhttp.send();
+			}
 			function selectStation(){
 				with(document.forms[0]) {
 					alert("你不能修改连接站点，如果修改请重新导入配置文件");
 				}
 			}
+			function a()
+		{
+			var station_id;
+			var station_name;
+			station_name = document.getElementById("station_name").value;
+			station_id = document.getElementById("station_id").value;
+			var aa= window.confirm("确定要修改站点的名字？");
+			if (aa) {
+			window.location = "<%=basePath %>admin/modify_station_name.do?station_id="+station_id+"&station_name="+station_name;
+			}
+			else window.alert("三思而后行！");
+		}
 		</script>
 	</head>
 
@@ -55,118 +82,48 @@
 					站点修改
 				</div>
 
+
 				<div id="content">
-					<input type="hidden" name="command" value="add">
-					<div align="center">
-						<table width="95%" border="0" cellspacing="2" cellpadding="2">
-							<tr>
-								<td>
-									&nbsp;
-								</td>
-							</tr>
-						</table>
-
-
-						<input name="id" type="text" class="text1" id="id"
-							style="visibility: hidden" size="10" maxlength="20"
-							value=${station.id}>
-						<hr width="97%" align="center" size=0>
-						<table width="95%" border="0" cellpadding="0" cellspacing="0">
-							<tr>
-								<td width="22%" height="29">
-									<div align="right">
-										站点名字:&nbsp;
-									</div>
-								</td>
-								<td width="78%">
-									<input name="name" type="text" class="text1" id="name"
-										size="10" maxlength="20" value="${station.name}">
-								</td>
-							</tr>
-							<tr>
-								<td height="26">
-									<div align="right">
-										线路X坐标:&nbsp;
-									</div>
-								</td>
-								<td>
-									<input name="x" type="text" class="text1" id="x" size="20"
-										maxlength="20" value="${station.x}">
-								</td>
-							</tr>
-							<tr>
-								<td height="26">
-									<div align="right">
-										线路Y坐标:&nbsp;
-									</div>
-								</td>
-								<td>
-									<label>
-										<input name="y" type="text" class="text1" id="y" size="20"
-											maxlength="20" value="${station.y}">
-									</label>
-								</td>
-							</tr>
-							<tr>
-								<td height="26">
-									<div align="right">
-										是否主站点:&nbsp;
-									</div>
-								</td>
-								<td>
-									<label>
-										<input name="main" type="text" class="text1" id="main"
-											size="20" maxlength="20" value="${station.isMainStation}"
-											readonly>
-									</label>
-								</td>
-							</tr>
-							<tr>
-								<td height="26">
-									<div align="right">
-										上行站点:&nbsp;
-									</div>
-								</td>
-								<td>
-									<label>
-										<input name="station1" type="text" class="text1" id="station1"
-											size="20" maxlength="20" value="${station.station1}" readonly>
-									</label>
-									<label>
-										<input name="station1_select" type="button" class="text1"
-											id="station1_select" value="选择" onclick="selectStation()">
-									</label>
-								</td>
-							</tr>
-							<tr>
-								<td height="26">
-									<div align="right">
-										下行站点:&nbsp;
-									</div>
-								</td>
-								<td>
-									<label>
-										<input name="station2" type="text" class="text1" id="station2"
-											size="20" maxlength="20" value="${station.station2}" readonly>
-									</label>
-									<label>
-										<input name="station2_select" type="button" class="text1"
-											id="station2_select" value="选择" onclick="selectStation()">
-									</label>
-								</td>
-							</tr>
-
-						</table>
-						<hr width="97%" align="center" size=0>
-						<div align="center">
-							<input name="btnAdd" class="button1" type="submit" id="btnAdd"
-								value="修改">
-							&nbsp;&nbsp;&nbsp;&nbsp;
-							<input name="btnBack" class="button1" type="button" id="btnBack"
-								value="返回" onClick="javascript:history.go(-1);">
+					<div class="four_columns">
+						<div class="four_columns_text">
+							线路选择:
 						</div>
+						<div class="four_columns_input">
+							<select onchange="showStations(this.value)" name="route_id">
+								<option>
+										选择线路
+									</option>
+								<c:forEach items="${routes}" var="sif">
+									<option value="${sif.id}">
+										${sif.name}
+									</option>
+
+								</c:forEach>
+							</select>
+						</div>
+						<div class="four_columns_text">
+							站点选择:
+						</div>
+						<div class="four_columns_input" id="showStation">
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="four_columns">
+						<div class="four_columns_text">
+							修改站点名称
+						</div>
+						<div class="four_columns_input">
+							<input type="text" id="station_name" name="station_name" />  
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="button">
+						<input type="button" onclick="a()"value="提交修改">
 					</div>
 				</div>
+
+
+
 			</div>
 		</form>
 	</body>
