@@ -199,27 +199,16 @@ public class StationRouteController {
 	 * @return
 	 */
 	@RequestMapping("show_modify_station")
-	public ModelAndView showModifyStation(@RequestParam int station_id){
+	public ModelAndView showModifyStation(HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
-		Station s = (Station) stationService.get(station_id);
-		StationForm sf = new StationForm();
-		sf.setId(s.getId());
-		String name = s.getName();
-		if(name.startsWith("TDCS")){
-			sf.setIsMainStation(true);
-		}else{
-			sf.setIsMainStation(false);
-		}
-		sf.setName(name);
-		sf.setStation1(s.getSegmentsForStation1Id());
-		sf.setStation2(s.getSegmentsForStation2Id());
-		sf.setX(Double.parseDouble(s.getX()));
-		sf.setY(Double.parseDouble(s.getY()));
-		mv.addObject("station", sf);
-		mv.setViewName("StationModify/StationModify");//station_modify
+		List<Route> routes = routeService.getAll();
+		
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("routes", routes);
+		mv.addAllObjects(model);
+		mv.setViewName("StationModify/StationModify");
 		return mv;
 	}
-	
 	/**
 	 * 修改站点(管理员)
 	 * 只能修改x,y,name
@@ -246,7 +235,29 @@ public class StationRouteController {
 		stationService.update(s);
 		return new ModelAndView(new RedirectView("../main.do?route_id="+route_id));
 	}
-	
+	/**
+	 * 修改站点(管理员)
+	 * 只能修改name
+	 * @param stationname
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("admin/modify_station_name")
+	public ModelAndView modeifyStationName(int station_id,String station_name, HttpServletRequest request){
+		Integer route_id = (Integer) request.getSession().getAttribute("current_route_id");
+		if(route_id == null){
+			String error = "表单提交错误<^@^>";
+			if(route_id == null) error = "修改站点失败,线路id=null";
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("error", error);
+			mv.setViewName("../public/error");
+			return mv;
+		}
+		Station s = (Station) stationService.get(station_id);
+		s.setName(station_name);
+		stationService.update(s);
+		return new ModelAndView(new RedirectView("../page/public/success.jsp"));
+	}	
 	
 	/**
 	 * 获取线路所有站点
@@ -267,10 +278,12 @@ public class StationRouteController {
 		List<Route> routes = routeService.getAll();
 
 		Map<String, Object> model = new HashMap<String, Object>();
+		List<StationForm> station_list=getStationFromRoute(route_id);
 		model.put("routes", routes);
 		model.put("stations", stations);
+		model.put("station_list", station_list);
 		mv.addAllObjects(model);
-		mv.setViewName("station_add");
+		mv.setViewName("StationModify/GetStationFromRoute");
 		return mv;
 	}
 	
@@ -287,7 +300,7 @@ public class StationRouteController {
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("routes", routes);
 		mv.addAllObjects(model);
-		mv.setViewName("station_add");
+		mv.setViewName("StationModify/StationAdd");
 		return mv;
 	}
 	
