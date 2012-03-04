@@ -11,13 +11,13 @@ var guides={
 			'AlarmManage_1' : ['告警事件管理','/crc_ip_manager_alpha/alarm/get_log_by_page.do?pageNo=1&queryString=','']}},
 	'StationModify' : {
 		'StationModify_' : {
-			'StationModify_1' : ['站点修改','/crc_ip_manager_alpha/page/function/StationModify/StationModify.jsp',''],
-			'StationModify_2' : ['站点增加','/crc_ip_manager_alpha/page/function/StationModify/StationAdd.jsp','']}},
+			'StationModify_1' : ['站点修改','/crc_ip_manager_alpha/show_modify_station.do',''],
+			'StationModify_2' : ['站点增加','/crc_ip_manager_alpha/show_add_station.do','']}},
 	'ShowComputer' : {
 		'ShowComputer_' : {
-			'ShowComputer_1' : ['站点编辑','/crc_ip_manager_alpha/page/function/ShowComputer/ShowComputer.jsp',''],
-			'ShowComputer_2' : ['站点电脑详细信息','/crc_ip_manager_alpha/computer_log/get_by_time.do?pageNo=1&queryString=',''],
-			'ShowComputer_3' : ['站点路由详细信息','/crc_ip_manager_alpha/router_log/get_log_by_page.do?pageNo=1&queryString=','']}},
+		//	'ShowComputer_1' : ['站点编辑','/crc_ip_manager_alpha/page/function/ShowComputer/ShowComputer.jsp',''],
+			'ShowComputer_1' : ['站点电脑详细信息','/crc_ip_manager_alpha/computer_log/get_by_time.do?pageNo=1&queryString=',''],
+			'ShowComputer_2' : ['站点路由详细信息','/crc_ip_manager_alpha/router_log/get_log_by_page.do?pageNo=1&queryString=','']}},
 	
 	'ConfigSetting' : {
 		'ConfigSetting_' : {
