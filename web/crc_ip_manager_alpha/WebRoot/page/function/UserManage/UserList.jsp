@@ -184,13 +184,13 @@
 								<th width="40">
 									<input type="checkbox" id="ifAll" onClick="AllQuery()"/>
 								</th>
-								<th width="200">
+								<th width="100">
 									ID
 								</th>
 								<th width="100">
 									用户名
 								</th>
-								<th width="840">
+								<th width="820">
 									权限
 								</th>								
 							</tr>
