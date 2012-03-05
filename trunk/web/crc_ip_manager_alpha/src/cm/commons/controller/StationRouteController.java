@@ -1,6 +1,7 @@
 package cm.commons.controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -254,6 +255,12 @@ public class StationRouteController {
 			return mv;
 		}
 		Station s = (Station) stationService.get(station_id);
+		try {
+			station_name=new String(station_name.getBytes("iso8859_1"),"utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		s.setName(station_name);
 		stationService.update(s);
 		return new ModelAndView(new RedirectView("../page/public/success.jsp"));
