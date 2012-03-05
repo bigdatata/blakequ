@@ -1,5 +1,7 @@
 package cm.commons.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import cm.commons.controller.form.ComputerForm;
+import cm.commons.controller.form.ComputerLogForm;
 import cm.commons.pojos.Computer;
 import cm.commons.pojos.ComputerLog;
 import cm.commons.pojos.Station;
@@ -25,21 +28,34 @@ public class ComputerController {
 	
 	@Autowired
 	private ComputerService computerService;
+	
+	@Autowired
+	private ComputerLogService computerLogService;
 
-	@RequestMapping("show_detail")
-	public ModelAndView showComputer(@RequestParam int stationId, int station_id){
+	@RequestMapping("show_computer_and_computerlog_detail")
+	public ModelAndView showComputer(@RequestParam int stationId){
 		ModelAndView mv = new ModelAndView();
-		int id = stationId>0?stationId:station_id;
-		System.out.println("*******id:"+id);
-		Computer computer = (Computer) computerService.getComputerByStationId(id);
+		System.out.println("*******id:"+stationId);
+		Computer computer = (Computer) computerService.getComputerByStationId(stationId);
+		List<ComputerLog> computerlog_list = (List<ComputerLog>) computerLogService.getComputerLog(computer.getId());
+		ComputerLog computerlog = (ComputerLog)computerlog_list.get(0);
 		ComputerForm cf = new ComputerForm();
-		cf.setId(computer.getId());
-		cf.setIp(computer.getIp());
-		cf.setOs(computer.getOs());
-		cf.setState(computer.getState());
-		cf.setStationId(computer.getStation().getId());
+		ComputerLogForm clf = new ComputerLogForm();
+		if(computer != null){
+			cf.setId(computer.getId());
+			cf.setIp(computer.getIp());
+			cf.setOs(computer.getOs());
+			cf.setState(computer.getState());
+			cf.setStationId(computer.getStation().getId());
+		}
+		if(computerlog != null){
+			clf.setId(computerlog.getId());
+			clf.setCupRate(computerlog.getCupRate());
+			clf.setMemRate(computerlog.getMemRate());
+		}
 		mv.addObject("computer", cf);
-		mv.setViewName("show_computer");
+		mv.addObject("computerlog",clf);
+		mv.setViewName("StationMonitor/StationInfo");
 		return mv;
 	}
 	
