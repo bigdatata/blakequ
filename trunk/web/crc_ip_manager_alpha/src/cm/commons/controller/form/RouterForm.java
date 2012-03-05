@@ -1,5 +1,11 @@
 package cm.commons.controller.form;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import cm.commons.pojos.RouterLog;
+
 
 public class RouterForm {
 
@@ -9,6 +15,22 @@ public class RouterForm {
 	private Integer state;
 	private Integer portCount;
 	private String routerInfo;
+	private RouterLogForm routerLog;
+	private List<PortForm> ports = new ArrayList<PortForm>();
+	
+	
+	public List<PortForm> getPorts() {
+		return ports;
+	}
+	public void setPorts(List<PortForm> ports) {
+		this.ports = ports;
+	}
+	public RouterLogForm getRouterLog() {
+		return routerLog;
+	}
+	public void setRouterLog(RouterLogForm routerLog) {
+		this.routerLog = routerLog;
+	}
 	public Integer getId() {
 		return id;
 	}
