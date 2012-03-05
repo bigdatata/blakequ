@@ -44,9 +44,10 @@
 	//
 	//关于动态弹窗的说明
 	//右击选择查看台账信息，传入元素id通过AJAX动态获取数据并进行显示
+	//@paragram o station
 	//
 	//**********************************
-	function b(o) {
+	function computerInfo(o) {
 		var xmlhttp;
 		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
 			xmlhttp = new XMLHttpRequest();
@@ -61,6 +62,19 @@
 		}
 		xmlhttp.open("POST", "computer/show_computer_and_computerlog_detail.do?stationId=" + o.id, true);
 		xmlhttp.send();
+	}
+	//**********************************
+	//
+	//关于动态弹窗的说明
+	//右击选择查看路由信息，传入元素id通过AJAX动态获取数据并进行显示
+	//@paragram o station
+	//
+	//**********************************
+	function routerInfo(o){
+		$.funkyUI({
+			url:"router/show_router_and_port_detail.do?stationId=" + o.id,
+			css:{width:"800",height:"400"}
+		});
 	}
 	//***********
 	//
@@ -301,12 +315,14 @@ for(cm.commons.controller.form.StationForm u: t){
 		<div id="bmenu"
 			style="position: absolute; display: none; top: 0px; left: 0px; width: 150px; margin: 0px; padding: 2px; border: 1px solid #cccccc; background-color: #CEE2FF;">
 			<ul>
-				<li id="checkLink">
+				<li id="computerInfo">
 					查看台账信息
 				</li>
-				<li id="edit">
+				<li class="separator"></li>
+				<li id="routerInfo">
 					查看路由信息
 				</li>
+				<li class="separator"></li>
 				<li id="del">
 					查看设备故障
 				</li>
@@ -324,11 +340,11 @@ for(cm.commons.controller.form.StationForm u: t){
 		targetEle : "contextMenu"
 	}, {
 		bindings : {
-			'checkLink' : function(o) {
-				b(o)
+			'computerInfo' : function(o) {
+				computerInfo(o)
 			},
-			'edit' : function(o) {
-				alert("编辑 " + o.id);
+			'routerInfo' : function(o) {
+				routerInfo(o)
 			},
 			'del' : function(o) {
 				alert("删除 " + o.id);
