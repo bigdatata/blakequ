@@ -33,15 +33,22 @@
 				}
 				return true;	
 			}
-			
-			function getStations(){
-				with(document.forms[0]) {
-					action="<%=basePath%>route_station.do";
-					method="post";
-					submit();
-				}
+			function showStations(id){
+				var xmlhttp;
+				if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+					xmlhttp = new XMLHttpRequest();
+				} else {// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 			}
-
+				xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					document.getElementById("station1").innerHTML=xmlhttp.responseText;
+					document.getElementById("station2").innerHTML=xmlhttp.responseText;
+					}
+				}
+				xmlhttp.open("POST", "route_station.do?route_id=" + id, true);
+				xmlhttp.send();
+			}
 		</script>
 
 	</head>
@@ -66,7 +73,7 @@
 						</table>
 
 						插入线路选择：
-						<select name="route_id">
+						<select name="route_id" onchange="showStations(this.value)">
 							<c:forEach items="${routes}" var="sif">
 								<option value="${sif.id}"
 									<c:if test="${sif.id == current_route_id}">
@@ -77,8 +84,6 @@
 
 							</c:forEach>
 						</select>
-						<input type="button" value="确定" onclick="getStations()" />
-
 						<hr width="97%" align="center" size=0>
 						<table width="95%" border="0" cellpadding="0" cellspacing="0">
 							<tr>
@@ -124,14 +129,6 @@
 								</td>
 								<td>
 									<select name="station1" class="select1" id="station1">
-										<option value="-1">
-											无
-										</option>
-										<c:forEach items="${stations}" var="ic">
-											<option value="${ic.id}">
-												${ic.name }
-											</option>
-										</c:forEach>
 									</select>
 								</td>
 							</tr>
@@ -143,14 +140,6 @@
 								</td>
 								<td>
 									<select name="station2" class="select1" id="station2">
-										<option value="-1">
-											无
-										</option>
-										<c:forEach items="${stations}" var="iu">
-											<option value="${iu.id}">
-												${iu.name }
-											</option>
-										</c:forEach>
 									</select>
 								</td>
 							</tr>

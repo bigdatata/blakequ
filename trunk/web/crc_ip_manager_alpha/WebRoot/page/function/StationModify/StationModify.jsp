@@ -48,7 +48,7 @@
 			}
 				xmlhttp.onreadystatechange = function() {
 				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-					document.getElementById("showStation").innerHTML=xmlhttp.responseText;
+					document.getElementById("station_id").innerHTML=xmlhttp.responseText;
 					}
 				}
 				xmlhttp.open("POST", "route_station.do?route_id=" + id, true);
@@ -112,6 +112,8 @@
 							站点选择:
 						</div>
 						<div class="four_columns_input" id="showStation">
+						<select name="station_id" id="station_id">
+						</select>
 						</div>
 						<div class="clear"></div>
 					</div>
