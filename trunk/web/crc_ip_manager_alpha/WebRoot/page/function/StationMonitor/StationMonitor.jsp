@@ -59,7 +59,7 @@
 				//document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
 			}
 		}
-		xmlhttp.open("POST", "detail_station.do?station_id=" + o.id, true);
+		xmlhttp.open("POST", "computer/show_computer_and_computerlog_detail.do?stationId=" + o.id, true);
 		xmlhttp.send();
 	}
 	//***********
