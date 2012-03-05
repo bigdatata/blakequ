@@ -1,6 +1,8 @@
 package cm.commons.controller;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -28,33 +30,14 @@ public class ComputerController {
 	
 	@Autowired
 	private ComputerService computerService;
-	
-	@Autowired
-	private ComputerLogService computerLogService;
 
 	@RequestMapping("show_computer_and_computerlog_detail")
 	public ModelAndView showComputer(@RequestParam int stationId){
 		ModelAndView mv = new ModelAndView();
 		System.out.println("*******id:"+stationId);
-		Computer computer = (Computer) computerService.getComputerByStationId(stationId);
-		List<ComputerLog> computerlog_list = (List<ComputerLog>) computerLogService.getComputerLog(computer.getId());
-		ComputerLog computerlog = (ComputerLog)computerlog_list.get(0);
-		ComputerForm cf = new ComputerForm();
-		ComputerLogForm clf = new ComputerLogForm();
-		if(computer != null){
-			cf.setId(computer.getId());
-			cf.setIp(computer.getIp());
-			cf.setOs(computer.getOs());
-			cf.setState(computer.getState());
-			cf.setStationId(computer.getStation().getId());
-		}
-		if(computerlog != null){
-			clf.setId(computerlog.getId());
-			clf.setCupRate(computerlog.getCupRate());
-			clf.setMemRate(computerlog.getMemRate());
-		}
+		ComputerForm cf = this.getComputer(stationId);
 		mv.addObject("computer", cf);
-		mv.addObject("computerlog",clf);
+		mv.addObject("computerlog",cf.getClf());
 		mv.setViewName("StationMonitor/StationInfo");
 		return mv;
 	}
@@ -99,6 +82,35 @@ public class ComputerController {
 		computer.setState(computerForm.getState());
 		computerService.saveOrUpdate(computer);
 		return mv;
+	}
+	
+	/**
+	 * 返回computer
+	 * @param stationId
+	 * @return
+	 */
+	private ComputerForm getComputer(int stationId){
+		Computer computer = (Computer) computerService.getComputerByStationId(stationId);
+		ComputerForm cf = new ComputerForm();
+		if(computer != null){
+			cf.setId(computer.getId());
+			cf.setIp(computer.getIp());
+			cf.setOs(computer.getOs());
+			cf.setState(computer.getState());
+			cf.setStationId(computer.getStation().getId());
+			Set<ComputerLog> set = computer.getComputerLogs();
+			if(set != null && set.size()>0){
+					Iterator i = set.iterator();
+					ComputerLog cl = (ComputerLog) i.next();
+					ComputerLogForm clf = new ComputerLogForm();
+					clf.setCupRate(cl.getCupRate());
+					clf.setCurrTime(cl.getCurrTime());
+					clf.setId(cl.getId());
+					clf.setMemRate(cl.getMemRate());
+					cf.setClf(clf);
+			}
+		}
+		return cf;
 	}
 
 }
