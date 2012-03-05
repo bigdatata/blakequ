@@ -35,15 +35,13 @@ public class RouterController {
 	private RouterService routerService;
 	
 	@RequestMapping("show_detail")
-	public ModelAndView showAllComputer(@RequestParam int stationId){
+	public ModelAndView showRouter(@RequestParam int stationId){
 		ModelAndView mv = new ModelAndView();
 		System.out.println("*******id:"+stationId);
 		RouterForm rf = this.getRouter(stationId);
 		mv.addObject("router", rf);
 		mv.addObject("routerLog", rf.getRouterLog());
-		System.out.println("---------------"+rf.getRouterLog());
 		mv.addObject("ports", rf.getPorts());
-		System.out.println("----------------"+rf.getPorts());
 		mv.setViewName("show_router");
 		return mv;
 	}
@@ -104,11 +102,7 @@ public class RouterController {
 			rf.setRouterInfo(router.getRouterInfo());
 			rf.setRouterIp(router.getRouterIp());
 			rf.setState(router.getState());
-			if(router.getStation() != null){
-				rf.setStationId(router.getStation().getId());
-			}else{
-				rf.setStationId(0);
-			}
+			
 			//routerLog
 			Set<RouterLogForm> set = router.getRouterLogs();
 			if(set != null && set.size() >0){
@@ -120,14 +114,6 @@ public class RouterController {
 				rlf.setId(rl.getId());
 				rlf.setMemRate(rl.getMemRate());
 				rlf.setRouterInfo(rl.getRouterInfo());
-				Router ro = rl.getRouter();
-				if(ro != null){
-					rlf.setRouterId(ro.getId());
-					rlf.setStationName(ro.getStation().getName());
-				}else{
-					rlf.setRouterId(0);
-					rlf.setStationName("");
-				}
 				rf.setRouterLog(rlf);
 			}
 			//port

@@ -9,6 +9,14 @@ public class ComputerForm {
 	private String ip;
 	private Integer state;
 	private String os;
+	private ComputerLogForm clf;
+	
+	public ComputerLogForm getClf() {
+		return clf;
+	}
+	public void setClf(ComputerLogForm clf) {
+		this.clf = clf;
+	}
 	public Integer getId() {
 		return id;
 	}
