@@ -229,7 +229,7 @@ public class UserController {
 		}
 		User u = (User) userService.getByName(user.getUsername());
 		if(u == null){
-			mv.setViewName("login");
+			mv.setViewName("../../index");
 			request.setAttribute("info", "当前用户名:"+user.getUsername()+"不存在!");
 			return mv;
 		}else if(!u.getPassword().equals(user.getPassword())){
