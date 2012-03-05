@@ -1,6 +1,9 @@
 package cm.commons.controller;
 
 
+import java.util.Iterator;
+import java.util.Set;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +13,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import cm.commons.controller.form.PortForm;
 import cm.commons.controller.form.RouterForm;
+import cm.commons.controller.form.RouterLogForm;
+import cm.commons.pojos.Port;
 import cm.commons.pojos.Router;
+import cm.commons.pojos.RouterLog;
 import cm.commons.pojos.Station;
 import cm.commons.stat.service.PortService;
 import cm.commons.stat.service.RouterService;
 import cm.commons.stat.service.StationService;
+import cm.commons.sys.service.RouterLogService;
 
 @Controller
 @RequestMapping("router")
@@ -27,19 +35,15 @@ public class RouterController {
 	private RouterService routerService;
 	
 	@RequestMapping("show_detail")
-	public ModelAndView showAllComputer(@RequestParam int routerId, int router_id){
+	public ModelAndView showAllComputer(@RequestParam int stationId){
 		ModelAndView mv = new ModelAndView();
-		int id = routerId>0?routerId:router_id;
-		System.out.println("*******id:"+id);
-		Router router = (Router) routerService.getRouterByStationId(id);
-		RouterForm rf = new RouterForm();
-		rf.setId(router.getId());
-		rf.setPortCount(router.getPortCount());
-		rf.setRouterInfo(router.getRouterInfo());
-		rf.setRouterIp(router.getRouterIp());
-		rf.setState(router.getState());
-		rf.setStationId(router.getStation().getId());
+		System.out.println("*******id:"+stationId);
+		RouterForm rf = this.getRouter(stationId);
 		mv.addObject("router", rf);
+		mv.addObject("routerLog", rf.getRouterLog());
+		System.out.println("---------------"+rf.getRouterLog());
+		mv.addObject("ports", rf.getPorts());
+		System.out.println("----------------"+rf.getPorts());
 		mv.setViewName("show_router");
 		return mv;
 	}
@@ -85,4 +89,70 @@ public class RouterController {
 		routerService.saveOrUpdate(router);
 		return mv;
 	}
+	
+	/**
+	 * 获取路由器信息
+	 * @param id
+	 * @return
+	 */
+	private RouterForm getRouter(int stationId){
+		Router router = (Router) routerService.getRouterByStationId(stationId);
+		RouterForm rf = new RouterForm();
+		if(router != null){
+			rf.setId(router.getId());
+			rf.setPortCount(router.getPortCount());
+			rf.setRouterInfo(router.getRouterInfo());
+			rf.setRouterIp(router.getRouterIp());
+			rf.setState(router.getState());
+			if(router.getStation() != null){
+				rf.setStationId(router.getStation().getId());
+			}else{
+				rf.setStationId(0);
+			}
+			//routerLog
+			Set<RouterLogForm> set = router.getRouterLogs();
+			if(set != null && set.size() >0){
+				Iterator i = set.iterator();
+				RouterLog rl = (RouterLog) i.next();
+				RouterLogForm rlf = new RouterLogForm();
+				rlf.setCpuRate(rl.getCpuRate());
+				rlf.setCurrTime(rl.getCurrTime());
+				rlf.setId(rl.getId());
+				rlf.setMemRate(rl.getMemRate());
+				rlf.setRouterInfo(rl.getRouterInfo());
+				Router ro = rl.getRouter();
+				if(ro != null){
+					rlf.setRouterId(ro.getId());
+					rlf.setStationName(ro.getStation().getName());
+				}else{
+					rlf.setRouterId(0);
+					rlf.setStationName("");
+				}
+				rf.setRouterLog(rlf);
+			}
+			//port
+			Set<Port> ports = router.getPorts();
+			if(ports != null && ports.size()>0){
+				Iterator i = ports.iterator();
+				while(i.hasNext()){
+					Port p = (Port) i.next();
+					PortForm pf = new PortForm();
+					pf.setGetTime(p.getGetTime());
+					pf.setId(p.getId());
+					pf.setIfIndex(p.getIfIndex());
+					pf.setIfInOctets(p.getIfInOctets());
+					pf.setIfOperStatus(p.getIfOperStatus());
+					pf.setIfOutOctets(p.getIfOutOctets());
+					pf.setLocIfInBitsSec(p.getLocIfOutBitsSec());
+					pf.setLocIfInCrc(p.getLocIfInCrc());
+					pf.setLocIfOutBitsSec(p.getLocIfOutBitsSec());
+					pf.setPortIp(p.getPortIp());
+					rf.getPorts().add(pf);
+				}
+			}
+		}
+		return rf;
+	}
+	
+	
 }
