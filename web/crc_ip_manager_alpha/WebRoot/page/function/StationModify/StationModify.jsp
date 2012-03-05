@@ -65,11 +65,18 @@
 			var station_name;
 			station_name = document.getElementById("station_name").value;
 			station_id = document.getElementById("station_id").value;
+			if(station_name==null||station_id==null)
+			{
+			alert("请选择站点！");
+			}
+			else
+			{
 			var aa= window.confirm("确定要修改站点的名字？");
 			if (aa) {
 			window.location = "<%=basePath %>admin/modify_station_name.do?station_id="+station_id+"&station_name="+station_name;
 			}
 			else window.alert("三思而后行！");
+			}
 		}
 		</script>
 	</head>
@@ -91,8 +98,8 @@
 						<div class="four_columns_input">
 							<select onchange="showStations(this.value)" name="route_id">
 								<option>
-										选择线路
-									</option>
+									选择线路
+								</option>
 								<c:forEach items="${routes}" var="sif">
 									<option value="${sif.id}">
 										${sif.name}
@@ -113,12 +120,12 @@
 							修改站点名称
 						</div>
 						<div class="four_columns_input">
-							<input type="text" id="station_name" name="station_name" />  
+							<input type="text" id="station_name" name="station_name" />
 						</div>
 						<div class="clear"></div>
 					</div>
 					<div class="button">
-						<input type="button" onclick="a()"value="提交修改">
+						<input type="button" onclick="a()" value="提交修改">
 					</div>
 				</div>
 
