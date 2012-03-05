@@ -34,15 +34,16 @@ public class RouterController {
 	@Autowired
 	private RouterService routerService;
 	
-	@RequestMapping("show_detail")
-	public ModelAndView showRouter(@RequestParam int stationId){
+
+	@RequestMapping("show_router_and_port_detail")
+	public ModelAndView showRouterDetail(@RequestParam int stationId){
 		ModelAndView mv = new ModelAndView();
 		System.out.println("*******id:"+stationId);
 		RouterForm rf = this.getRouter(stationId);
 		mv.addObject("router", rf);
 		mv.addObject("routerLog", rf.getRouterLog());
 		mv.addObject("ports", rf.getPorts());
-		mv.setViewName("show_router");
+		mv.setViewName("StationMonitor/RouterInfo");
 		return mv;
 	}
 	
