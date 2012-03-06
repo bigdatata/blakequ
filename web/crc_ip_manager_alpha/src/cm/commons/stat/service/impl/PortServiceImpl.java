@@ -124,4 +124,18 @@ public class PortServiceImpl implements PortService<Integer, Port> {
 		
 	}
 
+	public PageModel<Port> getPortsByRouter(Integer routerId, int pageNo,
+			int pageSize) throws AppException {
+		// TODO Auto-generated method stub
+		log.debug("get port by router id");
+		try {
+			PageModel<Port> pm = portDao.getPortsByRouter(routerId, pageNo, pageSize);
+			return pm;
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("get ports by router id fail!", e);
+			throw new AppException("获取路由端口失败");
+		}
+	}
+
 }

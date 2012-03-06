@@ -1,5 +1,8 @@
 package cm.commons.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,41 +12,72 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import cm.commons.controller.form.PageModelForm;
+import cm.commons.controller.form.PortForm;
 import cm.commons.pojos.Port;
 import cm.commons.stat.service.PortService;
+import cm.commons.util.PageModel;
 
 @Controller
 @RequestMapping("port")
 public class PortController {
-
 	@Autowired
 	private PortService portService;
-	
-	@RequestMapping("admin/add")
-	public ModelAndView addPort(Port port, BindingResult result, HttpServletRequest request){
-		ModelAndView mv = new ModelAndView();
-		if(result.hasErrors()){
-			mv.addObject("error", "提交表单失败"+result.getAllErrors());
-			mv.setViewName("../public/error");
-			return mv;
-		}
-		portService.saveOrUpdate(port);
-		return mv;
-	}
 	
 	@RequestMapping("admin/delete")
 	public void deletePort(@RequestParam int port_id ,HttpServletRequest request){
 		portService.delete(port_id);
 	}
 	
-	public ModelAndView modifyPort(Port port, BindingResult result, HttpServletRequest request){
+	/**
+	 * 分页获取路由日志
+	 * @param pageNo 页面(1,2...)
+	 * @param routerId
+	 * @param request 路由器id
+	 * @return
+	 */
+	@RequestMapping("get_port_by_page")
+	public ModelAndView getPortsByPage(@RequestParam int pageNo, @RequestParam Integer routerId, HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
-		if(result.hasErrors()){
-			mv.addObject("error", "提交表单失败"+result.getAllErrors());
-			mv.setViewName("../public/error");
-			return mv;
-		}
-		portService.saveOrUpdate(port);
+		int pageSize = Integer.parseInt(request.getSession().getServletContext().getInitParameter("page-size"));
+		PageModelForm<PortForm> pmf = this.getPortsByPage(routerId, pageNo, pageSize);
+		mv.addObject("ports", pmf);
+		mv.addObject("queryStr", routerId);
+		mv.setViewName("");
 		return mv;
 	}
+
+	private PageModelForm<PortForm> getPortsByPage(Integer routerId,
+			int pageNo, int pageSize) {
+		// TODO Auto-generated method stub
+		PageModel<Port> pm = portService.getPortsByRouter(routerId, pageNo, pageSize);
+		PageModelForm<PortForm> pmf = new PageModelForm<PortForm>();
+		
+		List<Port> list = pm.getList();
+		List<PortForm> listForm = new ArrayList<PortForm>();
+		if(list != null){
+			for(Port p : list){
+				PortForm pf = new PortForm();
+				pf.setGetTime(p.getGetTime());
+				pf.setId(p.getId());
+				pf.setIfIndex(p.getIfIndex());
+				pf.setIfInOctets(p.getIfInOctets());
+				pf.setIfOutOctets(p.getIfOutOctets());
+				pf.setIfOperStatus(p.getIfOperStatus());
+				pf.setLocIfInBitsSec(p.getLocIfInBitsSec());
+				pf.setLocIfInCrc(p.getLocIfInCrc());
+				pf.setLocIfOutBitsSec(p.getLocIfOutBitsSec());
+				pf.setPortIp(p.getPortIp());
+				listForm.add(pf);
+			}
+		}
+		pmf.setData(listForm);
+		pmf.setButtomPageNo(pm.getButtomPageNo());
+		pmf.setPageNo(pageNo);
+		pmf.setPageSize(pageSize);
+		pmf.setTotalPages(pm.getTotalPages());
+		return pmf;
+	}
+	
+
 }
