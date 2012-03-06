@@ -2,6 +2,7 @@ package cm.commons.controller;
 
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +35,9 @@ public class RouterController {
 	@Autowired
 	private RouterService routerService;
 	
+	@Autowired
+	private PortService portService;
+	
 
 	@RequestMapping("show_router_and_port_detail")
 	public ModelAndView showRouterDetail(@RequestParam int stationId){
@@ -65,12 +69,6 @@ public class RouterController {
 		return mv;
 	}
 	
-	@RequestMapping("delete_router")
-	public void deleteRouter(@RequestParam int router_id ,HttpServletRequest request){
-//		ModelAndView mv = new ModelAndView();
-		routerService.deleteById(router_id);
-//		return mv;
-	}
 	
 	@RequestMapping("modify_router")
 	public ModelAndView modifyRouter(RouterForm routerForm, BindingResult result, HttpServletRequest request){
@@ -118,7 +116,7 @@ public class RouterController {
 				rf.setRouterLog(rlf);
 			}
 			//port
-			Set<Port> ports = router.getPorts();
+			List<Port> ports = portService.getPortsByRouter(router.getId());
 			if(ports != null && ports.size()>0){
 				Iterator i = ports.iterator();
 				while(i.hasNext()){

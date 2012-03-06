@@ -74,5 +74,14 @@ public class PortForm {
 	public void setIfOutOctets(Integer ifOutOctets) {
 		this.ifOutOctets = ifOutOctets;
 	}
+	@Override
+	public String toString() {
+		return "PortForm [getTime=" + getTime + ", id=" + id + ", ifInOctets="
+				+ ifInOctets + ", ifIndex=" + ifIndex + ", ifOperStatus="
+				+ ifOperStatus + ", ifOutOctets=" + ifOutOctets
+				+ ", locIfInBitsSec=" + locIfInBitsSec + ", locIfInCrc="
+				+ locIfInCrc + ", locIfOutBitsSec=" + locIfOutBitsSec
+				+ ", portIp=" + portIp + "]";
+	}
 	
 }
