@@ -91,6 +91,11 @@ public class RequestController {
 	        
 	        //********save or update station, computer,log********
 	        Station station = this.saveOrUpdateComputer(stationJson, computerJson);
+//	        String name=station.getName();
+//	        name=new String(name.getBytes("ISO8859-1"),"utf-8");
+//	        System.out.println("-----"+name);
+//	        System.out.println(new String(name.getBytes("ISO-8859-1"),"utf-8"));
+//	        System.out.println(new String(name.getBytes("gbk"),"utf-8"));
 	        
 	        
 	        //*********save or update router,log******************
@@ -318,7 +323,7 @@ public class RequestController {
 	}
 	
 	/**
-	 * 判断端口的状态
+	 * 判断端口的状态'ab' a是最新的，b是上次的端口状态
 	 * @param ports
 	 * @return
 	 */
@@ -327,11 +332,11 @@ public class RequestController {
 		for(int i=0; i<ports.length; i++){
 			if(!ports[i].equals("11") && !ports[i].equals("22")){
 				if(ports[i].startsWith("1")){
-					flag.append(i+":状态由UP-->DOWN ");
+					flag.append(i+": 状态由DOWN-->UP");
 				}else if(ports[i].startsWith("2")){
-					flag.append(i+":状态由DOWN-->UP ");
+					flag.append(i+": 状态由UP-->DOWN");
 				}else{
-					flag.append(i+":状态由INIT-->UP(DOWN) ");
+					flag.append(i+": 状态由INIT-->UP(DOWN) ");
 				}
 			}
 		}

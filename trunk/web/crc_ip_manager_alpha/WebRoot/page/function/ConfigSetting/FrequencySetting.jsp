@@ -6,7 +6,7 @@
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
-	List<String> frequencyOptions=Arrays.asList("60000","300000","600000","900000","1800000","3600000");
+	List<String> frequencyOptions=Arrays.asList("60","300","600","900","1800","3600");
 	String defaultFrequency=(String)request.getAttribute("frequency");
 	System.out.println("defaultFrequency"+defaultFrequency);
 %>
@@ -43,7 +43,7 @@
 							  selected
 							  <%
 							  } %>
-							 ><%=Integer.valueOf(option)/(60*1000) %>分钟</option>
+							 ><%=Integer.valueOf(option)/(60) %>分钟</option>
 							 <%
 							 }
 							  %>
