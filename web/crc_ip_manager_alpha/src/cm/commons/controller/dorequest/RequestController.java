@@ -91,12 +91,6 @@ public class RequestController {
 	        
 	        //********save or update station, computer,log********
 	        Station station = this.saveOrUpdateComputer(stationJson, computerJson);
-//	        String name=station.getName();
-//	        name=new String(name.getBytes("ISO8859-1"),"utf-8");
-//	        System.out.println("-----"+name);
-//	        System.out.println(new String(name.getBytes("ISO-8859-1"),"utf-8"));
-//	        System.out.println(new String(name.getBytes("gbk"),"utf-8"));
-	        
 	        
 	        //*********save or update router,log******************
 	        Router router = this.saveOrUpdateRouter(routerJson, station);
