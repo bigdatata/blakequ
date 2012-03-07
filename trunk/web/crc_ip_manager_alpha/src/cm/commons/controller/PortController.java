@@ -11,12 +11,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import cm.commons.controller.form.PageModelForm;
 import cm.commons.controller.form.PortForm;
 import cm.commons.pojos.Port;
 import cm.commons.pojos.Router;
 import cm.commons.stat.service.PortService;
+import cm.commons.util.NullUtil;
 import cm.commons.util.PageModel;
 
 @Controller
@@ -43,11 +45,29 @@ public class PortController {
 		int pageSize = Integer.parseInt(request.getSession().getServletContext().getInitParameter("page-size"));
 		PageModelForm<PortForm> pmf = this.getPortsByPage(routerId, pageNo, pageSize);
 		mv.addObject("ports", pmf.getData());
+		mv.addObject("pageModel",pmf);
 		mv.addObject("queryStr", routerId);
-		mv.setViewName("");
+		mv.setViewName("ShowComputer/ShowPortLog");
 		return mv;
 	}
 
+	/**
+	 * 删除告警
+	 * @return
+	 */
+	@RequestMapping("admin/delete_port_log_by_ids")
+	public ModelAndView deletePort(@RequestParam String portLogIds){
+		ModelAndView mv = new ModelAndView();
+		if(NullUtil.notNull(portLogIds)){
+			for(String id:portLogIds.split(",")){
+				if(NullUtil.notNull(id)){
+					portService.deleteById(Integer.valueOf(id));
+				}
+			}
+		}
+		mv.setView(new RedirectView("../get_port_by_page.do?pageNo=1&routerId="));
+		return mv;
+	}
 	private PageModelForm<PortForm> getPortsByPage(Integer routerId,
 			int pageNo, int pageSize) {
 		// TODO Auto-generated method stub
