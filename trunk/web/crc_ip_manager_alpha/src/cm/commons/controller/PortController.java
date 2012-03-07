@@ -42,7 +42,7 @@ public class PortController {
 		ModelAndView mv = new ModelAndView();
 		int pageSize = Integer.parseInt(request.getSession().getServletContext().getInitParameter("page-size"));
 		PageModelForm<PortForm> pmf = this.getPortsByPage(routerId, pageNo, pageSize);
-		mv.addObject("ports", pmf);
+		mv.addObject("ports", pmf.getData());
 		mv.addObject("queryStr", routerId);
 		mv.setViewName("");
 		return mv;
@@ -66,9 +66,9 @@ public class PortController {
 				pf.setIfOutOctets(p.getIfOutOctets());
 				String state = p.getIfOperStatus().toString();
 				if(state.startsWith("1")){
-					pf.setIfOperStatus("正常状态");
+					pf.setIfOperStatus("开启状态");
 				}else if(state.startsWith("2")){
-					pf.setIfOperStatus("异常状态");
+					pf.setIfOperStatus("关闭状态");
 				}
 				pf.setLocIfInBitsSec(p.getLocIfInBitsSec());
 				pf.setLocIfInCrc(p.getLocIfInCrc());
