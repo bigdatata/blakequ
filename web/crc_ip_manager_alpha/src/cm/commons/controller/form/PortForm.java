@@ -14,6 +14,14 @@ public class PortForm {
 	private Integer locIfOutBitsSec;
 	private Integer ifInOctets;
 	private Integer ifOutOctets;
+	private String stationName;
+	
+	public String getStationName() {
+		return stationName;
+	}
+	public void setStationName(String stationName) {
+		this.stationName = stationName;
+	}
 	public Integer getId() {
 		return id;
 	}
