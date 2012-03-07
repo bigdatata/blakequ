@@ -61,7 +61,7 @@ public class PortController {
 				PortForm pf = new PortForm();
 				pf.setGetTime(p.getGetTime());
 				pf.setId(p.getId());
-				pf.setIfIndex(p.getIfIndex());
+				pf.setIfDescr(p.getIfDescr());
 				pf.setIfInOctets(p.getIfInOctets());
 				pf.setIfOutOctets(p.getIfOutOctets());
 				pf.setIfOperStatus(p.getIfOperStatus());
