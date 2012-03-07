@@ -49,7 +49,7 @@
 	</head>
 
 	<body>
-		<form action="<%=basePath%>add_user.do?flags=${flags}" method="post"
+		<form action="<%=basePath%>admin/add_user.do?flags=${flags}" method="post"
 			name="form" id="form" onsubmit="return validateForm()">
 			<div class="layout">
 				<div class="title">

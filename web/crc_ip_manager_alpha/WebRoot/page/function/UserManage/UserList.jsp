@@ -213,6 +213,9 @@
 			
 			<div class="bottom">
 				<!--  <div class="search_btn" style="float:left" onclick="display_search()"></div>-->
+				<div id="records" style="float:left">
+					<input type="button" style="backgroundd-color:red;float:left" onclick="deleteUserItem()" value="删除选中项目"/>
+				</div>
 				<div class="pagefirst"
 					onclick="topPage()"></div>
 				<div class="pageup"
@@ -227,14 +230,6 @@
 				<div id="records">
 					共有 ${pageModel.totalPages} 页
 				</div>
-				<div class="blank"></div>
-				<div class="blank"></div>
-				<div class="blank"></div>				
-				<div id="records">
-					删除选中用户
-				</div>
-				<div class="delete"
-					onclick="deleteUserItem()"></div>
 				<div class="return"
 					onclick="javascript:history.go(-1);"></div>
 				<div id="records" style="float:right">

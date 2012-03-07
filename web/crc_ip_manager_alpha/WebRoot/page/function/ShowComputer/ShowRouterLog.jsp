@@ -227,13 +227,6 @@
 				<div id="records">
 					共有 ${pageModel.totalPages} 页
 				</div>
-				<div class="blank"></div>
-				<div class="blank"></div>
-				<div class="blank"></div>
-				
-				<div class="blank"></div>
-				<div class="blank"></div>
-				<div class="blank"></div>
 				<div class="return"
 					onclick="javascript:history.go(-1);"></div>
 				<div id="records" style="float:right">
