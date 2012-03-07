@@ -117,10 +117,10 @@ public class RequestController {
 			//****************构造告警信息(台账和端口)******************
 			String portState = this.checkPort(portStates);//端口状态检查
 			AlarmForm wf = null;
-			System.out.println("portState-----"+portState+" "+portState.length());
 			if(portState.length()>2 || (fileFlag != null && !fileFlag.equals("1"))){
 				if(AlarmUtil.containsStation(stationJson.getStation_name())){
 					wf = AlarmUtil.getByKey(stationJson.getStation_name());
+					wf.setInfo("");
 				}else{
 					wf = new AlarmForm();
 				}
@@ -155,8 +155,8 @@ public class RequestController {
 			
 			//如果本站点没告警则从map中移除
 			if(wf == null){
-				if(AlarmUtil.containsStation(station.getName())){
-					AlarmUtil.removeStation(station.getName());
+				if(AlarmUtil.containsStation(stationJson.getStation_name())){
+					AlarmUtil.removeStation(stationJson.getStation_name());
 				}
 			}
 			
@@ -340,9 +340,9 @@ public class RequestController {
 			}
 			if(!ports[i].equals("11") && !ports[i].equals("22")){
 				if(ports[i].startsWith("1")){
-					flag.append(i+": 状态由DOWN-->UP");
+					flag.append(i+": 状态由DOWN-->UP ");
 				}else if(ports[i].startsWith("2")){
-					flag.append(i+": 状态由UP-->DOWN");
+					flag.append(i+": 状态由UP-->DOWN ");
 				}else{
 					flag.append(i+": 状态由INIT-->UP(DOWN) ");
 				}
