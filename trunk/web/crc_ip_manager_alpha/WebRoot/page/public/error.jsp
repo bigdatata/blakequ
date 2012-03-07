@@ -11,18 +11,11 @@ function a(){
 var error;
 error = document.getElementById("fb").value;
 var aa= window.confirm(error);
-if (aa) {
-history.go(-1);
-}
-else history.go(-1);
-}
-
-
 
 </script>
 </head>
 <body onload="a()">
 <input type="hidden" id="fb" value="${error}"/>
-
+${error}
 </body>
 </html>
