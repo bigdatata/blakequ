@@ -121,7 +121,14 @@ public class PortServiceImpl implements PortService<Integer, Port> {
 
 	public void deleteItem(Integer[] ids) {
 		// TODO Auto-generated method stub
-		
+		log.debug("delete port by array id");
+		try {
+			portDao.deleteItem(ids);
+		} catch (Exception e) {
+			// TODO: handle exception
+			log.error("delete port by array id fail", e);
+			throw new AppException("删除多个实体失败");
+		}
 	}
 
 	public PageModel<Port> getPortsByRouter(Integer routerId, int pageNo,
