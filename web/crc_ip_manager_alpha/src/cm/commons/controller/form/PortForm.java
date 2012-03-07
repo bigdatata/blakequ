@@ -9,7 +9,7 @@ public class PortForm {
 	private String ifDescr;//端口名称
 	private String portIp;//ip
 	private Integer locIfInCrc;//crc
-	private Integer ifOperStatus;//状态
+	private String ifOperStatus;//状态
 	private Integer locIfInBitsSec;
 	private Integer locIfOutBitsSec;
 	private Integer ifInOctets;
@@ -53,10 +53,11 @@ public class PortForm {
 	public void setLocIfInCrc(Integer locIfInCrc) {
 		this.locIfInCrc = locIfInCrc;
 	}
-	public Integer getIfOperStatus() {
+	
+	public String getIfOperStatus() {
 		return ifOperStatus;
 	}
-	public void setIfOperStatus(Integer ifOperStatus) {
+	public void setIfOperStatus(String ifOperStatus) {
 		this.ifOperStatus = ifOperStatus;
 	}
 	public Integer getLocIfInBitsSec() {
