@@ -3,6 +3,9 @@ package cm.commons.dao.basic;
 import java.io.Serializable;
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
+import cm.commons.dao.hiber.util.Element;
 import cm.commons.exception.AppException;
 import cm.commons.util.PageModel;
 
@@ -71,5 +74,17 @@ public interface BasicDao<K extends Serializable, E> {
 	PageModel<E> getAll(String queryString, int pageNo, int pageSize) throws AppException;
 	
 	int getCounts(String hql);
+	
+	/**
+	 * 查询满足条件的记录
+	 * @param beginRow
+	 * @param pageSize
+	 * @param conditions
+	 * @return
+	 * @throws Exception
+	 */
+	public List<E> findPaged(int beginRow, int pageSize,List<Element> conditions)throws Exception;
+	
+	public long getCounts(List<Element> conditions)throws Exception;
 	
 }

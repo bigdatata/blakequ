@@ -5,7 +5,11 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Query;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+
+import cm.commons.dao.hiber.util.CreateHqlUtil;
+import cm.commons.dao.hiber.util.Element;
 import cm.commons.exception.AppException;
 import cm.commons.util.PageModel;
 
@@ -139,5 +143,30 @@ public abstract class BasicDaoImpl<K extends Serializable, E>  extends Hibernate
 	}
 	public int getCounts(String hql){
 		return getSession().createQuery(hql.toString()).list().size();
+	}
+	
+	public List<E> findPaged(int beginRow, int pageSize,List<Element> conditions)throws Exception{
+		StringBuilder hql=new StringBuilder();
+		hql.append(" from ").append(entityClass.getName()).append(" ");
+		String conditionStr=CreateHqlUtil.createQueryHql(conditions);
+		hql.append(conditionStr);
+		Query query=getSession().createQuery(hql.toString());
+		if (pageSize>0) {
+			query.setFirstResult(beginRow).setMaxResults(pageSize);
+		}
+		return query.list();	
+	}
+	
+	public long getCounts(List<Element> conditions)throws Exception{
+		StringBuilder hql=new StringBuilder();
+		hql.append("select count(*) from ").append(entityClass.getName()).append(" ");
+		String conditionStr=CreateHqlUtil.createQueryHql(conditions);
+		hql.append(conditionStr);
+		Query query = getSession().createQuery(hql.toString());
+		Object object=query.uniqueResult();
+		if (null==object) {
+			return 0;
+		}
+		return Long.parseLong(object.toString());
 	}
 }
