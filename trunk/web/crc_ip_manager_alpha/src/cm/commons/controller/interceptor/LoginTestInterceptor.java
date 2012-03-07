@@ -24,8 +24,8 @@ public class LoginTestInterceptor extends HandlerInterceptorAdapter {
 		int last = str.lastIndexOf("/")+1;
 		System.out.println("当前用户为："+loginUser);
 		CharSequence rq = str.subSequence(last, str.length());
-		if(rq.equals("commit_data.do")){
-			System.out.println("来自站点:"+request.getLocalName()+" "+request.getLocalAddr()+":"+request.getLocalPort()+"数据请求！");
+		if(rq.equals("commit_data.do") || rq.equals("login.do")){
+//			System.out.println("来自站点:"+request.getLocalName()+" "+request.getLocalAddr()+":"+request.getLocalPort()+"数据请求！");
 			return true;
 		}
 		
