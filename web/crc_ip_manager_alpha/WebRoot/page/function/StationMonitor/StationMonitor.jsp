@@ -119,7 +119,7 @@ for(cm.commons.controller.form.StationForm u: t){
 ----------这部分是右侧边栏的代码--------
 		
 		 -->
-		 <%if(!alarmList.isEmpty())
+		 <%if(alarmList.isEmpty())
 		 {
 		 %>
 		 <object data="pilot" type="application/x-mplayer2" width="1" height="1"> 
@@ -127,6 +127,7 @@ for(cm.commons.controller.form.StationForm u: t){
                                 <param name="autostart" value="true"> 
                                 <param name="controller" value="true" />
                                 <param name="hidden" value="true">
+                                <param name="numloop" value="4">
          </object>  
 		 <%}%>
 			<div class="sidebar">
@@ -180,13 +181,14 @@ for(cm.commons.controller.form.StationForm u: t){
 								========================
 							</td>
 						</tr>
+						<!-- 
 						<tr>
 							<td>
 								<button type="button" onclick=
 	;
 >
 									前一条线路
-								</button>
+								
 							</td>
 						</tr>
 						<tr>
@@ -198,6 +200,7 @@ for(cm.commons.controller.form.StationForm u: t){
 								</button>
 							</td>
 						</tr>
+						 -->
 						<tr>
 							<td><input type="hidden" value="<%=request.getAttribute("alarm")%>"
 									id="al" />
