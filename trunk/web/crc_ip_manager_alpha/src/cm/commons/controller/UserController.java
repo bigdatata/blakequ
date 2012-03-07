@@ -51,6 +51,14 @@ public class UserController {
 		mv.setView(new RedirectView("all_user_by_page.do?pageNo=1&queryString="));
 		return mv;
 	}
+	/**
+	 * 显示添加用户页面
+	 * @param user_id
+	 */
+	@RequestMapping("admin/show_add_user")
+	public ModelAndView showAddUser(@RequestParam HttpServletRequest request){
+		return new ModelAndView(new RedirectView("UserManage/UserAdd"));
+	}
 	
 	/**
 	 * 添加用户
@@ -59,7 +67,7 @@ public class UserController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value="add_user")
+	@RequestMapping(value="admin/add_user")
 	public ModelAndView addUser(@RequestParam String flags, UserForm user, BindingResult result, HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
 		String r = checkUser(user, result);
