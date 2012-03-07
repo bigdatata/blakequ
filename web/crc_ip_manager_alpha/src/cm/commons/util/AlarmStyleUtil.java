@@ -9,9 +9,9 @@ import fb.info.fbStation;
 public class AlarmStyleUtil {
 	
 	//stationColors={"station_normal","station_abnormal","station_unknow"};
-	private static String[] stationColors={"#76EE00","EE0000","#000000"};
+	private static String[] stationColors={"#00CD00","EE0000","#000000"};
 	//segmentColors={"segment_normal","segment_abnormal","segment_unknow"};
-	private static String[] segmentColors={"#7A67EE","#FF7F00","#636363"};
+	private static String[] segmentColors={"#0000AA","#FF7F00","#636363"};
 	
 	private static List<AlarmForm> list;
 	
