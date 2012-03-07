@@ -15,6 +15,8 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<link href="<%=path%>/pattern/cm/css/list_public.css" type="text/css"
 			rel="stylesheet" />
+			<script src="<%=path%>/pattern/cm/js/date.js"
+			language="javascript" type="text/javascript"></script>
 		<link rel="stylesheet" type="text/css"
 			href="<%=path%>/pattern/flexigrid/css/flexigrid/flexigrid.css">
 		<script type="text/javascript"
@@ -116,29 +118,28 @@
 			<div class="title">
 				告警信息管理
 			</div>
-			<div class="handle">
-
-				<div class="line"></div>
-
-				<div class="search_btn" onclick="display_search()"></div>
-				<div class="clear"></div>
-			</div>
-			<div class="handle" id="search" style="display: none">
+			<div class="handle" id="search" >
 				<table width="98%" border="0" cellspacing="0" cellpadding="0"
 					align="center">
 					<tr>
 						<td width="86%">
 							<div id="search1" style="display: ">
-								<form>
+								<form action="<%=basePath%>admin/query_alarm_by_page.do?pageNo=1" method="post">
 									<div class="search_input">
-										站点名称:
-										<input name="searchStr" type="text" class="text1"
-											id="searchStr" size="50" maxlength="50" value="${queryStr}">
+										站点名称：
+										<input style="width:100px" type="text" name="id" value="${condition.stationName!=null?condition.stationName:'' }"/>
+									</div>
+									<div class="search_input">
+										起始时间：
+										<input style="width:100px" type="text" id="begindate" name="begindate" value="${condition.startTime!=null?condition.startTime:'' }" onclick="MyCalendar.SetDate(this)"/>
+									</div>
+									<div class="search_input">
+										结束时间：
+										<input style="width:100px" type="text" id="enddate" name="enddate" value="${condition.endTime!=null?condition.endTime:'' }" onclick="MyCalendar.SetDate(this)"/>
 									</div>
 									<div class="search_input">
 										<input type="hidden" name="type" value="find_like">
-										<input name="btnQuery" type="button" class="button1"
-											id="btnQuery" value="查询" onclick="searchComputerItem()">
+										<input type="submit"  value="查询" />
 									</div>
 								</form>
 							</div>
