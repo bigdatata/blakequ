@@ -64,7 +64,12 @@ public class PortController {
 				pf.setIfDescr(p.getIfDescr());
 				pf.setIfInOctets(p.getIfInOctets());
 				pf.setIfOutOctets(p.getIfOutOctets());
-				pf.setIfOperStatus(p.getIfOperStatus());
+				String state = p.getIfOperStatus().toString();
+				if(state.startsWith("1")){
+					pf.setIfOperStatus("正常状态");
+				}else if(state.startsWith("2")){
+					pf.setIfOperStatus("异常状态");
+				}
 				pf.setLocIfInBitsSec(p.getLocIfInBitsSec());
 				pf.setLocIfInCrc(p.getLocIfInCrc());
 				pf.setLocIfOutBitsSec(p.getLocIfOutBitsSec());

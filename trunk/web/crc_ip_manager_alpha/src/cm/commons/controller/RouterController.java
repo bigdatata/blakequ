@@ -126,7 +126,12 @@ public class RouterController {
 					pf.setId(p.getId());
 					pf.setIfDescr(p.getIfDescr());
 					pf.setIfInOctets(p.getIfInOctets());
-					pf.setIfOperStatus(p.getIfOperStatus());
+					String state = p.getIfOperStatus().toString();
+					if(state.startsWith("1")){
+						pf.setIfOperStatus("正常状态");
+					}else if(state.startsWith("2")){
+						pf.setIfOperStatus("异常状态");
+					}
 					pf.setIfOutOctets(p.getIfOutOctets());
 					pf.setLocIfInBitsSec(p.getLocIfOutBitsSec());
 					pf.setLocIfInCrc(p.getLocIfInCrc());
