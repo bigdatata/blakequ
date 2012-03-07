@@ -27,7 +27,7 @@ else
 }
 if(rlf == null)
 {
-	out.print("读取路由信息rlf失败！");
+	out.print("读取路由信息rlf失败！<br/><br/>");
 }
 else
 {
@@ -43,11 +43,11 @@ else
 }
 if(pf == null)
 {
-	out.print("读取端口信息pf失败！");
+	out.print("读取端口信息pf失败！<br/>");
 }
 else
 {
-out.print("路由器端口状态");
+out.print("路由器端口状态<br/>");
 %>
 <table width="770" border="1" style="BORDER-RIGHT: #EDEDED 10px ridge; BORDER-TOP: #EDEDED 10px ridge; BORDER-LEFT: #EDEDED 10px ridge; BORDER-BOTTOM: #EDEDED 10px ridge; BACKGROUND-COLOR: #E0FFFF" cellSpacing=0>
 <tr>
