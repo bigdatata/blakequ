@@ -120,12 +120,12 @@ for(cm.commons.controller.form.StationForm u: t){
 		 <%if(alarmList.isEmpty())
 		 {
 		 %>
-		 <object data="pilot" type="application/x-mplayer2" width="1" height="1"> 
-                                <param name="src" value="<%=path%>/pattern/cm/sound/013kt020.mp3"> 
+		 <object data="<%=path%>/pattern/cm/sound/alarm.mp3" type="application/x-mplayer2" width="1" height="1"> 
+                                <param name="src" value="<%=path%>/pattern/cm/sound/alarm.mp3"> 
                                 <param name="autostart" value="true"> 
                                 <param name="controller" value="true" />
                                 <param name="hidden" value="true">
-                                <param name="numloop" value="4">
+                                <param name="loop" value="4">
          </object>  
 		 <%}%>
 			<div class="sidebar">
