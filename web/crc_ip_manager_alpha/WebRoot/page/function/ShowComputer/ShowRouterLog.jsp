@@ -8,6 +8,8 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.Date"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -16,6 +18,8 @@
 			type="text/css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css"
 			href="<%=path%>/pattern/flexigrid/css/flexigrid/flexigrid.css">
+			<script src="<%=path%>/pattern/cm/js/date.js"
+			language="javascript" type="text/javascript"></script>
 		<script type="text/javascript"
 			src="<%=path%>/pattern/jquery-ui-1.7.1.custom/js/jquery-1.3.2.min.js"></script>
 		<script type="text/javascript"
@@ -114,29 +118,28 @@
 			<div class="title">
 				站点路由日志列表
 			</div>
-					<div class="handle">
-
-				<div class="line"></div>
-
-				<div class="search_btn" onclick="display_search()"></div>
-				<div class="clear"></div>
-			</div>
-			<div class="handle" id="search" style="display: none">
+			<div class="handle" id="search" >
 				<table width="98%" border="0" cellspacing="0" cellpadding="0"
 					align="center">
 					<tr>
 						<td width="86%">
 							<div id="search1" style="display: ">
-								<form>
+								<form action="<%=basePath%>admin/query_router_by_page.do?pageNo=1" method="post">
 									<div class="search_input">
-										站点名称/ID:
-										<input name="searchStr" type="text" class="text1"
-										id="searchStr" size="50" maxlength="50" value="${queryStr}">
+										站点名称：
+										<input style="width:100px" type="text" name="id" value="${condition.stationName!=null?condition.stationName:'' }"/>
+									</div>
+									<div class="search_input">
+										起始时间：
+										<input style="width:100px" type="text" id="begindate" name="begindate" value="${condition.startTime!=null?condition.startTime:'' }" onclick="MyCalendar.SetDate(this)"/>
+									</div>
+									<div class="search_input">
+										结束时间：
+										<input style="width:100px" type="text" id="enddate" name="enddate" value="${condition.endTime!=null?condition.endTime:'' }" onclick="MyCalendar.SetDate(this)"/>
 									</div>
 									<div class="search_input">
 										<input type="hidden" name="type" value="find_like">
-										<input name="btnQuery" type="button" class="button1"
-											id="btnQuery" value="查询" onclick="searchRouterItem()">
+										<input type="submit"  value="查询" />
 									</div>
 								</form>
 							</div>
@@ -154,7 +157,10 @@
 										onClick="AllQuery()">
 								</th>
 								<th width="150" >
-									router_ID
+									所属站点
+								</th>
+								<th width="130" >
+									路由器ID
 								</th>
 								<th width="150" >
 									CUP占有率
@@ -163,13 +169,10 @@
 									内存占有率
 								</th>
 								<th width="250" >
-									路由信息
+									路由器操作系统版本
 								</th>
 								<th width="150" >
 									日志记录时间
-								</th>
-								<th width="150" >
-									所属站点
 								</th>
 								
 							</tr>
@@ -180,8 +183,11 @@
 						<td >
 							<input type="checkbox" name="selectFlag1" class="checkbox1" value="${item.id}">
 						</td>
+						<td>
+							${item.stationName}
+						</td>
 						<td >
-						${item.stationName}的路由
+						${item.id}
 						</td>
 
 						<td >
@@ -196,9 +202,7 @@
 						<td >
 							${item.currTime}
 						</td>
-						<td>
-							${item.stationName}
-						</td>
+						
 								</tr>
 							</c:forEach>
 							
