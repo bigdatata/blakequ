@@ -88,11 +88,11 @@ public class StationRouteController {
 		Map<String, Object> m = new HashMap<String, Object>();
 		List<AlarmForm> list = AlarmUtil.getAllAlarm();
 		List<StationForm> station_list=getStationFromRoute(route_id);
+		System.out.println("stationlist-----"+station_list.size());
 		m.put("all_route", routes);
 		m.put("station_info", sif);
 		m.put("alarm_list", list);//这是告警信息
 		m.put("segment_list", segmentForms);
-		m.put("station_list", getStationFromRoute(route_id));
 		m.put("station_list", station_list);
 		mv.addAllObjects(m);
 		mv.setViewName("StationMonitor/StationMonitor");
@@ -276,18 +276,18 @@ public class StationRouteController {
 		int route_id = Integer.parseInt(request.getParameter("route_id"));
 		request.getSession().setAttribute("current_route_id", route_id);
 		ModelAndView mv = new ModelAndView();
-		List<Station> stations = stationService.getAllStationByRoute(route_id);
-		//单独站点
-		List<Station> lastStations = stationService.getStationsNotInSegment();
-		if(lastStations != null){
-			stations.addAll(lastStations);
-		}
+//		List<Station> stations = stationService.getAllStationByRoute(route_id);
+//		//单独站点
+//		List<Station> lastStations = stationService.getStationsNotInSegment();
+//		if(lastStations != null){
+//			stations.addAll(lastStations);
+//		}
 		List<Route> routes = routeService.getAll();
 
 		Map<String, Object> model = new HashMap<String, Object>();
 		List<StationForm> station_list=getStationFromRoute(route_id);
 		model.put("routes", routes);
-		model.put("stations", stations);
+//		model.put("stations", stations);
 		model.put("station_list", station_list);
 		mv.addAllObjects(model);
 		mv.setViewName("StationModify/GetStationFromRoute");

@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-失败
-${error}
+<font color="#FF0000">${error}</font>
 </body>
 </html>
