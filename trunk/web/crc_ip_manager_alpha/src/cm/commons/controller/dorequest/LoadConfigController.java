@@ -142,7 +142,7 @@ public class LoadConfigController {
 	
 	private ModelAndView checkError(){
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("error", "配置文件格式有误，请重新检查配置文件！");
+		mv.addObject("error", "配置文件格式或路径有误，请重新检查配置文件！");
 		mv.setViewName("../public/error");
 		return mv;
 	}

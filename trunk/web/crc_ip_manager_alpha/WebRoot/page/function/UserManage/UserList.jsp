@@ -143,10 +143,6 @@
 							<div id="search1" style="display: ">
 								<form action="<%=basePath%>admin/query_user_by_page.do?pageNo=1" method="post">
 									<div class="search_input">
-										ID：
-										<input style="width:100px" type="text" name="id" value="${condition.id!=null?condition.id:'' }"/>
-									</div>
-									<div class="search_input">
 										用户名：
 										<input style="width:100px" type="text" name="username" value="${condition.username!=null?condition.username:'' }"/>
 									</div>

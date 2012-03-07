@@ -78,8 +78,6 @@ public class UserController {
 		u.setPassword(user.getPassword());
 		u.setAuthority(user.getAuthority());
 		userService.saveOrUpdate(u);
-		request.getSession().setAttribute("user", u);
-		request.setAttribute("info", "点击登录按钮登录!");
 		if(flags.equals("admin")){
 			return new ModelAndView(new RedirectView("admin/all_user.do"));
 		}else{

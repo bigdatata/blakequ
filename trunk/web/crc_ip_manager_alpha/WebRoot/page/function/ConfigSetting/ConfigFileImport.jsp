@@ -22,7 +22,7 @@ function a()
 {
 var path;
 path = document.getElementById("path").value;
-var aa= window.confirm("请再次确认站点配置文件和线段配置文件已经放入指定目录下");
+var aa= window.confirm("再次确认站点和线段配置文件路径");
 if (aa) {
 window.location = "<%=basePath %>admin/load_config.do?path="+path;
 }
