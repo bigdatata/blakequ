@@ -68,7 +68,7 @@
 		//删除提示
 		if (window.confirm("确认删除当前数据？")) {
 			with(document.forms[0]) {
-				action='<%=basePath%>port_log/admin/delete_port_log_by_ids.do?portLogIds='+ids;
+				action='<%=basePath%>port/admin/delete_port_log_by_ids.do?portLogIds='+ids;
 				method="post";
 				submit();
 			}
@@ -87,14 +87,14 @@
 	
 	function topPage() {
 		//var searchStr = document.getElementsByName("searchStr");
-		window.location = "<%=basePath %>port/get_port_by_page.do?pageNo=1&queryString=";
+		window.location = "<%=basePath %>port/get_port_by_page.do?pageNo=1&routerId=";
 	}
 	
 	function previousPage() {
 		if(${pageModel.pageNo==1}){
 			alert("已经到达第一页!");
 		}else{
-			window.location = "<%=basePath %>port/get_port_by_page.do?pageNo=${pageModel.pageNo-1}&queryString=";
+			window.location = "<%=basePath %>port/get_port_by_page.do?pageNo=${pageModel.pageNo-1}&routerId=";
 		}
 	}
 	
@@ -102,12 +102,12 @@
 		if(${pageModel.pageNo==pageModel.totalPages}){
 			alert("已经到达最后一页!");
 		}else{
-			window.location = "<%=basePath %>port/get_port_by_page.do?pageNo=${pageModel.pageNo+1}&queryString=";
+			window.location = "<%=basePath %>port/get_port_by_page.do?pageNo=${pageModel.pageNo+1}&routerId=";
 		}
 	}
 	
 	function bottomPage() {
-		window.location = "<%=basePath %>port/get_port_by_page.do?pageNo=${pageModel.buttomPageNo}&queryString=";
+		window.location = "<%=basePath %>port/get_port_by_page.do?pageNo=${pageModel.buttomPageNo}&routerId=";
 	}
 	
 	</script>
@@ -261,7 +261,7 @@
 					删除选中项目
 				</div>
 				<div class="delete"
-					onclick="deleteRouterItem()"></div>
+					onclick="deletePortItem()"></div>
 				
 				<div class="return"
 					onclick="javascript:history.go(-1);"></div>
