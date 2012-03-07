@@ -124,7 +124,7 @@ public class RouterController {
 					PortForm pf = new PortForm();
 					pf.setGetTime(p.getGetTime());
 					pf.setId(p.getId());
-					pf.setIfIndex(p.getIfIndex());
+					pf.setIfDescr(p.getIfDescr());
 					pf.setIfInOctets(p.getIfInOctets());
 					pf.setIfOperStatus(p.getIfOperStatus());
 					pf.setIfOutOctets(p.getIfOutOctets());
@@ -132,6 +132,12 @@ public class RouterController {
 					pf.setLocIfInCrc(p.getLocIfInCrc());
 					pf.setLocIfOutBitsSec(p.getLocIfOutBitsSec());
 					pf.setPortIp(p.getPortIp());
+					Router r = p.getRouter();
+					if(r != null){
+						pf.setStationName(r.getStation().getName());
+					}else{
+						pf.setStationName("");
+					}
 					rf.getPorts().add(pf);
 				}
 			}

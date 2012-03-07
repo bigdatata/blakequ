@@ -6,7 +6,7 @@ public class PortForm {
 
 	private Integer id;
 	private Date getTime;//time
-	private Integer ifIndex;//端口名称
+	private String ifDescr;//端口名称
 	private String portIp;//ip
 	private Integer locIfInCrc;//crc
 	private Integer ifOperStatus;//状态
@@ -16,6 +16,12 @@ public class PortForm {
 	private Integer ifOutOctets;
 	private String stationName;
 	
+	public String getIfDescr() {
+		return ifDescr;
+	}
+	public void setIfDescr(String ifDescr) {
+		this.ifDescr = ifDescr;
+	}
 	public String getStationName() {
 		return stationName;
 	}
@@ -34,12 +40,7 @@ public class PortForm {
 	public void setGetTime(Date getTime) {
 		this.getTime = getTime;
 	}
-	public Integer getIfIndex() {
-		return ifIndex;
-	}
-	public void setIfIndex(Integer ifIndex) {
-		this.ifIndex = ifIndex;
-	}
+	
 	public String getPortIp() {
 		return portIp;
 	}
@@ -85,7 +86,7 @@ public class PortForm {
 	@Override
 	public String toString() {
 		return "PortForm [getTime=" + getTime + ", id=" + id + ", ifInOctets="
-				+ ifInOctets + ", ifIndex=" + ifIndex + ", ifOperStatus="
+				+ ifInOctets + ", ifDescr=" + ifDescr + ", ifOperStatus="
 				+ ifOperStatus + ", ifOutOctets=" + ifOutOctets
 				+ ", locIfInBitsSec=" + locIfInBitsSec + ", locIfInCrc="
 				+ locIfInCrc + ", locIfOutBitsSec=" + locIfOutBitsSec
