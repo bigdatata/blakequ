@@ -91,27 +91,27 @@
 	
 	function topPage() {
 		//var searchStr = document.getElementsByName("searchStr");
-		window.location = "<%=basePath %>computer_log/get_by_time.do?pageNo=1&queryString=";
+		window.location = "<%=basePath %>computer_log/get_log_by_page.do?pageNo=1&stationName=${stationName!=null?stationName:'' }&beginDate=${beginDate!=null?beginDate:'' }&endDate=${endDate!=null?endDate:''}";
 	}
 	
 	function previousPage() {
-		if(${pageModel.pageNo==1}){
+		if(${pageModel.pageNo<=1}){
 			alert("已经到达第一页!");
 		}else{
-			window.location = "<%=basePath %>computer_log/get_by_time.do?pageNo=${pageModel.pageNo-1}&queryString=";
+			window.location = "<%=basePath %>computer_log/get_log_by_page.do?pageNo=${pageModel.pageNo-1}&stationName=${stationName!=null?stationName:'' }&beginDate=${beginDate!=null?beginDate:'' }&endDate=${endDate!=null?endDate:''}";
 		}
 	}
 	
 	function nextPage() {
-		if(${pageModel.pageNo==pageModel.totalPages}){
+		if(${pageModel.pageNo>=pageModel.totalPages}){
 			alert("已经到达最后一页!");
 		}else{
-			window.location = "<%=basePath %>computer_log/get_by_time.do?pageNo=${pageModel.pageNo+1}&queryString=";
+			window.location = "<%=basePath %>computer_log/get_log_by_page.do?pageNo=${pageModel.pageNo+1}&stationName=${stationName!=null?stationName:'' }&beginDate=${beginDate!=null?beginDate:'' }&endDate=${endDate!=null?endDate:''}";
 		}
 	}
 	
 	function bottomPage() {
-		window.location = "<%=basePath %>computer_log/get_by_time.do?pageNo=${pageModel.buttomPageNo}&queryString=";
+		window.location = "<%=basePath %>computer_log/get_log_by_page.do?pageNo=${pageModel.buttomPageNo}&stationName=${stationName!=null?stationName:'' }&beginDate=${beginDate!=null?beginDate:'' }&endDate=${endDate!=null?endDate:''}";
 	}
 
 	</script>
@@ -128,21 +128,20 @@
 					<tr>
 						<td width="86%">
 							<div id="search1" style="display: ">
-								<form action="<%=basePath%>admin/query_computer_by_page.do?pageNo=1" method="post">
+								<form action="<%=basePath%>computer_log/get_log_by_page.do?pageNo=1" method="post">
 									<div class="search_input">
 										站点名称：
-										<input style="width:100px" type="text" name="id" value="${condition.stationName!=null?condition.stationName:'' }"/>
+										<input style="width:100px" type="text" name="stationName" value="${stationName!=null?stationName:'' }"/>
 									</div>
 									<div class="search_input">
 										起始时间：
-										<input style="width:100px" type="text" id="beginDate" name="beginDate" onclick="MyCalendar.SetDate(this)"/>
+										<input style="width:100px" type="text" name="beginDate"  id="beginDate" value="${beginDate!=null?beginDate:'' }" onclick="MyCalendar.SetDate(this)"/>
 									</div>
 									<div class="search_input">
 										结束时间：
-										<input style="width:100px" type="text" id="endDate" name="endDate" onclick="MyCalendar.SetDate(this)"/>
+										<input style="width:100px" type="text" name="endDate" id="endDate" value="${endDate!=null?endDate:'' }" onclick="MyCalendar.SetDate(this)"/>
 									</div>
 									<div class="search_input">
-										<input type="hidden" name="type" value="find_like">
 										<input type="submit"  value="查询" />
 									</div>
 								</form>
@@ -187,7 +186,7 @@
 											value="${item.id}">
 									</td>
 									<td>
-										${item.stationName}
+										${item.computer.station.name!=null?item.computer.station.name:''}
 									</td>
 									<td>
 									${item.id}
@@ -210,15 +209,16 @@
 				</form>
 			</div>
 			<div class="bottom">
-			<div id="records" style="float:left">
+				<div id="records" style="float:left">
 					<input type="button" style="backgroundd-color:red;float:left" onclick="deleteComputerItem()" value="删除选中项目"/>
 				</div>
+
 				<div class="pagefirst"
 					onclick="topPage()"></div>
 				<div class="pageup"
 					onclick="previousPage()"></div>
 				<div id="pages">
-					${pageModel.pageNo } of ${pageModel.totalPages}
+					${pageModel.totalPages==0?0:pageModel.pageNo} / ${pageModel.totalPages}
 				</div>
 				<div class="pagedown"
 					onclick="nextPage()"></div>
@@ -230,11 +230,16 @@
 				<div class="blank"></div>
 				<div class="blank"></div>
 				<div class="blank"></div>
-				<div id="records">
+<!-- 				<div id="records">
 					按电脑ID排序
 				</div>
 				<div class="computer"
-					onclick="sortByComputerId()"></div>
+					onclick="sortByComputerId()"></div> -->
+
+				<div class="blank"></div>
+				<div class="blank"></div>
+				<div class="blank"></div>
+
 				
 				
 				<div class="return"

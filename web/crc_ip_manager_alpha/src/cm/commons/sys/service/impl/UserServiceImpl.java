@@ -7,7 +7,9 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cm.commons.controller.form.UserForm;
+import cm.commons.dao.hiber.util.Element;
 import cm.commons.exception.AppException;
+import cm.commons.pojos.RouterLog;
 import cm.commons.pojos.User;
 import cm.commons.sys.dao.UserDao;
 import cm.commons.sys.service.UserService;
@@ -179,9 +181,23 @@ public class UserServiceImpl implements UserService<Integer, User> {
 		}
 	}
 
-	public PageModel<User> getPagedUserByUserCondition(User user,
+	public PageModel<User> getPagedUserByCondition(List<Element> conditions,
 			int pageNo, int pageSize) {
-		return userDao.getPagedUserByUserCondition(user, pageNo, pageSize);
+		try {
+		PageModel pageModel = new PageModel();
+		pageModel.setPageNo(pageNo);
+		pageModel.setPageSize(pageSize);
+		List<RouterLog> list=userDao.findPaged((pageNo-1) * pageSize, pageSize, conditions);
+		pageModel.setList(list);
+		
+			pageModel.setTotalRecords((int)userDao.getCounts(conditions));
+			return pageModel;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			log.error("分页查询满足添加的用户失败 "+this.getClass().getName(), e);
+			return null;
+		}
 		
 	}
 

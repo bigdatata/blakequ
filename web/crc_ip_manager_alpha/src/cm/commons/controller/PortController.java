@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,9 +16,14 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import cm.commons.controller.form.PageModelForm;
 import cm.commons.controller.form.PortForm;
+import cm.commons.dao.hiber.util.Element;
+import cm.commons.dao.hiber.util.Link;
+import cm.commons.dao.hiber.util.OP;
+import cm.commons.pojos.ComputerLog;
 import cm.commons.pojos.Port;
 import cm.commons.pojos.Router;
 import cm.commons.stat.service.PortService;
+import cm.commons.util.DateAndTimestampUtil;
 import cm.commons.util.NullUtil;
 import cm.commons.util.PageModel;
 
@@ -40,7 +46,7 @@ public class PortController {
 	 * @param request 路由器id
 	 * @return
 	 */
-	@RequestMapping("get_port_by_page")
+	@RequestMapping("get_port_by_page_old")
 	public ModelAndView getPortsByPage(@RequestParam int pageNo, @RequestParam Integer routerId, HttpServletRequest request){
 		ModelAndView mv = new ModelAndView();
 		int pageSize = Integer.parseInt(request.getSession().getServletContext().getInitParameter("page-size"));
@@ -110,6 +116,40 @@ public class PortController {
 		pmf.setPageSize(pageSize);
 		pmf.setTotalPages(pm.getTotalPages());
 		return pmf;
+	}
+	
+	@RequestMapping("get_port_by_page")
+	public ModelAndView showQueryByPage(@RequestParam int pageNo,HttpServletRequest request,
+			HttpServletResponse response){
+		List<Element> conditions=new ArrayList<Element>();
+		String stationName=request.getParameter("stationName");
+		String beginDate=request.getParameter("beginDate");
+		String endDate=request.getParameter("endDate");
+		
+		if(NullUtil.isNull(beginDate)){
+			beginDate=DateAndTimestampUtil.getNowStr("yyyy-MM-01");
+		}
+		request.setAttribute("beginDate", beginDate);
+		conditions.add(new Element(Link.WHERE,OP.GREAT_EQ,"getTime",beginDate));
+		if(NullUtil.isNull(endDate)){
+			endDate=DateAndTimestampUtil.getNowStr("yyyy-MM-dd");
+		}
+		request.setAttribute("endDate", endDate);			
+		conditions.add(new Element(Link.AND,OP.LESS_EQ,"getTime",endDate));
+		
+		if(NullUtil.notNull(stationName)){	
+			conditions.add(new Element(Link.AND,OP.LIKE,"router.station.name","%"+stationName+"%"));
+		}
+		request.setAttribute("stationName", stationName);
+		conditions.add(new Element(Link.ORDER,"getTime",false));
+		ModelAndView mv = new ModelAndView();
+		//从web.xml的配置中配置页面大小
+		int pageSize = Integer.parseInt(request.getSession().getServletContext().getInitParameter("page-size"));
+		PageModel<Port> pageModel = portService.getPagedWithCondition(conditions, pageNo, pageSize);
+		mv.addObject("pageModel", pageModel);
+		mv.addObject("ports", pageModel.getList());
+		mv.setViewName("ShowComputer/ShowPortLog");
+		return mv;
 	}
 	
 

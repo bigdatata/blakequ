@@ -2,6 +2,7 @@ package cm.commons.stat.service;
 
 import java.util.List;
 
+import cm.commons.dao.hiber.util.Element;
 import cm.commons.exception.AppException;
 import cm.commons.service.basic.BasicService;
 import cm.commons.util.PageModel;
@@ -22,4 +23,7 @@ public interface PortService<K, E> extends BasicService<K, E> {
 	 */
 	PageModel<E> getPortsByRouter(Integer routerId, int pageNo,
 			int pageSize) throws AppException;
+	
+	PageModel<E> getPagedWithCondition(List<Element> conditions, 
+			int pageNo, int pageSize) throws AppException;
 }

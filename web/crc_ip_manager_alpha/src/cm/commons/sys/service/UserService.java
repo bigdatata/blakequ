@@ -2,7 +2,7 @@ package cm.commons.sys.service;
 
 import java.util.List;
 
-import cm.commons.controller.form.UserForm;
+import cm.commons.dao.hiber.util.Element;
 import cm.commons.pojos.User;
 import cm.commons.service.basic.BasicService;
 import cm.commons.util.PageModel;
@@ -32,5 +32,5 @@ public interface UserService<K, E>  extends BasicService<K, E>{
 	 */
 	E getByName(String username);
 	
-	PageModel<User> getPagedUserByUserCondition(User user, int pageNo, int pageSize);
+	PageModel<User> getPagedUserByCondition(List<Element> conditions, int pageNo, int pageSize);
 }

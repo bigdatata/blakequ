@@ -87,27 +87,27 @@
 	
 	function topPage() {
 		//var searchStr = document.getElementsByName("searchStr");
-		window.location = "<%=basePath %>router_log/get_log_by_page.do?pageNo=1&queryString=";
+		window.location = "<%=basePath %>router_log/get_log_by_page.do?pageNo=1&stationName=${stationName!=null?stationName:'' }&beginDate=${beginDate!=null?beginDate:'' }&endDate=${endDate!=null?endDate:''}";
 	}
 	
 	function previousPage() {
-		if(${pageModel.pageNo==1}){
+		if(${pageModel.pageNo<=1}){
 			alert("已经到达第一页!");
 		}else{
-			window.location = "<%=basePath %>router_log/get_log_by_page.do?pageNo=${pageModel.pageNo-1}&queryString=";
+			window.location = "<%=basePath %>router_log/get_log_by_page.do?pageNo=${pageModel.pageNo-1}&stationName=${stationName!=null?stationName:'' }&beginDate=${beginDate!=null?beginDate:'' }&endDate=${endDate!=null?endDate:''}";
 		}
 	}
 	
 	function nextPage() {
-		if(${pageModel.pageNo==pageModel.totalPages}){
+		if(${pageModel.pageNo>=pageModel.totalPages}){
 			alert("已经到达最后一页!");
 		}else{
-			window.location = "<%=basePath %>router_log/get_log_by_page.do?pageNo=${pageModel.pageNo+1}&queryString=";
+			window.location = "<%=basePath %>router_log/get_log_by_page.do?pageNo=${pageModel.pageNo+1}&stationName=${stationName!=null?stationName:'' }&beginDate=${beginDate!=null?beginDate:'' }&endDate=${endDate!=null?endDate:''}";
 		}
 	}
 	
 	function bottomPage() {
-		window.location = "<%=basePath %>router_log/get_log_by_page.do?pageNo=${pageModel.buttomPageNo}&queryString=";
+		window.location = "<%=basePath %>router_log/get_log_by_page.do?pageNo=${pageModel.buttomPageNo}&stationName=${stationName!=null?stationName:'' }&beginDate=${beginDate!=null?beginDate:'' }&endDate=${endDate!=null?endDate:''}";
 	}
 	
 	</script>
@@ -183,7 +183,7 @@
 							<input type="checkbox" name="selectFlag1" class="checkbox1" value="${item.id}">
 						</td>
 						<td>
-							${item.router.station.name}
+							${item.router.station.name!=null?item.router.station.name:''}
 						</td>
 						<td >
 						${item.id}
@@ -218,7 +218,7 @@
 				<div class="pageup"
 					onclick="previousPage()"></div>
 				<div id="pages">
-					${pageModel.pageNo } of ${pageModel.totalPages}
+					${pageModel.totalPages==0?0:pageModel.pageNo} / ${pageModel.totalPages}
 				</div>
 				<div class="pagedown"
 					onclick="nextPage()"></div>

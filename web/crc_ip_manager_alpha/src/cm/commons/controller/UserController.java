@@ -9,13 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import cm.commons.controller.form.PageModelForm;
 import cm.commons.controller.form.UserForm;
+import cm.commons.dao.hiber.util.Element;
+import cm.commons.dao.hiber.util.Link;
+import cm.commons.dao.hiber.util.OP;
 import cm.commons.pojos.User;
 import cm.commons.sys.service.UserService;
 import cm.commons.util.NullUtil;
@@ -154,25 +156,28 @@ public class UserController {
 	
 
 	@RequestMapping("admin/query_user_by_page")
-	public ModelAndView showQueryUserByPage(@RequestParam int pageNo,HttpServletRequest request){
-		User condition=new User();
-		String id=request.getParameter("id");
-		if(NullUtil.notNull(id)){
-			condition.setId(Integer.valueOf(id));
+	public ModelAndView showQueryUserByPage(User cond,@RequestParam int pageNo,HttpServletRequest request){
+		List<Element> conditions=new ArrayList<Element>();
+		String username=cond.getUsername();
+		boolean isNotNullUserName=NullUtil.notNull(username);
+		if(isNotNullUserName){
+			conditions.add(new Element(Link.WHERE,OP.LIKE,"username",username));
 		}
-		String username=request.getParameter("username");
-		if(NullUtil.notNull(username)){
-			condition.setUsername(username);
+		String authority=cond.getAuthority();
+		boolean isNotNullAuthority=NullUtil.notNull(authority);
+		
+		if(isNotNullUserName&&isNotNullAuthority){
+			conditions.add(new Element(Link.AND,OP.EQ,"authority",authority));
 		}
-		String authority=request.getParameter("authority");
-		if(NullUtil.notNull(authority)){
-			condition.setAuthority(authority);
+		if(!isNotNullUserName&&isNotNullAuthority){
+			conditions.add(new Element(Link.WHERE,OP.EQ,"authority",authority));
 		}
+		
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("condition", condition);
+		mv.addObject("condition", cond);
 		//从web.xml的配置中配置页面大小
 		int pageSize = Integer.parseInt(request.getSession().getServletContext().getInitParameter("page-size"));
-		PageModel<User> pageModel=userService.getPagedUserByUserCondition(condition, pageNo, pageSize);
+		PageModel<User> pageModel=userService.getPagedUserByCondition(conditions, pageNo, pageSize);
 		mv.addObject("pageModel", pageModel);
 		mv.addObject("user_list", pageModel.getList());
 		mv.setViewName("UserManage/UserList");
