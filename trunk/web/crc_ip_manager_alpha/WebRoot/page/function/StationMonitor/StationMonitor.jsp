@@ -97,19 +97,17 @@
 List<cm.commons.controller.form.SegmentForm> o = (List<cm.commons.controller.form.SegmentForm>)request.getAttribute("segment_list");
 List<cm.commons.controller.form.StationForm> t = (List<cm.commons.controller.form.StationForm>)request.getAttribute("station_list");
 
-fbStation[] sxy = new fbStation[o.size()+2];
-fbSegment[] sg = new fbSegment[t.size()+2];
+fbStation[] sxy = new fbStation[t.size()+2];
+fbSegment[] sg = new fbSegment[o.size()+2];
 int sxy_num=0;
 int sg_num=0;
 System.out.println(o.size());
 System.out.println(t.size());
 for(cm.commons.controller.form.SegmentForm u: o){
-	sg[sg_num] = new fbSegment(u.getId(),u.getStartX(),u.getStartY(),u.getEndX(),u.getEndY());
-	sg_num++;
+	sg[sg_num++] = new fbSegment(u.getId(),u.getStartX(),u.getStartY(),u.getEndX(),u.getEndY());
 }		
 for(cm.commons.controller.form.StationForm u: t){
-  	sxy[sxy_num] = new fbStation(u.getId(),u.getName(),u.getX(),u.getY());
-	sxy_num++;
+  	sxy[sxy_num++] = new fbStation(u.getId(),u.getName(),u.getX(),u.getY());
  }
 %>
 	<body>
