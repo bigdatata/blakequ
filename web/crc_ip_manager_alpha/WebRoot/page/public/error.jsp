@@ -5,8 +5,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+function a(){
+
+var error;
+error = document.getElementById("fb").value;
+var aa= window.confirm(error);
+if (aa) {
+history.go(-1);
+}
+else history.go(-1);
+}
+
+
+
+</script>
 </head>
-<body>
+<body onload="a()">
+<input type="hidden" id="fb" value="${error}"/>
 <font color="#FF0000">${error}</font>
 </body>
 </html>
