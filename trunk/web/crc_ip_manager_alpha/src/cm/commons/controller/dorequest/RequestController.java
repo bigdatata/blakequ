@@ -88,7 +88,7 @@ public class RequestController {
 	        stationJson = (StationJson) BeanConverter.toJavaBean(stationJson, content);
 	        routerJson = (RouterJson) BeanConverter.toJavaBean(routerJson, content);
 	        List<PortJson> portJsonList = BeanConverter.arrayToJavaBean(content, PortJson.class, "portDatas");
-	        
+
 	        //********save or update station, computer,log********
 	        Station station = this.saveOrUpdateComputer(stationJson, computerJson);
 	        
@@ -117,6 +117,7 @@ public class RequestController {
 			//****************构造告警信息(台账和端口)******************
 			String portState = this.checkPort(portStates);//端口状态检查
 			AlarmForm wf = null;
+			System.out.println("portState-----"+portState+" "+portState.length());
 			if(portState.length()>2 || (fileFlag != null && !fileFlag.equals("1"))){
 				if(AlarmUtil.containsStation(stationJson.getStation_name())){
 					wf = AlarmUtil.getByKey(stationJson.getStation_name());
@@ -325,8 +326,18 @@ public class RequestController {
 	 * @return
 	 */
 	private String checkPort(String[] ports){
-		StringBuilder flag = new StringBuilder("端口");
+		StringBuilder flag = null;
+		if(ports.length == 0){
+			flag = new StringBuilder("无法获取路由数据");
+			return flag.toString();
+		}else{
+			flag = new StringBuilder("端口");
+		}
 		for(int i=0; i<ports.length; i++){
+			System.out.println("ports----"+ports[i]);
+			if(ports[i].equals("10") || ports[i].equals("20")){
+				break;
+			}
 			if(!ports[i].equals("11") && !ports[i].equals("22")){
 				if(ports[i].startsWith("1")){
 					flag.append(i+": 状态由DOWN-->UP");
