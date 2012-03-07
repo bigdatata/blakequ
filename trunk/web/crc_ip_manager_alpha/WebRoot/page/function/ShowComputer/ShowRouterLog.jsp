@@ -131,11 +131,11 @@
 									</div>
 									<div class="search_input">
 										起始时间：
-										<input style="width:100px" type="text" id="begindate" name="begindate" value="${condition.startTime!=null?condition.startTime:'' }" onclick="MyCalendar.SetDate(this)"/>
+										<input style="width:100px" type="text" id="beginDate" name="beginDate" onclick="MyCalendar.SetDate(this)"/>
 									</div>
 									<div class="search_input">
 										结束时间：
-										<input style="width:100px" type="text" id="enddate" name="enddate" value="${condition.endTime!=null?condition.endTime:'' }" onclick="MyCalendar.SetDate(this)"/>
+										<input style="width:100px" type="text" id="endDate" name="endDate" onclick="MyCalendar.SetDate(this)"/>
 									</div>
 									<div class="search_input">
 										<input type="hidden" name="type" value="find_like">
