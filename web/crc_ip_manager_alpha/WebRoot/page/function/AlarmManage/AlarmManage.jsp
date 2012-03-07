@@ -118,6 +118,7 @@
 			<div class="title">
 				告警信息管理
 			</div>
+			<!--  
 			<div class="handle" id="search" >
 				<table width="98%" border="0" cellspacing="0" cellpadding="0"
 					align="center">
@@ -147,6 +148,7 @@
 					</tr>
 				</table>
 			</div>
+			-->
 			<div class="list" id="list">
 				<form name="data" method="post">
 					<table class="flexme1">
