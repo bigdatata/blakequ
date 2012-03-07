@@ -119,8 +119,16 @@ for(cm.commons.controller.form.StationForm u: t){
 ----------这部分是右侧边栏的代码--------
 		
 		 -->
-		 
-		 
+		 <%if(!alarmList.isEmpty())
+		 {
+		 %>
+		 <object data="pilot" type="application/x-mplayer2" width="1" height="1"> 
+                                <param name="src" value="<%=path%>/pattern/cm/sound/013kt020.mp3"> 
+                                <param name="autostart" value="true"> 
+                                <param name="controller" value="true" />
+                                <param name="hidden" value="true">
+         </object>  
+		 <%}%>
 			<div class="sidebar">
 				<form action="<%=basePath%>main.do" method="post">
 					<table width="120px">
@@ -309,16 +317,9 @@ for(cm.commons.controller.form.StationForm u: t){
 			</div>
 
 		</div>
-		<%
-		if (!alarmList.isEmpty())
-		 {%>
-		 <object data="pilot" type="application/x-mplayer2" width="1" height="1"> 
-                                <param name="src" value="<%=path%>/pattern/cm/sound/013kt020.mp3"> 
-                                <param name="autostart" value="true"> 
-                                <param name="controller" value="true" />
-                                <param name="hidden" value="true"> 
-         </object>    
-		<% }%>
+
+  
+	
 		<!--  
 		---下面是右击菜单的div
 		---在右击的情况下触发
