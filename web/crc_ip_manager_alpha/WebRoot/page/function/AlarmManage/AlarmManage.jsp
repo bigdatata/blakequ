@@ -162,11 +162,8 @@
 								<th width="200">
 									告警线段
 								</th>
-								<th width="400">
+								<th width="500">
 									告警内容
-								</th>
-								<th width="100">
-									告警状态
 								</th>
 								<th width="200">
 									告警时间
@@ -181,16 +178,13 @@
 											value="${item.id}">
 									</td>
 									<td>
-										${item.id}
+										${item.stationName}
 									</td>
 									<td>
-									   ${item.stationName}
+									   ${item.sg1_name}---${item.sg2_name}
 									</td>
 									<td>
 										${item.info}
-									</td>
-									<td>
-										${item.state}
 									</td>
 									<td>
 										${item.time}
