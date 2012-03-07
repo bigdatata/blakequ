@@ -127,9 +127,9 @@ public class RequestController {
 				//台账文件
 				if(fileFlag.equals("0") || fileFlag.equals("")){
 					if(wf.getInfo() == null){
-						wf.setInfo("站点"+station.getName()+"台账文件读取异常!");
+						wf.setInfo("请单击车站"+station.getName()+"图标右键查看设备故障!");
 					}else{
-						wf.setInfo(wf.getInfo()+" 站点"+station.getName()+"台账文件读取异常!");
+						wf.setInfo(wf.getInfo()+"请单击车站"+station.getName()+"图标右键查看设备故障!");
 					}
 				}
 				//端口
@@ -190,7 +190,7 @@ public class RequestController {
 			af.setState(1);
 			af.setStation_id(warnStation);
 			af.setTime(new Date(System.currentTimeMillis()));
-			af.setInfo("站点:"+name+"状态未知！");
+			af.setInfo("对站点:"+name+"方向通信信号未正常获取！");
 			AlarmUtil.addToMap(name, af);
 		}
 	}
