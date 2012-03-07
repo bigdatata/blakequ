@@ -385,6 +385,8 @@ public class RequestController {
 					wff.setSegment_id(s.getId());
 					wff.setSg1(s1);
 					wff.setSg2(s2);
+					wff.setSg1_name(s.getStationByStation1Id().getName());
+					wff.setSg2_name(s.getStationByStation2Id().getName());
 					wff.setStation_id(0);
 					wff.setState(1);
 					wff.setStationName(station.getName());
