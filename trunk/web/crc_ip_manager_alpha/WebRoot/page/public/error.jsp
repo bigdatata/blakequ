@@ -23,6 +23,6 @@ else history.go(-1);
 </head>
 <body onload="a()">
 <input type="hidden" id="fb" value="${error}"/>
-<font color="#FF0000">${error}</font>
+
 </body>
 </html>
