@@ -90,7 +90,6 @@ public class RouterLogController {
 	@RequestMapping("get_log_by_page")
 	public ModelAndView showQueryByPage(@RequestParam int pageNo,HttpServletRequest request,
 			HttpServletResponse response){
-		User condition=new User();
 //		String id=request.getParameter("id");
 //		if(NullUtil.notNull(id)){
 //			condition.setId(Integer.valueOf(id));
@@ -113,7 +112,7 @@ public class RouterLogController {
 		conditions.add(new Element(Link.AND,OP.LESS_EQ,"currTime",endDate));
 		
 		if(NullUtil.notNull(stationName)){	
-			conditions.add(new Element(Link.AND,OP.LIKE,"router.station.name",stationName));
+			conditions.add(new Element(Link.AND,OP.LIKE,"router.station.name","%"+stationName+"%"));
 		}
 		request.setAttribute("stationName", stationName);
 		conditions.add(new Element(Link.ORDER,"currTime",false));

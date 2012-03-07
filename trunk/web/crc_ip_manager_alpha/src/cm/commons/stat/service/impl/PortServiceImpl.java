@@ -6,8 +6,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import cm.commons.dao.hiber.util.Element;
 import cm.commons.exception.AppException;
 import cm.commons.pojos.Port;
+import cm.commons.pojos.RouterLog;
 import cm.commons.stat.dao.PortDao;
 import cm.commons.stat.service.PortService;
 import cm.commons.util.PageModel;
@@ -143,6 +145,22 @@ public class PortServiceImpl implements PortService<Integer, Port> {
 			log.error("get ports by router id fail!", e);
 			throw new AppException("获取路由端口失败");
 		}
+	}
+
+	public PageModel<Port> getPagedWithCondition(List<Element> conditions,
+			int pageNo, int pageSize) throws AppException {
+			try {
+				PageModel pageModel = new PageModel();
+				pageModel.setPageNo(pageNo);
+				pageModel.setPageSize(pageSize);
+				List<Port> list=portDao.findPaged((pageNo-1) * pageSize, pageSize, conditions);
+				pageModel.setList(list);
+				pageModel.setTotalRecords((int)portDao.getCounts(conditions));
+				return pageModel;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				throw new AppException("查询满足条件的路由器端口历史信息出错");
+			}
 	}
 
 }

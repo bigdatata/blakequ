@@ -180,7 +180,6 @@ public class RouterLogServiceImpl implements RouterLogService<Integer, RouterLog
 			pageModel.setPageNo(pageNo);
 			pageModel.setPageSize(pageSize);
 			List<RouterLog> list=routerLogDao.findPaged((pageNo-1) * pageSize, pageSize, conditions);
-			System.out.println(list.size());
 			pageModel.setList(list);
 			pageModel.setTotalRecords((int)routerLogDao.getCounts(conditions));
 			return pageModel;

@@ -108,7 +108,7 @@
 	}
 	
 	function previousPage() {
-		if(${pageModel.pageNo==1}){
+		if(${pageModel.pageNo<=1}){
 			alert("已经到达第一页!");
 		}else{
 			window.location = "<%=basePath%>admin/query_user_by_page.do?pageNo=${pageModel.pageNo-1}&id=${condition.id}&username=${condition.username}&authority=${condition.authority}";
@@ -116,7 +116,7 @@
 	}
 	
 	function nextPage() {
-		if(${pageModel.pageNo==pageModel.totalPages}){
+		if(${pageModel.pageNo>=pageModel.totalPages}){
 			alert("已经到达最后一页!");
 		}else{
 			window.location = "<%=basePath%>admin/query_user_by_page.do?pageNo=${pageModel.pageNo+1}&id=${condition.id}&username=${condition.username}&authority=${condition.authority}";
@@ -214,14 +214,14 @@
 			<div class="bottom">
 				<!--  <div class="search_btn" style="float:left" onclick="display_search()"></div>-->
 				<div id="records" style="float:left">
-					<input type="button" style="backgroundd-color:red;float:left" onclick="deleteUserItem()" value="删除选中项目"/>
+					<input type="button" style="backgroundd-color:red;float:left" onclick="deleteUserItem()" value="删除选中用户"/>
 				</div>
 				<div class="pagefirst"
 					onclick="topPage()"></div>
 				<div class="pageup"
 					onclick="previousPage()"></div>
 				<div id="pages">
-					${pageModel.pageNo } / ${pageModel.totalPages}
+					${pageModel.totalPages==0?0:pageModel.pageNo} / ${pageModel.totalPages}
 				</div>
 				<div class="pagedown"
 					onclick="nextPage()"></div>
@@ -230,6 +230,11 @@
 				<div id="records">
 					共有 ${pageModel.totalPages} 页
 				</div>
+
+				<div class="blank"></div>
+				<div class="blank"></div>
+				<div class="blank"></div>				
+
 				<div class="return"
 					onclick="javascript:history.go(-1);"></div>
 				<div id="records" style="float:right">

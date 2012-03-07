@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.RequestWrapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,15 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import cm.commons.controller.form.ComputerLogForm;
 import cm.commons.controller.form.PageModelForm;
+import cm.commons.dao.hiber.util.Element;
+import cm.commons.dao.hiber.util.Link;
+import cm.commons.dao.hiber.util.OP;
 import cm.commons.pojos.Computer;
 import cm.commons.pojos.ComputerLog;
+import cm.commons.pojos.User;
 import cm.commons.stat.service.ComputerService;
 import cm.commons.sys.service.ComputerLogService;
+import cm.commons.util.DateAndTimestampUtil;
 import cm.commons.util.NullUtil;
 import cm.commons.util.PageModel;
 
@@ -222,4 +228,42 @@ public class ComputerLogController {
 		return computerLogs;
 	}
 	*/
+	@RequestMapping("get_log_by_page")
+	public ModelAndView showQueryByPage(@RequestParam int pageNo,HttpServletRequest request,
+			HttpServletResponse response){
+//		String id=request.getParameter("id");
+//		if(NullUtil.notNull(id)){
+//			condition.setId(Integer.valueOf(id));
+//			request.setAttribute("id", id);
+//		}
+		List<Element> conditions=new ArrayList<Element>();
+		String stationName=request.getParameter("stationName");
+		String beginDate=request.getParameter("beginDate");
+		String endDate=request.getParameter("endDate");
+		
+		if(NullUtil.isNull(beginDate)){
+			beginDate=DateAndTimestampUtil.getNowStr("yyyy-MM-01");
+		}
+		request.setAttribute("beginDate", beginDate);
+		conditions.add(new Element(Link.WHERE,OP.GREAT_EQ,"currTime",beginDate));
+		if(NullUtil.isNull(endDate)){
+			endDate=DateAndTimestampUtil.getNowStr("yyyy-MM-dd");
+		}
+		request.setAttribute("endDate", endDate);			
+		conditions.add(new Element(Link.AND,OP.LESS_EQ,"currTime",endDate));
+		
+		if(NullUtil.notNull(stationName)){	
+			conditions.add(new Element(Link.AND,OP.LIKE,"computer.station.name","%"+stationName+"%"));
+		}
+		request.setAttribute("stationName", stationName);
+		conditions.add(new Element(Link.ORDER,"currTime",false));
+		ModelAndView mv = new ModelAndView();
+		//从web.xml的配置中配置页面大小
+		int pageSize = Integer.parseInt(request.getSession().getServletContext().getInitParameter("page-size"));
+		PageModel<ComputerLog> pageModel = computerLogService.getPagedWithCondition(conditions, pageNo, pageSize);
+		mv.addObject("pageModel", pageModel);
+		mv.addObject("computerLogs", pageModel.getList());
+		mv.setViewName("ShowComputer/ShowComputerLog");
+		return mv;
+	}
 }
