@@ -12,10 +12,11 @@ var error;
 error = document.getElementById("fb").value;
 var aa= window.confirm(error);
 
+}
 </script>
 </head>
 <body onload="a()">
 <input type="hidden" id="fb" value="${error}"/>
-${error}
+<font color="#ff0000">${error}</font>
 </body>
 </html>
