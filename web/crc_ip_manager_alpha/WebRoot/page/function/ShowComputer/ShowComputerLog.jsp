@@ -160,7 +160,10 @@
 										onClick="AllQuery()">
 								</th>
 								<th width="200" >
-									电脑名称
+									所属站点
+								</th>
+								<th width="200" >
+									站点ID
 								</th>
 
 								<th width="200" >
@@ -172,9 +175,7 @@
 								<th width="200" >
 									日志记录时间
 								</th>
-								<th width="200" >
-									所属站点
-								</th>
+								
 							</tr>
 						</thead>
 						<tbody>
@@ -185,7 +186,10 @@
 											value="${item.id}">
 									</td>
 									<td>
-									${item.stationName}的电脑
+										${item.stationName}
+									</td>
+									<td>
+									${item.id}
 									</td>
 									<td >
 										${item.cupRate}
@@ -196,9 +200,7 @@
 									<td >
 										${item.currTime}
 									</td>
-									<td>
-										${item.stationName}
-									</td>
+									
 								</tr>
 							</c:forEach>
 							
