@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import cm.commons.controller.form.PageModelForm;
 import cm.commons.controller.form.PortForm;
 import cm.commons.pojos.Port;
+import cm.commons.pojos.Router;
 import cm.commons.stat.service.PortService;
 import cm.commons.util.PageModel;
 
@@ -68,6 +69,12 @@ public class PortController {
 				pf.setLocIfInCrc(p.getLocIfInCrc());
 				pf.setLocIfOutBitsSec(p.getLocIfOutBitsSec());
 				pf.setPortIp(p.getPortIp());
+				Router r = p.getRouter();
+				if(r != null){
+					pf.setStationName(r.getStation().getName());
+				}else{
+					pf.setStationName("");
+				}
 				listForm.add(pf);
 			}
 		}
