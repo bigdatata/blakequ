@@ -204,6 +204,54 @@ for(cm.commons.controller.form.StationForm u: t){
 									id="al" />
 							</td>
 						</tr>
+						<tr height="60">
+							<td>
+								<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+								<circle cx="30" cy="20" r="10" stroke="black" stroke-width="2"style="fill:#00CD00"/>
+								<text  x="70" y="25" style=font-size:15>站点正常</text>
+								</svg>
+							</td>
+						</tr>
+						<tr height="60">
+							<td>
+								<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+								<circle cx="30" cy="20" r="10" stroke="black" stroke-width="2"style="fill:#EE0000"/>
+								<text  x="70" y="25" style=font-size:15>站点异常</text>
+								</svg>
+							</td>
+						</tr>
+						<tr height="60">
+							<td>
+								<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+								<circle cx="30" cy="20" r="10" stroke="black" stroke-width="2"style="fill:#000000"/>
+								<text  x="70" y="25" style=font-size:15>站点未知</text>
+								</svg>
+							</td>
+						</tr>
+						<tr height="60">
+							<td>
+								<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+								<line x1="10" y1="20" x2="50" y2="20" style="stroke:#0000AA;stroke-width:10" />
+								<text  x="70" y="25" style=font-size:15>线段正常</text>
+								</svg>
+							</td>
+						</tr>
+						<tr height="60">
+							<td>
+								<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+								<line x1="10" y1="20" x2="50" y2="20" style="stroke:#FF7F00;stroke-width:10" />
+								<text  x="70" y="25" style=font-size:15>线段异常</text>
+								</svg>
+							</td>
+						</tr>
+						<tr height="60">
+							<td>
+								<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+								<line x1="10" y1="20" x2="50" y2="20" style="stroke:#636363;stroke-width:10" />
+								<text  x="70" y="25" style=font-size:15>线段未知</text>
+								</svg>
+							</td>
+						</tr>
 					</table>
 				</form>
 			</div>
@@ -340,10 +388,7 @@ for(cm.commons.controller.form.StationForm u: t){
 				<li id="del">
 					查看设备故障
 				</li>
-				<li class="separator"></li>
-				<li id="prop">
-					属性
-				</li>
+				
 			</ul>
 		</div>
 
@@ -361,10 +406,7 @@ for(cm.commons.controller.form.StationForm u: t){
 				routerInfo(o)
 			},
 			'del' : function(o) {
-				alert("删除 " + o.id);
-			},
-			'prop' : function() {
-				alert("查看属性");
+				alert("请添加查看设备故障的函数 ");
 			}
 		}
 	});
