@@ -6,6 +6,8 @@ public class AlarmForm {
 	private int id;//告警id
 	private int station_id;//站点id
 	private int sg1;//如果是线段，开始站点
+	private String sg1_name;//开始站点名字
+	private String sg2_name;//结束站点名字
 	private int sg2;//如果是线段，终止站点
 	private int segment_id;//如果是线段
 	private int state;//故障状态，包括未知，故障，0(正常),1(异常),2(未知)等
@@ -14,6 +16,18 @@ public class AlarmForm {
 	private String stationName;
 	
 	
+	public String getSg1_name() {
+		return sg1_name;
+	}
+	public void setSg1_name(String sg1Name) {
+		sg1_name = sg1Name;
+	}
+	public String getSg2_name() {
+		return sg2_name;
+	}
+	public void setSg2_name(String sg2Name) {
+		sg2_name = sg2Name;
+	}
 	public int getSg1() {
 		return sg1;
 	}
