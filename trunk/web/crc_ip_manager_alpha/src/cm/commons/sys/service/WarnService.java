@@ -3,8 +3,10 @@ package cm.commons.sys.service;
 import java.util.Date;
 import java.util.List;
 
+import cm.commons.dao.hiber.util.Element;
 import cm.commons.pojos.Warn;
 import cm.commons.service.basic.BasicService;
+import cm.commons.util.PageModel;
 
 public interface WarnService<K, E>  extends BasicService<K, E>{
 	/**
@@ -46,4 +48,6 @@ public interface WarnService<K, E>  extends BasicService<K, E>{
 	 * @param stationId
 	 */
 	void deleteByStation(int stationId);
+	
+	PageModel<Warn> getPagedUserByCondition(List<Element> conditions, int pageNo, int pageSize);
 }

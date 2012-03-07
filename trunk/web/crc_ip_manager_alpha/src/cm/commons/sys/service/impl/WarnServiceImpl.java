@@ -7,7 +7,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import cm.commons.dao.hiber.util.Element;
 import cm.commons.exception.AppException;
+import cm.commons.pojos.RouterLog;
+import cm.commons.pojos.User;
 import cm.commons.pojos.Warn;
 import cm.commons.sys.dao.WarnDao;
 import cm.commons.sys.service.WarnService;
@@ -194,6 +197,26 @@ public class WarnServiceImpl implements WarnService<Integer, Warn> {
 			log.error("delete item array fail! "+this.getClass().getName(), e);
 			throw new AppException("删除多个实体失败");
 		}
+	}
+	
+	public PageModel<Warn> getPagedUserByCondition(List<Element> conditions,
+			int pageNo, int pageSize) {
+		try {
+		PageModel pageModel = new PageModel();
+		pageModel.setPageNo(pageNo);
+		pageModel.setPageSize(pageSize);
+		List<RouterLog> list=warnDao.findPaged((pageNo-1) * pageSize, pageSize, conditions);
+		pageModel.setList(list);
+		
+			pageModel.setTotalRecords((int)warnDao.getCounts(conditions));
+			return pageModel;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			log.error("分页查询满足添加的告警失败 "+this.getClass().getName(), e);
+			return null;
+		}
+		
 	}
 	
 
