@@ -55,6 +55,12 @@ function  checkvalue()
    document.loginform.submit(); 
     return (true);   
  }
+ document.onkeydown = function()
+ {
+ if(event.keyCode==13) {
+       checkvalue();
+    }
+ }
 </script > 
 <body>
 <form name="loginform" method="post" action="<%=basePath %>login.do">
