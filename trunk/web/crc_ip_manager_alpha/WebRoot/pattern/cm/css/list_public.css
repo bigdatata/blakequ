@@ -106,9 +106,9 @@ margin-left:5px;}
 	float:left;
 }
 .delete {
-	background: url(../image/delete.png) center no-repeat;
-	width:18px;
-	height:18px;
+	background: url(../image/delete.jpg) center no-repeat;
+	width:90px;
+	height:20px;
 	margin:2px;
 	float:left;
 }
@@ -133,7 +133,15 @@ margin-left:5px;}
 	margin:2px;
 	float:left;
 }
-.pageup:hover, .pagedown:hover, .pagefirst:hover, .pagelast:hover, .delete:hover, .return:hover, .computer:hover{
+.delete:hover
+	{
+	width:90px;
+	height:18px;
+	border: 1px solid #ccc;
+	cursor:pointer;
+	
+	}
+.pageup:hover, .pagedown:hover, .pagefirst:hover, .pagelast:hover,  .return:hover, .computer:hover{
 	width:16px;
 	height:16px;
 	border: 1px solid #ccc;
