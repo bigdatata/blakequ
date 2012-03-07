@@ -226,7 +226,7 @@ function install(el, opts) {
 			arr.push("        <tr drag='false' id='_ButtonRow_"+opts.id+"'><td height='36'>");
 			arr.push("            <div id='_DialogButtons_"+opts.id+"' style='text-align:right; border-top:#dadee5 1px solid; padding:8px 20px; background-color:#f6f6f6;'>");
 		//	arr.push("           	<input id='_ButtonOK_"+opts.id+"'  type='button' value='确 定'>");
-			arr.push("           	<input id='_ButtonCancel_"+opts.id+"'  type='button' onclick=\"$.unfunkyUI('"+opts+"');\" value='确定'>");
+			arr.push("           	<input id='_ButtonCancel_"+opts.id+"'  type='button' onclick=\"$.unfunkyUI('"+opts+"');\" value=' 确    定 '>");
 			arr.push("            </div></td></tr>");
 			arr.push("      </table></td>");
 			arr.push("    <td width='13' style=\"background-image:url(page/function/StationMonitor/images/dialog_mrm.png) !important;background-image: none;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='page/function/StationMonitor/images/dialog_mrm.png', sizingMethod='crop');\"></td></tr>");
