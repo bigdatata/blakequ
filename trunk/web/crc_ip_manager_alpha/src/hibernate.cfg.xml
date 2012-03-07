@@ -8,7 +8,7 @@
 			com.mysql.jdbc.Driver
 		</property>
 		<property name="hibernate.connection.url">
-			jdbc:mysql://localhost:3306/stations
+			jdbc:mysql://localhost:3306/stations?useUnicode=true&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull&amp;transformedBitIsBoolean=true
 		</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password">123456</property>

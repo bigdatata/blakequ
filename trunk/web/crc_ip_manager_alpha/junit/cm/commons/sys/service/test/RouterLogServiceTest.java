@@ -1,15 +1,20 @@
 package cm.commons.sys.service.test;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import junit.framework.TestCase;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import cm.commons.pojos.Router;
+import cm.commons.dao.hiber.util.Element;
+import cm.commons.dao.hiber.util.Link;
+import cm.commons.dao.hiber.util.OP;
 import cm.commons.pojos.RouterLog;
 import cm.commons.sys.service.RouterLogService;
-
-import junit.framework.TestCase;
+import cm.commons.util.DateAndTimestampUtil;
+import cm.commons.util.NullUtil;
 
 public class RouterLogServiceTest extends TestCase {
 	private RouterLogService rls;
@@ -39,6 +44,30 @@ public class RouterLogServiceTest extends TestCase {
 	
 	public void testRouterLog(){
 		for(RouterLog rl:(List<RouterLog>)rls.getRouterLog(3)){
+			System.out.println(rl);
+		}
+	}
+	public void testgetPagedWithCondition(){
+		List<Element> conditions=new ArrayList<Element>();
+		String stationName="test";
+		String beginDate="";
+		String endDate="";
+		
+		if(NullUtil.isNull(beginDate)){
+			beginDate=DateAndTimestampUtil.getNowStr("yyyy-MM-01");
+		}
+		conditions.add(new Element(Link.WHERE,OP.GREAT_EQ,"currTime",beginDate));
+		if(NullUtil.isNull(endDate)){
+			endDate=DateAndTimestampUtil.getNowStr("yyyy-MM-dd");
+		}
+		conditions.add(new Element(Link.AND,OP.LESS_EQ,"currTime",endDate));
+		
+		if(NullUtil.notNull(stationName)){	
+			conditions.add(new Element(Link.AND,OP.EQ,"router.station.name",stationName));
+		}
+		List<RouterLog>  lists=(List<RouterLog>)rls.getPagedWithCondition(conditions, 1, 20).getList();
+		System.out.println(lists.size());
+		for(RouterLog rl:lists){
 			System.out.println(rl);
 		}
 	}

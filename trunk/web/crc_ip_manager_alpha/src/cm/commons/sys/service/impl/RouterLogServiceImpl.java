@@ -6,7 +6,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import cm.commons.dao.hiber.util.Element;
 import cm.commons.exception.AppException;
+import cm.commons.pojos.ComputerLog;
 import cm.commons.pojos.RouterLog;
 import cm.commons.sys.dao.RouterLogDao;
 import cm.commons.sys.service.RouterLogService;
@@ -169,6 +171,22 @@ public class RouterLogServiceImpl implements RouterLogService<Integer, RouterLog
 			// TODO: handle exception
 			log.error("delete item array fail! "+this.getClass().getName(), e);
 			throw new AppException("删除多个实体失败");
+		}
+	}
+	public PageModel<RouterLog> getPagedWithCondition(
+			List<Element> conditions, int pageNo, int pageSize) {
+		try {
+			PageModel pageModel = new PageModel();
+			pageModel.setPageNo(pageNo);
+			pageModel.setPageSize(pageSize);
+			List<RouterLog> list=routerLogDao.findPaged((pageNo-1) * pageSize, pageSize, conditions);
+			System.out.println(list.size());
+			pageModel.setList(list);
+			pageModel.setTotalRecords((int)routerLogDao.getCounts(conditions));
+			return pageModel;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new AppException("查询满足条件的路由器历史信息出错");
 		}
 	}
 	
