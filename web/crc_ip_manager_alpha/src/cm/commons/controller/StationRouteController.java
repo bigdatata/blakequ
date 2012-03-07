@@ -88,7 +88,6 @@ public class StationRouteController {
 		Map<String, Object> m = new HashMap<String, Object>();
 		List<AlarmForm> list = AlarmUtil.getAllAlarm();
 		List<StationForm> station_list=getStationFromRoute(route_id);
-		System.out.println("stationlist-----"+station_list.size());
 		m.put("all_route", routes);
 		m.put("station_info", sif);
 		m.put("alarm_list", list);//这是告警信息
