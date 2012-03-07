@@ -203,6 +203,9 @@
 				</form>
 			</div>
 			<div class="bottom">
+			<div id="records" style="float:left">
+					<input type="button" style="backgroundd-color:red;float:left" onclick="deleteComputerItem()" value="删除选中项目"/>
+				</div>
 				<div class="pagefirst" onclick="topPage()"></div>
 				<div class="pageup" onclick="previousPage()"></div>
 				<div id="pages">
@@ -213,13 +216,7 @@
 				<div id="records">
 					共有 ${pageModel.totalPages} 页
 				</div>
-				<div class="blank"></div>
-				<div class="blank"></div>
-				<div class="blank"></div>
-				<div id="records">
-					删除选中项目
-				</div>
-				<div class="delete" onclick="deleteComputerItem()"></div>
+				
 
 				<div class="return" onclick="javascript:history.go(-1);"></div>
 				<div id="records" style="float: right">
