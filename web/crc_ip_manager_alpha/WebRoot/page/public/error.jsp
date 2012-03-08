@@ -16,7 +16,13 @@ var aa= window.confirm(error);
 </script>
 </head>
 <body onload="a()">
-<input type="hidden" id="fb" value="${error}"/>
-<font color="#ff0000">${error}</font>
+<%
+ Exception ex = (Exception)request.getAttribute("Exception"); 
+ ex.printStackTrace(new java.io.PrintWriter(out)); 
+%>
+<input type="hidden" id="fb" value="${error} <% ex.getMessage();%>"/>
+<font color="#ff0000">${error}, Exception: <% ex.getMessage();%></font>
+<H2></H2>
+<P/>
 </body>
 </html>

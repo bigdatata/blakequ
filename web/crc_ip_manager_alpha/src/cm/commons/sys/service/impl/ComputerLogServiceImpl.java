@@ -50,7 +50,7 @@ public class ComputerLogServiceImpl implements ComputerLogService<Integer, Compu
 		} catch (Exception e) {
 			// TODO: handle exception
 			log.error("get all data fail! "+this.getClass().getName(), e);
-			throw new AppException("");
+			throw new AppException("获取所有数据");
 		}
 	}
 	public void save(ComputerLog entity) {
