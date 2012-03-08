@@ -9,7 +9,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <title>环形冗余IP网络管理</title>
-<meta http-equiv="refresh" content="30;url=<%=path%>/main.do?route_id=${current_route_id}">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="pattern/cm/theme/style/css.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<%=path%>/pattern/cm/js/svg/jquery-1.2.6.js"></script>
