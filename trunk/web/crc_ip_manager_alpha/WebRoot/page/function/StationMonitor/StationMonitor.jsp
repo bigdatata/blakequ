@@ -22,7 +22,6 @@
 	<head>
 	
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta http-equiv="refresh" content="30;url=<%=path%>/main.do?route_id=${current_route_id}">
 		<title>Insert title here</title>
 
 		<link href="<%=path%>/pattern/cm/css/svg.css" rel="stylesheet"
@@ -125,7 +124,6 @@ for(cm.commons.controller.form.StationForm u: t){
                                 <param name="autostart" value="true"> 
                                 <param name="controller" value="true" />
                                 <param name="hidden" value="true">
-                                <param name="loop" value="4">
          </object>  
 		 <%}%>
 			<div class="sidebar">
