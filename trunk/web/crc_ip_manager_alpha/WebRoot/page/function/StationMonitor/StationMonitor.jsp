@@ -23,7 +23,7 @@
 	
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Insert title here</title>
-		<meta http-equiv="refresh" content="30;url=<%=path%>/main.do?route_id=${warn_route_id}">
+		<meta http-equiv="refresh" content="10;url=<%=path%>/main.do?route_id=${warn_route_id}">
 		<link href="<%=path%>/pattern/cm/css/svg.css" rel="stylesheet"
 			type="text/css" />
 		<script language="JavaScript" src="<%=path%>/pattern/cm/js/svg/svg.js"></script>
@@ -157,7 +157,7 @@ for(cm.commons.controller.form.StationForm u: t){
 						</tr>
 						<tr>
 							<td>
-								<select name="target_route_id">
+								<select name="route_id">
 									<c:forEach items="${all_route}" var="sif">
 										<option value="${sif.id}"
 											<c:if test = "${sif.id == target_route_id}" >
