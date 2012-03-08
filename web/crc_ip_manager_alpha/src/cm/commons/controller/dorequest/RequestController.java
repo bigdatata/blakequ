@@ -126,9 +126,15 @@ public class RequestController {
 				//台账文件
 				if(fileFlag.equals("0") || fileFlag.equals("")){
 					if(wf.getInfo() == null){
-						wf.setInfo("请单击车站"+station.getName()+"图标右键查看设备故障!");
+						wf.setInfo("请单击"+station.getName()+"图标右键查看设备故障!");
 					}else{
 						wf.setInfo(wf.getInfo()+"请单击车站"+station.getName()+"图标右键查看设备故障!");
+					}
+				}else{
+					if(wf.getInfo() == null){
+						wf.setInfo("无法获取"+station.getName()+"固定盘固定路径文件内容!");
+					}else{
+						wf.setInfo(wf.getInfo()+"无法获取"+station.getName()+"固定盘固定路径文件内容!");
 					}
 				}
 				//端口
