@@ -59,11 +59,28 @@ public class StationRouteController {
 		if(id != null || "".equals(id)){
 			route_id = Integer.parseInt(id);
 		}
-		
+		List<AlarmForm> list = AlarmUtil.getAllAlarm();
+		if(list != null && list.size()>0){
+			String info = list.get(0).getSg1_name();
+			if(info==null || info.equals("")){
+				//车站告警
+				int stationId = list.get(0).getStation_id();
+				List<Segment> segments = segmentService.getSegmentByStation(stationId);
+				if(segments != null && segments.size()>0){
+					route_id = segments.get(0).getRouteId();
+				}
+			}else{
+				//线段告警
+				int segmentId = list.get(0).getSegment_id();
+				Segment s = (Segment) segmentService.get(segmentId);
+				route_id = s.getRouteId();
+			}
+			
+		}
 		request.getSession().setAttribute("current_route_id", route_id);
 		Route r = (Route) routeService.get(route_id);
 		//如果站点为空，返回
-		if(r.getStationNum() == 0){
+		if(r== null || r.getStationNum() == 0){
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("../public/error");
 			mv.addObject("error", "对不起，该条线路还没有站点！");
@@ -86,11 +103,11 @@ public class StationRouteController {
 		System.out.println("****设置模型视图**********");
 		ModelAndView mv = new ModelAndView();
 		Map<String, Object> m = new HashMap<String, Object>();
-		List<AlarmForm> list = AlarmUtil.getAllAlarm();
+		List<AlarmForm> list1 = AlarmUtil.getAllAlarm();
 		List<StationForm> station_list=getStationFromRoute(route_id);
 		m.put("all_route", routes);
 		m.put("station_info", sif);
-		m.put("alarm_list", list);//这是告警信息
+		m.put("alarm_list", list1);//这是告警信息
 		m.put("segment_list", segmentForms);
 		m.put("station_list", station_list);
 		mv.addAllObjects(m);
