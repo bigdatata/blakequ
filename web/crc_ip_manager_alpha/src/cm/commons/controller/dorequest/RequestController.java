@@ -192,10 +192,10 @@ public class RequestController {
 			String name = (String) itr.next();
 			int warnStation = ((Station)stationService.getStationByName(name)).getId();
 			AlarmForm af = new AlarmForm();
-			af.setState(1);
+			af.setState(2);
 			af.setStation_id(warnStation);
 			af.setTime(new Date(System.currentTimeMillis()));
-			af.setInfo("对站点:"+name+"方向通信信号未正常获取！");
+			af.setInfo("对"+name+"方向通信断开！");
 			AlarmUtil.addToMap(name, af);
 		}
 	}
