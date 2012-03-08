@@ -56,10 +56,10 @@ public class StationRouteController {
 	public ModelAndView getRoute(HttpServletRequest request){
 		int route_id = 1;//默认线路
 		String id = request.getParameter("route_id");
-		request.getSession().setAttribute("target_route_id", id);
 		if(id != null || "".equals(id)){
 			route_id = Integer.parseInt(id);
 		}
+		request.getSession().setAttribute("target_route_id", route_id);
 		List<AlarmForm> list = AlarmUtil.getAllAlarm();
 		if(list != null && list.size()>0){
 			String info = list.get(0).getSg1_name();
