@@ -117,7 +117,7 @@ for(cm.commons.controller.form.StationForm u: t){
 ----------这部分是右侧边栏的代码--------
 		
 		 -->
-		 <%if(alarmList.isEmpty())
+		 <%if(!alarmList.isEmpty())
 		 {
 		 %>
 		 <object data="<%=path%>/pattern/cm/sound/alarm.mp3" type="application/x-mplayer2" width="1" height="1"> 
