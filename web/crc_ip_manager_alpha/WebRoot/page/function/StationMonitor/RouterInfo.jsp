@@ -54,7 +54,7 @@ out.print("路由器端口状态<br/>");
 	<td width="50">
 	端口名称
 	</td>
-	<td width="50">
+	<td width="90">
 	状态
 	</td>
 	
@@ -64,13 +64,13 @@ out.print("路由器端口状态<br/>");
 	<td width="100">
 	流出量
 	</td>
-	<td width="100">
+	<td width="70">
 	流入速率
 	</td>
-	<td width="100">
+	<td width="70">
 	流出速率
 	</td>
-	<td width="70">
+	<td width="50">
 	CRC
 	</td>
 	<td width="100">
@@ -82,11 +82,12 @@ out.print("路由器端口状态<br/>");
 </tr>
 <c:forEach items="${ports}" var="p">
 <tr>
-	<td>
-	${p.ifIndex}
+	<td>  
+      ${p.ifDescr}
+	
 	</td>
 	<td>
-	${p.ifOperStatus }
+	${p.ifOperStatus}
 	</td>
 	<td>
 	${p.ifInOctets}
