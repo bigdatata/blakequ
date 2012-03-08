@@ -138,7 +138,7 @@ for(cm.commons.controller.form.StationForm u: t){
 							<td>
 								<strong> <c:forEach items="${all_route}" var="sif">
 
-										<c:if test="${sif.id == current_route_id}">
+										<c:if test="${sif.id == target_route_id}">
 		    				${sif.name}
 		    			</c:if>
 
@@ -157,10 +157,10 @@ for(cm.commons.controller.form.StationForm u: t){
 						</tr>
 						<tr>
 							<td>
-								<select name="route_id">
+								<select name="target_route_id">
 									<c:forEach items="${all_route}" var="sif">
 										<option value="${sif.id}"
-											<c:if test = "${sif.id == current_route_id}" >
+											<c:if test = "${sif.id == target_route_id}" >
 		    				selected
 		    			</c:if>>
 											${sif.name}
