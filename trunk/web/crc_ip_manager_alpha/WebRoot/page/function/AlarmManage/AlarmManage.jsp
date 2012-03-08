@@ -183,7 +183,7 @@
 										${item.stationName}
 									</td>
 									<td>
-									   ${item.sg1_name}---${item.sg2_name}
+									   ${item.sg1_name}----${item.sg2_name}
 									</td>
 									<td>
 										${item.info}

@@ -107,7 +107,6 @@ public class RequestController {
 	        for(int i=0; i<portJsonList.size(); i++){
 	        	portStates[i] = portJsonList.get(i).getIfOperStatus();
 	        }
-	        System.out.println(portStates);
 	        //3.监听是否在一段时间没有发送请求
 			task.addOrRefreshTime(station.getName());
 			
@@ -334,7 +333,6 @@ public class RequestController {
 			flag = new StringBuilder("端口");
 		}
 		for(int i=0; i<ports.length; i++){
-			System.out.println("ports----"+ports[i]);
 			if(ports[i].equals("10") || ports[i].equals("20")){
 				break;
 			}
@@ -381,7 +379,7 @@ public class RequestController {
 				if((s1 == id && s2 == af.getStation_id()) || (s2 == id && s1 == af.getStation_id())){
 					System.out.println("_______有线段告警：");
 					AlarmForm wff = new AlarmForm();
-					wff.setInfo("线段id="+s.getId()+"告警，位于站点："+station.getName());
+					wff.setInfo("线段id="+s.getId()+"告警，位于站点："+s.getStationByStation1Id().getName()+"---"+s.getStationByStation2Id().getName());
 					wff.setSegment_id(s.getId());
 					wff.setSg1(s1);
 					wff.setSg2(s2);
@@ -392,6 +390,7 @@ public class RequestController {
 					wff.setStationName(station.getName());
 					wff.setTime(new Date(System.currentTimeMillis()));
 					AlarmUtil.addToMap(AlarmUtil.SEGMENTKEY+s.getId(), wff);
+					System.out.println("-------::"+wff);
 					saveWarnToDB(wff);
 				}
 			}
