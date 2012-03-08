@@ -93,9 +93,9 @@ public class PortController {
 				pf.setIfOutOctets(p.getIfOutOctets());
 				String state = p.getIfOperStatus().toString();
 				if(state.startsWith("1")){
-					pf.setIfOperStatus("开启状态");
+					pf.setIfOperStatus("开启");
 				}else if(state.startsWith("2")){
-					pf.setIfOperStatus("关闭状态");
+					pf.setIfOperStatus("关闭");
 				}
 				pf.setLocIfInBitsSec(p.getLocIfInBitsSec());
 				pf.setLocIfInCrc(p.getLocIfInCrc());
