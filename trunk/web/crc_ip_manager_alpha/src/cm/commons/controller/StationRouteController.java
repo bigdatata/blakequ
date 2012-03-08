@@ -62,23 +62,23 @@ public class StationRouteController {
 		request.getSession().setAttribute("target_route_id", route_id);
 		List<AlarmForm> list = AlarmUtil.getAllAlarm();
 		if(list != null && list.size()>0){
+			int warnId=0;
 			String info = list.get(0).getSg1_name();
 			if(info==null || info.equals("")){
 				//车站告警
 				int stationId = list.get(0).getStation_id();
 				List<Segment> segments = segmentService.getSegmentByStation(stationId);
 				if(segments != null && segments.size()>0){
-					route_id = segments.get(0).getRouteId();
+					warnId = segments.get(0).getRouteId();
 				}
 			}else{
 				//线段告警
 				int segmentId = list.get(0).getSegment_id();
 				Segment s = (Segment) segmentService.get(segmentId);
-				route_id = s.getRouteId();
+				warnId = s.getRouteId();
 			}
-			
+			request.getSession().setAttribute("warn_route_id", warnId);
 		}
-		request.getSession().setAttribute("warn_route_id", route_id);
 		Route r = (Route) routeService.get(route_id);
 		//如果站点为空，返回
 		if(r== null || r.getStationNum() == 0){
