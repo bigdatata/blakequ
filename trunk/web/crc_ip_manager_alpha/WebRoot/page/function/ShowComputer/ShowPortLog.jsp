@@ -200,11 +200,20 @@
 						<td>
 							${item.ifDescr}
 						</td>
-						
 						<td >
-						${item.ifOperStatus }
+						 <c:if test="${item.ifOperStatus=='11'}"> 
+						 开启   
+                  		  </c:if>
+                  		 <c:if test="${item.ifOperStatus=='10'}">  
+                  		 开启
+                  		  </c:if>
+        				<c:if test="${item.ifOperStatus=='12'}">  
+        				开启
+                  		  </c:if>
+                  		<c:if test="${item.ifOperStatus!='11' and item.ifOperStatus!='10' and item.ifOperStatus!='12'}">    
+                  		关闭
+                  		</c:if>
 						</td>
-
 						<td >
 							${item.ifInOctets}
 						</td>
