@@ -56,6 +56,7 @@ public class StationRouteController {
 	public ModelAndView getRoute(HttpServletRequest request){
 		int route_id = 1;//默认线路
 		String id = request.getParameter("route_id");
+		request.getSession().setAttribute("target_route_id", id);
 		if(id != null || "".equals(id)){
 			route_id = Integer.parseInt(id);
 		}
@@ -77,7 +78,7 @@ public class StationRouteController {
 			}
 			
 		}
-		request.getSession().setAttribute("current_route_id", route_id);
+		request.getSession().setAttribute("warn_route_id", route_id);
 		Route r = (Route) routeService.get(route_id);
 		//如果站点为空，返回
 		if(r== null || r.getStationNum() == 0){
