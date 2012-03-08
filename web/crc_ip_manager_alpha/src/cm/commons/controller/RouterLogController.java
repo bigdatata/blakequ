@@ -109,7 +109,7 @@ public class RouterLogController {
 			endDate=DateAndTimestampUtil.getNowStr("yyyy-MM-dd");
 		}
 		request.setAttribute("endDate", endDate);			
-		conditions.add(new Element(Link.AND,OP.LESS_EQ,"currTime",endDate));
+		conditions.add(new Element(Link.AND,OP.LESS_EQ,"currTime",endDate+" 23:59:59"));
 		
 		if(NullUtil.notNull(stationName)){	
 			conditions.add(new Element(Link.AND,OP.LIKE,"router.station.name","%"+stationName+"%"));
