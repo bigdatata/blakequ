@@ -390,7 +390,6 @@ public class RequestController {
 					wff.setStationName(station.getName());
 					wff.setTime(new Date(System.currentTimeMillis()));
 					AlarmUtil.addToMap(AlarmUtil.SEGMENTKEY+s.getId(), wff);
-					System.out.println("-------::"+wff);
 					saveWarnToDB(wff);
 				}
 			}

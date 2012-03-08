@@ -124,17 +124,6 @@ public class AlarmController {
 					String name = s.getName();
 					af.setStationName(name);
 				}
-				List<AlarmForm> aff = AlarmUtil.getAllAlarm();
-				for(AlarmForm a: aff){
-					if(w.getStationId() == 0 && w.getWarncontent().equals(a.getInfo())){
-						af.setSg1_name(a.getSg1_name());
-						af.setSg1(a.getSg1());
-						af.setSg2(a.getSg2());
-						af.setSg2_name(a.getSg2_name());
-						af.setSegment_id(a.getSegment_id());
-					}
-					System.out.println(a);
-				}
 				lists.add(af);
 			}
 		}
