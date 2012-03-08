@@ -85,10 +85,13 @@ public class AlarmForm {
 	}
 	@Override
 	public String toString() {
-		return "AlarmForm [info=" + info + ", segment_id=" + segment_id
-				+ ", state=" + state + ", station_id=" + station_id + ", time="
-				+ time + "]";
+		return "AlarmForm [id=" + id + ", info=" + info + ", segment_id="
+				+ segment_id + ", sg1=" + sg1 + ", sg1_name=" + sg1_name
+				+ ", sg2=" + sg2 + ", sg2_name=" + sg2_name + ", state="
+				+ state + ", stationName=" + stationName + ", station_id="
+				+ station_id + ", time=" + time + "]";
 	}
+	
 
 	
 }
