@@ -161,10 +161,8 @@
 								<th width="100">
 									告警站点
 								</th>
-								<th width="200">
-									告警线段
-								</th>
-								<th width="500">
+								
+								<th width="700">
 									告警内容
 								</th>
 								<th width="200">
@@ -181,9 +179,6 @@
 									</td>
 									<td>
 										${item.stationName}
-									</td>
-									<td>
-									   ${item.sg1_name}----${item.sg2_name}
 									</td>
 									<td>
 										${item.info}
