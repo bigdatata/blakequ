@@ -61,7 +61,7 @@ public class ComputerLogController {
 				}
 			}
 		}
-		mv.setView(new RedirectView("../get_by_time.do?pageNo=1&queryString="));
+		mv.setView(new RedirectView("../get_log_by_page.do?pageNo=1&queryString="));
 		return mv;
 	}
 	/**
