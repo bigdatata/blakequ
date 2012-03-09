@@ -15,13 +15,13 @@
         <property name="portCount" type="java.lang.Integer" column="port_count"/>
         <property name="routerInfo" type="java.lang.String" column="router_info"/>
         <many-to-one name="station" column="station_id" unique="true" cascade="none"/>
-        <set name="ports" inverse="true" lazy="extra" cascade="all">
+        <set name="ports" inverse="true" lazy="false" cascade="all">
             <key>
                 <column name="router_id"/>
             </key>
             <one-to-many class="cm.commons.pojos.Port" />
         </set>
-        <set name="routerLogs" inverse="false" lazy="extra" cascade="save-update" order-by="curr_time desc">
+        <set name="routerLogs" inverse="false" lazy="false" cascade="save-update" order-by="curr_time desc">
         	<key>
         		<column name="router_id"/>
         	</key>
