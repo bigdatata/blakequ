@@ -202,16 +202,6 @@ public class RequestController {
 	
 	private void saveOrUpdatePort(Router router, List<PortJson> portJsonList){
 		//只是更新port
-//		Map<Integer, Port> maps = null;
-//		Set<Port> ports = router.getPorts();
-//		 if(ports != null){
-//	        Iterator iterator = ports.iterator();
-//	        maps = new HashMap<Integer, Port>();
-//	        while(iterator.hasNext()){
-//	        	Port p = (Port) iterator.next();
-//	        	maps.put(p.getIfIndex(), p);
-//	        }
-//		 }
 	     for(PortJson pj:portJsonList){
 //	    	Port p = this.toPort(pj, maps);
 	    	Port p = this.toPort(pj);
@@ -280,12 +270,6 @@ public class RequestController {
 	 */
 	private Port toPort(PortJson pj){
 		Port p = new Port();
-//		Integer key = Integer.valueOf(pj.getIfIndex());
-//		if(maps != null && maps.containsKey(key)) {
-//			p = maps.get(key);
-//		}else{
-//			p = new Port();
-//		}
 		p.setGetTime(new Date(System.currentTimeMillis()));
 		p.setIfDescr(pj.getIfDescr());
 		p.setIfIndex(Integer.parseInt(pj.getIfIndex()));
