@@ -17,13 +17,13 @@
         <property name="x" type="java.lang.String"/>
         <property name="y" type="java.lang.String"/>
         <property name="segmentNum" type="java.lang.Integer" column="segment_num"/>
-        <set name="segmentsForStation2Id" inverse="true" cascade="all" lazy="extra">
+        <set name="segmentsForStation2Id" inverse="true" cascade="all" lazy="false">
             <key>
                 <column name="station2_id"/>
             </key>
             <one-to-many class="cm.commons.pojos.Segment" />
         </set>
-        <set name="segmentsForStation1Id" inverse="true" cascade="all" lazy="extra">
+        <set name="segmentsForStation1Id" inverse="true" cascade="all" lazy="false">
             <key>
                 <column name="station1_id"/>
             </key>

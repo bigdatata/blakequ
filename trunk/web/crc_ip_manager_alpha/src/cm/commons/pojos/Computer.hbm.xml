@@ -14,7 +14,7 @@
         <property name="state" type="java.lang.Integer"/>
         <property name="os" type="java.lang.String"/>
         <many-to-one name="station" column="station_id" unique="true" cascade="none"/>
-        <set name="computerLogs" lazy="extra" inverse="false" cascade="save-update" order-by="curr_time desc">
+        <set name="computerLogs" lazy="false" inverse="false" cascade="save-update" order-by="curr_time desc">
         	<key>
         		<column name="computer_id"/>
         	</key>
