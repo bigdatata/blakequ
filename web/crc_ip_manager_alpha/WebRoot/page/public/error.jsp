@@ -21,7 +21,7 @@ var aa= window.confirm(error);
  ex.printStackTrace(new java.io.PrintWriter(out)); 
 %>
 <input type="hidden" id="fb" value="${error} <% ex.getMessage();%>"/>
-<font color="#ff0000">${error}, Exception: <% ex.getMessage();%></font>
+<font color="#ff0000">${error} <% ex.getMessage();%></font>
 <H2></H2>
 <P/>
 </body>
