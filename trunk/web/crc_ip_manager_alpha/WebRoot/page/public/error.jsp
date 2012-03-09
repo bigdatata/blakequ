@@ -17,11 +17,13 @@ var aa= window.confirm(error);
 </head>
 <body onload="a()">
 <%
- Exception ex = (Exception)request.getAttribute("Exception"); 
- ex.printStackTrace(new java.io.PrintWriter(out)); 
+ Exception ex = (Exception)request.getAttribute("Exception");
+ if(ex != null){ 
+ 	ex.printStackTrace(new java.io.PrintWriter(out));
+ } 
 %>
-<input type="hidden" id="fb" value="${error} <% ex.getMessage();%>"/>
-<font color="#ff0000">${error} <% ex.getMessage();%></font>
+<input type="hidden" id="fb" value="${error} ${Exception!=null?Exception.getMessage():''}"/>
+<font color="#ff0000">${error} ${Exception!=null?Exception.getMessage():''}</font>
 <H2></H2>
 <P/>
 </body>
