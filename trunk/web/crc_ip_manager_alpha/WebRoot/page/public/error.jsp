@@ -23,7 +23,7 @@ var aa= window.confirm(error);
  } 
 %>
 <input type="hidden" id="fb" value="${error}"/>
-<font color="#ff0000">${error} ${Exception!=null?Exception.getMessage():''}</font>
+<font color="#ff0000">${error} ${Exception!=null?Exception:''}</font>
 <H2></H2>
 <P/>
 </body>
