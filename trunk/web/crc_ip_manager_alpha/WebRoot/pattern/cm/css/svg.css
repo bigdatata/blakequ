@@ -57,13 +57,13 @@ ul,li {
 .sidebar {
 	float: right;
 	width: 150px;
-	height: auto;
+	height: 1700px;
 	background: #ECEFF4;
 }
 
 .content {
 	margin-right: 155px !important;
 	margin-right: 152px;
-	height: auto;
+	height: 1700px;
 	background: #ECEFF4;
 }
