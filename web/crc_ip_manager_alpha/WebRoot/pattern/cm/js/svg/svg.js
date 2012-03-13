@@ -29,6 +29,7 @@ contextMenu.prototype.buildContextMenu = function(){
 		 var _mHeight = null;
 		 var _px = null;
 		 var _py = null;
+		 var _offtop = null;
 	 	 try{
 				  var cobj = ele(evt);
 				  if(cobj.id){
@@ -40,6 +41,7 @@ contextMenu.prototype.buildContextMenu = function(){
 			  	  }
 			  	
 			  	// 判断显示位置
+			  	_offtop = document.body.scrollTop;
 			  	_px = parseInt(getX(evt));
 			  	_py = parseInt(getY(evt));
 			  	_bodyWidth = parseInt(document.body.offsetWidth ||document.body.clientWidth);
@@ -47,7 +49,7 @@ contextMenu.prototype.buildContextMenu = function(){
 			  	_mWidth = parseInt(menuObj.style.width);
 			  	_mHeight = parseInt(menuObj.offsetHeight);
 			  	menuObj.style.left = ((_px + _mWidth) > _bodyWidth?(_px - _mWidth):_px) +"px";
-				menuObj.style.top  = ((_py + _mHeight) > _bodyHeight?(_py - _mHeight):_py) +"px";
+				menuObj.style.top  = ((_py + _mHeight) > _bodyHeight?(_py - _mHeight + _offtop):(_py + _offtop)) +"px";
 				menuObj.style.display = "block";
 			  }else{
 			    hide();	
