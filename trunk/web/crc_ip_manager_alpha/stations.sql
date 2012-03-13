@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v9.01 
-MySQL - 5.0.15-nt : Database - stations
+MySQL - 5.5.15 : Database - stations
 *********************************************************************
 */
 
@@ -12,7 +12,7 @@ MySQL - 5.0.15-nt : Database - stations
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`stations` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`stations` /*!40100 DEFAULT CHARACTER SET gbk */;
 
 USE `stations`;
 
@@ -21,172 +21,163 @@ USE `stations`;
 DROP TABLE IF EXISTS `computer`;
 
 CREATE TABLE `computer` (
-  `id` int(11) NOT NULL auto_increment,
-  `ip` varchar(255) default NULL,
-  `state` int(11) default NULL,
-  `os` varchar(255) default NULL,
-  `station_id` int(11) default NULL,
-  PRIMARY KEY  (`id`),
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ip` varchar(255) DEFAULT NULL,
+  `state` int(11) DEFAULT NULL,
+  `os` varchar(255) DEFAULT NULL,
+  `station_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
   UNIQUE KEY `station_id` (`station_id`),
   KEY `FKDC497F1B16D8F991` (`station_id`),
   CONSTRAINT `FKDC497F1B16D8F991` FOREIGN KEY (`station_id`) REFERENCES `station` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `computer` */
-
-insert  into `computer`(`id`,`ip`,`state`,`os`,`station_id`) values (1,'192.168.3.30',1,'unix33,win-7,pentium--4400',95),(2,'192.168.1.49',1,'windows33,win-7,pentium--4400',96);
 
 /*Table structure for table `computer_log` */
 
 DROP TABLE IF EXISTS `computer_log`;
 
 CREATE TABLE `computer_log` (
-  `id` int(11) NOT NULL auto_increment,
-  `computer_id` int(11) default NULL,
-  `mem_rate` float default NULL,
-  `cup_rate` float default NULL,
-  `curr_time` datetime default NULL,
-  PRIMARY KEY  (`id`),
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `computer_id` int(11) DEFAULT NULL,
+  `mem_rate` float DEFAULT NULL,
+  `cup_rate` float DEFAULT NULL,
+  `curr_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
   KEY `FK8F1B4C2014CE5E63` (`computer_id`),
   CONSTRAINT `FK8F1B4C2014CE5E63` FOREIGN KEY (`computer_id`) REFERENCES `computer` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 
 /*Data for the table `computer_log` */
-
-insert  into `computer_log`(`id`,`computer_id`,`mem_rate`,`cup_rate`,`curr_time`) values (1,NULL,1,32,'2011-09-09 00:00:00'),(3,NULL,5,4,'2011-09-09 00:30:00'),(4,NULL,5,4,'2001-09-09 00:00:00'),(5,NULL,5,4,'2011-09-10 00:00:00'),(6,1,45.4877,12,'2012-03-01 22:29:49'),(7,1,45.4877,12,'2012-03-01 22:38:16'),(8,1,45.4877,12,'2012-03-01 22:44:00'),(9,1,45.4877,12,'2012-03-01 22:46:52'),(10,1,45.4877,12,'2012-03-01 23:01:29'),(11,1,45.4877,12,'2012-03-01 23:01:42'),(12,1,45.4877,12,'2012-03-01 23:12:26'),(13,2,45.4877,12,'2012-03-02 10:53:38'),(14,2,45.4877,12,'2012-03-02 10:56:49'),(15,2,45.4877,12,'2012-03-02 11:06:05'),(16,2,45.4877,12,'2012-03-02 11:08:40'),(17,1,45.4877,12,'2012-03-02 11:10:31'),(18,1,45.4877,12,'2012-03-02 11:22:55'),(19,2,45.4877,12,'2012-03-02 11:23:40'),(20,2,45.4877,12,'2012-03-02 11:24:49'),(21,1,45.4877,12,'2012-03-02 11:25:05'),(22,1,45.4877,12,'2012-03-02 11:28:52'),(23,2,45.4877,12,'2012-03-02 11:29:01'),(24,2,45.4877,12,'2012-03-02 11:38:30'),(25,1,45.4877,12,'2012-03-02 11:38:46'),(26,1,45.4877,12,'2012-03-02 11:43:34'),(27,1,45.4877,12,'2012-03-02 13:48:32'),(28,2,45.4877,12,'2012-03-02 13:48:59'),(29,2,45.4877,12,'2012-03-02 13:53:40'),(30,1,45.4877,12,'2012-03-02 13:53:54'),(31,1,45.4877,12,'2012-03-02 13:59:25'),(32,2,45.4877,12,'2012-03-02 13:59:42'),(33,1,45.4877,12,'2012-03-02 14:00:39'),(34,2,45.4877,12,'2012-03-02 14:10:15'),(35,1,45.4877,12,'2012-03-02 14:12:26'),(36,2,45.4877,12,'2012-03-02 14:28:05'),(37,1,45.4877,12,'2012-03-02 14:28:14'),(38,1,45.4877,12,'2012-03-02 14:29:09');
 
 /*Table structure for table `port` */
 
 DROP TABLE IF EXISTS `port`;
 
 CREATE TABLE `port` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `router_id` int(11) NOT NULL,
-  `get_time` datetime default NULL COMMENT '如果异常记录时间，正常不记录',
-  `ifIndex` int(11) default NULL,
-  `ifDescr` varchar(32) default NULL,
-  `ifOperStatus` int(11) default NULL COMMENT '0(正常)，1(异常)，2(未知)',
-  `ifInOctets` int(11) default NULL COMMENT '流量',
-  `locIfInCRC` int(11) default NULL,
-  `ipRouteDest` varchar(64) default NULL,
-  `portIP` varchar(64) default NULL,
-  `locIfInBitsSec` int(11) default NULL,
-  `locIfOutBitsSec` int(11) default NULL,
-  `ifOutOctets` int(11) default NULL,
-  PRIMARY KEY  (`id`),
+  `get_time` datetime DEFAULT NULL COMMENT '如果异常记录时间，正常不记录',
+  `ifIndex` int(11) DEFAULT NULL,
+  `ifDescr` varchar(32) DEFAULT NULL,
+  `ifOperStatus` int(11) DEFAULT NULL COMMENT '0(正常)，1(异常)，2(未知)',
+  `ifInOctets` int(11) DEFAULT NULL COMMENT '流量',
+  `locIfInCRC` int(11) DEFAULT NULL,
+  `ipRouteDest` varchar(64) DEFAULT NULL,
+  `portIP` varchar(64) DEFAULT NULL,
+  `locIfInBitsSec` int(11) DEFAULT NULL,
+  `locIfOutBitsSec` int(11) DEFAULT NULL,
+  `ifOutOctets` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
   KEY `FK_Reference_4` (`router_id`),
   CONSTRAINT `FK_Reference_4` FOREIGN KEY (`router_id`) REFERENCES `router` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 /*Data for the table `port` */
-
-insert  into `port`(`id`,`router_id`,`get_time`,`ifIndex`,`ifDescr`,`ifOperStatus`,`ifInOctets`,`locIfInCRC`,`ipRouteDest`,`portIP`,`locIfInBitsSec`,`locIfOutBitsSec`,`ifOutOctets`) values (9,6,'2012-03-02 14:28:06',1,'FastEthernet0',1,40732982,0,'192.168.1.0','192.168.1.49',20000,44000,87578678),(10,6,'2012-03-02 14:28:06',2,'Serial0',20,0,0,'','',0,0,0),(11,6,'2012-03-02 14:28:06',3,'Serial1',22,0,0,'','',0,0,0),(12,6,'2012-03-02 14:28:06',4,'Null0',21,0,0,'','',0,0,0),(13,5,'2012-03-02 14:29:09',1,'FastEthernet0',11,40732982,0,'192.168.1.0','192.168.3.30',20000,44000,87578678),(14,5,'2012-03-02 14:29:09',2,'Serial0',11,1,0,'','',0,0,0),(15,5,'2012-03-02 14:29:09',3,'Serial1',22,1,0,'','',0,0,0),(16,5,'2012-03-02 14:29:09',4,'Null0',22,0,0,'','',0,0,0);
 
 /*Table structure for table `route` */
 
 DROP TABLE IF EXISTS `route`;
 
 CREATE TABLE `route` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   `station_num` int(11) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 /*Data for the table `route` */
 
-insert  into `route`(`id`,`name`,`station_num`) values (1,'深广线',5),(2,'成都线',3),(3,'成昆线',4),(4,'成渝线',7),(5,'成绵线',3),(6,'成广线',3),(7,'成乐线',3);
+insert  into `route`(`id`,`name`,`station_num`) values (1,'贵阳TDCS分中心',54),(2,'贵阳段网络图1(六盘水)',57);
 
 /*Table structure for table `router` */
 
 DROP TABLE IF EXISTS `router`;
 
 CREATE TABLE `router` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `router_ip` varchar(255) NOT NULL,
-  `state` int(11) default NULL,
-  `port_count` int(11) default NULL,
-  `router_info` varchar(255) default NULL,
-  `station_id` int(11) default NULL,
-  PRIMARY KEY  (`id`),
+  `state` int(11) DEFAULT NULL,
+  `port_count` int(11) DEFAULT NULL,
+  `router_info` varchar(255) DEFAULT NULL,
+  `station_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
   UNIQUE KEY `station_id` (`station_id`),
   KEY `FKC8DB974916D8F991` (`station_id`),
   CONSTRAINT `FKC8DB974916D8F991` FOREIGN KEY (`station_id`) REFERENCES `station` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `router` */
-
-insert  into `router`(`id`,`router_ip`,`state`,`port_count`,`router_info`,`station_id`) values (4,'654',654,6574,'654',4),(5,'192.168.3.30',1,4,'linux，2.6.35',95),(6,'192.168.1.49',1,4,'linux，2.6.35',96);
 
 /*Table structure for table `router_log` */
 
 DROP TABLE IF EXISTS `router_log`;
 
 CREATE TABLE `router_log` (
-  `id` int(11) NOT NULL auto_increment,
-  `router_id` int(11) default NULL,
-  `cpu_rate` float default NULL,
-  `mem_rate` float default NULL,
-  `router_info` varchar(255) default NULL,
-  `curr_time` datetime default NULL,
-  PRIMARY KEY  (`id`),
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `router_id` int(11) DEFAULT NULL,
+  `cpu_rate` float DEFAULT NULL,
+  `mem_rate` float DEFAULT NULL,
+  `router_info` varchar(255) DEFAULT NULL,
+  `curr_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
   KEY `FK37699D4EE7FE55E3` (`router_id`),
   CONSTRAINT `FK37699D4EE7FE55E3` FOREIGN KEY (`router_id`) REFERENCES `router` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
 
 /*Data for the table `router_log` */
-
-insert  into `router_log`(`id`,`router_id`,`cpu_rate`,`mem_rate`,`router_info`,`curr_time`) values (2,4,5,4,'3','2011-08-09 00:00:00'),(4,5,5,4,'3','2001-09-09 00:00:00'),(5,4,5,4,'3','2011-09-09 03:00:00'),(6,4,5,4,'3','2011-09-09 03:40:00'),(7,4,4,4,'4','2011-09-09 03:30:00'),(8,NULL,57,8.68938,'linux???2.6.35','2012-03-01 22:29:50'),(9,NULL,57,8.68938,'linux???2.6.35','2012-03-01 22:38:16'),(10,5,57,8.68938,'linux???2.6.35','2012-03-01 22:44:00'),(11,5,57,8.68938,'linux???2.6.35','2012-03-01 22:46:53'),(12,5,57,8.68938,'linux，2.6.35','2012-03-01 23:01:29'),(13,5,57,8.68938,'linux，2.6.35','2012-03-01 23:01:42'),(14,5,57,8.68938,'linux，2.6.35','2012-03-01 23:12:27'),(15,6,45,7.28338,'linux??2.6.35','2012-03-02 10:53:39'),(16,6,45,7.28338,'linux??2.6.35','2012-03-02 10:56:50'),(17,6,45,7.28338,'linux??2.6.35','2012-03-02 11:06:06'),(18,6,45,7.28338,'linux??2.6.35','2012-03-02 11:08:40'),(19,5,57,8.68938,'linux??2.6.35','2012-03-02 11:10:32'),(20,5,57,8.68938,'linux，2.6.35','2012-03-02 11:22:55'),(21,6,45,7.28338,'linux，2.6.35','2012-03-02 11:23:40'),(22,6,45,7.28338,'linux，2.6.35','2012-03-02 11:24:49'),(23,5,57,8.68938,'linux，2.6.35','2012-03-02 11:25:05'),(24,5,57,8.68938,'linux，2.6.35','2012-03-02 11:28:53'),(25,6,45,7.28338,'linux，2.6.35','2012-03-02 11:29:02'),(26,6,45,7.28338,'linux，2.6.35','2012-03-02 11:38:30'),(27,5,57,8.68938,'linux，2.6.35','2012-03-02 11:38:46'),(28,5,57,8.68938,'linux，2.6.35','2012-03-02 11:43:34'),(29,5,57,8.68938,'linux，2.6.35','2012-03-02 13:48:32'),(30,6,45,7.28338,'linux，2.6.35','2012-03-02 13:48:59'),(31,6,45,7.28338,'linux，2.6.35','2012-03-02 13:53:40'),(32,5,57,8.68938,'linux，2.6.35','2012-03-02 13:53:54'),(33,5,57,8.68938,'linux，2.6.35','2012-03-02 13:59:25'),(34,6,45,7.28338,'linux，2.6.35','2012-03-02 13:59:42'),(35,5,57,8.68938,'linux，2.6.35','2012-03-02 14:00:39'),(36,6,45,7.28338,'linux??2.6.35','2012-03-02 14:10:15'),(37,5,57,8.68938,'linux，2.6.35','2012-03-02 14:12:26'),(38,6,45,7.28338,'linux，2.6.35','2012-03-02 14:28:06'),(39,5,57,8.68938,'linux，2.6.35','2012-03-02 14:28:15'),(40,5,57,8.68938,'linux，2.6.35','2012-03-02 14:29:09');
 
 /*Table structure for table `segment` */
 
 DROP TABLE IF EXISTS `segment`;
 
 CREATE TABLE `segment` (
-  `id` int(11) NOT NULL auto_increment,
-  `station1_id` int(11) default NULL,
-  `station2_id` int(11) default NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `station1_id` int(11) DEFAULT NULL,
+  `station2_id` int(11) DEFAULT NULL,
   `route_id` int(11) NOT NULL,
-  `state` int(11) default NULL,
-  PRIMARY KEY  (`id`),
+  `state` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
   KEY `FK75A49F3366AF84A8` (`station1_id`),
   KEY `FK75A49F3366AFF907` (`station2_id`),
   CONSTRAINT `FK75A49F3366AF84A8` FOREIGN KEY (`station1_id`) REFERENCES `station` (`id`),
   CONSTRAINT `FK75A49F3366AFF907` FOREIGN KEY (`station2_id`) REFERENCES `station` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1400 DEFAULT CHARSET=utf8;
 
 /*Data for the table `segment` */
 
-insert  into `segment`(`id`,`station1_id`,`station2_id`,`route_id`,`state`) values (2,1,3,3,3),(3,3,3,3,1),(4,4,5,3,1),(5,6,7,1,0),(6,7,8,1,0),(10,1,9,2,0),(12,1,26,2,0),(13,26,9,2,0),(14,2,26,3,0),(31,81,82,6,0),(32,82,83,6,0),(34,86,87,5,0),(35,87,88,5,0),(49,93,94,7,0),(50,94,95,7,0),(51,95,96,7,0);
+insert  into `segment`(`id`,`station1_id`,`station2_id`,`route_id`,`state`) values (1255,1663,1664,1,0),(1256,1664,1665,1,0),(1257,1665,1666,1,0),(1258,1666,1667,1,0),(1259,1667,1668,1,0),(1260,1668,1669,1,0),(1261,1669,1670,1,0),(1262,1670,1671,1,0),(1263,1671,1673,1,0),(1264,1674,1675,1,0),(1265,1675,1676,1,0),(1266,1676,1677,1,0),(1267,1677,1678,1,0),(1268,1678,1679,1,0),(1269,1679,1680,1,0),(1270,1680,1681,1,0),(1271,1681,1682,1,0),(1272,1682,1683,1,0),(1273,1683,1684,1,0),(1274,1684,1685,1,0),(1275,1685,1686,1,0),(1276,1686,1687,1,0),(1277,1687,1688,1,0),(1278,1688,1689,1,0),(1279,1689,1690,1,0),(1280,1690,1691,1,0),(1281,1691,1692,1,0),(1282,1692,1693,1,0),(1283,1693,1694,1,0),(1284,1694,1695,1,0),(1285,1695,1696,1,0),(1286,1696,1697,1,0),(1287,1697,1698,1,0),(1288,1699,1700,1,0),(1289,1700,1701,1,0),(1290,1701,1702,1,0),(1291,1702,1703,1,0),(1292,1703,1704,1,0),(1293,1704,1705,1,0),(1294,1705,1706,1,0),(1295,1706,1707,1,0),(1296,1707,1708,1,0),(1297,1708,1709,1,0),(1298,1709,1710,1,0),(1299,1710,1711,1,0),(1300,1711,1712,1,0),(1301,1712,1713,1,0),(1302,1713,1714,1,0),(1303,1714,1715,1,0),(1304,1662,1716,1,0),(1305,1717,1716,1,0),(1306,1662,1727,1,0),(1307,1717,1673,1,0),(1308,1721,1718,1,0),(1309,1718,1663,1,0),(1310,1720,1671,1,0),(1311,1720,1672,1,0),(1312,1719,1722,1,0),(1313,1722,1695,1,0),(1314,1721,1723,1,0),(1315,1723,1685,1,0),(1316,1724,1698,1,0),(1317,1725,1715,1,0),(1318,1725,1724,1,0),(1319,1721,1726,1,0),(1320,1726,1699,1,0),(1321,1727,1728,1,0),(1322,1728,1709,1,0),(1323,1786,1787,2,0),(1324,1792,1729,2,0),(1325,1801,1729,2,0),(1326,1787,1788,2,0),(1327,1789,1790,2,0),(1328,1790,1791,2,0),(1329,1791,1741,2,0),(1330,1792,1793,2,0),(1331,1793,1730,2,0),(1332,1730,1794,2,0),(1333,1794,1795,2,0),(1334,1730,1731,2,0),(1335,1731,1732,2,0),(1336,1732,1733,2,0),(1337,1733,1734,2,0),(1338,1734,1735,2,0),(1339,1735,1736,2,0),(1340,1736,1737,2,0),(1341,1737,1738,2,0),(1342,1738,1739,2,0),(1343,1739,1740,2,0),(1344,1740,1741,2,0),(1345,1741,1742,2,0),(1346,1742,1743,2,0),(1347,1743,1744,2,0),(1348,1744,1745,2,0),(1349,1745,1746,2,0),(1350,1746,1747,2,0),(1351,1747,1748,2,0),(1352,1748,1749,2,0),(1353,1749,1750,2,0),(1354,1788,1750,2,0),(1355,1795,1751,2,0),(1356,1751,1752,2,0),(1357,1752,1753,2,0),(1358,1753,1754,2,0),(1359,1753,1755,2,0),(1360,1753,1756,2,0),(1361,1753,1757,2,0),(1362,1757,1758,2,0),(1363,1758,1759,2,0),(1364,1758,1797,2,0),(1365,1758,1798,2,0),(1366,1798,1799,2,0),(1367,1799,1760,2,0),(1368,1760,1761,2,0),(1369,1761,1800,2,0),(1370,1800,1774,2,0),(1371,1762,1763,2,0),(1372,1763,1764,2,0),(1373,1764,1765,2,0),(1374,1765,1766,2,0),(1375,1766,1767,2,0),(1376,1767,1768,2,0),(1377,1768,1769,2,0),(1378,1769,1770,2,0),(1379,1770,1771,2,0),(1380,1771,1772,2,0),(1381,1772,1773,2,0),(1382,1773,1774,2,0),(1383,1774,1775,2,0),(1384,1775,1776,2,0),(1385,1776,1777,2,0),(1386,1777,1778,2,0),(1387,1778,1779,2,0),(1388,1779,1780,2,0),(1389,1780,1781,2,0),(1390,1781,1782,2,0),(1391,1782,1783,2,0),(1392,1783,1784,2,0),(1393,1784,1785,2,0),(1394,1785,1804,2,0),(1395,1804,1803,2,0),(1396,1801,1802,2,0),(1397,1802,1769,2,0),(1398,1796,1797,2,0),(1399,1803,1789,2,0);
 
 /*Table structure for table `station` */
 
 DROP TABLE IF EXISTS `station`;
 
 CREATE TABLE `station` (
-  `id` int(11) NOT NULL auto_increment,
-  `name` varchar(255) default NULL,
-  `state` int(11) default NULL,
-  `x` varchar(255) default NULL,
-  `y` varchar(255) default NULL,
-  `segment_num` int(11) default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `state` int(11) DEFAULT NULL,
+  `x` varchar(255) DEFAULT NULL,
+  `y` varchar(255) DEFAULT NULL,
+  `segment_num` int(11) DEFAULT NULL,
+  `is_main_station` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1805 DEFAULT CHARSET=utf8;
 
 /*Data for the table `station` */
 
-insert  into `station`(`id`,`name`,`state`,`x`,`y`,`segment_num`) values (1,'TDCS021',0,'2','2',2),(2,'32',1,'2','2',2),(3,'TDCSa3',1,'3','3',2),(4,'ggg',1,'323','111',2),(5,'fTDCSdas',1,'3','2',2),(6,'ds',0,'4.0','4.0',2),(7,'1as',0,'5','5',2),(8,'asd',0,'6','4',2),(9,'fdd',0,'7','5',2),(26,'都江堰',0,'43.0','22.0',2),(29,'成站TDCS',0,'345','651',2),(30,'32',0,'120','342',0),(31,'绵阳站',0,'781','432',2),(32,'广元站',0,'342','123',2),(33,'成光站',0,'234','213',2),(34,'管里站',0,'1','43',2),(35,'43',0,'43','33',2),(36,'32111111',0,'65','12',2),(37,'76',0,'67.0','121',2),(81,'广1站',0,'213','332',2),(82,'广2站',0,'223','33',2),(83,'广州站',0,'233','324',2),(86,'成2站',0,'213','332',2),(87,'成3站',0,'223','33',2),(88,'锦州站',0,'233','324',2),(93,'TDCS成都站',0,'23','32',2),(94,'乐1站',0,'213','332',2),(95,'乐2站',0,'223','33',2),(96,'乐山站',0,'233','324',2),(97,'????',0,'0','0',0),(98,'??2?',0,'0','0',0);
+insert  into `station`(`id`,`name`,`state`,`x`,`y`,`segment_num`,`is_main_station`) values (1662,'贵阳TDCS分中心',0,'421','330',6,1),(1663,'关田',0,'168','398',2,0),(1664,'谷立',0,'168','428',2,0),(1665,'大土',0,'168','458',2,0),(1666,'长冲',0,'168','488',2,0),(1667,'改貌',0,'168','518',2,0),(1668,'花溪',0,'168','548',2,0),(1669,'花坡所',0,'168','578',2,0),(1670,'贵阳西',0,'168','608',2,0),(1671,'贵阳客',0,'168','698',3,0),(1672,'TDCS工区',0,'260','678',1,0),(1673,'贵阳南编站调楼',0,'168','758',2,0),(1674,'石门坎',0,'510','430',1,0),(1675,'木竹河',0,'510','490',2,0),(1676,'松坎',0,'510','520',2,0),(1677,'三元坝',0,'510','550',2,0),(1678,'蒙渡',0,'510','580',2,0),(1679,'太白',0,'510','606',2,0),(1680,'九龙塘',0,'510','636',2,0),(1681,'大河坝',0,'510','666',2,0),(1682,'新场',0,'510','696',2,0),(1683,'凉风垭',0,'510','723',2,0),(1684,'元田坝',0,'510','753',2,0),(1685,'桐梓',0,'510','783',3,0),(1686,'红花园',0,'510','813',2,0),(1687,'娄山关',0,'510','842',2,0),(1688,'汇塘河',0,'510','872',2,0),(1689,'松坝',0,'510','902',2,0),(1690,'李家湾',0,'510','932',2,0),(1691,'高炉子',0,'510','962',2,0),(1692,'遵义北',0,'510','990',2,0),(1693,'遵义',0,'510','1020',2,0),(1694,'遵义南',0,'510','1050',2,0),(1695,'南宫山',0,'510','1077',3,0),(1696,'唐家桥',0,'510','1107',2,0),(1697,'南白镇',0,'510','1137',2,0),(1698,'阁老坝',0,'510','1167',2,0),(1699,'贵阳北',0,'711','690',2,0),(1700,'大寨',0,'711','720',2,0),(1701,'都拉营',0,'711','750',2,0),(1702,'蓬莱',0,'711','780',2,0),(1703,'大观冲',0,'711','810',2,0),(1704,'扎佐',0,'711','840',2,0),(1705,'高坝',0,'711','870',2,0),(1706,'久长',0,'711','900',2,0),(1707,'新箩村',0,'711','930',2,0),(1708,'阳朗',0,'711','960',2,0),(1709,'息烽',0,'711','990',3,0),(1710,'盘脚营',0,'711','1020',2,0),(1711,'小寨坝',0,'711','1050',2,0),(1712,'养龙司',0,'711','1080',2,0),(1713,'董家坪',0,'711','1100',2,0),(1714,'乌江',0,'711','1130',2,0),(1715,'艾田',0,'711','1160',2,0),(1716,'拐点2贵阳TDCS分中心',0,'92','330',2,0),(1717,'拐点3贵阳TDCS分中心',0,'92','758',2,0),(1718,'拐点4贵阳TDCS分中心',0,'168','353',2,0),(1719,'拐点5贵阳TDCS分中心',0,'390','330',2,0),(1720,'拐点6贵阳TDCS分中心',0,'185','678',2,0),(1721,'拐点7贵阳TDCS分中心',0,'457','353',2,0),(1722,'拐点8贵阳TDCS分中心',0,'390','1077',2,0),(1723,'拐点10贵阳TDCS分中心',0,'457','783',2,0),(1724,'拐点11贵阳TDCS分中心',0,'510','1190',2,0),(1725,'拐点12贵阳TDCS分中心',0,'711','1190',2,0),(1726,'拐点14贵阳TDCS分中心',0,'711','353',2,0),(1727,'拐点15贵阳TDCS分中心',0,'760','330',1,0),(1728,'拐点17贵阳TDCS分中心',0,'760','990',2,0),(1729,'贵阳段网络图1',0,'714','47',2,1),(1730,'滥坝',0,'369','124',3,0),(1731,'茨冲',0,'369','160',2,0),(1732,'二道岩',0,'369','193',2,0),(1733,'关寨',0,'369','227',2,0),(1734,'新窑',0,'369','261',2,0),(1735,'那玉',0,'369','297',2,0),(1736,'六枝',0,'369','333',2,0),(1737,'大用',0,'369','366',2,0),(1738,'化处',0,'369','400',2,0),(1739,'黄桶',0,'369','438',2,0),(1740,'幺铺',0,'369','470',2,0),(1741,'安顺',0,'369','506',3,0),(1742,'两所屯',0,'369','540',2,0),(1743,'七眼桥',0,'369','577',2,0),(1744,'天龙',0,'369','610',2,0),(1745,'新平坝',0,'369','646',2,0),(1746,'平坝',0,'369','681',2,0),(1747,'高峰',0,'369','715',2,0),(1748,'马场',0,'369','750',2,0),(1749,'湖潮',0,'369','785',2,0),(1750,'石板哨',0,'369','820',2,0),(1751,'水城',0,'560','120',2,0),(1752,'双水',0,'560','155',2,0),(1753,'六盘水南到达场',0,'560','223',5,0),(1754,'驼峰',0,'611','300',2,0),(1755,'出发场',0,'611','330',2,0),(1756,'峰尾',0,'611','360',2,0),(1757,'曹家湾',0,'560','433',2,0),(1758,'六盘水',0,'560','502',4,0),(1759,'车间TDCS工区',0,'560','741',1,0),(1760,'马嘎',0,'678','646',2,0),(1761,'葡萄箐',0,'713','646',2,0),(1762,'昭通',0,'860','128',1,0),(1763,'昭通南',0,'860','200',2,0),(1764,'花土坡',0,'860','235',2,0),(1765,'迤那',0,'860','270',2,0),(1766,'老锅厂',0,'860','305',2,0),(1767,'李子沟',0,'860','340',2,0),(1768,'朱嘎',0,'860','375',2,0),(1769,'草海',0,'860','410',3,0),(1770,'清水沟',0,'860','445',2,0),(1771,'金钟',0,'860','480',2,0),(1772,'凉水井',0,'860','515',2,0),(1773,'石丫口',0,'860','550',2,0),(1774,'梅花山',0,'860','585',3,0),(1775,'乐居',0,'860','620',2,0),(1776,'罗盘地',0,'860','655',2,0),(1777,'树舍',0,'860','690',2,0),(1778,'扒挪块',0,'860','725',2,0),(1779,'荷马岭',0,'860','760',2,0),(1780,'背开柱',0,'860','795',2,0),(1781,'木嘎',0,'860','830',2,0),(1782,'田坝',0,'860','865',2,0),(1783,'邓家村',0,'860','900',2,0),(1784,'且午',0,'860','935',2,0),(1785,'徐屯',0,'860','970',2,0),(1786,'拐点1贵阳段网络图1',0,'733','27',2,0),(1787,'拐点2贵阳段网络图1',0,'302','27',2,0),(1788,'拐点3贵阳段网络图1',0,'302','820',2,0),(1789,'拐点4贵阳段网络图1',0,'733','37',2,0),(1790,'拐点5贵阳段网络图1',0,'329','37',2,0),(1791,'拐点6贵阳段网络图1',0,'329','506',2,0),(1792,'拐点7贵阳段网络图1',0,'733','47',2,0),(1793,'拐点8贵阳段网络图1',0,'369','47',2,0),(1794,'拐点9贵阳段网络图1',0,'398','89',2,0),(1795,'拐点10贵阳段网络图1',0,'560','89',2,0),(1796,'拐点11贵阳段网络图1',0,'733','32',2,0),(1797,'拐点12贵阳段网络图1',0,'733','502',2,0),(1798,'拐点13贵阳段网络图1',0,'616','563',2,0),(1799,'拐点14贵阳段网络图1',0,'616','646',2,0),(1800,'拐点15贵阳段网络图1',0,'829','646',2,0),(1801,'拐点16贵阳段网络图1',0,'905','47',2,0),(1802,'拐点17贵阳段网络图1',0,'905','410',2,0),(1803,'拐点18贵阳段网络图1',0,'926','37',2,0),(1804,'拐点19贵阳段网络图1',0,'926','970',2,0);
 
 /*Table structure for table `system` */
 
 DROP TABLE IF EXISTS `system`;
 
 CREATE TABLE `system` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `config_key` varchar(255) NOT NULL,
   `config_value` varchar(255) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `system` */
 
@@ -197,12 +188,12 @@ insert  into `system`(`id`,`config_key`,`config_value`) values (1,'frequency','1
 DROP TABLE IF EXISTS `user`;
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `authority` varchar(255) default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `authority` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 /*Data for the table `user` */
 
@@ -213,13 +204,13 @@ insert  into `user`(`id`,`username`,`password`,`authority`) values (5,'ddd','432
 DROP TABLE IF EXISTS `warn`;
 
 CREATE TABLE `warn` (
-  `id` int(11) NOT NULL auto_increment,
-  `warncontent` varchar(255) default NULL,
-  `warnstate` int(11) default NULL,
-  `warntime` datetime default NULL,
-  `stationId` int(11) default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `warncontent` varchar(255) DEFAULT NULL,
+  `warnstate` int(11) DEFAULT NULL,
+  `warntime` datetime DEFAULT NULL,
+  `stationId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 
 /*Data for the table `warn` */
 
