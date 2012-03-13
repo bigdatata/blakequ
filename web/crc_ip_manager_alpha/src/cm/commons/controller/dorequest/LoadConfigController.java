@@ -181,11 +181,8 @@ public class LoadConfigController {
 			if(station == null){
 				station = new Station();
 			}
-			String name = spf.getName();
-			if(spf.getIsMainStation().equals("true")){
-				name = "TDCS"+name;
-			}
-			station.setName(name);
+			
+			station.setName(spf.getName());
 			String num = spf.getSegNum();
 			if(num != null){
 				int n = Integer.parseInt(num);
@@ -194,6 +191,7 @@ public class LoadConfigController {
 			station.setState(0);
 			station.setX(spf.getX());
 			station.setY(spf.getY());
+			station.setIsMainStation(Boolean.valueOf(spf.getIsMainStation()));
 			stationService.saveOrUpdate(station);
 		}
 	}

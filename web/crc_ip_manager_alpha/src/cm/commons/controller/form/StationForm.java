@@ -14,7 +14,7 @@ public class StationForm {
 	private int segmentNum;//连接的线段数目
 	private Set station1 = new HashSet(0);//上行站点
 	private Set station2 = new HashSet(0);//下行站点
-	private Boolean isMainStation;//是否是主站点(TDCS)
+	private Boolean isMainStation;//是否是主站点
 	
 	public Boolean getIsMainStation() {
 		return isMainStation;

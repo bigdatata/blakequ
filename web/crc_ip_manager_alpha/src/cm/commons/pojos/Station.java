@@ -19,6 +19,7 @@ public class Station implements java.io.Serializable {
 	private String x;
 	private String y;
 	private Integer segmentNum;//表示该站点出去或进来的线段条数：一般为2（一进一出）
+	private Boolean isMainStation;//是否是主站点
 	private Set segmentsForStation2Id = new HashSet(0);
 	private Set segmentsForStation1Id = new HashSet(0);
 
@@ -54,6 +55,14 @@ public class Station implements java.io.Serializable {
 
 	public Integer getId() {
 		return this.id;
+	}
+
+	public Boolean getIsMainStation() {
+		return isMainStation;
+	}
+
+	public void setIsMainStation(Boolean isMainStation) {
+		this.isMainStation = isMainStation;
 	}
 
 	public void setId(Integer id) {

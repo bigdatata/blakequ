@@ -59,14 +59,14 @@ public class StationDaoImpl extends BasicDaoImpl<Integer, Station> implements
 
 	public List<Station> getMainStaion()  throws AppException{
 		// TODO Auto-generated method stub
-		log.debug("get main station contain TDCS");
+		log.debug("get main station ");
 		try {
-			return getSession().createQuery("from Station s where s.name like ?")
-						.setParameter(0, "%"+"TDCS"+"%")
+			return getSession().createQuery("from Station s where s.isMainStation = ?")
+						.setParameter(0, "true")
 						.list();
 		} catch (Exception e) {
 			// TODO: handle exception
-			log.error("get main station contain TDCS fail!", e);
+			log.error("get main station fail!", e);
 			throw new AppException("获取主站点失败");
 		}
 	}
@@ -75,10 +75,10 @@ public class StationDaoImpl extends BasicDaoImpl<Integer, Station> implements
 		// TODO Auto-generated method stub
 		log.debug("get main station by  route id");
 		try {
-			List<Station> ls = getSession().createQuery("from Station st where st.name like ? and " +
+			List<Station> ls = getSession().createQuery("from Station st where st.isMainStation = ? and " +
 					"				(st.id in(SELECT s.stationByStation1Id FROM Segment s WHERE s.routeId = ?) or " +
 					"					st.id in(SELECT s.stationByStation2Id FROM Segment s WHERE s.routeId = ?))")
-									.setParameter(0, "%TDCS%")
+									.setParameter(0, "true")
 									.setParameter(1, routeId)
 									.setParameter(2, routeId)
 									.list();
@@ -96,8 +96,8 @@ public class StationDaoImpl extends BasicDaoImpl<Integer, Station> implements
 		log.debug("get station by name");
 		try {
 			Station s = null;
-			List<Station> stations = getSession().createQuery("from Station s where s.name like ?")
-						.setParameter(0, "%"+name)
+			List<Station> stations = getSession().createQuery("from Station s where s.name = ?")
+						.setParameter(0, name)
 						.list();
 			if(stations != null && stations.size() != 0) s = stations.get(0);
 			return s;
@@ -134,7 +134,7 @@ public class StationDaoImpl extends BasicDaoImpl<Integer, Station> implements
 			stations = getSession().createSQLQuery("SELECT {station.*} FROM station WHERE  (" +
 						"id IN(SELECT station1_id FROM segment  WHERE route_id = ?) OR " +
 						"id IN(SELECT station2_id FROM segment WHERE route_id = ?)) " +
-						"ORDER BY NAME LIKE '%TDCS%' DESC;")
+						"ORDER BY is_main_station DESC;")
 						.addEntity("station", Station.class)
 						.setParameter(0, routeId)
 						.setParameter(1, routeId)
