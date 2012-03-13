@@ -22,7 +22,7 @@ var aa= window.confirm(error);
  	ex.printStackTrace(new java.io.PrintWriter(out));
  } 
 %>
-<input type="hidden" id="fb" value="${error} ${Exception!=null?Exception.getMessage():''}"/>
+<input type="hidden" id="fb" value="${error}"/>
 <font color="#ff0000">${error} ${Exception!=null?Exception.getMessage():''}</font>
 <H2></H2>
 <P/>
