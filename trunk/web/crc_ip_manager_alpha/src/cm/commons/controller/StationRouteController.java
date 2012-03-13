@@ -194,12 +194,8 @@ public class StationRouteController {
 		
 		
 		Station s = new Station();
-		String name = stationForm.getName();
-		//如果是主站点就加TDCS
-		if(stationForm.getIsMainStation()){
-			name = "TDCS"+name;
-		}
-		s.setName(name);
+		s.setName(stationForm.getName());
+		s.setIsMainStation(stationForm.getIsMainStation());
 		s.setSegmentNum(2);
 		s.setState(0);
 		s.setX(stationForm.getX()+"");
