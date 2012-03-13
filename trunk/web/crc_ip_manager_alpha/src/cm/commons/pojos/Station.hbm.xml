@@ -16,6 +16,7 @@
         <property name="state" type="java.lang.Integer"/>
         <property name="x" type="java.lang.String"/>
         <property name="y" type="java.lang.String"/>
+        <property name="isMainStation" column="is_main_station" type="java.lang.Boolean"/>
         <property name="segmentNum" type="java.lang.Integer" column="segment_num"/>
         <set name="segmentsForStation2Id" inverse="true" cascade="all" lazy="false">
             <key>
