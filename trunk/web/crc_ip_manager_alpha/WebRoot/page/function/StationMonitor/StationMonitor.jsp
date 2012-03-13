@@ -202,7 +202,7 @@ for(cm.commons.controller.form.StationForm u: t){
 									id="al" />
 							</td>
 						</tr>
-						<tr height="60">
+						<tr height="40">
 							<td>
 								<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="30" cy="20" r="10" stroke="black" stroke-width="2"style="fill:#00CD00"/>
@@ -210,7 +210,7 @@ for(cm.commons.controller.form.StationForm u: t){
 								</svg>
 							</td>
 						</tr>
-						<tr height="60">
+						<tr height="40">
 							<td>
 								<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="30" cy="20" r="10" stroke="black" stroke-width="2"style="fill:#EE0000"/>
@@ -218,7 +218,7 @@ for(cm.commons.controller.form.StationForm u: t){
 								</svg>
 							</td>
 						</tr>
-						<tr height="60">
+						<tr height="40">
 							<td>
 								<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="30" cy="20" r="10" stroke="black" stroke-width="2"style="fill:#000000"/>
@@ -226,7 +226,7 @@ for(cm.commons.controller.form.StationForm u: t){
 								</svg>
 							</td>
 						</tr>
-						<tr height="60">
+						<tr height="40">
 							<td>
 								<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
 								<line x1="10" y1="20" x2="50" y2="20" style="stroke:#0000AA;stroke-width:10" />
@@ -234,7 +234,7 @@ for(cm.commons.controller.form.StationForm u: t){
 								</svg>
 							</td>
 						</tr>
-						<tr height="60">
+						<tr height="40">
 							<td>
 								<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
 								<line x1="10" y1="20" x2="50" y2="20" style="stroke:#FF7F00;stroke-width:10" />
@@ -242,7 +242,7 @@ for(cm.commons.controller.form.StationForm u: t){
 								</svg>
 							</td>
 						</tr>
-						<tr height="60">
+						<tr height="40">
 							<td>
 								<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
 								<line x1="10" y1="20" x2="50" y2="20" style="stroke:#636363;stroke-width:10" />
