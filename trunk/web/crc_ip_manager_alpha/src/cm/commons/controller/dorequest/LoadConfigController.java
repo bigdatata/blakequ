@@ -78,6 +78,14 @@ public class LoadConfigController {
 				SegmentParse segmentParse = map1.get(key);
 				this.saveSegmentToDB(segmentParse);
 			}
+			//删除冗余站点
+			List<Station> listStation = stationService.getStationsNotInSegment();
+			if(listStation != null && listStation.size()>0){
+				for(Station s:listStation){
+					stationService.delete(s);
+				}
+			}
+			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -108,6 +108,7 @@ public class StationDaoImpl extends BasicDaoImpl<Integer, Station> implements
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Station> getStationsNotInSegment() throws AppException {
 		// TODO Auto-generated method stub
 		log.debug("get all station not in segment");
