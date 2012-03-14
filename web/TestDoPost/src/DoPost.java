@@ -22,7 +22,7 @@ public class DoPost {
 		// TODO Auto-generated method stub
 		String content = null;
 		try {
-			content = readFromFile("c:/4.txt");
+			content = readFromFile("c:/3.txt");
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
