@@ -15,15 +15,15 @@ var aa= window.confirm(error);
 }
 </script>
 </head>
-<body onload="a()">
+<body>
 <%
- Exception ex = (Exception)request.getAttribute("Exception");
+ Exception ex = (Exception)request.getAttribute("exception");
  if(ex != null){ 
- 	ex.printStackTrace(new java.io.PrintWriter(out));
+ 	System.out.println("------------------page error------------------");
  } 
 %>
-<input type="hidden" id="fb" value="${error}"/>
-<font color="#ff0000">${error} ${Exception!=null?Exception:''}</font>
+<input type="hidden" id="fb" value="${error} ${exception!=null?exception.getMessage():''}"/>
+<font color="#ff0000">${error} ${exception!=null?exception.getMessage():''}</font>
 <H2></H2>
 <P/>
 </body>
