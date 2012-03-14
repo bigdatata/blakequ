@@ -49,6 +49,18 @@ ul,li {
 	padding: 0px;
 }
 
+.unclickable {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	height: 25px;
+	line-height: 25px;
+	display: block;
+	padding: 0px;
+	padding-left: 10px;
+	background-color: #858585;
+}
+
 .container {
 	margin: 0 auto;
 	width: 100%;
