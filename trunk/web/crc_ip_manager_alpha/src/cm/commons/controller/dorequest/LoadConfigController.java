@@ -56,9 +56,11 @@ public class LoadConfigController {
 			return this.checkError();
 		}
 		try {
+			System.out.println("*********save route***********");
 			//存储线路
 			RouteParse routeParse = pd.parserRouteConfig();
 			this.saveRouteToDB(routeParse.getRouteList());
+			System.out.println("*********save station***********");
 			//存储车站
 			Map<String, StationParse> map2 = pd.parserStationConfig();
 			Iterator ii = map2.keySet().iterator();
@@ -67,6 +69,7 @@ public class LoadConfigController {
 				StationParse stationParse = map2.get(key);
 				this.saveStationToDB(stationParse);
 			}
+			System.out.println("*********save segment***********");
 			//存储线段
 			Map<String, SegmentParse> map1 = pd.parserSegmentConfig();
 			Iterator i = map1.keySet().iterator();

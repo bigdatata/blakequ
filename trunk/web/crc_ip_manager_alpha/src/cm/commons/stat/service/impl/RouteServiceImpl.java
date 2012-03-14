@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.NonUniqueResultException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cm.commons.exception.AppException;
@@ -112,7 +113,11 @@ public class RouteServiceImpl implements RouteService<Integer, Route> {
 		log.debug("get route by name");
 		try {
 			return (Route) routeDao.getRouteByName(name);
-		} catch (Exception e) {
+		}catch(NonUniqueResultException e){
+			log.error("get route by name fail!", e);
+			throw new AppException("线路:"+name+"已经存在!配置文件有误");
+		}  
+		catch (Exception e) {
 			// TODO: handle exception
 			log.error("get route by name fail!", e);
 			throw new AppException("获取线路:"+name+"失败");
