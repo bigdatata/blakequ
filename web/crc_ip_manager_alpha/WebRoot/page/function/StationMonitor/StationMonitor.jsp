@@ -365,7 +365,7 @@ for(cm.commons.controller.form.StationForm u: t){
 											+ sxy[i].getX()
 											+ "\" cy=\""
 											+ sxy[i].getY()
-											+ "\" r=\"8\" stroke=\"black\" stroke-width=\"2\" style=\"fill:"+AlarmStyleUtil.getStationColor(sxy[i],alarmList)+"\"/>");
+											+ "\" r=\"7\" stroke=\"black\" stroke-width=\"2\" style=\"fill:"+AlarmStyleUtil.getStationColor(sxy[i],alarmList)+"\"/>");
 							out.print("<text id=\"" + sxy[i].getId() + "\" x=\"" + sx
 									+ "\" y=\"" + sy + "\">"
 									+ sxy[i].getName() + "</text>");
