@@ -26,6 +26,9 @@
 		<meta http-equiv="" content="10;url=<%=path%>/main.do?route_id=${warn_route_id==null?target_route_id:warn_route_id}">
 		<link href="<%=path%>/pattern/cm/css/svg.css" rel="stylesheet"
 			type="text/css" />
+		<script type="text/javascript">
+			var stationid;
+		</script>
 		<script language="JavaScript" src="<%=path%>/pattern/cm/js/svg/svg.js"></script>
 		<script type="text/javascript"
 			src="<%=path%>/pattern/cm/js/svg/jquery-1.2.6.js"></script>
@@ -157,7 +160,7 @@ for(cm.commons.controller.form.StationForm u: t){
 						</tr>
 						<tr>
 							<td>
-								<select name="route_id">
+								<select name="route_id" style="width:140px">
 									<c:forEach items="${all_route}" var="sif">
 										<option value="${sif.id}"
 											<c:if test = "${sif.id == target_route_id}" >
@@ -362,7 +365,11 @@ for(cm.commons.controller.form.StationForm u: t){
 				
 				</svg>
 			</div>
-
+						<c:forEach items="${alarm_list}" var="al">
+						<c:if test = "${al.state == 3}" >
+		    				<input name="alarmstationids" type="hidden" value="${al.station_id}"></input>
+		    			</c:if>
+						</c:forEach>
 		</div>
 
   
@@ -378,14 +385,16 @@ for(cm.commons.controller.form.StationForm u: t){
 				<li id="computerInfo">
 					查看台账信息
 				</li>
-				<li class="separator"></li>
+				
 				<li id="routerInfo">
 					查看路由信息
 				</li>
-				<li class="separator"></li>
-				<li id="del">
+				
+				<li id="breakdown" class="unclickable">
 					查看设备故障
 				</li>
+				
+				
 				
 			</ul>
 		</div>
@@ -405,10 +414,13 @@ for(cm.commons.controller.form.StationForm u: t){
 			},
 			'del' : function(o) {
 				alert("请添加查看设备故障的函数 ");
+				
 			}
 		}
 	});
 
+	
 	cmenu.buildContextMenu();
+	
 </script>
 </html>
