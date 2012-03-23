@@ -78,6 +78,17 @@
 			css:{width:"800",height:"400"}
 		});
 	}
+	//**********************************
+	//
+	//关于动态弹窗的说明
+	//右击选择查看设备故障，传入元素id通过AJAX动态获取数据并进行显示
+	//@paragram o station
+	//
+	//**********************************
+	function stationInfo(o){
+	
+	alert("请添加故障查询函数");
+	}
 	//***********
 	//
 	//关于告警信息的说明：
@@ -390,7 +401,7 @@ for(cm.commons.controller.form.StationForm u: t){
 					查看路由信息
 				</li>
 				
-				<li id="breakdown" class="unclickable">
+				<li id="stationInfo">
 					查看设备故障
 				</li>
 				
@@ -412,8 +423,8 @@ for(cm.commons.controller.form.StationForm u: t){
 			'routerInfo' : function(o) {
 				routerInfo(o)
 			},
-			'del' : function(o) {
-				alert("请添加查看设备故障的函数 ");
+			'stationInfo' : function(o) {
+				stationInfo(o)
 				
 			}
 		}
