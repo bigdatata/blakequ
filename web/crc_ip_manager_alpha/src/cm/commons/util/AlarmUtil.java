@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import cm.commons.controller.form.AlarmForm;
 /**
@@ -14,7 +16,27 @@ import cm.commons.controller.form.AlarmForm;
  *
  */
 public class AlarmUtil {
+	//定时任务
+	private final static long SECOND_TO_MILLISECOND=1000;
+	private static int frequency = 1;
+	public static void setFrequency(int fq){
+		frequency=fq;
+	}
 
+	private static TimerTask task = new TimerTask() {
+		
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			//定时清除告警
+			alarms.clear();
+		}
+	};
+	static{
+		Timer timer=new Timer();
+		timer.schedule(task, 0, frequency*SECOND_TO_MILLISECOND);
+	}
+	
 	public static final String SEGMENTKEY = "@";
 	/**
 	 * 用于全局存储所有告警信息
@@ -48,18 +70,6 @@ public class AlarmUtil {
 		alarms.remove(station);
 	}
 	
-	/**
-	 * 从map里面移除已经正常的站点
-	 */
-	public static void removeNormalStation(){
-		Set<String> stations = alarms.keySet();
-		for(String s:stations){
-			AlarmForm af = alarms.get(s);
-			if(af.getState()==0){
-				alarms.remove(s);
-			}
-		}
-	}
 	
 	/**
 	 * 获取所有线段告警
@@ -75,6 +85,7 @@ public class AlarmUtil {
 		}
 		return list;
 	}
+	
 	
 	/**
 	 * 获取所有站点告警
