@@ -227,7 +227,7 @@ for(cm.commons.controller.form.StationForm u: t){
 						<tr height="40">
 							<td>
 								<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
-								<circle cx="30" cy="20" r="10" stroke="black" stroke-width="2"style="fill:#EE0000"/>
+								<circle cx="30" cy="20" r="10" stroke="black" stroke-width="2"style="fill:#FF7F00"/>
 								<text  x="70" y="25" style=font-size:15>站点异常</text>
 								</svg>
 							</td>
@@ -251,7 +251,7 @@ for(cm.commons.controller.form.StationForm u: t){
 						<tr height="40">
 							<td>
 								<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
-								<line x1="10" y1="20" x2="50" y2="20" style="stroke:#FF7F00;stroke-width:10" />
+								<line x1="10" y1="20" x2="50" y2="20" style="stroke:#EE0000;stroke-width:10" />
 								<text  x="70" y="25" style=font-size:15>线段异常</text>
 								</svg>
 							</td>
@@ -365,7 +365,7 @@ for(cm.commons.controller.form.StationForm u: t){
 											+ sxy[i].getX()
 											+ "\" cy=\""
 											+ sxy[i].getY()
-											+ "\" r=\"10\" stroke=\"black\" stroke-width=\"2\" style=\"fill:"+AlarmStyleUtil.getStationColor(sxy[i],alarmList)+"\"/>");
+											+ "\" r=\"8\" stroke=\"black\" stroke-width=\"2\" style=\"fill:"+AlarmStyleUtil.getStationColor(sxy[i],alarmList)+"\"/>");
 							out.print("<text id=\"" + sxy[i].getId() + "\" x=\"" + sx
 									+ "\" y=\"" + sy + "\">"
 									+ sxy[i].getName() + "</text>");
