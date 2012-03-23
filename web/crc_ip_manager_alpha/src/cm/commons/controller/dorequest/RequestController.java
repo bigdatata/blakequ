@@ -386,6 +386,7 @@ public class RequestController {
 							sgId = s.getId();
 						}
 					}
+					
 					//构造告警线段
 					AlarmForm wff = new AlarmForm();
 					wff.setInfo(station.getName()+" 对"+name[i]+"方向通信有异常");
