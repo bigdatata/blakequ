@@ -11,17 +11,30 @@ contextMenu.prototype.buildContextMenu = function(){
    // 提取菜单初始化设置的属性及事件
    var targetEle = this.props.targetEle;
    var eventFunc = this.events;
-   
    // 初始化菜单项的mouseover 和 mouseout事件
    var _items = menuObj.getElementsByTagName("li");
+   var _alarmstationids=document.getElementsByName("alarmstationids");
+   var flag=0;
+   for(var j=0;j<_alarmstationids.length;j++)
+   {
+	   if(_alarmstationids[j]==stationid)
+	   {
+		   flag=1;
+	   }
+   }
+	   
   	for(var i=0;i<_items.length;i++){
-  		if(_items[i].className != "separator"){
-  			 _items[i].className = "item";
-	  		 _items[i].onmouseover = function(){this.className ="item itemOver";};
-	  		 _items[i].onmouseout = function(){this.className = "item";}
-  	  }
+  		
+  	if((_items[i].className=="unclickable")&&(flag!=1)){
+  		_items[i].className = "unclickable";
+ 	  }
+  	else{
+  		 _items[i].className = "item";
+ 		 _items[i].onmouseover = function(){this.className ="item itemOver";};
+ 		 _items[i].onmouseout = function(){this.className = "item";}
+		}
   }
-
+   
    document.oncontextmenu = function(evt){
    	     var _bodyWidth = null;
 		 var _bodyHeight = null;
