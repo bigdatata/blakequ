@@ -28,12 +28,13 @@ public class PortJson {
 	private String locIfInBitsSec;
 	private String locIfOutBitsSec;
 	private String ifOutOctets;
+	private String warnStation;
 	
 	public PortJson(){}
 	public PortJson(String routerIp, String ifIndex, String ifDescr,
 			String ifOperStatus, String ifInOctets, String locIfInCRC,
 			String ipRouteDest, String portIp, String locIfInBitsSec,
-			String locIfOutBitsSec, String ifOutOctets) {
+			String locIfOutBitsSec, String ifOutOctets, String warnStation) {
 		super();
 		this.routerIp = routerIp;
 		this.ifIndex = ifIndex;
@@ -46,6 +47,7 @@ public class PortJson {
 		this.locIfInBitsSec = locIfInBitsSec;
 		this.locIfOutBitsSec = locIfOutBitsSec;
 		this.ifOutOctets = ifOutOctets;
+		this.warnStation = warnStation;
 	}
 	public String getRouterIp() {
 		return routerIp;
@@ -112,6 +114,13 @@ public class PortJson {
 	}
 	public void setIfOutOctets(String ifOutOctets) {
 		this.ifOutOctets = ifOutOctets;
+	}
+	
+	public String getWarnStation() {
+		return warnStation;
+	}
+	public void setWarnStation(String warnStation) {
+		this.warnStation = warnStation;
 	}
 	@Override
 	public String toString() {
