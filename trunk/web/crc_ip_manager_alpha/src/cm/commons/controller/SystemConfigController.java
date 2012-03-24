@@ -16,6 +16,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import cm.commons.controller.form.ConfigForm;
 import cm.commons.pojos.System;
 import cm.commons.sys.service.SystemService;
+import cm.commons.util.AlarmUtil;
 import cm.commons.util.NullUtil;
 
 /**
@@ -115,6 +116,7 @@ public class SystemConfigController {
 			System system=systemService.getSystemConfigByKey(key);
 			system.setConfigValue(newValue);
 			systemService.saveOrUpdate(system);
+			AlarmUtil.setFrequency(Integer.parseInt(newValue)*2);
 			value=newValue;
 		}else{
 			System system=systemService.getSystemConfigByKey(key);

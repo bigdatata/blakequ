@@ -18,23 +18,35 @@ import cm.commons.controller.form.AlarmForm;
 public class AlarmUtil {
 	//定时任务
 	private final static long SECOND_TO_MILLISECOND=1000;
-	private static int frequency = 1;
-	public static void setFrequency(int fq){
-		frequency=fq;
+	private static int frequency = 60;
+	private static Timer timer;
+	/**
+	 * 设置清除告警频率
+	 * @param time
+	 */
+	public static void setTime(int time){
+		frequency = time;
 	}
-
-	private static TimerTask task = new TimerTask() {
-		
-		@Override
-		public void run() {
-			// TODO Auto-generated method stub
-			//定时清除告警
-			alarms.clear();
+	public static void setFrequency(int fq){
+		System.out.println("--------time:"+fq*SECOND_TO_MILLISECOND);
+		frequency=fq;
+		if(timer != null){
+			timer.cancel();
 		}
-	};
+		timer = new Timer();
+		timer.schedule(new TimerTask() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				System.out.println("--------clear alarm--------time:"+frequency);
+				//定时清除告警
+				alarms.clear();
+			}
+		}, 0, frequency*SECOND_TO_MILLISECOND);
+	}
 	static{
-		Timer timer=new Timer();
-		timer.schedule(task, 0, frequency*SECOND_TO_MILLISECOND);
+		setFrequency(frequency);
 	}
 	
 	public static final String SEGMENTKEY = "@";
@@ -45,13 +57,6 @@ public class AlarmUtil {
 	
 	public static void addToMap(String station, AlarmForm af){
 		alarms.put(station, af);
-	}
-	
-	/**
-	 * 清除所有数据
-	 */
-	public static void Clear(){
-		alarms.clear();
 	}
 	
 	public static boolean containsStation(String station){
