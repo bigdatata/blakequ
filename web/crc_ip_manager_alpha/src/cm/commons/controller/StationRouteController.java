@@ -34,7 +34,9 @@ import cm.commons.pojos.Station;
 import cm.commons.stat.service.RouteService;
 import cm.commons.stat.service.SegmentService;
 import cm.commons.stat.service.StationService;
+import cm.commons.sys.service.SystemService;
 import cm.commons.sys.service.WarnService;
+import cm.commons.util.AlarmStyleUtil;
 import cm.commons.util.AlarmUtil;
 
 @Controller
@@ -46,6 +48,7 @@ public class StationRouteController {
 	private SegmentService segmentService;
 	@Autowired
 	private StationService stationService;
+	
 	
 	/**
 	 * 返回绘制线路相关的信息

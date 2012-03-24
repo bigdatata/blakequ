@@ -19,7 +19,9 @@ import cm.commons.dao.hiber.util.Element;
 import cm.commons.dao.hiber.util.Link;
 import cm.commons.dao.hiber.util.OP;
 import cm.commons.pojos.User;
+import cm.commons.sys.service.SystemService;
 import cm.commons.sys.service.UserService;
+import cm.commons.util.AlarmUtil;
 import cm.commons.util.NullUtil;
 import cm.commons.util.PageModel;
 
@@ -33,7 +35,6 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	
 
 	/**
 	 * 删除多个用户
@@ -244,6 +245,7 @@ public class UserController {
 			request.setAttribute("info", "当前用户:"+user.getUsername()+"密码错误!");
 			return mv;
 		}
+		
 		request.getSession().setAttribute("user", u);
 		return new ModelAndView(new RedirectView("crc.jsp?route_id=1"));
 	}

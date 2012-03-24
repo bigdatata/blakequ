@@ -73,7 +73,8 @@ public class RequestController {
 		String frequency = configService.getSystemConfigByKey("frequency").getConfigValue();//获取更新频率
 		int fgy = Integer.parseInt(frequency);
 		task.setTimeToWarn(fgy*2);
-		AlarmUtil.setFrequency(fgy*2);
+		//设置告警清除频率
+		AlarmUtil.setTime(Integer.parseInt(frequency)*2);
 		
 		try {
 			PrintWriter pw = response.getWriter();
