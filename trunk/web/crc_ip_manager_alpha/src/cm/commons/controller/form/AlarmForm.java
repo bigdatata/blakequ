@@ -10,7 +10,7 @@ public class AlarmForm {
 	private String sg2_name;//结束站点名字
 	private int sg2;//如果是线段，终止站点
 	private int segment_id;//如果是线段
-	private int state;//故障状态，包括未知，故障，0(正常),1(异常),2(未知)等
+	private int state;//故障状态，包括未知，故障，0(正常),1(异常),2(未知) 3(01告警)等
 	private String info;
 	private Date time;
 	private String stationName;

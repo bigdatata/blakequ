@@ -76,7 +76,27 @@ public class AlarmController {
 		}
 		return mv;
 	}
-
+	
+	/**
+	 * 获取当前的告警信息,有告警则会跳转到主页面刷新视图
+	 * 没有则什么都不做
+	 * @return
+	 */
+	@RequestMapping("get_station_warn")
+	public ModelAndView getStationWarn(int stationId){
+		ModelAndView mv = new ModelAndView();
+//		List<Warn> alarm = (List<Warn>)warnService.getWarnByStation(stationId);
+		AlarmForm af = AlarmUtil.getByKey(((Station)stationService.get(stationId)).getName());
+		if((af != null)&&(af.getState() == 3))
+		{
+			
+			mv.setViewName("StationMonitor/StationInfo");
+			
+		}else{
+			mv.setViewName("StationMonitor/NoStationInfo");
+		}
+		return mv;
+	}
 	/**
 	 * 这是获取的历史告警日志记录
 	 * @param searchStr
