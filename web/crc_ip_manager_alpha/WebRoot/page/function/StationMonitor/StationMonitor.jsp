@@ -285,15 +285,15 @@ for(cm.commons.controller.form.StationForm u: t){
 					
 					if(sg[i].getStartX()<sg[i].getEndX())
 					{
-					x1 = sg[i].getStartX()-3;
-					x2 = sg[i].getEndX()+3;
+					x1 = sg[i].getStartX()-2;
+					x2 = sg[i].getEndX()+2;
 					y1 = sg[i].getStartY();
 					y2 = sg[i].getEndY();
 					}
 					else if(sg[i].getStartX()>sg[i].getEndX())
 					{
-					x1 = sg[i].getStartX()+3;
-					x2 = sg[i].getEndX()-3;
+					x1 = sg[i].getStartX()+2;
+					x2 = sg[i].getEndX()-2;
 					y1 = sg[i].getStartY();
 					y2 = sg[i].getEndY();
 					}
@@ -301,15 +301,15 @@ for(cm.commons.controller.form.StationForm u: t){
 					{
 					x1 = sg[i].getStartX();
 					x2 = sg[i].getEndX();
-					y1 = sg[i].getStartY()-3;
-					y2 = sg[i].getEndY()+3;
+					y1 = sg[i].getStartY()-2;
+					y2 = sg[i].getEndY()+2;
 					}
 					else if(sg[i].getStartY()>sg[i].getEndY())
 					{
 					x1 = sg[i].getStartX();
 					x2 = sg[i].getEndX();
-					y1 = sg[i].getStartY()+3;
-					y2 = sg[i].getEndY()-3;
+					y1 = sg[i].getStartY()+2;
+					y2 = sg[i].getEndY()-2;
 					}
 					else
 					{
