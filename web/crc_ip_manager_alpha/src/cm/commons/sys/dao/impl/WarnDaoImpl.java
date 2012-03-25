@@ -60,7 +60,7 @@ public class WarnDaoImpl extends BasicDaoImpl<Integer, Warn> implements WarnDao<
 		// TODO Auto-generated method stub
 		log.debug("get warn by station "+stationId);
 		try {
-			return getSession().createQuery("from Warn w where w.stationId=?")
+			return getSession().createQuery("from Warn w where w.stationId=? order by w.warntime desc")
 				.setParameter(0, stationId)
 				.list();
 		} catch (Exception e) {
