@@ -86,8 +86,20 @@
 	//
 	//**********************************
 	function stationInfo(o){
-	
-	alert("请添加故障查询函数");
+	var xmlhttp;
+		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp = new XMLHttpRequest();
+		} else {// code for IE6, IE5
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				$.alert(xmlhttp.responseText);
+				//document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+			}
+		}
+		xmlhttp.open("POST", "alarm/get_station_warn.do?stationId=" + o.id, true);
+		xmlhttp.send();
 	}
 	//***********
 	//
@@ -133,6 +145,7 @@ for(cm.commons.controller.form.StationForm u: t){
 		 <%if(!alarmList.isEmpty())
 		 {
 		 %>
+		 
 		 <object data="<%=path%>/pattern/cm/sound/alarm.mp3" type="application/x-mplayer2" width="1" height="1"> 
                                 <param name="src" value="<%=path%>/pattern/cm/sound/alarm.mp3"> 
                                 <param name="autostart" value="true"> 
@@ -140,6 +153,8 @@ for(cm.commons.controller.form.StationForm u: t){
                                 <param name="hidden" value="true">
          </object>  
 		 <%}%>
+		 <!-- <EMBED height="1" type="audio/mpeg" width="1" src="<%=path%>/pattern/cm/sound/alarm.mp3" autostart="true" loop="2"></EMBED>
+			 -->
 			<div class="sidebar">
 				<form action="<%=basePath%>main.do" method="post">
 					<table width="120px">
