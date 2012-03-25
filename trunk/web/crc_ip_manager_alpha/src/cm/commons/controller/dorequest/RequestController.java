@@ -72,9 +72,9 @@ public class RequestController {
 		task = StationStateCheckTask.getStateCheckTask(60);//默认5秒
 		String frequency = configService.getSystemConfigByKey("frequency").getConfigValue();//获取更新频率
 		int fgy = Integer.parseInt(frequency);
-		task.setTimeToWarn(fgy*2);
+		task.setTimeToWarn(fgy+60);
 		//设置告警清除频率
-		AlarmUtil.setTime(Integer.parseInt(frequency)*2);
+		AlarmUtil.setTime(Integer.parseInt(frequency)+120);
 		
 		try {
 			PrintWriter pw = response.getWriter();

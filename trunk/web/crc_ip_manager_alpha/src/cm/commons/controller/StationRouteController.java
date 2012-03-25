@@ -65,7 +65,7 @@ public class StationRouteController {
 		request.getSession().setAttribute("target_route_id", route_id);
 		List<AlarmForm> list = AlarmUtil.getAllAlarm();
 		if(list != null && list.size()>0){
-			int warnId=0;
+			int warnId=1;
 			String info = list.get(0).getSg1_name();
 			if(info==null || info.equals("")){
 				//车站告警
