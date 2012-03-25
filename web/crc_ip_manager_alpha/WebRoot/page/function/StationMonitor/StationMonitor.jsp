@@ -329,7 +329,7 @@ for(cm.commons.controller.form.StationForm u: t){
 										+ x2
 										+ "\" y2=\""
 										+ y2
-										+ "\" style=\"stroke:"+AlarmStyleUtil.getSegmentColor(sg[i],alarmList)+";stroke-width:7\" />");
+										+ "\" style=\"stroke:"+AlarmStyleUtil.getSegmentColor(sg[i],alarmList)+";stroke-width:4\" />");
 					}
 
 					//***********************下面是绘制站点和站点名****************//
@@ -355,7 +355,7 @@ for(cm.commons.controller.form.StationForm u: t){
 						{
 							System.out.print(sxy[i].getName().substring(0,2));
 							double sx = (sxy[i].getX() + 10);//将站名置于右边
-							double sy = (sxy[i].getY() + 5);
+							double sy = (sxy[i].getY() + 10);
 							out
 									.print("<circle id=\""
 											+ sxy[i].getId()
