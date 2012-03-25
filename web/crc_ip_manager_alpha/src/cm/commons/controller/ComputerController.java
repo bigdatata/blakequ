@@ -38,7 +38,7 @@ public class ComputerController {
 		ComputerForm cf = this.getComputer(stationId);
 		mv.addObject("computer", cf);
 		mv.addObject("computerlog",cf.getClf());
-		mv.setViewName("StationMonitor/StationInfo");
+		mv.setViewName("StationMonitor/ComputerInfo");
 		return mv;
 	}
 	
