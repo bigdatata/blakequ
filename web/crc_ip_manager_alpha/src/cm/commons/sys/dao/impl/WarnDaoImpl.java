@@ -31,7 +31,7 @@ public class WarnDaoImpl extends BasicDaoImpl<Integer, Warn> implements WarnDao<
 			throw new AppException("查询告警日志错误！");
 		}
 		try {
-			return getSession().createQuery("from Warn w where w.warntime between ? and ?")
+			return getSession().createQuery("from Warn w where w.warntime between ? and ? order by w.warntime desc")
 				.setParameter(0, beginTime)
 				.setParameter(1, endTime)
 				.list();
@@ -46,7 +46,7 @@ public class WarnDaoImpl extends BasicDaoImpl<Integer, Warn> implements WarnDao<
 		// TODO Auto-generated method stub
 		log.debug("get warn by state");
 		try {
-			return getSession().createQuery("from Warn w where w.warnstate=?")
+			return getSession().createQuery("from Warn w where w.warnstate=? order by w.warntime desc")
 				.setParameter(0, warnState)
 				.list();
 		} catch (Exception e) {
