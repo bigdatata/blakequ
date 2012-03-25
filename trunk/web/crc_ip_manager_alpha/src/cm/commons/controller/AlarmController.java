@@ -85,13 +85,10 @@ public class AlarmController {
 	@RequestMapping("get_station_warn")
 	public ModelAndView getStationWarn(int stationId){
 		ModelAndView mv = new ModelAndView();
-//		List<Warn> alarm = (List<Warn>)warnService.getWarnByStation(stationId);
 		AlarmForm af = AlarmUtil.getByKey(((Station)stationService.get(stationId)).getName());
-		if((af != null)&&(af.getState() == 3))
+		if(af != null && af.getState() == 3)
 		{
-			
 			mv.setViewName("StationMonitor/StationInfo");
-			
 		}else{
 			mv.setViewName("StationMonitor/NoStationInfo");
 		}
