@@ -100,7 +100,7 @@
 							<tr>
 								<td height="26">
 									<div align="right">
-										线路X坐标:&nbsp;
+										站点X坐标:&nbsp;
 									</div>
 								</td>
 								<td>
@@ -111,7 +111,7 @@
 							<tr>
 								<td height="26">
 									<div align="right">
-										线路Y坐标:&nbsp;
+										站点Y坐标:&nbsp;
 									</div>
 								</td>
 								<td>
