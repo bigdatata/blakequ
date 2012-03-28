@@ -225,7 +225,8 @@ public class RequestController {
 				af.setSg2(s.getStationByStation2Id().getId());
 				af.setSg2_name(s.getStationByStation2Id().getName());
 				AlarmUtil.addToMap(AlarmUtil.SEGMENTKEY+s.getId(), af);
-				//不存储到数据库
+				//存储到数据库
+				saveWarnToDB(af);
 			}
 		}
 	}
