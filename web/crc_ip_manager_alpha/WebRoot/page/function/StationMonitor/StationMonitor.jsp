@@ -152,9 +152,11 @@ for(cm.commons.controller.form.StationForm u: t){
                                 <param name="controller" value="true" />
                                 <param name="hidden" value="true">
          </object>  
+         <EMBED src="<%=path%>/pattern/cm/sound/alarm.mp3"   width="1" height="1" type="audio/x-ms-wma"  loop="true"  autostart="true"  volume="0">
 		 <%}%>
 		 <!-- <EMBED height="1" type="audio/mpeg" width="1" src="<%=path%>/pattern/cm/sound/alarm.mp3" autostart="true" loop="2"></EMBED>
 			 -->
+			 
 			<div class="sidebar">
 				<form action="<%=basePath%>main.do" method="post">
 					<table width="120px">
