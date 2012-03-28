@@ -39,9 +39,9 @@ public class AlarmUtil {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				System.out.println("--------clear alarm--------time:"+frequency);
-				//定时清除告警
-				alarms.clear();
+				System.out.println("--------clear segment alarm--------time:"+frequency);
+				//定时清除线段告警
+				clearAlarmSegment();
 			}
 		}, 0, frequency*SECOND_TO_MILLISECOND);
 	}
@@ -89,6 +89,20 @@ public class AlarmUtil {
 			}
 		}
 		return list;
+	}
+	
+	/**
+	 * 清除所有线段告警
+	 */
+	private static void clearAlarmSegment(){
+		List<AlarmForm> list = new ArrayList<AlarmForm>();
+		Iterator i = alarms.keySet().iterator();
+		while(i.hasNext()){
+			String key = (String) i.next();
+			if(key.startsWith(SEGMENTKEY)){
+				i.remove();
+			}
+		}
 	}
 	
 	
