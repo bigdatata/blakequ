@@ -61,7 +61,7 @@
   	<param-name>page-size</param-name>
   	<param-value>15</param-value>
   </context-param>	
-  
+  <!-- 
   <filter>
 		<filter-name>urlProperiesFilter</filter-name>
 		<filter-class>
@@ -72,5 +72,5 @@
 		<filter-name>urlProperiesFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+	-->
 </web-app>

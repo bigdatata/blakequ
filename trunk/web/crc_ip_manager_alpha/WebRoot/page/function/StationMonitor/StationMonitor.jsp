@@ -369,7 +369,7 @@ for(cm.commons.controller.form.StationForm u: t){
 									+ "</text>");
 						} else if(!sxy[i].getName().substring(0,2).equals("拐点"))
 						{
-							System.out.print(sxy[i].getName().substring(0,2));
+							//System.out.print(sxy[i].getName().substring(0,2));
 							double sx = (sxy[i].getX() + 10);//将站名置于右边
 							double sy = (sxy[i].getY() + 10);
 							out
