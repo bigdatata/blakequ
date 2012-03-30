@@ -94,17 +94,17 @@ public class StationRouteController {
 		//获取所有线段
 		List<SegmentForm> segmentForms = getAllSegmentByRoute(route_id);
 		
-		System.out.println("****当前线路信息**********");
+		//****当前线路信息**********
 		StationInfoForm sif = new StationInfoForm();
 		sif.setRid(route_id);
 		sif.setSg(segmentForms.size());//线段数目
 		sif.setSt(r.getStationNum());
 		sif.setName(r.getName());
 		
-		System.out.println("****所有线路信息**********");
+		//****所有线路信息**********
 		List<Route> routes = routeService.getAll();
 		
-		System.out.println("****设置模型视图**********");
+		//****设置模型视图**********
 		ModelAndView mv = new ModelAndView();
 		Map<String, Object> m = new HashMap<String, Object>();
 		List<AlarmForm> list1 = AlarmUtil.getAllAlarm();

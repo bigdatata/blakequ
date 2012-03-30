@@ -21,7 +21,6 @@ public class UserOperatorIntercepter extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("_______preHandle__________");
 		ModelAndView mav = new ModelAndView("../public/error");
 		mav.addObject("error", "当前用户没有权限执行该操作！");
 		User u = (User) request.getSession().getAttribute("user");
@@ -33,9 +32,7 @@ public class UserOperatorIntercepter extends HandlerInterceptorAdapter {
 			return true;
 		}
 		if(u.getAuthority().equals("user")){
-			System.out.println("postHandle:检查用户"+u.getUsername()+",权限异常操作");
 			throw new ModelAndViewDefiningException(mav);
-//			return false;
 		}
 		return true;
 	}
