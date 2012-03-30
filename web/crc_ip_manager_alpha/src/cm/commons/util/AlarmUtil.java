@@ -50,6 +50,7 @@ public class AlarmUtil {
 	}
 	
 	public static final String SEGMENTKEY = "@";
+	public static final String ERRORKEY = "#";
 	/**
 	 * 用于全局存储所有告警信息
 	 */
@@ -92,7 +93,7 @@ public class AlarmUtil {
 	}
 	
 	/**
-	 * 清除所有线段告警
+	 * 清除所有未知线段告警
 	 */
 	private static void clearAlarmSegment(){
 		List<AlarmForm> list = new ArrayList<AlarmForm>();
@@ -103,6 +104,23 @@ public class AlarmUtil {
 				i.remove();
 			}
 		}
+	}
+	
+	/**
+	 * 获取所有状态有up到down的告警线段
+	 * @return
+	 */
+	@SuppressWarnings("unused")
+	public static List<AlarmForm> getUpToDownSegment(){
+		List<AlarmForm> list = new ArrayList<AlarmForm>();
+		Iterator i = alarms.keySet().iterator();
+		while(i.hasNext()){
+			String key = (String) i.next();
+			if(key.startsWith(ERRORKEY)){
+				list.add(alarms.get(key));
+			}
+		}
+		return list;
 	}
 	
 	
@@ -128,14 +146,10 @@ public class AlarmUtil {
 	 */
 	public static List<AlarmForm> getAllAlarm(){
 		List<AlarmForm> afList = new ArrayList<AlarmForm>();
-		Set<String> stations = alarms.keySet();
-		for(String s:stations){
-			AlarmForm af = alarms.get(s);
-			if(af.getState()!=0){
-				afList.add(af);
-			}else{
-				alarms.remove(s);
-			}
+		Iterator i =  alarms.keySet().iterator();
+		while(i.hasNext()){
+			String key = (String) i.next();
+			afList.add(alarms.get(key));
 		}
 		return afList;
 	}
