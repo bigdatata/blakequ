@@ -126,8 +126,8 @@ fbStation[] sxy = new fbStation[t.size()+2];
 fbSegment[] sg = new fbSegment[o.size()+2];
 int sxy_num=0;
 int sg_num=0;
-System.out.println(o.size());
-System.out.println(t.size());
+//System.out.println(o.size());
+//System.out.println(t.size());
 for(cm.commons.controller.form.SegmentForm u: o){
 	sg[sg_num++] = new fbSegment(u.getId(),u.getStartX(),u.getStartY(),u.getEndX(),u.getEndY());
 }		
@@ -369,7 +369,7 @@ for(cm.commons.controller.form.StationForm u: t){
 									+ "</text>");
 						} else if(!sxy[i].getName().substring(0,2).equals("拐点"))
 						{
-							System.out.print(sxy[i].getName().substring(0,2));
+							//System.out.print(sxy[i].getName().substring(0,2));
 							double sx = (sxy[i].getX() + 10);//将站名置于右边
 							double sy = (sxy[i].getY() + 10);
 							out
