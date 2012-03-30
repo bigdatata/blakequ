@@ -162,11 +162,11 @@ public class RequestController {
 			this.checkSegmentWarm(station, portState);
 			
 			//如果本站点没告警则从map中移除(定时清除)
-//			if(wf == null){
-//				if(AlarmUtil.containsStation(stationJson.getStation_name())){
-//					AlarmUtil.removeStation(stationJson.getStation_name());
-//				}
-//			}
+			if(wf == null){
+				if(AlarmUtil.containsStation(stationJson.getStation_name())){
+					AlarmUtil.removeStation(stationJson.getStation_name());
+				}
+			}
 			
 			//移除没有告警的线段告警(定时清除)
 //			this.removeSegmentWarn(station, portState);
