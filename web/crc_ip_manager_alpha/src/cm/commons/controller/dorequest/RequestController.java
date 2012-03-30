@@ -74,7 +74,11 @@ public class RequestController {
 		int fgy = Integer.parseInt(frequency);
 		task.setTimeToWarn(fgy+60);
 		//设置告警清除频率
-		AlarmUtil.setTime(Integer.parseInt(frequency)+120);
+		if(fgy <= 60){
+			AlarmUtil.setTime(fgy+30);
+		}else{
+			AlarmUtil.setTime(fgy+120);
+		}
 		
 		try {
 			PrintWriter pw = response.getWriter();
