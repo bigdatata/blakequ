@@ -23,7 +23,7 @@
 	
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Insert title here</title>
-		<meta http-equiv="refresh" content="10;url=<%=path%>/main.do?route_id=${warn_route_id==null?target_route_id:warn_route_id}">
+		<meta http-equiv="refresh" content="20;url=<%=path%>/main.do?route_id=${warn_route_id==null?target_route_id:warn_route_id}">
 		<link href="<%=path%>/pattern/cm/css/svg.css" rel="stylesheet"
 			type="text/css" />
 		<script type="text/javascript">
