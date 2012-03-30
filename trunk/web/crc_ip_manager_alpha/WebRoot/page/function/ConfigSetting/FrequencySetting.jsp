@@ -33,6 +33,8 @@
 						</div>
 						<div class="four_columns_input">
 							<select name="frequency">
+								 <option value="10" ${frequency=='10'?'selected':'' }>10秒</option>
+								 <option value="30" ${frequency=='30'?'selected':'' }>30秒</option>
 							<%
 							for(int i=0;i<frequencyOptions.size();i++){
 								String option=frequencyOptions.get(i);
@@ -47,6 +49,7 @@
 							 <%
 							 }
 							  %>
+							 
 							</select>
 						</div>
 						<div class="four_columns_input">
