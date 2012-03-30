@@ -243,8 +243,8 @@ public class RequestController {
 	}
 	
 	private Station saveOrUpdateComputer(StationJson stationJson, ComputerJson computerJson){
-		Computer c = this.toComputer(computerJson);
-        Station station = (Station) stationService.getStationByName(stationJson.getStation_name());
+		Station station = (Station) stationService.getStationByName(stationJson.getStation_name());
+		Computer c = this.toComputer(computerJson, station.getId());
         if(station == null){
         	station = new Station();
         	station.setName(stationJson.getStation_name());
@@ -274,8 +274,8 @@ public class RequestController {
 	 * @param cj
 	 * @return
 	 */
-	private Computer toComputer(ComputerJson cj){
-		Computer c = computerService.getComputerByIp(cj.getPc_ip());
+	private Computer toComputer(ComputerJson cj, int stationId){
+		Computer c = (Computer) computerService.getComputerByStationId(stationId);
 		if(c == null){ 
 			c = new Computer();
 		}
