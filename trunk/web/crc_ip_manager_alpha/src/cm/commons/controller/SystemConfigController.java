@@ -116,7 +116,12 @@ public class SystemConfigController {
 			System system=systemService.getSystemConfigByKey(key);
 			system.setConfigValue(newValue);
 			systemService.saveOrUpdate(system);
-			AlarmUtil.setFrequency(Integer.parseInt(newValue)+120);
+			int fgy = Integer.parseInt(newValue);
+			if(fgy <= 60){
+				AlarmUtil.setFrequency(fgy+30);
+			}else{
+				AlarmUtil.setFrequency(fgy+120);
+			}
 			value=newValue;
 		}else{
 			System system=systemService.getSystemConfigByKey(key);
