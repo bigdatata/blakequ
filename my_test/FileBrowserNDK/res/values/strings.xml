@@ -3,5 +3,5 @@
 
     <string name="hello">Hello World, FileBrowserNDKActivity!</string>
     <string name="app_name">FileBrowserNDK</string>
-
+	<string name="error">存储卡不可用</string>
 </resources>
