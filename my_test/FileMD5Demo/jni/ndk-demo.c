@@ -206,14 +206,8 @@ void md5_calc(char *dir, int depth)
 jobjectArray JNICALL Java_com_tencent_FileNative_fileMD5(JNIEnv *env, jobject thiz)
 {
 		struct stat sbuf;
- 		char sdirect[1000] = "mnt/sdcard/";//默认存储卡目录
-    DIR *dir_s;
-    dir_s=opendir(sdirect);
-    if(dir_s==NULL)
-    {
-       __android_log_write(ANDROID_LOG_INFO, "FileMD5Demo", "This directory don't exist");
-       return NULL;
-     }
+		count = 0;
+ 		char sdirect[1000] = "/mnt/sdcard/";//默认存储卡目录
      if(stat(sdirect,&sbuf)!=0)
      {
         __android_log_write(ANDROID_LOG_INFO, "FileMD5Demo", "Get status error");
