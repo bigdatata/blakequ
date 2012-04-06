@@ -7,7 +7,6 @@ import java.util.List;
 import com.tencent.R;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.app.backup.FileBackupHelper;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -85,7 +84,6 @@ public class FileMD5DemoActivity extends Activity {
 				this.dialog.dismiss();
 			}
 			title.setText(getResources().getString(R.string.show)+"--"+files.size()+"¸ö");
-//			adapter = new ListAdapter(this, files);
 			adapter.notifyDataSetChanged();
 		}
 
