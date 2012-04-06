@@ -201,7 +201,7 @@ void md5_calc(char *dir, int depth)
 * 函数参数：env：jni环境；thiz：java类(或对象)本身
 * 返回值  ：包含文件的MD5信息的数组
 ***************************************************************************/ 
-jobjectArray JNICALL Java_com_tencent_FileMD5DemoActivity_fileMD5(JNIEnv *env, jobject thiz)
+jobjectArray JNICALL Java_com_tencent_FileNative_fileMD5(JNIEnv *env, jobject thiz)
 {
 		struct stat sbuf;
  		char sdirect[1000] = "mnt/sdcard/";//默认存储卡目录
