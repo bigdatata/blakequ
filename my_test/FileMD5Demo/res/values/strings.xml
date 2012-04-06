@@ -5,4 +5,5 @@
     <string name="app_name">FileMD5Demo</string>
 	<string name="error">存储卡不可用！</string>
 	<string name="show">显示Sdcard所有文件的md5</string>
+	<string name="info">正在扫描存储卡,请稍后...</string>
 </resources>

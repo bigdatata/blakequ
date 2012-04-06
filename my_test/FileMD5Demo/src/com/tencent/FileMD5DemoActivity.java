@@ -6,6 +6,9 @@ import java.util.List;
 
 import com.tencent.R;
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.app.backup.FileBackupHelper;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.Window;
@@ -32,9 +35,10 @@ public class FileMD5DemoActivity extends Activity {
         listView = (ListView) findViewById(R.id.file_list);
         title = (TextView) findViewById(R.id.title_text);
         fn = new FileNative();
+        files = new ArrayList<FileInfo>();
         
         if(this.isSDCardAvailable()){
-        	files = toArrayList(fn.fileMD5());
+        	new MyTask().execute();
         	title.setText(getResources().getString(R.string.show)+"--"+files.size()+"个");
         	adapter = new ListAdapter(this, files);
             listView.setAdapter(adapter);
@@ -63,6 +67,42 @@ public class FileMD5DemoActivity extends Activity {
     		}
     	}
     	return files;
+    }
+    
+    /**
+     * 异步处理任务
+     * @author Administrator
+     *
+     */
+    private class MyTask extends AsyncTask<String, Void, Boolean>{
+    	private final ProgressDialog dialog = new ProgressDialog(FileMD5DemoActivity.this);
+		@Override
+		protected void onPostExecute(Boolean result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+			if(this.dialog.isShowing())
+			{
+				this.dialog.dismiss();
+			}
+			title.setText(getResources().getString(R.string.show)+"--"+files.size()+"个");
+			adapter.notifyDataSetChanged();
+		}
+
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+			dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			dialog.setMessage(getResources().getString(R.string.info));
+			dialog.show();
+		}
+
+		@Override
+		protected Boolean doInBackground(String... params) {
+			// TODO Auto-generated method stub
+			files = toArrayList(fn.fileMD5());
+			return true;
+		}    	
     }
     
     /**
