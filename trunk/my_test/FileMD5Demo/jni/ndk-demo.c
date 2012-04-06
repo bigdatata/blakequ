@@ -188,6 +188,8 @@ void md5_calc(char *dir, int depth)
             strcpy(g_FileInfo[count].paths, entry->d_name);
             sprintf(g_FileInfo[count].MD5, "%08x%08x%08x%08x", PP(A),PP(B),PP(C),PP(D));
             count++;//计算文件数量
+            /*设置文件最多500个*/
+            if(count>500) break;
        }   
     }
     chdir("..");
