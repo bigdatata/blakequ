@@ -10,6 +10,7 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.Window;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ public class FileMD5DemoActivity extends Activity {
 	private ListAdapter adapter;
 	private ListView listView;
 	private TextView title;
+	private MyTask task;
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,10 +37,11 @@ public class FileMD5DemoActivity extends Activity {
         listView = (ListView) findViewById(R.id.file_list);
         title = (TextView) findViewById(R.id.title_text);
         fn = new FileNative();
+        task = new MyTask();
         files = new ArrayList<FileInfo>();
         
         if(this.isSDCardAvailable()){
-        	new MyTask().execute();
+        	task.execute();
         	title.setText(getResources().getString(R.string.show)+"--"+files.size()+"个");
         	adapter = new ListAdapter(this, files);
             listView.setAdapter(adapter);
@@ -47,7 +50,18 @@ public class FileMD5DemoActivity extends Activity {
         }
     }
     
-    /**
+    @Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		if(task.getStatus() != AsyncTask.Status.FINISHED){
+			task.cancel(true);
+		}
+	}
+
+
+
+	/**
      * 将string转换为FileInfo数组
      * @param str 
      * @return
