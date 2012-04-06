@@ -99,7 +99,9 @@ public class FileMD5DemoActivity extends Activity {
 		@Override
 		protected Boolean doInBackground(String... params) {
 			// TODO Auto-generated method stub
-			files.addAll(toArrayList(fn.fileMD5()));
+			List<FileInfo> ll = toArrayList(fn.fileMD5());
+			if(ll != null)
+				files.addAll(ll);
 			return true;
 		}    	
     }
