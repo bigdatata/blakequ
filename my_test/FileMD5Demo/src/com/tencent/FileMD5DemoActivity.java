@@ -85,6 +85,7 @@ public class FileMD5DemoActivity extends Activity {
 				this.dialog.dismiss();
 			}
 			title.setText(getResources().getString(R.string.show)+"--"+files.size()+"¸ö");
+//			adapter = new ListAdapter(this, files);
 			adapter.notifyDataSetChanged();
 		}
 
@@ -100,7 +101,7 @@ public class FileMD5DemoActivity extends Activity {
 		@Override
 		protected Boolean doInBackground(String... params) {
 			// TODO Auto-generated method stub
-			files = toArrayList(fn.fileMD5());
+			files.addAll(toArrayList(fn.fileMD5()));
 			return true;
 		}    	
     }
