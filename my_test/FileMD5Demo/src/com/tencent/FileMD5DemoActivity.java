@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.view.Window;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * 
@@ -83,6 +84,8 @@ public class FileMD5DemoActivity extends Activity {
 			{
 				this.dialog.dismiss();
 			}
+			if(files.size()==0)
+				Toast.makeText(FileMD5DemoActivity.this, getResources().getString(R.string.notice), 1).show();
 			title.setText(getResources().getString(R.string.show)+"--"+files.size()+"¸ö");
 			adapter.notifyDataSetChanged();
 		}
