@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<Button
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:id="@+id/btn_string"
+		android:text="点击传输String" />
+	<TextView
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:id="@+id/tv_string"
+		android:textSize="30dp" />
+	<View
+		android:layout_height="40dp"
+		android:layout_width="fill_parent" />
+	<Button
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:id="@+id/btn_person"
+		android:text="点击传输Person" />
+	<TextView
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:id="@+id/tv_person"
+		android:textSize="30dp" />
+</LinearLayout>
