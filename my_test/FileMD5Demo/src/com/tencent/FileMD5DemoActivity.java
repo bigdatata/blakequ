@@ -8,6 +8,8 @@ import com.tencent.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.Window;
+import android.widget.ListView;
 import android.widget.TextView;
 
 /**
@@ -16,29 +18,28 @@ import android.widget.TextView;
  *
  */
 public class FileMD5DemoActivity extends Activity {
-	private TextView text;
 	private FileNative fn = null;
 	private List<FileInfo> files;
+	private ListAdapter adapter;
+	private ListView listView;
+	private TextView title;
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main);
-        
-        text = (TextView) findViewById(R.id.text);
+        listView = (ListView) findViewById(R.id.file_list);
+        title = (TextView) findViewById(R.id.title_text);
         fn = new FileNative();
         
         if(this.isSDCardAvailable()){
         	files = toArrayList(fn.fileMD5());
-        	
-//        	StringBuilder sb = new StringBuilder();
-//	        for(String s:str){
-//	        	sb.append(s+"\n");
-//	        	System.out.println(s+"---");
-//	        }
-//        	text.setText(sb.toString());
+        	title.setText(getResources().getString(R.string.show)+"--"+files.size()+"¸ö");
+        	adapter = new ListAdapter(this, files);
+            listView.setAdapter(adapter);
         }else{
-        	text.setText(getResources().getString(R.string.error));
+        	title.setText(getResources().getString(R.string.error));
         }
     }
     
