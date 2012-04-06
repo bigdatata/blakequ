@@ -38,7 +38,7 @@ typedef struct _FileInfo
 	char MD5[256];
 }FileInfo;
 
-FileInfo g_FileInfo[1024];
+FileInfo g_FileInfo[2048];
 
 
 /**************************************************************************
