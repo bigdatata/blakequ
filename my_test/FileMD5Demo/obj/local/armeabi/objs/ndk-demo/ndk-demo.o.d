@@ -22,6 +22,34 @@
  /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/alloca.h \
  /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/strings.h \
  /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/memory.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/fcntl.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/linux/fcntl.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/asm/fcntl.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/asm-generic/fcntl.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/unistd.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/sys/select.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/sys/time.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/linux/time.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/signal.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/limits.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/sys/limits.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/linux/limits.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/machine/internal_types.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/machine/limits.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/sys/syslimits.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/asm/signal.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/asm-generic/signal.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/asm/siginfo.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/asm-generic/siginfo.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/sys/sysconf.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/linux/capability.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/pathconf.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/sys/stat.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/linux/stat.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/endian.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/sys/endian.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/dirent.h \
+ /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/time.h \
  /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/android/log.h
 
 /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/jni.h:
@@ -67,5 +95,61 @@
 /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/strings.h:
 
 /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/memory.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/fcntl.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/linux/fcntl.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/asm/fcntl.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/asm-generic/fcntl.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/unistd.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/sys/select.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/sys/time.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/linux/time.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/signal.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/limits.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/sys/limits.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/linux/limits.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/machine/internal_types.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/machine/limits.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/sys/syslimits.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/asm/signal.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/asm-generic/signal.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/asm/siginfo.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/asm-generic/siginfo.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/sys/sysconf.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/linux/capability.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/pathconf.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/sys/stat.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/linux/stat.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/endian.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/sys/endian.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/dirent.h:
+
+/cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/time.h:
 
 /cygdrive/d/android-ndk-r6b/platforms/android-9/arch-arm/usr/include/android/log.h:

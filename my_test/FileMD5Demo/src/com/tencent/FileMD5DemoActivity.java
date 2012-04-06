@@ -16,7 +16,7 @@ public class FileMD5DemoActivity extends Activity {
         setContentView(R.layout.main);
         text = (TextView) findViewById(R.id.text);
         if(this.isSDCardAvailable()){
-        	String[] str = fileMD5(this.getSDCardPath().getPath());
+        	String[] str = fileMD5();
         	System.out.println("-------------------");
         	StringBuilder sb = new StringBuilder();
 	        for(String s:str){
@@ -29,7 +29,7 @@ public class FileMD5DemoActivity extends Activity {
         }
     }
     
-    public native String[] fileMD5(String path);
+    public native String[] fileMD5();
     
     static{
     	System.loadLibrary("ndk-demo");
