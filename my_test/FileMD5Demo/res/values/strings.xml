@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, FileMD5DemoActivity!</string>
+    <string name="app_name">FileMD5Demo</string>
+	<string name="error">存储卡不可用！</string>
+</resources>
