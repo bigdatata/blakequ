@@ -3,6 +3,7 @@ package com.hao;
 import com.hao.testview.ImageTest;
 import com.hao.testview.MySurfaceView;
 import com.hao.testview.SurfaceView2;
+import com.hao.testview.TestCanvasStore;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ public class Game1Activity extends Activity {
 //        setContentView(new MyView(this));
 //        setContentView(new MySurfaceView(this));
         setContentView(new SurfaceView2(this));
+//        setContentView(new TestCanvasStore(this));
 //        imageTest = new ImageTest(this);
 //        setContentView(imageTest);
     }

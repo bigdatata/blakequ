@@ -27,11 +27,12 @@ public class SurfaceView2 extends SurfaceView implements Callback ,Runnable{
     private int bmp_x = 100, bmp_y = 100;    
     private boolean UP, DOWN, LEFT, RIGHT;    
     private int animation_up[] = { 3, 4, 5 };    
-    private int animation_down[] = { 0, 1, 2 };    
+    private int animation_down[] = { 0, 1, 2 };//第1,2,3个图像是往下走的    
     private int animation_left[] = { 6, 7, 8 };    
     private int animation_right[] = { 9, 10, 11 };    
     private int animation_init[] = animation_down;    
     private int frame_count;    
+    private boolean flag = true;
     public SurfaceView2(Context context) {    
         super(context);    
         this.setKeepScreenOn(true);    
@@ -51,7 +52,8 @@ public class SurfaceView2 extends SurfaceView implements Callback ,Runnable{
          */
         setFocusable(true);  //备注1  
     }    
-    public void surfaceCreated(SurfaceHolder holder) {    
+    public void surfaceCreated(SurfaceHolder holder) {   
+    	flag = true;
         SH = this.getHeight();    
         SW = this.getWidth();    
         th.start();    
@@ -66,11 +68,14 @@ public class SurfaceView2 extends SurfaceView implements Callback ,Runnable{
      */
     public void draw() {    
         canvas = sfh.lockCanvas();    
+        //每次必须要重新绘制画布
         canvas.drawRect(0, 0, SW, SH, p);   //备注2  
         canvas.save();   //备注3  
         canvas.drawText("Himi", bmp_x-2, bmp_y-10, p2); 
-        canvas.clipRect(bmp_x, bmp_y, bmp_x + bmp.getWidth()/13, bmp_y+bmp.getHeight());//交集  
-        if (animation_init == animation_up) {    
+        canvas.clipRect(bmp_x, bmp_y, bmp_x + bmp.getWidth()/13, bmp_y+bmp.getHeight());//切割下这块区域 
+        //下面是在这块区域中绘图
+        if (animation_init == animation_up) {
+        	//注：left，top是指bmp图片上的位置，而不是画布
             canvas.drawBitmap(bmp, bmp_x - animation_up[frame_count] * (bmp.getWidth()/13), bmp_y, p);    
         } else if (animation_init == animation_down) {    
             canvas.drawBitmap(bmp, bmp_x - animation_down[frame_count] * (bmp.getWidth()/13), bmp_y, p);    
@@ -82,15 +87,31 @@ public class SurfaceView2 extends SurfaceView implements Callback ,Runnable{
         canvas.restore();  //备注3  
         sfh.unlockCanvasAndPost(canvas);    
     }    
+    
+    /**
+     * 还要判断是否走出边界
+     */
     public void cycle() {    
         if (DOWN) {    
-            bmp_y += 5;    
-        } else if (UP) {    
-            bmp_y -= 5;    
-        } else if (LEFT) {    
-            bmp_x -= 5;    
-        } else if (RIGHT) {    
-            bmp_x += 5;    
+        	if(bmp_y<SH)
+        		bmp_y += 5;
+        	else
+        		bmp_y = 0;
+        } else if (UP) { 
+        	if(bmp_y>0)
+        		bmp_y -= 5;
+        	else
+        		bmp_y = SH;
+        } else if (LEFT) { 
+        	if(bmp_x>0)
+        		bmp_x -= 5;    
+        	else
+        		bmp_x = SW;
+        } else if (RIGHT) {
+        	if(bmp_x<SW)
+        		bmp_x += 5;    
+        	else
+        		bmp_x = 0;
         }    
         if (DOWN || UP || LEFT || RIGHT) {    
             if (frame_count < 2) {    
@@ -148,7 +169,7 @@ public class SurfaceView2 extends SurfaceView implements Callback ,Runnable{
     @Override    
     public void run() {    
         // TODO Auto-generated method stub    
-        while (true) {    
+        while (flag) {    
             draw();    
             cycle();    
             try {    
@@ -159,11 +180,13 @@ public class SurfaceView2 extends SurfaceView implements Callback ,Runnable{
     }    
     @Override    
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {    
-        // TODO Auto-generated method stub    
+        // TODO Auto-generated method stub 
+    	flag = true;
     }    
     @Override    
     public void surfaceDestroyed(SurfaceHolder holder) {    
         // TODO Auto-generated method stub    
+    	flag = false;
     }    
 
 }
