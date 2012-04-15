@@ -256,8 +256,10 @@ public class RequestController {
 	
 	private Station saveOrUpdateComputer(StationJson stationJson, ComputerJson computerJson){
 		Station station = (Station) stationService.getStationByName(stationJson.getStation_name());
-		Computer c = this.toComputer(computerJson, station.getId());
-        if(station == null){
+		Computer c = null;
+		if(station != null){
+			c = this.toComputer(computerJson, station.getId());
+		}else{
         	station = new Station();
         	station.setName(stationJson.getStation_name());
         	station.setState(0);//这个还有待验证（由三个决定）
@@ -266,6 +268,7 @@ public class RequestController {
         	station.setSegmentNum(0);
         	stationService.save(station);
         	station = (Station) stationService.getStationByName(station.getName());
+        	c = this.toComputer(computerJson, -1);
         }
         c.setStation(station);
         computerService.saveOrUpdate(c);
