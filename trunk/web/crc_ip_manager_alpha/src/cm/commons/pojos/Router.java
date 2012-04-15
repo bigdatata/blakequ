@@ -111,9 +111,8 @@ public class Router implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "Router [id=" + id + ", portCount=" + portCount + ", ports="
-				+ ports + ", routerInfo=" + routerInfo + ", routerIp="
-				+ routerIp + ", state=" + state + ", station=" + station + "]";
+		return "Router [id=" + id + ", portCount=" + portCount + ", routerInfo=" + routerInfo + ", routerIp="
+				+ routerIp + ", state=" + state + "]";
 	}
 
 }
