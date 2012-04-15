@@ -234,7 +234,7 @@ for(cm.commons.controller.form.StationForm u: t){
 						</tr>
 						<tr height="40">
 							<td>
-								<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+								<svg version="1.1" height="38" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="30" cy="20" r="10" stroke="black" stroke-width="2"style="fill:#0000AA"/>
 								<text  x="70" y="25" style=font-size:15>站点正常</text>
 								</svg>
@@ -242,7 +242,7 @@ for(cm.commons.controller.form.StationForm u: t){
 						</tr>
 						<tr height="40">
 							<td>
-								<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+								<svg version="1.1" height="38" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="30" cy="20" r="10" stroke="black" stroke-width="2"style="fill:#CD2626"/>
 								<text  x="70" y="25" style=font-size:15>站点异常</text>
 								</svg>
@@ -250,7 +250,7 @@ for(cm.commons.controller.form.StationForm u: t){
 						</tr>
 						<tr height="40">
 							<td>
-								<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+								<svg version="1.1" height="38" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="30" cy="20" r="10" stroke="black" stroke-width="2"style="fill:#000000"/>
 								<text  x="70" y="25" style=font-size:15>站点未知</text>
 								</svg>
@@ -258,7 +258,7 @@ for(cm.commons.controller.form.StationForm u: t){
 						</tr>
 						<tr height="40">
 							<td>
-								<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+								<svg version="1.1" height="38" xmlns="http://www.w3.org/2000/svg">
 								<line x1="10" y1="20" x2="50" y2="20" style="stroke:#00CD00;stroke-width:10" />
 								<text  x="70" y="25" style=font-size:15>线段正常</text>
 								</svg>
@@ -266,7 +266,7 @@ for(cm.commons.controller.form.StationForm u: t){
 						</tr>
 						<tr height="40">
 							<td>
-								<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+								<svg version="1.1" height="38" xmlns="http://www.w3.org/2000/svg">
 								<line x1="10" y1="20" x2="50" y2="20" style="stroke:#EE0000;stroke-width:10" />
 								<text  x="70" y="25" style=font-size:15>线段异常</text>
 								</svg>
@@ -274,7 +274,7 @@ for(cm.commons.controller.form.StationForm u: t){
 						</tr>
 						<tr height="40">
 							<td>
-								<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+								<svg version="1.1" height="38" xmlns="http://www.w3.org/2000/svg">
 								<line x1="10" y1="20" x2="50" y2="20" style="stroke:#242424;stroke-width:10" />
 								<text  x="70" y="25" style=font-size:15>线段未知</text>
 								</svg>
