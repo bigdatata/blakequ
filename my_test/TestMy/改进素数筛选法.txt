@@ -1,0 +1,176 @@
+最简单的筛素数法方法就是从2开始，将所以2的倍数去掉，然后从3开始，将3的倍数去掉。根据这样很容易写出代码，下面代码就是是筛素数法得到100以内的素数并保存到primes[]数组中。
+
+[cpp] view plaincopy
+//by MoreWindows( http://blog.csdn.net/MoreWindows )  
+const int MAXN = 100;  
+bool flag[MAXN];  
+int primes[MAXN / 3], pi;  
+void GetPrime_1()  
+{  
+    int i, j;  
+    pi = 0;  
+    memset(flag, false, sizeof(flag));  
+    for (i = 2; i < MAXN; i++)  
+        if (!flag[i])  
+        {  
+            primes[pi++] = i;  
+            for (j = i; j < MAXN; j += i)  
+                flag[j] = true;  
+        }  
+}  
+    可以看出这种会有很多重复访问，如在访问flag[2]和flag[5]时会各访问flag[10]一次。因此最好想方法来减少这种重复访问，让flag[]数组的每个元素只被访问一次。可以这样考虑——简单的筛素数法是利用一个素数的倍数必须不是素数，同样任何一个数与其它所有素数的乘积必然也不是素数（这是因为每个合数必有一个最小素因子）。
+
+    为了试验这种想法，先用2到10之间的数来验证下。
+
+       2，3，4，5，6，7，8，9，10      初始时所以flag都是无标记的。
+
+第一步 访问2，flag[2]无标记所以将2加入素数表中，然后将2与素数表中的所有数相乘得到的数必定不是素数，2*2=4因此标记flag[4]。
+
+   2，3，4，5，6，7，8，9，10
+
+第二步 访问3，flag[3]无标记所以将3加入素数表中，将3与素数表中的所有数相乘得到的数必定不是素数，3*2=6，3*3=9因此标记flag[6]和flag[9]。
+
+   2，3，4，5，6，7，8，9，10
+
+第三步 访问4，flag[4]有标记所以4不加入素数表中，将4与素数表中的所有数相乘得到的数必定不是素数， 4*2=8，4*3=12因此标记flag[8]。
+
+   2，3，4，5，6，7，8，9，10
+
+第四步 访问5，flag[5]无标记所以将5加入素数表中，将5与素数表中的所有数相乘得到的数必定不是素数，5*2=10，5*3=15因此标记flag[10]。
+
+   2，3，4，5，6，7，8，9，10
+
+第五步 访问6，flag[6]有标记所以6不加入素数表中，将6与素数表中的所有数相乘得到的数必定不是素数， 6*2=12，6*3=18，6*5=30。
+
+   2，3，4，5，6，7，8，9，10
+
+    后面几步类似，代码不难写出：
+
+[cpp] view plaincopy
+//by MoreWindows( http://blog.csdn.net/MoreWindows )  
+const int MAXN = 100;  
+bool flag[MAXN];  
+int primes[MAXN / 3], pi;  
+void GetPrime_2()  
+{  
+    int i, j;  
+    pi = 0;  
+    memset(flag, false, sizeof(flag));  
+    for (i = 2; i < MAXN; i++)  
+    {  
+        if (!flag[i])  
+            primes[pi++] = i;  
+        for (j = 0; (j < pi)  && (i * primes[j] < MAXN); j++)  
+            flag[i * primes[j]] = true;  
+    }  
+}  
+    这份代码对不对了？仔细回顾下分析过程，可以发现有些数据还是被访问多次了，这当然不是我们希望的结果，我们的要求是让每个合数仅被它的最小素因子筛去一次。比如12，它的最小素因子是2，所以就只应该被在计算6*2时去访问，而且不应该在计算4*3时去访问，同理18也只应该被在计算9*2时去访问，而且不应该在计算6*3时去访问。
+
+    找到原因后，再来思考如何解决。6*3不行而9*2可以了，是因为6是2的倍数，所以在计算6*2之后就不能再将6与比2大的素数相乘，这些相乘的结果必定会导致重复计算。因此对于任何数来说，如果它如果是该素数的倍数那么它就不能再与素数表中该素数之后的素数相乘了，如9是3的倍数，所以在9*3之后就不能再去用计算9*5了。因此在代码中再增加一行判断语句：
+
+[cpp] view plaincopy
+//by MoreWindows( http://blog.csdn.net/MoreWindows )  
+const int MAXN = 100;  
+bool flag[MAXN];  
+int primes[MAXN / 3], pi;  
+void GetPrime_2()  
+{  
+    int i, j;  
+    pi = 0;  
+    memset(flag, false, sizeof(flag));  
+    for (i = 2; i < MAXN; i++)  
+    {  
+        if (!flag[i])  
+            primes[pi++] = i;  
+        for (j = 0; (j < pi)  && (i * primes[j] < MAXN); j++)  
+        {  
+            flag[i * primes[j]] = true;  
+            if (i % primes[j] == 0) //这句保证每个非素数只被筛去一次  
+                break;  
+}  
+    }  
+}  
+    想知道这二种筛素数法方法的区别吗？现在对求2到1亿之间的素数进行测试，看看区别到底会有多大，测试代码如下：
+
+[cpp] view plaincopy
+// 普通的筛素数方法与改进之后的效率对比  
+// by MoreWindows( http://blog.csdn.net/MoreWindows )     
+#include <stdio.h>  
+#include <memory.h>  
+#include <time.h>  
+#include <math.h>  
+const int MAXN = 100000000;  
+bool flag[MAXN];  
+int primes[MAXN / 3], pi;  
+// 利用对每个素数的倍数必定不是素数来筛选  
+void GetPrime_1()  
+{  
+    int i, j;  
+    pi = 0;  
+    memset(flag, false, sizeof(flag));  
+    for (i = 2; i < MAXN; i++)  
+        if (!flag[i])  
+        {  
+            primes[pi++] = i;  
+            for (j = i; j < MAXN; j += i)  
+                flag[j] = true;  
+        }  
+}  
+// 利用了每个合数必有一个最小素因子来筛选  
+void GetPrime_2()  
+{  
+    int i, j;  
+    pi = 0;  
+    memset(flag, false, sizeof(flag));  
+    for (i = 2; i < MAXN; i++)  
+    {  
+        if (!flag[i])  
+            primes[pi++] = i;  
+        for (j = 0; (j < pi)  && (i * primes[j] < MAXN); j++)  
+        {  
+            flag[i * primes[j]] = true;  
+            if (i % primes[j] == 0)  
+                break;  
+        }  
+    }  
+}  
+int main()  
+{  
+    printf(" 在%d的数据量下普通的筛素数方法与改进之后的效率对比\n", MAXN);  
+    printf("  by MoreWindows( http://blog.csdn.net/MoreWindows ) -- --\n\n");  
+    clock_t clockBegin, clockEnd;  
+      
+    clockBegin = clock();  
+    GetPrime_1();  
+    clockEnd = clock();  
+    printf("普通的筛素数方法\t%d毫秒\n", clockEnd - clockBegin);  
+      
+    clockBegin = clock();  
+    GetPrime_2();  
+    clockEnd = clock();  
+    printf("改进的筛素数方法\t%d毫秒\n", clockEnd - clockBegin);  
+    return 0;  
+}  
+测试结果如图所示：
+
+
+
+    可以看出，效率有4倍之差。改进还是比较可观。有兴趣的同学可以参考下一篇《位操作基础篇之位操作全面总结》所讲到的空间压缩技巧来将改进后的筛素数法方进行空间压缩。
+
+    文章最后作下小小总结：
+
+1．普通的筛素数的原理是一个素数的倍数必须不是素数。
+
+2．改进的筛素数的原理是每个合数必有一个最小素因子，根据每个最小素因子去访问合数就能防止合数被重复访问。
+
+ 
+
+ 
+
+另外，筛素数法还有很多种改进手段，在数学论坛上可以去研读一下，本文就不再深究了。
+
+ 
+
+转载请标明出处，原文地址：http://blog.csdn.net/morewindows/article/details/7347459
+
+如果觉得本文对您有帮助，请点击‘顶’支持一下，您的支持是我写作最大的动力，谢谢。

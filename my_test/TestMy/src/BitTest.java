@@ -77,6 +77,34 @@ public class BitTest {
 	}
 	
 	/**
+	 * 对筛选法的进一步改进，减少重复遍历的次数
+	 * @param end
+	 * @return
+	 */
+	public Integer[] getPrimerMore(int end){
+		Integer[] primes = new Integer[end/3];
+		//Boolean[] flag = new Boolean[end];
+		//这里用数组来代替存储boolean
+		int length = end/32+1;//因为int占用4字节=32bit，故而只需要end/32+1个数组长度就可以(************+1不能少)
+		Integer[] flag = new Integer[length];
+		int i, j;
+		int pi = 0;
+		for(i =0; i<length; i++) flag[i] = 0;
+		for(i=2 ; i<end; i++){
+			//判断第i位是否为1(先将第i位移动到0位置，然后和1求与就可判断是否为1),*******注意是">>"
+			if(((flag[i/32]>>(i%32)) & 1) == 0){
+//				System.out.println("-----:"+i);
+				primes[pi++]=i;
+				//对每个素数，它的倍数不是素数
+				for(j=i; j<end; j+=i){
+					flag[j/32] |= 1<<(j%32);//将第j位置为1,*******注意是"<<"
+				}
+			}
+		}
+		return primes;
+	}
+	
+	/**
 	 * 数组中使用位操作
 	 * 数组在内存上也是连续分配的一段空间，完全可以“认为”是一个很长的整数
 	 */
