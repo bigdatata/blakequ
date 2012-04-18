@@ -54,6 +54,7 @@ public class BitTest {
 	 * @return
 	 */
 	public Integer[] getPrimeByBit(int end){
+		int count = 0;
 		Integer[] primes = new Integer[end/3];
 		//Boolean[] flag = new Boolean[end];
 		//这里用数组来代替存储boolean
@@ -70,18 +71,23 @@ public class BitTest {
 				//对每个素数，它的倍数不是素数
 				for(j=i; j<end; j+=i){
 					flag[j/32] |= 1<<(j%32);//将第j位置为1,*******注意是"<<"
+					count ++;
 				}
 			}
 		}
+		System.out.println("-------count:"+count+"---------");
 		return primes;
 	}
 	
 	/**
 	 * 对筛选法的进一步改进，减少重复遍历的次数
+	 * 1.普通的筛素数的原理是一个素数的倍数必须不是素数。
+	 * 2.改进的筛素数的原理是每个合数必有一个最小素因子，根据每个最小素因子去访问合数就能防止合数被重复访问。
 	 * @param end
 	 * @return
 	 */
 	public Integer[] getPrimerMore(int end){
+		int count=0;
 		Integer[] primes = new Integer[end/3];
 		//Boolean[] flag = new Boolean[end];
 		//这里用数组来代替存储boolean
@@ -89,18 +95,28 @@ public class BitTest {
 		Integer[] flag = new Integer[length];
 		int i, j;
 		int pi = 0;
+		int k = 0;
 		for(i =0; i<length; i++) flag[i] = 0;
 		for(i=2 ; i<end; i++){
 			//判断第i位是否为1(先将第i位移动到0位置，然后和1求与就可判断是否为1),*******注意是">>"
 			if(((flag[i/32]>>(i%32)) & 1) == 0){
 //				System.out.println("-----:"+i);
 				primes[pi++]=i;
-				//对每个素数，它的倍数不是素数
-				for(j=i; j<end; j+=i){
-					flag[j/32] |= 1<<(j%32);//将第j位置为1,*******注意是"<<"
-				}
+			}
+			//对已有素数相乘
+			for(j=0; (j<pi) && (i*primes[j]<end); j++){
+				count ++;
+				k = i * primes[j];
+				flag[k/32] |= 1<<(k%32);//将第j位置为1,*******注意是"<<"
+				/**
+				 * 每个合数仅被它的最小素因子筛去一次。比如12，它的最小素因子是2，
+				 * 所以就只应该被在计算6*2时去访问，而且不应该在计算4*3时去访问，
+				 * 同理18也只应该被在计算9*2时去访问，而且不应该在计算6*3时去访问。
+				 */
+				if(i % primes[j] == 0) break;
 			}
 		}
+		System.out.println("-------count:"+count+"---------");
 		return primes;
 	}
 	
