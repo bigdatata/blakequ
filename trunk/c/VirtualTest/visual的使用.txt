@@ -1,0 +1,202 @@
+C++ virtual 析构函数[转] 
+分类： VC 2007-08-27 09:57
+ C++中虚析构函数的作用  
+
+我们知道，用C++开发的时候，用来做基类的类的析构函数一般都是虚函数。可是，为什么要这样做呢？下面用一个小例子来说明：    
+    有下面的两个类：
+
+class ClxBase
+{
+public:
+    ClxBase() {};
+    virtual ~ClxBase() {};
+
+    virtual void DoSomething() { cout << "Do something in class ClxBase!" << endl; };
+};
+
+class ClxDerived : public ClxBase
+{
+public:
+    ClxDerived() {};
+    ~ClxDerived() { cout << "Output from the destructor of class ClxDerived!" << endl; }; 
+
+    void DoSomething() { cout << "Do something in class ClxDerived!" << endl; };
+};
+ 
+
+    代码
+
+ 
+
+ClxBase *pTest = new ClxDerived;
+pTest->DoSomething();
+delete pTest;
+ 
+
+    的输出结果是：
+
+Do something in class ClxDerived!
+Output from the destructor of class ClxDerived!
+    这个很简单，非常好理解。
+    但是，如果把类ClxBase析构函数前的virtual去掉，那输出结果就是下面的样子了：
+
+Do something in class ClxDerived!
+    也就是说，类ClxDerived的析构函数根本没有被调用！一般情况下类的析构函数里面都是释放内存资源，而析构函数不被调用的话就会造成内存泄漏。我想所有的C++程序员都知道这样的危险性。当然，如果在析构函数中做了其他工作的话，那你的所有努力也都是白费力气。
+    所以，文章开头的那个问题的答案就是－－这样做是为了当用一个基类的指针删除一个派生类的对象时，派生类的析构函数会被调用。
+    当然，并不是要把所有类的析构函数都写成虚函数。因为当类里面有虚函数的时候，编译器会给类添加一个虚函数表，里面来存放虚函数指针，这样就会增加类的存储空间。所以，只有当一个类被用来作为基类的时候，才把析构函数写成虚函数。
+
+ 
+
+ 
+
+你需要virtual析构函数吗
+
+使用VC的class wizard自动生成一个类，会得到两个空的函数：构造函数和virtual析构函数。为什么析构函数要声明成virtual呢？
+
+如果一个类要被使用成多态(polymorphic)的，那么这个virtual是必须的。比如：
+
+#include <iostream>
+
+class Animal
+{
+  char* ap;
+public:
+ 
+  Animal()
+  {
+    ap = new char;
+    std::cout << "Animal ctor" << std::endl;
+  }
+  virtual void foo()
+  {
+    std::cout << "Animal::foo" << std::endl;
+  }
+  virtual ~Animal()
+  {
+    std::cout << "Animal dtor" << std::endl;
+    delete ap;
+  }
+};
+
+class Dog : public Animal
+{
+  char* dp;
+public:
+  Dog()
+  {
+    dp = new char;
+    std::cout << "Dog ctor" << std::endl;
+  }
+  virtual void foo()
+  {
+    std::cout << "Dog::foo" << std::endl;
+  }
+  virtual ~Dog()
+  {
+    delete dp;
+    std::cout << "Dog dtor" << std::endl;
+  }
+};
+
+int main()
+{
+  Animal* pa = new Dog();
+  pa->foo();
+  delete pa;
+  return 0;
+}
+
+delete pa 实际上相当于：
+ pa->~Animal();
+ 释放pa所指向的内存(或许是free(pa))。
+在这里，因为~Animal()是virtual的，尽管是通过Animal类型的指针调用的，根据v-table的信息，~Dog()被正确调用到。如果把virtual属性去掉，那么被调用的是~Animal()，Dog类的构造函数被调用而析构函数未被调用，构造函数中分配的资源没有释放，从而产生了内存泄漏。析构函数缺省声明为virtual，就可以避免这一问题。
+
+可另一个问题是，有时virtual是不需要的。如果一个类不会被继承，比如一个utility类，该类完全是静态方法；或者一些类尽管可能会被继承，但不会被使用成多态的，即除了析构函数外，没有其他的方法是virtual的，这时就可以把virtual属性去掉。
+
+去掉析构函数的virtual属性后，因为该类中没有其他的virtual函数，所以编译时不会生成v-table，这样就节省了编译时间，并减少了最终生成的程序的大小。更重要的是，遵从这一规则，给该类的维护者一个信息，即该类不应被当作多态类使用。
+
+同样，当作一个抽象时，如果你模仿Java的interface，声明了如下的虚基类：
+
+class AbstractBase
+{
+ virtual method1() = 0;
+ virtual method2() = 0;
+};
+
+那么应该给它增加一个空的virtual析构函数：
+ virtual ~AbstractBase(){}
+
+如果你对COM比较熟悉，可能会注意到，COM interface中并没有这个virutal构造函数。这是因为，COM通过使用引用计数的机制来维护对象。当你使用完一个COM对象，调用Release()时，COM的内部实现检查引用技术是否为零。如果是，则调用
+ delete this;
+因为Release()是virtual的，所以该COM对象对应的正确的派生类被调用，delete this会调用正确的析构函数，达到了使用virtual析构函数的效果。
+
+ 
+
+定义纯虚析构函数（pure virtual destructor)zz
+纯虚成员函数通常没有定义；它们是在抽象类中声明，然后在派生类中实现。比如说下面的例子：
+
+class File //an abstract class
+{
+public:
+ virtual int open(const string & path, int mode=0x666)=0;
+ virtual int close()=0;
+//...
+};
+
+但是，在某些情况下，我们却需要定义一个纯虚成员函数，而不仅仅是声明它。最常见的例子是纯虚析构函数。在声明纯虚析构函数时，不要忘了同时还要定义它。
+
+class File //abstract class
+{
+public:
+ virtual ~File()=0; //declaration of a pure virtual dtor
+};
+File::~File() {} //definition of dtor
+
+为什么说定义纯虚析构函数是非常重要的
+
+派生类的析构函数会自动调用其基类的析构函数。这个过程是递归的，最终，抽象类的纯虚析构函数也会被调用。
+
+如果纯虚析构函数只被声明而没有定义，那么就会造成运行时（runtime）崩溃。（在很多情况下，这个错误会出现在编译期，但谁也不担保一定会是这样。）纯虚析构函数的哑元实现（dummy implementation，即空实现）能够保证这样的代码的安全性。
+
+class DiskFile : public File
+{
+public:
+ int open(const string & pathname, int mode);
+ int close();
+ ~DiskFile();
+};
+
+File * pf = new DiskFile;
+//. . .
+delete pf; //OK, ultimately invokes File::~File()
+
+在某些情况下定义其它纯虚成员函数可能也是非常有用的（比如说在调试应用程序以及记录应用程序的日志时）。例如，在一个不应该被调用，但是由于一个缺陷而被调用的基类中，如果有一个纯虚成员函数，那么我们可以为它提供一个定义。
+
+class Abstract
+{
+public:
+ virtual int func()=0;
+//..
+};
+int Abstract::func()
+{
+std::cerr<<"got called from thread " << thread_id<<
+             "at: "<<gettimeofday()<<std::endl;
+}
+
+这样，我们就可以记录所有对纯虚函数的调用，并且还可以定位错误代码；不为纯虚函数提供定义将会导致整个程序无条件地终止。
+
+虚构造函数(virtual constructor)
+
+C++不支持直接的虚构造函数。虚拟机制的设计目的是使程序员在不完全了解细节（比如只知该类实现了某个界面，而不知该类确切是什么东东）的情况下也能使用对象。但是，要建立一个对象，可不能只知道“这大体上是什么”就完事——你必须完全了解全部细节，清楚地知道你要建立的对象是究竟什么。所以，构造函数当然不能是虚的了。但是，可通过虚函数 virtual clone()（对于拷贝构造函数）或虚函数 virtual create()（对于默认构造函数），得到虚构造函数产生的效果。
+
+注意：子类成员函数clone()的返回值类型故意与父类成员函数clone()的不同。这种特征被称为“协变的返回类型”（Covariant Return Types），该特征最初并不是C++语言的一部分，VC6.0以下版本编译器不支持这样的写法。
+
+
+虚析构函数(virtual destructor)
+
+当你可能通过基类指针删除派生类对象时，建议使用虚析构函数。虚函数绑定到对象的类的代码，而不是指针/引用的类。如果基类有虚析构函数，delete basePtr（基类指针）时，*basePtr 的对象类型的析构函数被调用，而不是该指针的类型的析构函数。
+
+简单讲，这个类有虚函数就应该有虚析构函数。一旦你在类中加上了一个虚函数，你就已经需要为每一个对象支付空间代价（每个对象一个指针），所以这时使析构函数成为虚拟的通常不会额外付出什么。
+
+对于那些trivial且没有子类的类，虚析构函数只会增加开销，不要使用。
