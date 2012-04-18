@@ -8,6 +8,11 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.View;
 
+/**
+ * ªÊ÷∆ºÚµ•ÕºœÒ≤‚ ‘
+ * @author Administrator
+ *
+ */
 public class MyView extends View {
 
 	private Paint paint;

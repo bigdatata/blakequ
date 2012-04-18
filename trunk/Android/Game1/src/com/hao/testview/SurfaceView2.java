@@ -14,6 +14,11 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.SurfaceHolder.Callback;
 
+/**
+ * 人物走动动画
+ * @author Administrator
+ *
+ */
 public class SurfaceView2 extends SurfaceView implements Callback ,Runnable{
 
 	private Thread th = new Thread(this);    
