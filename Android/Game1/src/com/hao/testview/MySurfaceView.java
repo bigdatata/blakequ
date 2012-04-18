@@ -8,6 +8,11 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.SurfaceHolder.Callback;
 
+/**
+ * 初步游戏画面绘制的框架
+ * @author Administrator
+ *
+ */
 public class MySurfaceView extends SurfaceView implements Callback ,Runnable{
 
 	private SurfaceHolder sfh;

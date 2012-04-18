@@ -1,0 +1,234 @@
+1. SoundPool —— 适合短促且对反应速度比较高的情况(游戏音效或按键声等)
+　　2. MediaPlayer —— 适合比较长且对时间要求不高的情况
+　　-------------------------------------------------------------------------------------------
+　　SoundPool
+　　1. 创建一个SoundPool
+　　public SoundPool(int maxStream, int streamType, int srcQuality)
+　　maxStream —— 同时播放的流的最大数量
+　　streamType —— 流的类型，一般为STREAM_MUSIC(具体在AudioManager类中列出)
+　　srcQuality —— 采样率转化质量，当前无效果，使用0作为默认值
+　　eg.
+　　SoundPool soundPool = new SoundPool(3, AudioManager.STREAM_MUSIC, 0);
+　　创建了一个最多支持3个流同时播放的，类型标记为音乐的SoundPool。
+　　2. 加载音频资源
+　　可以通过四种途径来记载一个音频资源：
+　　int load(AssetFileDescriptor afd, int priority)
+　　通过一个AssetFileDescriptor对象
+　　int load(Context context, int resId, int priority)
+　　通过一个资源ID
+　　int load(String path, int priority)
+　　通过指定的路径加载
+　　int load(FileDescriptor fd, long offset, long length, int priority)
+　　通过FileDescriptor加载
+　　*API中指出，其中的priority参数目前没有效果，建议设置为1。
+　　一个SoundPool能同时管理多个音频，所以可以通过多次调用load函数来记载，如果记载成功将返回一个非0的soundID ，用于播放时指定特定的音频。
+　　eg.
+　　int soundID1 = soundPool.load(this, R.raw.sound1, 1);
+　　if(soundID1 ==0){
+　　// 记载失败
+　　}else{
+　　// 加载成功
+　　}
+　　int soundID2 = soundPool.load(this, R.raw.sound2, 1);
+　　...
+　　这里加载了两个流，并分别记录了返回的soundID 。
+　　需要注意的是，
+　　流的加载过程是一个将音频解压为原始16位PCM数据的过程，由一个后台线程来进行处理异步，所以初始化后不能立即播放，需要等待一点时间。
+　　3. 播放控制
+有以下几个函数可用于控制播放：
+　　final int play(int soundID, float leftVolume, float rightVolume, int priority, int loop, float rate)
+　　播放指定音频的音效，并返回一个streamID 。
+　　priority —— 流的优先级，值越大优先级高，影响当同时播放数量超出了最大支持数时SoundPool对该流的处理;
+　　loop —— 循环播放的次数，0为值播放一次，-1为无限循环，其他值为播放loop+1次(例如，3为一共播放4次).
+　　rate —— 播放的速率，范围0.5-2.0(0.5为一半速率，1.0为正常速率，2.0为两倍速率)
+　　final void pause(int streamID)
+　　暂停指定播放流的音效(streamID 应通过play()返回)。
+　　final void resume(int streamID)
+　　继续播放指定播放流的音效(streamID 应通过play()返回)。
+　　final void stop(int streamID)
+　　终止指定播放流的音效(streamID 应通过play()返回)。
+　　这里需要注意的是，
+　　1.play()函数传递的是一个load()返回的soundID——指向一个被记载的音频资源 ，如果播放成功则返回一个非0的streamID——指向一个成功播放的流 ;同一个soundID 可以通过多次调用play()而获得多个不同的streamID (只要不超出同时播放的最大数量);
+　　2.pause()、resume()和stop()是针对播放流操作的，传递的是play()返回的streamID ;
+　　3.play()中的priority参数，只在同时播放的流的数量超过了预先设定的最大数量是起作用，管理器将自动终止优先级低的播放流。如果存在多个同样优先级的流，再进一步根据其创建事件来处理，新创建的流的年龄是最小的，将被终止;
+　　4.无论如何，程序退出时，手动终止播放并释放资源是必要的。
+　　eg.
+　　//这里对soundID1的音效进行播放——优先级为0(最低)，无限循环，正常速率。
+　　int streamID = soundPool.play(soundID1 , 1.0, 1.0, 0, -1, 1.0);
+　　if(streamID ==0){
+　　// 播放失败
+　　}else{
+　　// 播放成功
+　　}
+　　...
+　　// 暂停soundID1的播放
+　　soundPool.pause(streamID );
+　　...
+　　// 恢复soundID1的播放
+　　soundPool.resume(streamID );
+　　...
+　　// 终止播放，记住循环为-1时必须手动停止
+soundPool.stop(streamID );
+　　*API中指出，即使使用无效的soundID /streamID (操作失败或指向无效的资源)来调用相关函数也不会导致错误，这样能减轻逻辑的处理。
+　　4. 更多属性设置
+　　其实就是paly()中的一些参数的独立设置：
+　　final void setLoop(int streamID, int loop)
+　　设置指定播放流的循环.
+　　final void setVolume(int streamID, float leftVolume, float rightVolume)
+　　设置指定播放流的音量.
+　　final void setPriority(int streamID, int priority)
+　　设置指定播放流的优先级，上面已说明priority的作用.
+　　final void setRate(int streamID, float rate)
+　　设置指定播放流的速率，0.5-2.0.
+　　5. 释放资源
+　　可操作的函数有：
+　　final boolean unload(int soundID)
+　　卸载一个指定的音频资源.
+　　final void release()
+　　释放SoundPool中的所有音频资源.
+　　-汇总-
+　　一个SoundPool可以：
+　　1.管理多个音频资源，通过load()函数，成功则返回非0的soundID;
+　　2.同时播放多个音频，通过play()函数，成功则返回非0的streamID;
+　　3.pause()、resume()和stop()等操作是针对streamID(播放流)的;
+　　4.当设置为无限循环时，需要手动调用stop()来终止播放;
+　　5.播放流的优先级(play()中的priority参数)，只在同时播放数超过设定的最大数时起作用;
+　　6.程序中不用考虑(play触发的)播放流的生命周期，无效的soundID/streamID不会导致程序错误。
+　　-------------------------------------------------------------------------------------------
+　　MediaPlayer
+　　你可以通过new或便捷的静态create函数组来创建一个MediaPlayer对象。
+　　两种方式的比较：
+　　new MediaPlayer()
+　　1.成功调用后，MediaPlayer将处于Idle状态;
+　　2.setDataSource提供了对String(path)、Uri和FileDescriptor格式的资源路径的支持;
+　　3.后续需要手动调用prepare()才能进行播放。
+　　MediaPlayer.create(...)
+　　1.成功调用后，MediaPlayer将处于Prepared状态;
+　　2.create提供了对int(resID)和Uri格式的资源路径的支持;
+　3.无需(也不能)再次调用prepare()就能直接播放。
+　要点：
+　　1.如果由于错误的操作mp.setDataSource("/sdcard/test.mp3"); // 直接传URL也是可以的，将自动处理缓冲
+　　} catch (IllegalArgumentException e) {
+　　e.printStackTrace();
+　　} catch (IllegalStateException e) {
+　　// 如果在非Idle状态下调用setDataSource就会导致该异常
+　　e.printStackTrace();
+　　} catch (IOException e) {
+　　e.printStackTrace();
+　　}
+　　// 设置必要的监听器
+　　mp.setOnPreparedListener(new OnPreparedListener(){
+　　@Override
+　　public void onPrepared(MediaPlayer mp) {
+　　// 这时能确保player处于Prepared状态，触发start是最合适的
+　　mp.start();
+　　}
+　　});
+　　mp.setOnCompletionListener(new OnCompletionListener() {
+　　@Override
+　　public void onCompletion(MediaPlayer mp) {
+　　// 正常播放结束，可以触发播放下一首
+　　}
+　　});
+　　mp.setOnErrorListener(new OnErrorListener() {
+　　@Override
+　　public boolean onError(MediaPlayer mp, int what, intextra) {
+　　// 操作错误或其他原因导致的错误会在这里被通知
+　　return true;
+　　}
+　　});
+　　// 连接并加载资源
+　　try {
+　　mp.prepare();
+　　// mp.prepareAsync() 这也是可以的，这是异步处理，上面的是同步处理，实际加载完毕以OnPreparedListener.onPrepared()为准。
+　　} catch (IllegalStateException e) {
+　　e.printStackTrace();
+　　} catch (IOException e) {
+　　e.printStackTrace();
+　　}
+　　// mp.start(); // 建议在OnPreparedListener.onPrepared()回调中触发该函数，特别是使用异步加载时
+　　/**
+　　* ... 你的其他操作 ...
+　　*/
+　　// 终止播放并释放资源
+　　try{
+　　mp.stop(); // 这是必要的，如果你设置了循环播放，否则程序退出了音乐仍在后台继续播...
+　　mp.release();
+　　}catch(IllegalStateException e){
+　　e.printStackTrace();
+　　}
+　　// 通过new创建后的player处于Idle状态
+导致MediaPlayer处于Error状态，可通过reset()函数来使其恢复到Idle状态，再重新执行setDataSource等初始化操作(ps:如果是通过create函数绑定资源ID创建的就郁闷了...);
+　　2.API中指出虽然reset后的MediaPlayer就像相当于新new的一样，但存在微妙的差异的：
+　　在这两种情况下播放器处于Idle状态，此时调用getCurrentPosition(), getDuration(),getVideoHeight(),getVideoWidth(), setAudioStreamType(int),setLooping(boolean), setVolume(float, float), pause(), start(), stop(),seekTo(int), prepare() 或 prepareAsync() 等函数都属与编程错误。当在MediaPlayer刚创建后调用这些函数，用户指定的OnErrorListener.onError() 回调函数不会被internal player engine(内部播放引擎)调用，并且播放器的状态依然未变;但如果是在调用reset() 函数之后，用户指定的OnErrorListener.onError() 回调函数将会被internal player engine(内部播放引擎)调用，并且播放器的状态将转变为Error(错误)状态。
+　　3.使用完毕后应该立即调用release()函数来释放资源，如果操作成功，MediaPlayer对象将处于End状态，此时无法再进行任何操作，除非重新创建MediaPlayer对象。
+　　更多的细节通过一个用new方式来创建的示例说明:
+　　Java代码
+　　// 通过new创建后的player处于Idle状态
+　　MediaPlayer mp = new MediaPlayer();
+　　if(mp==null){
+　　// new创建有可能会返回null值，检测是好的习惯
+　　return;
+　　}
+　　// 设置资源路径，成功执行的话player将处于Initialized状态
+　　try {
+MediaPlayer mp = new MediaPlayer();
+　　if(mp==null){
+　　// new创建有可能会返回null值，检测是好的习惯
+　　return;
+　　}
+　　// 设置资源路径，成功执行的话player将处于Initialized状态
+　　try {
+　　mp.setDataSource("/sdcard/test.mp3"); // 直接传URL也是可以的，将自动处理缓冲
+　　} catch (IllegalArgumentException e) {
+　　e.printStackTrace();
+　　} catch (IllegalStateException e) {
+　　// 如果在非Idle状态下调用setDataSource就会导致该异常
+　　e.printStackTrace();
+　　} catch (IOException e) {
+　　e.printStackTrace();
+　　}
+　　// 设置必要的监听器
+　　mp.setOnPreparedListener(new OnPreparedListener(){
+　　@Override
+　　public void onPrepared(MediaPlayer mp) {
+　　// 这时能确保player处于Prepared状态，触发start是最合适的
+　　mp.start();
+　　}
+　　});
+　　mp.setOnCompletionListener(new OnCompletionListener() {
+　　@Override
+　　public void onCompletion(MediaPlayer mp) {
+　　// 正常播放结束，可以触发播放下一首
+　　}
+　　});
+　　mp.setOnErrorListener(new OnErrorListener() {
+　　@Override
+　　public boolean onError(MediaPlayer mp, int what, intextra) {
+　　// 操作错误或其他原因导致的错误会在这里被通知
+　　return true;
+　　}
+　　});
+　　// 连接并加载资源
+　　try {
+　　mp.prepare();
+　　// mp.prepareAsync() 这也是可以的，这是异步处理，上面的是同步处理，实际加载完毕以OnPreparedListener.onPrepared()为准。
+　　} catch (IllegalStateException e) {
+　　e.printStackTrace();
+　　} catch (IOException e) {
+　　e.printStackTrace();
+　　}
+　　// mp.start(); // 建议在OnPreparedListener.onPrepared()回调中触发该函数，特别是使用异步加载时
+　　/**
+　　* ... 你的其他操作 ...
+　　*/
+　　// 终止播放并释放资源
+　try{
+　　mp.stop(); // 这是必要的，如果你设置了循环播放，否则程序退出了音乐仍在后台继续播...
+　　mp.release();
+　　}catch(IllegalStateException e){
+　　e.printStackTrace();
+　　}
+　　播放控制上基本与SoundPool相同有：
+　　start()、pause()、stop()、seekTo()、setLooping()...
+　　需要注意的是， 循环播放设置上与SoundPool不同，不能指定确定的循环次数，而是一个布尔值，指定是否循环播放...

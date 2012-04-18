@@ -9,6 +9,11 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.SurfaceHolder.Callback;
 
+/**
+ * 画布旋转等操作所用到的save,restore操作
+ * @author Administrator
+ *
+ */
 public class TestCanvasStore extends SurfaceView implements Callback ,Runnable{
 
 	private Thread thread;

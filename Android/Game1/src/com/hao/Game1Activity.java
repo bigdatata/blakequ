@@ -3,10 +3,12 @@ package com.hao;
 import com.hao.testview.ImageTest;
 import com.hao.testview.MySurfaceView;
 import com.hao.testview.MySurfaceView2;
+import com.hao.testview.SoundView;
 import com.hao.testview.SurfaceView2;
 import com.hao.testview.TestCanvasStore;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -17,12 +19,16 @@ import android.widget.Button;
 
 public class Game1Activity extends Activity {
 	
+	public static Activity instance;
+	public static Context content;
 //	private ImageTest imageTest;
 	private Button b1, b2;
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        instance = this;
+        content = this;
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 //        setContentView(new MyView(this));
@@ -31,8 +37,9 @@ public class Game1Activity extends Activity {
 //        setContentView(new SurfaceView2(this));
 //        imageTest = new ImageTest(this);
 //        setContentView(imageTest);
-        setContentView(R.layout.surface3);
-        initView();
+//        setContentView(R.layout.surface3);
+//        initView();
+        setContentView(new SoundView(this));
     }
     
     private void initView(){
