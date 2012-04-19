@@ -7,6 +7,11 @@ import android.view.MotionEvent;
 import android.view.Window;
 import android.view.WindowManager;
 
+/**
+ * 监听touch事件时的优化--可以将时间Time和我们的动画刷新频率保持一致
+ * @author Administrator
+ *
+ */
 public class Game5Activity extends Activity {
 	 private byte[] lock; 
 	    private final int TIME = 50;//备注1     
