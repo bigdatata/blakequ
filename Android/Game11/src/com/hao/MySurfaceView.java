@@ -60,9 +60,9 @@ public class MySurfaceView extends SurfaceView implements Callback, Runnable {
 	 * @return
 	 */
 	private double getRad(float x1, float y1, float x2, float y2){
-		float x = x1 - x2;										//两点间x的距离
-		float y = y1 - y2;										//两点间Y的距离
-		float len = (float) Math.sqrt(Math.pow(x, 2) + Math.pow(y2, 2)); //算出斜边长
+		float x = x2 - x1;										//两点间x的距离
+		float y = y2 - y1;										//两点间Y的距离
+		float len = (float) Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)); //算出斜边长
 		float rad = (float) Math.acos(x/len);					//根据余弦定理求角度的弧度	
 		if(y1 > y2) rad = -rad;									//注意：当触屏的位置Y坐标<摇杆的Y坐标我们要取反值-0~-180
 		return rad;
