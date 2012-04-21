@@ -1,0 +1,20 @@
+在android中做图像镜像有很多方法，今天算是学习了！
+两种方法如下：
+[java]
+//方法一 
+        Matrix matrix = new Matrix(); 
+        matrix.postScale(leftOrRight, 1, bmpW/2, bmpH/2);//前两个是xy变换，后两个是对称轴中心点 
+        matrix.postTranslate(x, y); 
+        canvas.drawBitmap(bmpLuffy[0], matrix, paint); 
+        //方法二 
+//      canvas.save(); 
+//      canvas.scale(-1, 1, x + bmpLuffy[0].getWidth() / 2, y + bmpLuffy[0].getHeight() / 2); 
+//      canvas.drawBitmap(bmpLuffy[0], x, y, paint); 
+//      canvas.restore(); 
+方法一，使用矩阵的方式（3x3）矩阵：
+            1、先使用postScale的方式将图片以点(bmpW/2,bmpH/2)为中心，以x=bmpW/2为对称轴翻转；
+            2、使用postTranslate，将图片移到(x,y)坐标
+方法二，画布翻转（略）
+注意如下问题：
+对于其中的bmpW和bmpH是指所用图片的宽高，需要使用图片bmp.getWidth()和bmp.getHeight()获取，
+不能使用PC上看到的大小，否则可能会出现错位！
