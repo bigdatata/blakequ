@@ -1,0 +1,6 @@
+在之前介绍过Region 这个类，其实此类还有一个比较常用的方法就是用于判断一个点是否在矩形区域内，其方法是使用Region 类中的contains（int x, int y）函数。
+
+Contains（int x, int y） 
+作用：用于判断一个点是否在Region 的矩形区域中
+
+两个参数：点的X、Y 坐标
