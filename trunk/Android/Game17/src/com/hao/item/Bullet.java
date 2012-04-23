@@ -45,6 +45,23 @@ public class Bullet extends BaseItemImpl{
 	}
 	
 	/**
+	 * 专用于处理Boss疯狂状态下创建的子弹
+	 * @param bmpBullet
+	 * @param bulletX
+	 * @param bulletY
+	 * @param bulletType
+	 * @param Dir
+	 */
+	public Bullet(Bitmap bmpBullet, int x, int y, int bulletType, int dir) {
+		this.bmpBullet = bmpBullet;
+		this.x = x;
+		this.y = y;
+		this.bulletType = bulletType;
+		setSpeedByType();
+		this.dir = dir;
+	}
+	
+	/**
 	 * 不同的子弹类型速度不一
 	 */
 	private void setSpeedByType(){
