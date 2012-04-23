@@ -4,9 +4,14 @@ package com.hao;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Vector;
 
+import com.hao.base.BaseSurfaceView;
+import com.hao.item.Boom;
+import com.hao.item.Bullet;
 import com.hao.item.Enemy;
 import com.hao.item.GameBackground;
+import com.hao.item.Player;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -28,7 +33,7 @@ import android.view.SurfaceHolder.Callback;
  * @author Administrator
  *
  */
-public class GameSurfaceView extends SurfaceView implements Callback, Runnable {
+public class GameSurfaceView extends BaseSurfaceView implements Callback, Runnable {
 	/**********************通用框架************************************/
 	public static int screenWidth, screenHeight;	//屏幕高宽
 	private SurfaceHolder sfh;
@@ -75,6 +80,19 @@ public class GameSurfaceView extends SurfaceView implements Callback, Runnable {
 	private int enemyArrayIndex = 0;				//当前取出一维数组的下标
 	private boolean isBoss;							//是否出现Boss标识位
 	private Random random;							//随机库，为创建的敌机赋予随即坐标
+	private Player player;							//游戏主角
+	private List<Boom> booms;						//爆炸效果
+	
+	/**********************子弹相关*************************************/
+	private List<Bullet> bulletPlayers;				//主角子弹容器
+	private int countPlayerBullet;					//主角子弹计数
+	private static int CREATE_PLAYER_BULLET = 20;	//主角生成子弹时间（ms）
+	private List<Bullet> bulletEnemys;				//敌机子弹容器
+	private int countEnemyBullet;					//敌机子弹计数
+	private static int CREATE_ENEMY_BULLET = 40;	//敌机生成子弹时间（ms）
+//	private Boss boss;								//声明Boss
+//	public static Vector<Bullet> vcBulletBoss;		//Boss的子弹容器
+	private static int CREATE_BOSS_BULLET = 10;		//Boss生成子弹时间（ms）
 	
 	public GameSurfaceView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -116,6 +134,10 @@ public class GameSurfaceView extends SurfaceView implements Callback, Runnable {
 			gameMenu = new GameMenu(bmpMenu, bmpButton, bmpButtonPress);
 			gameBg = new GameBackground(bmpBackGround);
 			enemys = new ArrayList<Enemy>();
+			player = new Player(bmpPlayerHp, bmpPlayer);
+			booms = new ArrayList<Boom>();
+			bulletEnemys = new ArrayList<Bullet>();
+			bulletPlayers = new ArrayList<Bullet>();
 		}
 	}
 
@@ -161,6 +183,20 @@ public class GameSurfaceView extends SurfaceView implements Callback, Runnable {
 			}
 			return true;									//表示此按键已处理，不再交给系统处理，从而避免游戏被切入后台
 		}
+		
+		switch (gameState) {
+			case GAME_MENU:
+				break;
+			case GAMEING:
+				player.onKeyDown(keyCode, event);			//主角的按键按下事件
+				break;
+			case GAME_PAUSE:
+				break;
+			case GAME_WIN:
+				break;
+			case GAME_LOST:
+				break;
+		}
 		return super.onKeyDown(keyCode, event);
 	}
 
@@ -175,6 +211,20 @@ public class GameSurfaceView extends SurfaceView implements Callback, Runnable {
 			}
 			return true;									//表示此按键已处理，不再交给系统处理，从而避免游戏被切入后台
 		}
+		
+		switch (gameState) {
+			case GAME_MENU:
+				break;
+			case GAMEING:
+				player.onKeyUp(keyCode, event);				//主角的按键按下事件
+				break;
+			case GAME_PAUSE:
+				break;
+			case GAME_WIN:
+				break;
+			case GAME_LOST:
+				break;
+	}
 		return super.onKeyUp(keyCode, event);
 	}
 
@@ -201,7 +251,7 @@ public class GameSurfaceView extends SurfaceView implements Callback, Runnable {
 	/**
 	 * 逻辑处理函数,不同状态不同的处理逻辑
 	 */
-	private void logic(){
+	public void logic(){
 		switch(gameState){
 			case GAME_MENU:
 				break;
@@ -212,10 +262,12 @@ public class GameSurfaceView extends SurfaceView implements Callback, Runnable {
 			case GAME_WIN:
 				break;
 			case GAMEING:
+				int i=0;
 				gameBg.logic();							//游戏背景逻辑
+				player.logic();							//主角逻辑
 				/***************************普通敌机逻辑*********************************/
 				if(!isBoss){
-					for(int i=0; i<enemys.size(); i++){
+					for(i=0; i<enemys.size(); i++){
 						Enemy enemy = enemys.get(i);
 						if(enemy.isDead()){				//如果敌机已经死亡，则移出数组
 							enemys.remove(i);
@@ -226,15 +278,13 @@ public class GameSurfaceView extends SurfaceView implements Callback, Runnable {
 					//----------------------添加敌机-------------------------------------
 					count ++ ;
 					if(count % CREATE_ENEMY_TIME == 0){	//利用count来计数，实现每隔50ms生成一架敌机（**为了不使用线程睡眠）
-						for(int i=0; i<enemyArray[enemyArrayIndex].length; i++){
+						for(i=0; i<enemyArray[enemyArrayIndex].length; i++){
 							switch(enemyArray[enemyArrayIndex][i]){
 								case Enemy.TYPE_FLY:								//苍蝇
-									System.out.println("fly----------size:"+enemys.size());
 									int x = random.nextInt(screenWidth - 100) + 50; //随机生成初始x坐标
 									enemys.add(new Enemy(Enemy.TYPE_FLY, bmpEnemyFly, x, -50));
 									break;
 								case Enemy.TYPE_DUCKL:								//左鸭子
-									System.out.println("duck----------size:"+enemys.size());
 									int y = random.nextInt(20);						//随机生成初始y坐标
 									enemys.add(new Enemy(Enemy.TYPE_DUCKL, bmpEnemyDuck, -10, y));
 									break;
@@ -250,10 +300,95 @@ public class GameSurfaceView extends SurfaceView implements Callback, Runnable {
 							enemyArrayIndex ++;
 						}
 					}
+					//----------------------敌机与主角碰撞检测---------------------------------
+					for(i=0; i<enemys.size(); i++){
+						Enemy e = enemys.get(i);
+						if(player.isCollisionWith(e)){
+							player.setPlayerHP(player.getPlayerHP() - 1);			//设置主角血量
+							if(player.getPlayerHP() < 0){
+								gameState = GAME_LOST;
+							}
+							enemys.remove(i);										//如果敌机与主角碰撞就消失,应该还有爆炸效果
+							booms.add(new Boom(bmpBoom, e.x, e.y, Boom.BOOM_FOR_BULLECT));
+						}
+					}
+					//----------------------为敌机添加子弹-------------------------------------
+					countEnemyBullet ++;
+					if(countEnemyBullet >= Integer.MAX_VALUE) countEnemyBullet = 0;
+					if(countEnemyBullet % CREATE_ENEMY_BULLET == 0){				//根据敌机不同生成不同子弹
+						for(i=0; i<enemys.size(); i++){
+							Enemy e = enemys.get(i);
+							int bulletType = 0;										//不同类型敌机不同的子弹运行轨迹
+							switch(e.type){
+								case Enemy.TYPE_DUCKL:
+								case Enemy.TYPE_DUCKR:
+									bulletType = Bullet.BULLET_DUCK;
+									break;
+								case Enemy.TYPE_FLY:
+									bulletType = Bullet.BULLET_FLY;
+									break;
+							}
+							bulletEnemys.add(new Bullet(bmpEnemyBullet, e.x, e.y + 10, bulletType));
+						}
+					}
+					//----------------------敌机子弹逻辑---------------------------------------
+					for(i=0; i<bulletEnemys.size(); i++){
+						Bullet b = bulletEnemys.get(i);
+						if(b.isDead()){
+							bulletEnemys.remove(i);
+						}else{
+							b.logic();
+							//----------------------主角与子弹碰撞检测---------------------------------
+							if(player.isCollisionWith(b)){
+								player.setPlayerHP(player.getPlayerHP() - 1);			//设置主角血量
+								if(player.getPlayerHP() < 0){
+									gameState = GAME_LOST;
+								}
+								bulletEnemys.remove(i);									//如果敌机与主角碰撞就消失,应该还有爆炸效果
+							}
+						}
+					}
+					//----------------------敌机与主角子弹碰撞检测---------------------------------
+					for(i=0; i<bulletPlayers.size(); i++){
+						Bullet b = bulletPlayers.get(i);
+						for(int j=0; j<enemys.size(); j++){
+							Enemy e = enemys.get(j);
+							if(e.isCollisionWith(b)){								//如果子弹击中敌机，移除子弹和敌机并产生爆炸
+								System.out.println("------boom---------");
+								enemys.remove(j);
+								bulletPlayers.remove(i);
+								booms.add(new Boom(bmpBoom, e.x, e.y, Boom.BOOM_FOR_BULLECT));
+							}
+						}
+					}
 				}
 				/***************************BOSS敌机逻辑*********************************/
 				else{									//boss逻辑
 					
+				}
+				/***************************主角子弹添加*********************************/
+				countPlayerBullet ++;
+				if(countPlayerBullet >= Integer.MAX_VALUE) countPlayerBullet = 0;
+				if(countPlayerBullet % CREATE_PLAYER_BULLET == 0){
+					bulletPlayers.add(new Bullet(bmpBullet, player.x + 13, player.y - 20, Bullet.BULLET_PLAYER));
+				}
+				/***************************主角子弹逻辑*********************************/
+				for(i=0; i<bulletPlayers.size(); i++){
+					Bullet b = bulletPlayers.get(i);
+					if(b.isDead()){
+						bulletPlayers.remove(i);
+					}else{
+						b.logic();
+					}
+				}
+				/***************************爆炸效果*************************************/
+				for(i=0; i<booms.size(); i++){
+					Boom boom = booms.get(i);
+					if(boom.isEnd()){
+						booms.remove(i);
+					}else{
+						boom.logic();
+					}
 				}
 				break;
 	}
@@ -262,7 +397,7 @@ public class GameSurfaceView extends SurfaceView implements Callback, Runnable {
 	/**
 	 * 绘制函数
 	 */
-	private void draw(){
+	public void draw(){
 		try {
 			canvas = sfh.lockCanvas();
 			canvas.drawColor(Color.WHITE);
@@ -281,12 +416,29 @@ public class GameSurfaceView extends SurfaceView implements Callback, Runnable {
 						break;
 					case GAMEING:
 						gameBg.draw(canvas, paint);		//游戏背景
+						player.draw(canvas, paint);		//主角
+						/********************************敌机绘制*************************************/
 						if(!isBoss){							//如果是普通的敌机，遍历绘制
 							for(int i=0; i<enemys.size(); i++){
 								enemys.get(i).draw(canvas, paint);
 							}
 						}else{									//绘制boss
 							
+						}
+						/********************************子弹绘制*************************************/
+						//敌机子弹
+						for(int i=0; i<bulletEnemys.size(); i++){
+							bulletEnemys.get(i).draw(canvas, paint);
+						}
+						//主角子弹
+						for(int i=0; i<bulletPlayers.size(); i++){
+							bulletPlayers.get(i).draw(canvas, paint);
+						}
+						//boss子弹
+						
+						/******************************爆炸效果绘制*************************************/
+						for(int i=0; i<booms.size(); i++){
+							booms.get(i).draw(canvas, paint);
 						}
 						break;
 				}
