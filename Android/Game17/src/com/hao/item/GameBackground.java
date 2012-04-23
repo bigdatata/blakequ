@@ -1,6 +1,7 @@
 package com.hao.item;
 
 import com.hao.GameSurfaceView;
+import com.hao.base.BaseItemImpl;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -11,7 +12,7 @@ import android.graphics.Paint;
  * @author Administrator
  *
  */
-public class GameBackground {
+public class GameBackground extends BaseItemImpl{
 	//为了循环播放，这里定义两个位图对象,图片都一样
 	private Bitmap bg1;
 	private Bitmap bg2;

@@ -1,6 +1,7 @@
 package com.hao.item;
 
 import com.hao.GameSurfaceView;
+import com.hao.base.BaseItemImpl;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -11,15 +12,15 @@ import android.graphics.Paint;
  * @author Administrator
  *
  */
-public class Enemy {
+public class Enemy extends BaseItemImpl{
 
-	private int type;									//敌人种类
+	public int type;									//敌人种类
 	public static final int TYPE_FLY = 1;				//苍蝇
 	public static final int TYPE_DUCKL = 2;				//鸭子(从左往右运动)
 	public static final int TYPE_DUCKR = 3;				//鸭子(从右往左运动)
 	private Bitmap bmpEnemy;							//敌机图片资源
-	private int x, y;									//敌机坐标
-	private int frameWidth, frameHeight;				//每帧的长宽
+	public int x, y;									//敌机坐标
+	public int frameWidth, frameHeight;				//每帧的长宽
 	private int frameIndex;								//帧索引
 	private int speed;									//敌机移动速度
 	private boolean isDead;								//是否死亡（即移出屏幕）
@@ -99,6 +100,23 @@ public class Enemy {
 	 */
 	public boolean isDead() {
 		return isDead;
+	}
+	
+	/**
+	 *  检测是否和子弹碰撞
+	 * @param bullet
+	 * @return
+	 */
+	public boolean isCollisionWith(Bullet bullet){
+		int x2 = bullet.x;
+		int y2 = bullet.y;
+		int h2 = bullet.bmpBullet.getHeight();
+		int w2 = bullet.bmpBullet.getWidth();
+		boolean b = isCollsionWithRect(x, y, bmpEnemy.getHeight(), bmpEnemy.getWidth(), x2, y2, h2, w2);
+		if(b){
+			isDead = true;
+		}
+		return b;
 	}
 	
 }

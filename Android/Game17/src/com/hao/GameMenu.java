@@ -1,5 +1,7 @@
 package com.hao;
 
+import com.hao.base.BaseItemImpl;
+
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -10,7 +12,7 @@ import android.view.MotionEvent;
  * @author quhao
  *
  */
-public class GameMenu {
+public class GameMenu extends BaseItemImpl{
 	
 	private Bitmap bmpMenu;								//菜单背景
 	private Bitmap bmpBtNormal, bmpBtPressed;			//游戏开始按钮
