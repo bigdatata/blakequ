@@ -8,6 +8,7 @@ import java.util.Vector;
 
 import com.hao.base.BaseSurfaceView;
 import com.hao.item.Boom;
+import com.hao.item.Boss;
 import com.hao.item.Bullet;
 import com.hao.item.Enemy;
 import com.hao.item.GameBackground;
@@ -90,8 +91,8 @@ public class GameSurfaceView extends BaseSurfaceView implements Callback, Runnab
 	private List<Bullet> bulletEnemys;				//敌机子弹容器
 	private int countEnemyBullet;					//敌机子弹计数
 	private static int CREATE_ENEMY_BULLET = 40;	//敌机生成子弹时间（ms）
-//	private Boss boss;								//声明Boss
-//	public static Vector<Bullet> vcBulletBoss;		//Boss的子弹容器
+	private Boss boss;								//声明Boss
+	public static List<Bullet> bulletBoss;		//Boss的子弹容器
 	private static int CREATE_BOSS_BULLET = 10;		//Boss生成子弹时间（ms）
 	
 	public GameSurfaceView(Context context, AttributeSet attrs) {
@@ -138,6 +139,8 @@ public class GameSurfaceView extends BaseSurfaceView implements Callback, Runnab
 			booms = new ArrayList<Boom>();
 			bulletEnemys = new ArrayList<Bullet>();
 			bulletPlayers = new ArrayList<Bullet>();
+			bulletBoss = new ArrayList<Bullet>();
+			boss = new Boss(bmpEnemyBoos);
 		}
 	}
 
@@ -364,7 +367,43 @@ public class GameSurfaceView extends BaseSurfaceView implements Callback, Runnab
 				}
 				/***************************BOSS敌机逻辑*********************************/
 				else{									//boss逻辑
+					boss.logic();
+					if(countPlayerBullet % CREATE_BOSS_BULLET == 0){ //Boss的没发疯之前的普通子弹
+						bulletBoss.add(new Bullet(bmpBossBullet, boss.x + 35, boss.y + 40, Bullet.BULLET_FLY));
+					}
+					//boss子弹逻辑
+					for(i=0; i<bulletBoss.size(); i++){
+						Bullet b = bulletBoss.get(i);
+						if(b.isDead()){
+							bulletBoss.remove(i);
+						}else{
+							b.logic();
+							//Boss子弹与主角的碰撞
+							if(player.isCollisionWith(b)){
+								player.setPlayerHP(player.getPlayerHP() - 1);
+								if (player.getPlayerHP() <= -1) {
+									gameState = GAME_LOST;
+								}
+								bulletBoss.remove(i);
+							}
+						}
+					}
 					
+					//Boss被主角子弹击中，产生爆炸效果
+					for(i=0; i<bulletPlayers.size(); i++){
+						Bullet b = bulletPlayers.get(i);
+						if(boss.isCollisionWith(b)){
+							if (boss.hp <= 0) {
+								gameState = GAME_WIN;			//游戏胜利
+							} else {
+								bulletPlayers.remove(i);		//及时删除本次碰撞的子弹，防止重复判定此子弹与Boss碰撞
+								boss.setHp(boss.hp - 1);		//Boss血量减1
+								booms.add(new Boom(bmpBoosBoom, boss.x + 25, boss.y + 30, Boom.BOOM_FOR_BOSS));//在Boss上添加三个Boss爆炸效果
+								booms.add(new Boom(bmpBoosBoom, boss.x + 35, boss.y + 40, Boom.BOOM_FOR_BOSS));
+								booms.add(new Boom(bmpBoosBoom, boss.x + 45, boss.y + 50, Boom.BOOM_FOR_BOSS));
+							}
+						}
+					}
 				}
 				/***************************主角子弹添加*********************************/
 				countPlayerBullet ++;
@@ -423,7 +462,11 @@ public class GameSurfaceView extends BaseSurfaceView implements Callback, Runnab
 								enemys.get(i).draw(canvas, paint);
 							}
 						}else{									//绘制boss
-							
+							boss.draw(canvas, paint);
+							//boss子弹
+							for(int i=0; i<bulletBoss.size(); i++){
+								bulletBoss.get(i).draw(canvas, paint);
+							}
 						}
 						/********************************子弹绘制*************************************/
 						//敌机子弹
@@ -434,7 +477,6 @@ public class GameSurfaceView extends BaseSurfaceView implements Callback, Runnab
 						for(int i=0; i<bulletPlayers.size(); i++){
 							bulletPlayers.get(i).draw(canvas, paint);
 						}
-						//boss子弹
 						
 						/******************************爆炸效果绘制*************************************/
 						for(int i=0; i<booms.size(); i++){
