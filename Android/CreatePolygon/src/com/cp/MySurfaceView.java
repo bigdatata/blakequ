@@ -40,7 +40,7 @@ public class MySurfaceView extends SurfaceView implements Callback, Runnable {
 	
 	// ----在物理世界中添加一个多边形--->>
 	Body body;// 声明物体对象
-	float polygonX = 5;// 声明矩形X坐标
+	float polygonX = 42;// 声明矩形X坐标
 	float polygonY = 10;// 声明矩形Y坐标
 	float polygonWidth = 50;// 声明矩形宽度
 	float polygonHeight = 50;// 声明矩形高度
@@ -138,8 +138,12 @@ public class MySurfaceView extends SurfaceView implements Callback, Runnable {
 			canvas = sfh.lockCanvas();
 			if (canvas != null) {
 				canvas.drawColor(Color.WHITE);
+				canvas.save();
+				//如果没有这个，就没有碰撞后的旋转效果
+				canvas.rotate((float) (body.getAngle()*180/Math.PI), polygonX+polygonWidth/2, polygonY+polygonHeight/2);
 				canvas.drawRect(polygonX, polygonY, polygonX + polygonWidth,
 						polygonY + polygonHeight, paint);// 绘画矩形
+				canvas.restore();
 				canvas.drawRect(polygonX2, polygonY2,
 						polygonX2 + polygonWidth2, polygonY2 + polygonHeight2,
 						paint);// 绘画矩形
