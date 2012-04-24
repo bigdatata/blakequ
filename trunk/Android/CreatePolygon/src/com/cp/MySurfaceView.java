@@ -152,9 +152,15 @@ public class MySurfaceView extends SurfaceView implements Callback, Runnable {
 		}
 	}
 
+	/**
+	 * 因为物理世界是在不断的模拟，所以也要不断去获取物体在物理世界的最新坐标，
+	 * 然后传递给绘制的图形，图形就会按照物体在物理世界中的运动轨迹去"运动"。
+	 */
 	public void Logic() {
 		// ----物理世界进行模拟(会再下落的过程中模拟现实世界，如重力，加速度，摩擦力等)
 		world.step(timeStep, iterations);
+		//注：这里获取的position是在现实世界中的中心点位置，要转换为屏幕上就要
+		//先单位m-->px, 然后就坐标点转换为手机上的左上角坐标
 		Vec2 position = body.getPosition();
 		//由于取出来的坐标是m为单位（现实世界），故而要乘以RATE转换为像素单位
 		//至于为什么要减polygonWidth / 2 见图片
