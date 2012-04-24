@@ -114,7 +114,7 @@ public class MySurfaceView extends SurfaceView implements Callback, Runnable {
 		 *  两个参数为多边形宽高的一半,这里除以RATE就是将屏幕中的像素转换为现实中的长度m
 		 *  30px/1m = RATE = 屏幕像素高度/实际高度 ---> 实际高度 = 屏幕像素高度/RATE
 		 */
-		pd.setAsBox(width / 2 / RATE, height / 2 / RATE); //这是是先转换为现实实际高度在设置
+		pd.setAsBox(width / 2 / RATE, height / 2 / RATE); //除以RATE这是是先转换为现实实际高度在设置
 		
 		// ---------------2.创建刚体--------------------------------
 		BodyDef bd = new BodyDef(); // 实例一个刚体对象
