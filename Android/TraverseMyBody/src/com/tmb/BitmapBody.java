@@ -13,7 +13,7 @@ import android.graphics.Paint;
  */
 public class BitmapBody {
 	private Bitmap bmp;// 图片
-	private float x, y, angle;// 图片的坐标和角度
+	private float x, y, angle;// 图片的坐标和角度，这个会不断改变
 
 	public BitmapBody(Bitmap bmp, float x, float y) {
 		this.bmp = bmp;
