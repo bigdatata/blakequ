@@ -4,6 +4,9 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
 import org.jbox2d.dynamics.joints.DistanceJoint;
 import org.jbox2d.dynamics.joints.DistanceJointDef;
+import org.jbox2d.dynamics.joints.GearJoint;
+import org.jbox2d.dynamics.joints.GearJointDef;
+import org.jbox2d.dynamics.joints.Joint;
 import org.jbox2d.dynamics.joints.RevoluteJoint;
 import org.jbox2d.dynamics.joints.RevoluteJointDef;
 
@@ -37,6 +40,8 @@ public class CreateJoint {
 	
 	/**
 	 * 旋转关节(旋转车轮)
+	 * 可以设置自旋转，可以设置world.getGroundBody()，让自己绕自己旋转
+	 * initialize(world.getGroundBody(), body1, body1.getWorldCenter());
 	 * @param body1
 	 * @param body2
 	 * @param maxMotorTorque(1) 马达的预期最大扭矩(扭矩与速度成反比)
@@ -77,5 +82,30 @@ public class CreateJoint {
 		//利用world创建一个旋转关节
 		RevoluteJoint rj = (RevoluteJoint)world.createJoint(rjd);
 		return rj ;
+	}
+	
+	/**
+	 * 齿轮关节
+	 * @param body1	设置齿轮关节的两个Body
+	 * @param body2 设置齿轮关节的两个Body
+	 * @param joint1 齿轮关节绑定的两个旋转关节
+	 * @param joint2 齿轮关节绑定的两个旋转关节
+	 * @param ratio 旋转角度比(1:2表示一个旋转一圈另外的旋转2圈)
+	 * @return
+	 */
+	public GearJoint createGearJoint(Body body1, Body body2, Joint joint1, Joint joint2, float ratio) {
+		//创建齿轮关节数据实例
+		GearJointDef gjd = new GearJointDef();
+		//设置齿轮关节的两个Body
+		gjd.body1 = body1;
+		gjd.body2 = body2;
+		//设置齿轮关节绑定的两个旋转关节
+		gjd.joint1 = joint1;
+		gjd.joint2 = joint2;
+		//设置旋转角度比
+		gjd.ratio = ratio; //为10表示一个旋转10次一个才一次
+		//通过world创建一个齿轮关节
+		GearJoint gj = (GearJoint) world.createJoint(gjd);
+		return gj;
 	}
 }
