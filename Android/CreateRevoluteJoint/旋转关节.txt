@@ -1,0 +1,26 @@
+RevoluteJoint 英文直译转动关节..在这我们想到,在物理世界中类似跷跷板,车轮等是不是就该用它.没错......
+在初始化两个连接刚体之前,我们就对其属性进行相应的设置.
+enableLimit / enableMotor 是否固定/是否可以转动
+
+围绕enableLimit / enableMotor 说两个
+
+1.当enableLimit  == true,
+lowerAngle ,upperAngle  是说以关节为中心,转动的最小和最大弧度
+
+2.当enableMotor == true;
+扭矩与速度成反比
+maxMotorTorque,是指转动的最大扭矩（牛.米）,motorSpeed就是指定旋转的速度(弧度/秒)
+
+实例中做类似跷跷板,我们只需要设置 enableLimit 的属性为 true,然后给其两个lowerAngle和upperAngle的值
+ep: brj.enableLimit == true;
+      brj.lowerAngle = angle * Math.PI / 180;
+      brj.upperAngle = angle * Math.PI / 180;
+      brj.Initialize(body1, body2, body1.GetWorldCenter());
+      brjd = world.CreateJoint(brj);
+
+车轮,我们只需要设置 enableMotor 的属性为 true,然后给其两个maxMotorTorque和motorSpeed的值
+brj.enableMotor == true;
+      brj.motorSpeed = speed;
+      brj.maxMotorTorque = maxSpeed;
+      brj.Initialize(body1, body2, body1.GetWorldCenter());
+      brjd = world.CreateJoint(brj);
