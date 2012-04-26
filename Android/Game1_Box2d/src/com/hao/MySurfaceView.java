@@ -69,7 +69,7 @@ public class MySurfaceView extends SurfaceView  implements Callback, Runnable {
 		world = new World(aabb, gravity, true);
 		
 		createBody = new CreateBody(world, RATE);
-		createJoint = new CreateJoint(world);
+		createJoint = new CreateJoint(world, RATE);
 		/******************距离关节*******************/
 		//创建两个矩形
 		body1 = createBody.createRectangle(body1x, body1y, body1w, body1h, false, new MyRect(body1x, body1y, body1w, body1h));
