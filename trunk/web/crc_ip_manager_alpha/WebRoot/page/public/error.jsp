@@ -22,8 +22,8 @@ var aa= window.confirm(error);
  	System.out.println("------------------page error------------------");
  } 
 %>
-<input type="hidden" id="fb" value="${error} ${exception!=null?exception.getMessage():''}"/>
-<font color="#ff0000">${error} ${exception!=null?exception.getMessage():''}</font>
+<input type="hidden" id="fb" value="${error} ${exception!=null?'系统异常':''}"/>
+<font color="#ff0000">${error} ${exception!=null?'系统异常':''}</font>
 <H2></H2>
 <P/>
 </body>
