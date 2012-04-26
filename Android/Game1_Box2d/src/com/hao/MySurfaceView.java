@@ -6,6 +6,7 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
 import org.jbox2d.dynamics.joints.DistanceJoint;
+import org.jbox2d.dynamics.joints.RevoluteJoint;
 
 import com.hao.util.CreateBody;
 import com.hao.util.CreateJoint;
@@ -46,6 +47,7 @@ public class MySurfaceView extends SurfaceView  implements Callback, Runnable {
 	Body body1, body2;
 	float body1x = 16, body1y = 50, body1w = 70, body1h = 10, body2x = 106, body2y = 20, body2w = 40, body2h = 30;
 	
+	
 	//自己封装的Body和Joint工具
 	CreateBody createBody;
 	CreateJoint createJoint;
@@ -68,15 +70,15 @@ public class MySurfaceView extends SurfaceView  implements Callback, Runnable {
 		
 		createBody = new CreateBody(world, RATE);
 		createJoint = new CreateJoint(world);
-		
+		/******************距离关节*******************/
 		//创建两个矩形
 		body1 = createBody.createRectangle(body1x, body1y, body1w, body1h, false, new MyRect(body1x, body1y, body1w, body1h));
 		body2 = createBody.createRectangle(body2x, body2y, body2w, body2h, false, new MyRect(body2x, body2y, body2w, body2h));
 		//创建一个固定物体
 		createBody.createRectangle(0, 100, 80, 2, true, new MyRect(0, 100, 80, 2));
-		
 		//创建关节
 		dj = createJoint.createDistanceJoint(body1, body2);
+		
 	}
 
 	@Override
