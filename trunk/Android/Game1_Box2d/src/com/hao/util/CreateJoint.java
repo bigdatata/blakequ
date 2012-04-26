@@ -1,5 +1,6 @@
 package com.hao.util;
 
+import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
 import org.jbox2d.dynamics.joints.DistanceJoint;
@@ -7,6 +8,8 @@ import org.jbox2d.dynamics.joints.DistanceJointDef;
 import org.jbox2d.dynamics.joints.GearJoint;
 import org.jbox2d.dynamics.joints.GearJointDef;
 import org.jbox2d.dynamics.joints.Joint;
+import org.jbox2d.dynamics.joints.PulleyJoint;
+import org.jbox2d.dynamics.joints.PulleyJointDef;
 import org.jbox2d.dynamics.joints.RevoluteJoint;
 import org.jbox2d.dynamics.joints.RevoluteJointDef;
 
@@ -18,9 +21,11 @@ import org.jbox2d.dynamics.joints.RevoluteJointDef;
 public class CreateJoint {
 
 	private World world;
+	private final float RATE;
 	
-	public CreateJoint(World world){
+	public CreateJoint(World world, float RATE){
 		this.world = world;
+		this.RATE = RATE;
 	}
 	
 	/**
@@ -107,5 +112,31 @@ public class CreateJoint {
 		//通过world创建一个齿轮关节
 		GearJoint gj = (GearJoint) world.createJoint(gjd);
 		return gj;
+	}
+	
+	
+	/**
+	 * 滑轮关节(让物体沿着 一个世界锚点进行滑轮)
+	 * @param body1 
+	 * @param body2
+	 * @param anchor1x 描点1 x坐标(连接body1的点坐标)
+	 * @param anchor1y 描点1 y坐标
+	 * @param anchor2x 描点2 x坐标(连接body2的点坐标)
+	 * @param anchor2y 描点2 y坐标
+	 * @param ratio(1f) 比例系数
+	 * @return
+	 */
+	public PulleyJoint createPulleyJointDef(Body body1, Body body2, float anchor1x, float anchor1y, 
+			float anchor2x, float anchor2y, float ratio) {
+		//创建滑轮关节数据实例
+		PulleyJointDef pjd = new PulleyJointDef();
+		Vec2 ga1 = new Vec2(anchor1x/ RATE,anchor1y/ RATE);
+		Vec2 ga2 = new Vec2(anchor2x/ RATE,anchor2y/ RATE); 
+		//初始化滑轮关节数据
+		//body，两个滑轮的锚点，两个body的锚点，比例系数
+		pjd.initialize(body1, body2, ga1, ga2, body1.getWorldCenter(), body2
+				.getWorldCenter(), ratio);
+		PulleyJoint pj = (PulleyJoint) world.createJoint(pjd);
+		return pj;
 	}
 }
