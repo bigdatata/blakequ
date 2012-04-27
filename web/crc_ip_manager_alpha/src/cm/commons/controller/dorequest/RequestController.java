@@ -101,7 +101,7 @@ public class RequestController {
 	        //*********save or update router,log******************
 	        Router router = this.saveOrUpdateRouter(routerJson, station);
 
-	        System.out.println("****router:"+router);
+//	        System.out.println("****router:"+router);
 	        //*********save or update port,log********************
 	        this.saveOrUpdatePort(router, portJsonList);
 	       
@@ -119,6 +119,11 @@ public class RequestController {
 			//记录状态未知站点
 			this.saveAlarmToMap();
 			
+//			for(int i=0; i<portStates.length; i++){
+//				System.out.print("-----"+portStates[i]+" ");
+//			}
+//			System.out.println(" -------name:"+station.getName());
+			
 			//****************构造告警信息(台账和端口)******************
 			String[] portState = this.checkPort(portStates, portJsonList, station);//端口状态检查
 			AlarmForm wf = null;
@@ -133,7 +138,7 @@ public class RequestController {
 				//台账文件
 				if(fileFlag.equals("0") || fileFlag.equals("")){
 					if(wf.getInfo() == null){
-						wf.setInfo("请单击"+station.getName()+"图标右键查看设备故障!");
+						wf.setInfo("请单击车站"+station.getName()+"图标右键查看设备故障!");
 					}else{
 						wf.setInfo(wf.getInfo()+"请单击车站"+station.getName()+"图标右键查看设备故障!");
 					}
@@ -228,10 +233,10 @@ public class RequestController {
 				af.setTime(new Date(System.currentTimeMillis()));
 				af.setInfo("对所有方向通信信号未正常获取！");
 				af.setSegment_id(s.getId());
-				af.setSg1(s.getStationByStation1Id().getId());
-				af.setSg1_name(s.getStationByStation1Id().getName());
-				af.setSg2(s.getStationByStation2Id().getId());
-				af.setSg2_name(s.getStationByStation2Id().getName());
+//				af.setSg1(s.getStationByStation1Id().getId());
+//				af.setSg1_name(s.getStationByStation1Id().getName());
+//				af.setSg2(s.getStationByStation2Id().getId());
+//				af.setSg2_name(s.getStationByStation2Id().getName());
 				//只有不在里面才存储到map
 				boolean b = AlarmUtil.containsStation(AlarmUtil.ERRORKEY+s.getId());
 				if(!b){
@@ -419,7 +424,7 @@ public class RequestController {
 	private void removeDownToUpSegment(Station station, String[] portState){
 		int sgId = -1;
 		if(null != portState[1] && "1".equals(portState[1])){
-			System.out.println("-----移除由up--down的线段告警："+portState[1]);
+//			System.out.println("-----移除由up--down的线段告警："+portState[1]);
 			int id = station.getId();
 			//查询告警线段
 			List<Segment> list = segmentService.getSegmentByStation(id);
@@ -428,7 +433,7 @@ public class RequestController {
 				int si = af.getSegment_id();
 				for(Segment s:list){
 					if(s.getId() == si){
-						System.out.println("-------移除由up--down的线段告警----------");
+//						System.out.println("-------移除由up--down的线段告警----------");
 						AlarmUtil.removeStation(AlarmUtil.ERRORKEY+si);
 					}
 				}
@@ -444,7 +449,7 @@ public class RequestController {
 	private int checkSegmentWarm(Station station, String[] portState){
 		int sgId = -1;
 		if(null != portState[1] && !"".equals(portState[1])){
-			System.out.println("-----有线段告警："+portState[1]);
+//			System.out.println("-----有线段告警："+portState[1]);
 			int id = station.getId();
 			String[] name = portState[1].split(",");
 			System.out.println("告警线段："+station.getName()+"--"+portState[1]);
@@ -467,8 +472,8 @@ public class RequestController {
 					wff.setSegment_id(sgId);
 					wff.setSg1(id);
 					wff.setSg2(sp.getId());
-					wff.setSg1_name(station.getName());
-					wff.setSg2_name(sp.getName());
+//					wff.setSg1_name(station.getName());
+//					wff.setSg2_name(sp.getName());
 //					wff.setStation_id(station.getId());
 					wff.setStation_id(-1);
 					wff.setState(1);
@@ -481,7 +486,7 @@ public class RequestController {
 					AlarmUtil.addToMap(AlarmUtil.ERRORKEY+sgId, wff);
 					saveWarnToDB(wff);
 				}else{
-					System.out.println("------未查询到对端站点："+name[i]);
+//					System.out.println("------未查询到对端站点："+name[i]);
 				}
 			}
 		}
