@@ -1,0 +1,20 @@
+public Shape[] getBodies(float x, float y, float range, int maxCount) {
+		AABB aabbBody = new AABB();
+		aabbBody.lowerBound.set((x - range) / RATE, (y - range) / RATE);
+		aabbBody.upperBound.set((x + range) / RATE, (y + range) / RATE);
+		Shape[] shapes = world.query(aabbBody, maxCount);
+		// 遍历此aabb范围中的body，筛选操作
+		for (int i = 0; i < shapes.length; i++) {
+			if (shapes[i].getBody().isStatic()) {
+				// ...判定物体是否为静态
+			}
+			if (shapes[i].getBody().isSleeping()) {
+				// ...判定物体是否进入休眠
+			}
+		}
+		return shapes;
+	}
+
+	就是通过AABB来指定一个范围来query该范围内的所有物体
+	注意，上面还可以用这个来判断指定范围内物体的状态，是静态还是睡眠
+	譬如，对于某个范围的物体我们检测看是否睡眠，如果睡眠则唤醒等等
