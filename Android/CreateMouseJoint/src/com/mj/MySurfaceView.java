@@ -79,7 +79,8 @@ public class MySurfaceView extends SurfaceView implements Callback, Runnable {
 	public boolean onTouchEvent(MotionEvent event) {
 		touchX = event.getX();
 		touchY = event.getY();
-		//唤醒body1
+		//唤醒body1,如果在下次点击的时候body1已经进入了休眠状态，则就不能拉动
+		//故而必须在拉动之前，先唤醒（如果已经静止--睡眠状态）
 		body1.wakeUp();
 		mouseJoint.m_target.set(event.getX() / RATE, event.getY() / RATE);
 		return true;
