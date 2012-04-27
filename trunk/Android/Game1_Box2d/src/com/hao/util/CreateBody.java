@@ -13,10 +13,21 @@ import org.jbox2d.dynamics.World;
  *
  */
 public class CreateBody {
-	private final float RATE;
+	public final float RATE;
 	private World world;
-	private float restitution = 0.3f;  //恢复力
-	private float friction = 0.8f;		//摩擦力
+	public float restitution;  //恢复力
+	public float friction;		//摩擦力
+	
+	/**
+	 * 
+	 * @param world 物理世界对象
+	 */
+	public CreateBody(World world){
+		this.world = world;
+		this.RATE = 30;
+		this.restitution = 0.3f;
+		this.friction = 0.8f;
+	}
 	/**
 	 * 
 	 * @param world 物理世界对象
@@ -25,6 +36,8 @@ public class CreateBody {
 	public CreateBody(World world, float RATE){
 		this.world = world;
 		this.RATE = RATE;
+		this.restitution = 0.3f;
+		this.friction = 0.8f;
 	}
 
 	/**
