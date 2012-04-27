@@ -66,8 +66,8 @@ public class StationRouteController {
 		List<AlarmForm> list = AlarmUtil.getAllAlarm();
 		if(list != null && list.size()>0){
 			int warnId=1;
-			String info = list.get(0).getSg1_name();
-			if(info==null || info.equals("")){
+			int info = list.get(0).getSg1();
+			if(info == 0){
 				//车站告警
 				int stationId = list.get(0).getStation_id();
 				List<Segment> segments = segmentService.getSegmentByStation(stationId);

@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -39,7 +38,6 @@ public class AlarmUtil {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				System.out.println("--------clear segment alarm--------time:"+frequency);
 				//定时清除线段告警
 				clearAlarmSegment();
 			}
@@ -96,13 +94,18 @@ public class AlarmUtil {
 	 * 清除所有未知线段告警
 	 */
 	private static void clearAlarmSegment(){
-		List<AlarmForm> list = new ArrayList<AlarmForm>();
-		Iterator i = alarms.keySet().iterator();
-		while(i.hasNext()){
-			String key = (String) i.next();
-			if(key.startsWith(SEGMENTKEY)){
-				i.remove();
+		try {
+			List<AlarmForm> list = new ArrayList<AlarmForm>();
+			Iterator i = alarms.keySet().iterator();
+			while(i.hasNext()){
+				String key = (String) i.next();
+				if(key.startsWith(SEGMENTKEY)){
+					i.remove();
+				}
 			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 	
@@ -145,11 +148,17 @@ public class AlarmUtil {
 	 * @return
 	 */
 	public static List<AlarmForm> getAllAlarm(){
-		List<AlarmForm> afList = new ArrayList<AlarmForm>();
-		Iterator i =  alarms.keySet().iterator();
-		while(i.hasNext()){
-			String key = (String) i.next();
-			afList.add(alarms.get(key));
+		List<AlarmForm> afList = null;
+		try {
+			afList = new ArrayList<AlarmForm>();
+			Iterator i =  alarms.keySet().iterator();
+			while(i.hasNext()){
+				String key = (String) i.next();
+				afList.add(alarms.get(key));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return afList;
 	}
