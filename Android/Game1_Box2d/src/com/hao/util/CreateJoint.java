@@ -8,6 +8,8 @@ import org.jbox2d.dynamics.joints.DistanceJointDef;
 import org.jbox2d.dynamics.joints.GearJoint;
 import org.jbox2d.dynamics.joints.GearJointDef;
 import org.jbox2d.dynamics.joints.Joint;
+import org.jbox2d.dynamics.joints.PrismaticJoint;
+import org.jbox2d.dynamics.joints.PrismaticJointDef;
 import org.jbox2d.dynamics.joints.PulleyJoint;
 import org.jbox2d.dynamics.joints.PulleyJointDef;
 import org.jbox2d.dynamics.joints.RevoluteJoint;
@@ -21,7 +23,12 @@ import org.jbox2d.dynamics.joints.RevoluteJointDef;
 public class CreateJoint {
 
 	private World world;
-	private final float RATE;
+	public final float RATE;
+	
+	public CreateJoint(World world){
+		this.world = world;
+		RATE = 30;
+	}
 	
 	public CreateJoint(World world, float RATE){
 		this.world = world;
@@ -71,17 +78,19 @@ public class CreateJoint {
 	 * 旋转关节(跷跷板)
 	 * @param body1
 	 * @param body2
+	 * @param enableLimit 是否固定
 	 * @param lowerAngle 旋转最小角度
 	 * @param upperAngle 旋转最大角度
 	 * @return
 	 */
-	public RevoluteJoint createRevoluteJoint2(Body body1, Body body2, float lowerAngle, float upperAngle) {
+	public RevoluteJoint createRevoluteJoint2(Body body1, Body body2,
+			boolean enableLimit, float lowerAngle, float upperAngle) {
 		//创建一个旋转关节的数据实例 
 		RevoluteJointDef rjd = new RevoluteJointDef();
 		//初始化旋转关节数据
 		rjd.initialize(body1, body2, body1.getWorldCenter());
 		//是否固定
-		rjd.enableLimit = true;	
+		rjd.enableLimit = enableLimit;	
 		rjd.lowerAngle = (float) (lowerAngle * Math.PI / 180);
 		rjd.upperAngle = (float) (upperAngle * Math.PI / 180);
 		//利用world创建一个旋转关节
@@ -137,6 +146,45 @@ public class CreateJoint {
 		pjd.initialize(body1, body2, ga1, ga2, body1.getWorldCenter(), body2
 				.getWorldCenter(), ratio);
 		PulleyJoint pj = (PulleyJoint) world.createJoint(pjd);
+		return pj;
+	}
+	
+	
+	/**
+	 * 创建移动关节
+	 * @param body1	移动关节的Body1：world.getGroundBody()可作为默认
+	 * @param body2  移动关节的Body2
+	 * @param anchor移动关节的描点(以那个点进行移动)
+	 * @param axis  移动关节的移动方向
+	 * @param enableMotor 是否启动马达
+	 * @param maxMotorTorque(1) 马达的预期最大扭矩(扭矩与速度成反比)
+	 * @param motorSpeed(20)     马达转速（弧度/秒）
+	 * @param enableLimit 是否限制移动范围
+	 * @param lowerTranslation 位移最小偏移值
+	 * @param upperTranslation 位移最大偏移值
+	 * @return
+	 */
+	public PrismaticJoint createPrismaticJointMove(Body body1, Body body2, Vec2 anchor, Vec2 axis,
+			boolean enableMotor, float maxMotorForce, float motorSpeed,
+			boolean enableLimit, float lowerTranslation, float upperTranslation) {
+		//创建移动关节数据实例
+		PrismaticJointDef pjd = new PrismaticJointDef();
+		//预设马达的最大力
+		pjd.maxMotorForce = maxMotorForce;
+		//马达的最终力
+		pjd.motorSpeed = motorSpeed;
+		//启动马达
+		pjd.enableMotor = enableMotor;
+		//设置位移最小偏移值
+		pjd.lowerTranslation = lowerTranslation / RATE;
+		//设置位移最大偏移值
+		pjd.upperTranslation = upperTranslation / RATE;
+		//启动限制
+		pjd.enableLimit = enableLimit;
+		//初始化移动关节数据
+		pjd.initialize(body1, body2, anchor, axis);
+		//通过world创建一个移动关节
+		PrismaticJoint pj = (PrismaticJoint) world.createJoint(pjd);
 		return pj;
 	}
 }
