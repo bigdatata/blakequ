@@ -13,7 +13,7 @@ import android.graphics.Paint;
  */
 public class MyCircle {
 	// 圆形的宽高与半径
-	float x, y, r, angle;
+	public float x, y, r, angle;
 	//圆形Body图片资源
 	private Bitmap bmp;
 	/**

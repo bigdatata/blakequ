@@ -25,7 +25,11 @@ public class MyButton {
 	 * @param paint
 	 */
 	public void draw(Canvas canvas, Paint paint){
-		canvas.drawRect(x, y, x + w, y + h, paint);
+		if(bmpButton != null){
+			canvas.drawBitmap(bmpButton, x, y, paint);
+		}else{
+			canvas.drawRect(x, y, x + w, y + h, paint);
+		}
 	}
 	
 	/**
