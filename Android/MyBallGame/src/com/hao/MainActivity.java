@@ -15,7 +15,6 @@ import android.view.WindowManager;
 public class MainActivity extends Activity implements OnGameInitListener{
 	public static MainActivity main;
 	private MySurfaceView myView;
-	private InitView initView;
 	private ProgressDialog dialog;
 	
 	@Override
