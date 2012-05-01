@@ -3,6 +3,7 @@
  */
 package com.hao.shape;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
@@ -13,13 +14,35 @@ import android.graphics.RectF;
  */
 public class MyRect {
 	// 圆形的宽高与半径
-	float x, y, w, h,angle;
-
+	public float x, y, w, h,angle;
+	private Bitmap bmp = null;
+	
+	/**
+	 * 自定义矩形
+	 * @param x
+	 * @param y
+	 * @param w
+	 * @param h
+	 */
 	public MyRect(float x, float y, float w, float h) {
 		this.x = x;
 		this.y = y;
 		this.w = w;
 		this.h = h;
+	}
+	
+	/**
+	 * 图片矩形
+	 * @param bmp
+	 * @param x
+	 * @param y
+	 */
+	public MyRect(Bitmap bmp, float x, float y){
+		this.bmp = bmp;
+		this.x = x;
+		this.y = y;
+		this.w = bmp.getWidth();
+		this.h = bmp.getHeight();
 	}
 
 	// 设置X坐标
@@ -39,7 +62,11 @@ public class MyRect {
 	public void draw(Canvas canvas, Paint paint) {
 		canvas.save();
 		canvas.rotate(angle, x+w/2, y+h/2);
-		canvas.drawRect(new RectF(x , y  , x + w, y + h), paint);
+		if(bmp != null){
+			canvas.drawBitmap(bmp, x, y, paint);
+		}else{
+			canvas.drawRect(new RectF(x , y  , x + w, y + h), paint);
+		}
 		canvas.restore();
 	}
 }
