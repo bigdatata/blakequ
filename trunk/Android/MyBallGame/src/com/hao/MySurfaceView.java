@@ -72,9 +72,13 @@ public class MySurfaceView extends SurfaceView  implements Callback, Runnable ,C
     //游戏按钮
     private MyButton hbHelp, hbPlay, hbExit, hbResume, hbReplay, hbBack, hbMenu;
     
+    //资源加载监听器
+    private OnGameInitListener initListener;
+    
 	public MySurfaceView(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
+		this.initListener = initListener;
 		sfh = getHolder();
 		sfh.addCallback(this);
 		paint = new Paint();
@@ -108,6 +112,7 @@ public class MySurfaceView extends SurfaceView  implements Callback, Runnable ,C
 		screenH = getHeight();
 		screenW = getWidth();
 		new Thread(this).start();
+		initListener.onInitOver();
 	}
 
 	@Override
@@ -468,4 +473,23 @@ public class MySurfaceView extends SurfaceView  implements Callback, Runnable ,C
 			world.setContactListener(this);
 		}
 	}
+	
+	/**
+	 * 资源加载监听器
+	 * @author Administrator
+	 *
+	 */
+	public interface OnGameInitListener{
+		/**
+		 * 资源加载完成，返回true
+		 * @return
+		 */
+		boolean onInitOver();
+	}
+
+	public void setInitListener(OnGameInitListener initListener) {
+		this.initListener = initListener;
+	}
+	
+	
 }
