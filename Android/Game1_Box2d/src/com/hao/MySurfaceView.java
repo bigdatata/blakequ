@@ -35,22 +35,22 @@ public class MySurfaceView extends SurfaceView  implements Callback, Runnable {
     private static final String TAG = "MySurfaceView";
     
     //----添加一个物理世界----
-	final float RATE = 30;
-	World world;
-	AABB aabb;
-	Vec2 gravity;
-	float timeStep = 1f / 60f;
-	int iterations = 10;
+    private final float RATE = 30;
+    private World world;
+    private AABB aabb;
+    private Vec2 gravity;
+    private float timeStep = 1f / 60f;
+    private int iterations = 10;
 	
 	//声明一个距离关节
-	DistanceJoint dj;
-	Body body1, body2;
-	float body1x = 16, body1y = 50, body1w = 70, body1h = 10, body2x = 106, body2y = 20, body2w = 40, body2h = 30;
+    private DistanceJoint dj;
+    private Body body1, body2;
+    private float body1x = 16, body1y = 50, body1w = 70, body1h = 10, body2x = 106, body2y = 20, body2w = 40, body2h = 30;
 	
 	
 	//自己封装的Body和Joint工具
-	CreateBody createBody;
-	CreateJoint createJoint;
+    private CreateBody createBody;
+    private CreateJoint createJoint;
     
 	public MySurfaceView(Context context) {
 		super(context);
