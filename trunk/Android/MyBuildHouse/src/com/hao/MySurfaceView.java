@@ -303,13 +303,16 @@ public class MySurfaceView extends SurfaceView  implements Callback, Runnable, C
 			case GAMESTATE_RUNNING:
 				if(gameIsLost || gameIsPause || gameIsWin){
 					if(hbMenu.isPreesed(event)){
+						this.resumeGame();
 						gameState = GAMESTATE_MENU;
 					}else if(hbReplay.isPreesed(event)){
+						this.resumeGame();
 						gameIsPause = false;
 						gameIsLost = false;
 						gameIsWin = false;
 					}else if(hbResume.isPreesed(event)){
 						gameIsPause = false;
+						isDown = false;
 					}
 				}
 				if(!isDown){
@@ -345,6 +348,13 @@ public class MySurfaceView extends SurfaceView  implements Callback, Runnable, C
 				return true;
 		}
 		return super.onKeyDown(keyCode, event);
+	}
+	
+	/**
+	 * ÷ÿ÷√”Œœ∑◊¥Ã¨
+	 */
+	private void resumeGame(){
+		
 	}
 
 	/**
