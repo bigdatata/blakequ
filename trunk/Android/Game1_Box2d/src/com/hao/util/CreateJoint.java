@@ -8,6 +8,8 @@ import org.jbox2d.dynamics.joints.DistanceJointDef;
 import org.jbox2d.dynamics.joints.GearJoint;
 import org.jbox2d.dynamics.joints.GearJointDef;
 import org.jbox2d.dynamics.joints.Joint;
+import org.jbox2d.dynamics.joints.MouseJoint;
+import org.jbox2d.dynamics.joints.MouseJointDef;
 import org.jbox2d.dynamics.joints.PrismaticJoint;
 import org.jbox2d.dynamics.joints.PrismaticJointDef;
 import org.jbox2d.dynamics.joints.PulleyJoint;
@@ -182,9 +184,39 @@ public class CreateJoint {
 		//启动限制
 		pjd.enableLimit = enableLimit;
 		//初始化移动关节数据
+		//初始化移动关节数据(body2只能以anchor为中心 沿axis方向移动)
 		pjd.initialize(body1, body2, anchor, axis);
+		//例如初始化移动关节数据(body2只能以body1为中心 沿它的y轴移动)
+		//pjd.initialize(body1, body2, body1.getWorldCenter(), new Vec2(0, 1));
 		//通过world创建一个移动关节
 		PrismaticJoint pj = (PrismaticJoint) world.createJoint(pjd);
 		return pj;
+	}
+	
+	
+	/**
+	 * 鼠标关节(使用body1来拖拽body2)
+	 * @param body1 （可默认使用接地Body--world.getGroundBody();）
+	 * @param body2 被拖拽的Body
+	 * @param maxForce 最大拉力
+	 * @return
+	 */
+	public MouseJoint createMouseJoint(Body body1, Body body2, float maxForce) {
+		MouseJointDef mjd = new MouseJointDef();
+		//设置鼠标关节的第一个Body实例（可默认使用接地Body）
+//		mjd.body1 = world.getGroundBody();
+		mjd.body1 = body1;
+		//设置鼠标关节的第二个Body实例(被拖拽的Body)
+		mjd.body2 = body1;
+		//设置目标点的X坐标
+		mjd.target.x = body1.getPosition().x;
+		//设置目标点的Y坐标
+		mjd.target.y = body1.getPosition().y;
+		// body1.allowSleeping(false);//设置body1永不休眠
+		// 设置鼠标关节的目标位置
+		mjd.maxForce = maxForce;// 拉力
+		//由World来创建鼠标关节
+		MouseJoint mj = (MouseJoint) world.createJoint(mjd);
+		return mj;
 	}
 }
