@@ -60,7 +60,7 @@ public class MySurfaceView extends SurfaceView  implements Callback, Runnable, C
     private Body body1, bodyTile;
     
   //存储所有下落的body箱子
-    private List<Body> tileList;
+//    private List<Body> tileList;
 	
 	//自己封装的Body和Joint工具
     private CreateBody createBody;
@@ -86,6 +86,7 @@ public class MySurfaceView extends SurfaceView  implements Callback, Runnable, C
     private int gameState = GAMESTATE_MENU;
     private boolean gameIsPause, gameIsLost, gameIsWin;
     
+    private int score = 0;		//游戏分数
     
 	public MySurfaceView(Context context) {
 		super(context);
@@ -108,7 +109,6 @@ public class MySurfaceView extends SurfaceView  implements Callback, Runnable, C
 		createBody.setRestitution(0.1f);
 		createJoint = new CreateJoint(world, RATE);
 		
-		tileList = new ArrayList<Body>();
 		random = new Random();
 		this.initResourse();
 	}
@@ -163,7 +163,10 @@ public class MySurfaceView extends SurfaceView  implements Callback, Runnable, C
 							((MyRect) body.m_userData).draw(canvas, paint);
 							body = body.m_next;
 						}
-						canvas.drawLine(dj.getAnchor1().x * RATE, dj.getAnchor1().y * RATE, dj.getAnchor2().x * RATE, dj.getAnchor2().y * RATE, paint);
+						//--------------------------在这里画线的时候必须先判定关节是否被销毁-----------------------------------------
+						if(dj != null){
+							canvas.drawLine(dj.getAnchor1().x * RATE, dj.getAnchor1().y * RATE, dj.getAnchor2().x * RATE, dj.getAnchor2().y * RATE, paint);
+						}
 						if(gameIsLost || gameIsPause || gameIsWin){
 							Paint p = new Paint();
 							p.setAlpha(0x77);
@@ -185,6 +188,9 @@ public class MySurfaceView extends SurfaceView  implements Callback, Runnable, C
 							hbReplay.draw(canvas, paint);
 							hbMenu.draw(canvas, paint);
 						}
+						//游戏分数
+						paint.setColor(Color.RED);
+						canvas.drawText("当前分数:"+score, screenW - 70, 15, paint);
 						break;
 				}
 			}
@@ -224,37 +230,38 @@ public class MySurfaceView extends SurfaceView  implements Callback, Runnable, C
 						mr.setAngle((float) (body.getAngle() * 180 / Math.PI));
 						body = body.m_next;
 					}
-				}
-				//删除关节
-				if(isDeleteJoint){
-					world.destroyJoint(dj);
-					dj = null;
-					isDeleteJoint = false;
-				}
-				if(isDown){
-					downCount ++;
-					//间隔是2s
-					if(downCount % 120 == 0){
-						downCount = 0;
-						isDown = false;
-						int i = random.nextInt(3);
-						//随机产生一个箱子
-						Bitmap bmp;
-						if(i == 0){
-							bmp = bmpTile1;
-						}else if(i == 1){
-							bmp = bmpTile2;
-						}else{
-							bmp = bmpTile3;
+					
+					//删除关节
+					if(isDeleteJoint){
+						world.destroyJoint(dj);
+						dj = null;
+						isDeleteJoint = false;
+					}
+					if(isDown){
+						downCount ++;
+						//间隔是2s
+						if(downCount % 120 == 0){
+							downCount = 0;
+							isDown = false;
+							int i = random.nextInt(3);
+							//随机产生一个箱子
+							Bitmap bmp;
+							if(i == 0){
+								bmp = bmpTile1;
+							}else if(i == 1){
+								bmp = bmpTile2;
+							}else{
+								bmp = bmpTile3;
+							}
+							//创建新的bodyTile和关节
+							bodyTile = createBody.createRectangle((screenW - bmp.getWidth())/2 - 15, bmpH.getHeight() + 20, 
+									bmp.getWidth(), bmp.getHeight(), false, new MyRect(bmp, (screenW - bmp.getWidth())/2 - 10, bmpH.getHeight() + 20));
+							//创建关节
+							dj = createJoint.createDistanceJoint(body1, bodyTile);
 						}
-						//创建新的bodyTile和关节
-						bodyTile = createBody.createRectangle((screenW - bmp.getWidth())/2 - 15, bmpH.getHeight() + 20, 
-								bmp.getWidth(), bmp.getHeight(), false, new MyRect(bmp, (screenW - bmp.getWidth())/2 - 10, bmpH.getHeight() + 20));
-						tileList.add(bodyTile);
-						//创建关节
-						dj = createJoint.createDistanceJoint(body1, bodyTile);
 					}
 				}
+				
 				break;
 		}
 	}
@@ -282,6 +289,7 @@ public class MySurfaceView extends SurfaceView  implements Callback, Runnable, C
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		// TODO Auto-generated method stub
+		boolean isResume = false;
 		switch(gameState){
 			case GAMESTATE_HELP:
 				if(hbBack.isPreesed(event)){
@@ -302,6 +310,9 @@ public class MySurfaceView extends SurfaceView  implements Callback, Runnable, C
 				break;
 			case GAMESTATE_RUNNING:
 				if(gameIsLost || gameIsPause || gameIsWin){
+					//当从恢复游戏的时候不能自动去除关节
+					isResume = true;
+					
 					if(hbMenu.isPreesed(event)){
 						this.resumeGame();
 						gameState = GAMESTATE_MENU;
@@ -312,10 +323,9 @@ public class MySurfaceView extends SurfaceView  implements Callback, Runnable, C
 						gameIsWin = false;
 					}else if(hbResume.isPreesed(event)){
 						gameIsPause = false;
-						isDown = false;
 					}
 				}
-				if(!isDown){
+				if(!isResume && !isDown){
 					if(event.getAction() == MotionEvent.ACTION_DOWN){
 						isDown = true;			//动态下落
 						isDeleteJoint = true;   //删除关节
@@ -354,7 +364,18 @@ public class MySurfaceView extends SurfaceView  implements Callback, Runnable, C
 	 * 重置游戏状态
 	 */
 	private void resumeGame(){
-		
+		Body b = world.getBodyList();
+		for(int i=0; i<world.getBodyCount(); i++){
+			//唤醒的目的主要是防止删除已经静止了的关节body
+			if(b.isSleeping()) b.wakeUp();
+			if(b.getJointList() == null) b.putToSleep();
+			//在销毁body前先保存下一个
+			Body temp = b.m_next;
+			if(!b.isStatic() && b.isSleeping()){
+				world.destroyBody(b);
+			}
+			b = temp;
+		}
 	}
 
 	/**
@@ -406,7 +427,6 @@ public class MySurfaceView extends SurfaceView  implements Callback, Runnable, C
 			bodyTile = createBody.createRectangle((screenW - bmpTile1.getWidth())/2 - 10, bmpH.getHeight() + 20, 
 					bmpTile1.getWidth(), bmpTile1.getHeight(), false, new MyRect(bmpTile1, (screenW - bmpTile1.getWidth())/2 - 10, bmpH.getHeight() + 20));
 			createBody.createRectangle(0, screenH - bmpB.getHeight(), bmpB.getWidth(), bmpB.getHeight(), true, new MyRect(bmpB, 0, screenH - bmpB.getHeight()));
-			tileList.add(bodyTile);
 			
 			//创建关节
 			dj = createJoint.createDistanceJoint(body1, bodyTile);
@@ -416,9 +436,20 @@ public class MySurfaceView extends SurfaceView  implements Callback, Runnable, C
 	}
 
 	@Override
-	public void add(ContactPoint arg0) {
+	public void add(ContactPoint contact) {
 		// TODO Auto-generated method stub
-		
+//		if(!gameIsLost && !gameIsPause && !gameIsWin){
+//			int count = world.getBodyCount();
+//			if(count >= 7) this.resumeGame();
+//			if(!contact.shape1.getBody().isStatic() && !contact.shape2.getBody().isStatic()){
+//				Vec2 m1 = contact.shape1.m_body.m_xf.position;
+//				Vec2 m2 = contact.shape2.m_body.m_xf.position;
+//				if(Math.abs(m1.y - m2.y) == bmpTile1.getHeight()){
+//					if(Math.abs(m1.x - m2.x) < bmpTile1.getWidth())
+//						score ++;
+//				}
+//			}
+//		}
 	}
 
 	@Override
