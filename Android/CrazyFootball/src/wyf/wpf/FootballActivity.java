@@ -115,8 +115,8 @@ public class FootballActivity extends Activity{
 								}									
 								//创建
 								gv = new GameView(FootballActivity.this,imageIDs[welcome.cg.currIndex]);//创建游戏界面	
-								lv.progress = 100;
-								welcome = null;			//释放掉WelcomeView	
+								lv.progress = 100;		//当游戏界面实例化后，就完成了整个进度的加载
+								welcome = null;			//释放掉WelcomeView,当设置为null，此时就不用GC主动的探测，就知道它此时已经没有引用，故而会很快被回收
 							}
 						}.start();
 					}
@@ -182,7 +182,11 @@ public class FootballActivity extends Activity{
 		}
 		return true;
 	}
-	//方法：加载游戏中用到的声音
+	/**
+	 * 方法：加载游戏中用到的声音
+	 * 每加载完一个声音就将进度加15，当所有声音加载完后
+	 * 进度就达到了90，实现进度条
+	 */
 	public void initSound(){			
 		mpKick = MediaPlayer.create(this, R.raw.kick);
 		updateProgressView();//更新进度条

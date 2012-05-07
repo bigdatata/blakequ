@@ -21,6 +21,13 @@ public class WelcomeDrawThread extends Thread{
 		while(flag){
 			try{
 				canvas = surfaceHolder.lockCanvas(null);	//为画布加锁
+				/**
+				 * 这里设置了对于对象surfaceHolder的同步，这样为了防止对于在
+				 * 绘制welcome和loading，game的游戏画面时使用surfaceHolder的
+				 * 异步绘图，这是为了防止绘制线程没有正常停止造成都调用draw方法
+				 * 造成异常的情况（正常的情况下，welcome,loading等都是顺序执行，不会
+				 * 都同时使用surfaceHolder对象进行绘制）
+				 */
 				synchronized(surfaceHolder){
 					father.doDraw(canvas);				//重新绘制屏幕
 				}

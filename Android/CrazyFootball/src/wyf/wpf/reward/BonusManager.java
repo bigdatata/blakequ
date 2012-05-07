@@ -36,6 +36,7 @@ public class BonusManager extends Thread{
 		int currentBonusNumber = father.balLive.size();		//获取活着的Bonus的个数
 		float generateOdd = 1 - currentBonusNumber*0.33f;			//计算生成概率
 		if(Math.random() < generateOdd){		//产生一个随机数，如果小于生成概率
+			//随机产生的坐标位置
 			int x = (int)(Math.random() * (father.fieldRight-father.fieldLeft))+ father.fieldLeft;
 			int y = (int)(Math.random() * (father.fieldDown - father.fieldUp)) + father.fieldUp;
 			Bonus b;
