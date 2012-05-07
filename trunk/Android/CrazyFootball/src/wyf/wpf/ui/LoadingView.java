@@ -37,7 +37,7 @@ public class LoadingView extends SurfaceView implements SurfaceHolder.Callback{
 		Paint p = new Paint();							//创建画笔对象		
 		p.setColor(Color.BLACK);						//设置画笔颜色
 		int temp = (int)((progress/100.0)*320);			//将进度值换算成屏幕上的长度
-		canvas.drawRect(temp, progY, 315, progY+20, p);			//画遮盖物挡住进度条图片
+		canvas.drawRect(temp, progY, 315, progY+20, p);			//画遮盖物挡住进度条图片,正常的进度右边用黑色覆盖
 		//画进度条标志物
 		for(int i=0;i<3;i++){
 			canvas.drawBitmap(bmpProgSign[i], 140*i, progY-10, null);

@@ -53,9 +53,9 @@ public class WelcomeView extends SurfaceView implements SurfaceHolder.Callback{
 		Resources r = context.getResources();			//获取Resources对象
 		bmpBack = BitmapFactory.decodeResource(r, R.drawable.welcome);	//创建背景图片
 		bmpLayout = new Bitmap[3];//创建表示前场、中场、后场的图片数组
-		bmpLayout[0] = BitmapFactory.decodeResource(r, R.drawable.fwd_field);
-		bmpLayout[1] = BitmapFactory.decodeResource(r, R.drawable.mid_field);
-		bmpLayout[2] = BitmapFactory.decodeResource(r, R.drawable.bck_field);
+		bmpLayout[0] = BitmapFactory.decodeResource(r, R.drawable.fwd_field);	//前场
+		bmpLayout[1] = BitmapFactory.decodeResource(r, R.drawable.mid_field);	//中场
+		bmpLayout[2] = BitmapFactory.decodeResource(r, R.drawable.bck_field);	//后场
 		bmpPlus = BitmapFactory.decodeResource(r, R.drawable.plus);		//创建加号图片
 		bmpMinus = BitmapFactory.decodeResource(r, R.drawable.minus);	//创建减号图片
 		bmpPlayer = BitmapFactory.decodeResource(r, R.drawable.player20);	//创建球员图片
