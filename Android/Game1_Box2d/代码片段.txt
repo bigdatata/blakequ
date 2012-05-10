@@ -1,0 +1,32 @@
+
+/*------------------------------------
+	 * 绘制图片
+	 * 这个主要是在游戏地图等绘制时候，地图是由多个小图片组成的就是通过该方法实现
+	 * @param		x 屏幕上的x坐标	
+	 * @param		y 屏幕上的y坐标
+	 * @param		w 要绘制的图片的宽度	
+	 * @param		h 要绘制的图片的高度
+	 * @param		bx图片上的x坐标
+	 * @param		by图片上的y坐标
+	 *
+	 * @return		null
+	 ------------------------------------*/
+	public static void drawImage(Canvas canvas, Bitmap blt, int x, int y, int w, int h, int bx, int by)
+	{
+		Rect src = new Rect();// 图片
+		Rect dst = new Rect();// 屏幕
+		
+		src.left = bx;
+		src.top = by;
+		src.right = bx + w;
+		src.bottom = by + h;
+		
+		dst.left = x;
+		dst.top = y;
+		dst.right = x + w;
+		dst.bottom = y + h;
+		canvas.drawBitmap(blt, src, dst, null);
+		
+		src = null;
+		dst = null;
+	}
