@@ -1,4 +1,11 @@
-package com.hao;
+package com.hao.view;
+
+import com.hao.GameView;
+import com.hao.MainGame;
+import com.hao.R;
+import com.hao.R.string;
+import com.hao.util.TextUtil;
+import com.hao.util.yarin;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -21,6 +28,7 @@ public class AboutScreen extends GameView
 		tu = new TextUtil();
 		Resources r = this.getContext().getResources();
 		tu.InitText(((String) r.getString(R.string.about)), 0, 0, yarin.SCREENW, yarin.SCREENH, 0x0, 0xff0000, 255, yarin.TextSize);
+		setName("AboutScreen");
 	}
 
 

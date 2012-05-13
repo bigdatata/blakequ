@@ -1,9 +1,21 @@
 package com.hao;
 
+import com.hao.util.yarin;
+import com.hao.view.GameScreen;
+
+/**
+ * 任务管理，在整个游戏中的任务
+ * 负责任务逻辑处理
+ * @author Administrator
+ *
+ */
 public class Task
 {
+	/**
+	 * 对话对白(8个任务，八段对话)
+	 */
 	public static final String[][] recieveDialog = {
-		//FIND_CROSS
+		//FIND_CROSS(开场白)
 		{"......",
 		"你醒了！",
 		"......\n你是谁？我在哪里？",
@@ -22,7 +34,7 @@ public class Task
 		"刚才我去看过了，你的剑被放在三楼，你的盾在五楼上，而那个十字架被他们放了七楼，你得先取回你得剑和盾。\n另外，在塔里的其他楼层上，还有一些存放了好几百年的宝剑和宝物，如果你得到他们，对于你对付里面的怪物将有很大的帮助。",
 		"可是，我怎么进去呢？",
 		"我这里有三把钥匙，你先拿去，在塔里面还有很多这样的钥匙，你一定要珍惜使用。\n勇敢的去吧，勇士！"},
-		//FIND_AX
+		//FIND_AX（遇见小偷）
 		{"你得救啦！",
 		"啊，那正是太好了，我又快要在这里面寻宝了！\n哦，我还没有自我介绍，我叫杰克，是这附近有名的小偷，什么金银财宝我样样都偷过，不过这次运气可不是太好，刚进来就被抓了。现在你帮我打开了门，我就帮你做一件事吧。",
 		"快走吧，外面还有很多怪物，我可能顾不上你！",
@@ -33,7 +45,7 @@ public class Task
 		"那个简单，不过，如果你能帮我找到一把嵌了红宝石的铁锒头的话，我还帮你打通第十八层的路。",
 		"嵌了红宝石的铁锒头？好吧，我帮你找找！",
 		"非常的感谢，一会儿我便会将第二层的门打开。如果你找到那个铁锒头的话，还是来这里找我！"},
-		//GET_QINGFEND_JIAN
+		//GET_QINGFEND_JIAN（遇见商人）
 		{"你已经得救了！",
 		 "哦，是嘛，真实太感谢你了！我是个商人，不知道为什么被抓到这里来了。",
 		 "快走吧！现在你已经自由了！",
@@ -70,6 +82,10 @@ public class Task
 		"废话少说，去死吧！",
 		"看不出来你还有两下子，有本领的话来21层！在那里，你就可以见到我真正的实力了！"}
 	};
+	
+	/**
+	 * 任务完成后的对话（8个任务）
+	 */
 	public static final String[][] finishedDialog = {
 		//FIND_CROSS
 		{"仙子，我已经将那个十字架找到了！",
@@ -106,12 +122,12 @@ public class Task
 		"我学习了很长时间的Android技术，你死定了！",
 		"好，来吧！"}
 	};
-	//hold the task state
+	//hold the task state（每个任务的不同状态）
 	private static final int UNRECIEVE = 0,  //don't recieve task
 							 RECIEVED = 1,   //have recieved task,can't finish
 							 CANFINISH = 2,  //can finish task,but no finish
 							 FINISHED = 3;   //finished
-	//hold the task type
+	//hold the task type（各种任务类型,与上面的对话recieveDialog，finishedDialog编号对应）
 	public static final int  FIND_CROSS = 0,
 							 FIND_AX = 1,
 							 GET_QINGFEND_JIAN = 2,
@@ -137,7 +153,7 @@ public class Task
 	private GameMap gameMap;
 	public int curTask;
 	public int curTask2;
-	public boolean mbtask = false;
+	public boolean mbtask = false;			//标记当前任务是否完成
 	
 	public Task(GameScreen gameScreen,HeroSprite hero,GameMap gameMap)
 	{
@@ -146,16 +162,22 @@ public class Task
 		this.gameMap = gameMap;
 	}
 	
+	/**
+	 * 开始任务
+	 * @param curTask
+	 */
 	public void execTask(int curTask)
 	{
 		this.curTask = curTask;
 		this.curTask2 = 0;
+		//当前任务的状态
 		switch (taskState[curTask])
 		{
 			case UNRECIEVE:
 				mbtask = false;	
 				gameScreen.mshowDialog = true;
 				gameScreen.tu.InitText(recieveDialog[curTask][curTask2], 0, (yarin.SCREENH-yarin.MessageBoxH)/2, yarin.SCREENW, yarin.MessageBoxH, 0x0, 0xffff00, 255, yarin.TextSize);
+				//显示对话框不应该在任务里面做，因该在显示视图的类中做，这里面负责任务逻辑的处理
 				//gameScreen.dialog(recieveDialog[curTask]);
 				recieveTask();
 				break;
@@ -214,6 +236,9 @@ public class Task
 		}
 	}
 	
+	/**
+	 * 接受任务
+	 */
 	private void recieveTask()
 	{
 		taskState[curTask]++;
@@ -244,6 +269,10 @@ public class Task
 				break;
 		}
 	}
+	
+	/**
+	 * 完成任务
+	 */
 	private void finishTask()
 	{
 		taskState[curTask]++;
@@ -287,6 +316,10 @@ public class Task
 		}
 	}
 	
+	/**
+	 * 更新任务状态
+	 * @param type
+	 */
 	public void updateTaskState(int type)
 	{
 		taskState[type] ++;

@@ -1,16 +1,32 @@
 package com.hao;
 
+import com.hao.util.CMIDIPlayer;
+import com.hao.util.yarin;
+import com.hao.view.AboutScreen;
+import com.hao.view.GameScreen;
+import com.hao.view.HelpScreen;
+import com.hao.view.MainMenu;
+import com.hao.view.SplashScreen;
+
 import android.app.Activity;
 import android.content.Context;
 
+/**
+ * 游戏逻辑控制（视图切换，垃圾回收，音乐播放）
+ * 这个是游戏主要的控制类
+ * 通过多态控制游戏界面的切换，回收等工作
+ * @author Administrator
+ *
+ */
 public class MainGame
 {
+	//在这里使用的抽象类，就是为了实现多态(所有游戏View都是继承自GameView)
 	private static GameView	m_GameView		= null;		// 当前需要显示的对象
 	private Context				m_Context		= null;
 	private MagicTower			m_MagicTower	= null;
 	private int 				m_status		= -1;		//游戏状态
 	public  CMIDIPlayer mCMIDIPlayer;
-	public byte mbMusic = 0;
+	public byte mbMusic = 0;							//控制是否播放音乐，默认0不播放
 	public MainGame(Context context)
 	{	
 		m_Context = context;
@@ -48,15 +64,19 @@ public class MainGame
 	    return m_GameView;
 	}
 	
-	//控制显示什么界面
+	/**
+	 * 控制显示什么界面
+	 * @param status
+	 */
 	public void controlView(int status)
 	{
+		//如果状态改变，则回收上次的GameView游戏对象
 		if(m_status != status)
 		{
 			if(m_GameView != null)
 			{
 				m_GameView.reCycle();
-				System.gc();				
+				System.gc();			//主动调用垃圾回收器	
 			}
 		}
 		freeGameView(m_GameView);
@@ -84,8 +104,11 @@ public class MainGame
 		setStatus(status);
 	}
 	
-	//释放界面对象
-	public void freeGameView(GameView gameView)
+	/**
+	 * 释放界面对象
+	 * @param gameView
+	 */
+	private void freeGameView(GameView gameView)
 	{
 		if(gameView != null)
 		{

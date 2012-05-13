@@ -1,4 +1,11 @@
-package com.hao;
+package com.hao.view;
+
+import com.hao.GameView;
+import com.hao.MainGame;
+import com.hao.R;
+import com.hao.R.drawable;
+import com.hao.util.CMIDIPlayer;
+import com.hao.util.yarin;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -7,14 +14,19 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+/**
+ * 主菜单视图
+ * @author Administrator
+ *
+ */
 public class MainMenu extends GameView
 {
 	private String[]	menu		= { "新游戏", "读取上次游戏", "帮助", "关于", "退出" };
-	private int			itemNum		= menu.length;
-	private int			curItem;
-	private boolean		isFirstPlay	= false;
+	private int			itemNum		= menu.length;//菜单长度
+	private int			curItem;				//当前菜单选项
+	private boolean		isFirstPlay	= false;	//是否是第一次玩
 	public int			borderX, borderY;
-	private Bitmap		mImgMenuBG	= null;
+	private Bitmap		mImgMenuBG	= null;		//菜单背景图片
 
 	private MainGame	mMainGame	= null;
 
@@ -36,9 +48,12 @@ public class MainMenu extends GameView
 		mMainGame = mainGame;
 
 		mImgMenuBG = BitmapFactory.decodeResource(this.getResources(), R.drawable.menu);
+		setName("MainMenu");
 	}
 
-
+	/**
+	 * 下条菜单
+	 */
 	private void next()
 	{
 		if ((curItem + 1) < itemNum)
@@ -51,7 +66,9 @@ public class MainMenu extends GameView
 		}
 	}
 
-
+	/**
+	 * 上条菜单
+	 */
 	private void pre()
 	{
 		if ((curItem - 1) >= 0)
@@ -74,8 +91,8 @@ public class MainMenu extends GameView
 		drawItem(canvas);
 		y = (curItem + 1) * split + borderY + 200;
 
+		//绘制当前选择的菜单项为红色
 		paint.setARGB(255, 255, 0, 0);
-
 		yarin.drawString(canvas, menu[curItem], borderX + (yarin.BORDERW - paint.measureText(menu[curItem])) / 2, y, paint);
 	}
 
@@ -107,18 +124,25 @@ public class MainMenu extends GameView
 	}
 
 
+	/**
+	 * 绘制所有菜单
+	 * @param canvas
+	 */
 	private void drawItem(Canvas canvas)
 	{
 		paint.setColor(Color.WHITE);
 		for (int i = 0; i < itemNum; i++)
 		{
 			y = (i + 1) * split + borderY + 200;
-
+			//绘制每个条目
 			yarin.drawString(canvas, menu[i], borderX + (yarin.BORDERW - paint.measureText(menu[i])) / 2, y, paint);
 		}
 	}
 
 
+	/**
+	 * 对每个菜单的处理方法
+	 */
 	private void dealItem()
 	{
 		switch (curItem)
@@ -127,14 +151,14 @@ public class MainMenu extends GameView
 				mMainGame.controlView(yarin.GAME_RUN);
 				if (mMainGame.mbMusic == 1)
 				{
-					mMainGame.mCMIDIPlayer.PlayMusic(2);
+					mMainGame.mCMIDIPlayer.PlayMusic(CMIDIPlayer.MP3_RUN);
 				}
 				break;
 			case 1:
 				mMainGame.controlView(yarin.GAME_CONTINUE);
 				if (mMainGame.mbMusic == 1)
 				{
-					mMainGame.mCMIDIPlayer.PlayMusic(2);
+					mMainGame.mCMIDIPlayer.PlayMusic(CMIDIPlayer.MP3_RUN);
 				}
 				break;
 			case 2:

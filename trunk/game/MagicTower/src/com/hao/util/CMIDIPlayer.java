@@ -1,14 +1,26 @@
-package com.hao;
+package com.hao.util;
 
 import java.io.IOException;
 
-import android.media.MediaPlayer;
+import com.hao.MagicTower;
+import com.hao.R;
+import com.hao.R.raw;
 
+import android.media.MediaPlayer;
+/**
+ * 音乐播放的管理类
+ * 负责所有音乐的播放
+ * @author Administrator
+ *
+ */
 public class CMIDIPlayer
 {
 	public MediaPlayer	playerMusic;
 
 	public MagicTower	magicTower	= null;
+	//背景音乐
+	public static final int MP3_MENU = 1;
+	public static final int MP3_RUN = 2;
 
 
 	public CMIDIPlayer(MagicTower magicTower)
@@ -24,7 +36,7 @@ public class CMIDIPlayer
 		FreeMusic();
 		switch (ID)
 		{
-			case 1:
+			case MP3_MENU:
 				//装载音乐
 				playerMusic = MediaPlayer.create(magicTower, R.raw.menu);
 				//设置循环
@@ -45,7 +57,7 @@ public class CMIDIPlayer
 				//开始
 				playerMusic.start();
 				break;
-			case 2:
+			case MP3_RUN:
 				playerMusic = MediaPlayer.create(magicTower, R.raw.run);
 				playerMusic.setLooping(true);
 				try

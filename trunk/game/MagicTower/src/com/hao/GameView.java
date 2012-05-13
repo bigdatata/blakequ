@@ -2,8 +2,15 @@ package com.hao;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
+
+/**
+ * View抽象类
+ * @author Administrator
+ *
+ */
 public abstract class GameView extends View
 {
+	private String name;	//当前视图名字，方便调试
 	public GameView(Context context)
 	{
 		super(context);
@@ -43,5 +50,22 @@ public abstract class GameView extends View
 	 *
 	 */
 	protected abstract void refurbish();
+	
+	/**
+	 * get the name of view
+	 * @return
+	 */
+	public String getName() {
+		return name;
+	}
+	
+	/**
+	 * set the name of view
+	 * @param name
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 }
 

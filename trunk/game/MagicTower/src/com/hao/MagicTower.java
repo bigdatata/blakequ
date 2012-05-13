@@ -52,6 +52,17 @@ public class MagicTower extends Activity
 		mThreadCanvas.requestFocus();
 		mThreadCanvas.start();
 	}
+	
+	
+	
+
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		mThreadCanvas.setEndViewFlag(false);
+	}
 
 
 	/**

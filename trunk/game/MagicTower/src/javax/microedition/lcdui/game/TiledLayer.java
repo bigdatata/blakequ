@@ -1,3 +1,9 @@
+
+package javax.microedition.lcdui.game;
+
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Rect;
 /**
  * <p>Title: TiledLayer.java</p>
  *
@@ -11,12 +17,6 @@
  *
  * @Date 2009-5-14
  */
-package javax.microedition.lcdui.game;
-
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-
 public class TiledLayer extends Layer {
 	/**
 	 * the overall height of the TiledLayer grid
@@ -187,7 +187,7 @@ public class TiledLayer extends Layer {
 			anim_to_static = new int[4];
 			numOfAnimTiles = 1;
 		} else if (numOfAnimTiles == anim_to_static.length) {
-			// grow anim_to_static table if needed
+			// grow anim_to_static table if needed 将存储动画的表加长
 			int new_anim_tbl[] = new int[anim_to_static.length * 2];
 			System.arraycopy(anim_to_static, 0, new_anim_tbl, 0,
 					anim_to_static.length);
@@ -447,6 +447,7 @@ public class TiledLayer extends Layer {
 		tileSetY = new int[numberOfTiles];
 
 		if (!maintainIndices) {
+			//初始化cellMatrix
 			// populate cell matrix, all the indices are 0 to begin with
 			for (rows = 0; rows < cellMatrix.length; rows++) {
 				int totalCols = cellMatrix[rows].length;

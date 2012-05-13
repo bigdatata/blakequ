@@ -1,4 +1,4 @@
-package com.hao;
+package com.hao.view;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,6 +8,19 @@ import java.util.Properties;
 
 import javax.microedition.lcdui.game.LayerManager;
 
+import com.hao.FightCalc;
+import com.hao.FightScreen;
+import com.hao.GameMap;
+import com.hao.GameView;
+import com.hao.HeroSprite;
+import com.hao.MagicTower;
+import com.hao.MainGame;
+import com.hao.R;
+import com.hao.Task;
+import com.hao.R.drawable;
+import com.hao.util.TextUtil;
+import com.hao.util.yarin;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,6 +29,11 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.KeyEvent;
 
+/**
+ * 游戏主界面
+ * @author Administrator
+ *
+ */
 public class GameScreen extends GameView
 {
 	private Paint			paint		= null;
@@ -31,6 +49,9 @@ public class GameScreen extends GameView
 	
 	private LayerManager layerManager;
 	private boolean mshowMessage = false;
+	/**
+	 * 标记是否显示对话框，为了方便逻辑处理调用(而不用在逻辑中直接绘制对话框)，决定是否显示对话框
+	 */
 	public boolean mshowDialog = false;
 	public boolean mshowFight = false;
 	private String strMessage = "";
@@ -42,6 +63,7 @@ public class GameScreen extends GameView
 	private Task task;
 	private static final int step = GameMap.TILE_WIDTH;
 	public Canvas mcanvas;
+	//各种图片
 	public static final int IMAGE_HERO = 0,
 	IMAGE_MAP = 1,
 		IMAGE_DIALOG_HERO = 2,
@@ -68,7 +90,13 @@ public class GameScreen extends GameView
 
 	public TextUtil				tu				= null;
 	private int				miType			= -1;
-	
+	/**
+	 * 
+	 * @param context
+	 * @param magicTower
+	 * @param mainGame
+	 * @param isNewGame是否是新游戏，如果是载入上次的则为false
+	 */
 	public GameScreen(Context context, MagicTower magicTower, MainGame mainGame, boolean isNewGame)
 	{
 		super(context);
@@ -94,6 +122,7 @@ public class GameScreen extends GameView
 		}
 		layerManager.append(hero);
 		layerManager.append(gameMap.getFloorMap());
+		setName("GameScreen");
 	}
 
 
@@ -611,6 +640,10 @@ public class GameScreen extends GameView
 	}
 
 
+	/**
+	 * 保存游戏状态
+	 * @return
+	 */
 	boolean save()
 	{
 		int col = hero.getRefPixelX() / GameMap.TILE_WIDTH;
@@ -666,6 +699,10 @@ public class GameScreen extends GameView
 	}
 
 
+	/**
+	 * 载入上次保存的游戏
+	 * @return
+	 */
 	boolean load()
 	{
 		Properties properties = new Properties();
@@ -683,7 +720,7 @@ public class GameScreen extends GameView
 		{
 			return false;
 		}
-
+		//是否播放音乐
 		mMainGame.mbMusic = Byte.valueOf(properties.get("music").toString());
 
 		byte[] r1 = new byte[Byte.valueOf(properties.get("r1l").toString())];

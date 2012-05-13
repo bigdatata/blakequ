@@ -1,3 +1,6 @@
+package javax.microedition.lcdui.game;
+
+import android.graphics.Canvas;
 /**
  * <p>Title: Layer.java</p>
  *
@@ -11,10 +14,6 @@
  *
  * @Date 2009-5-14
  */
-package javax.microedition.lcdui.game;
-
-import android.graphics.Canvas;
-
 public abstract class Layer {
 	
     /**

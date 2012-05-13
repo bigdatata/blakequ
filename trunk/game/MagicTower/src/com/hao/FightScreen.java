@@ -1,10 +1,19 @@
 package com.hao;
 
+import com.hao.util.TextUtil;
+import com.hao.util.yarin;
+import com.hao.view.GameScreen;
+
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+/**
+ * 打斗的场景,以弹出形式显示出来
+ * @author Administrator
+ *
+ */
 public class FightScreen
 {
 	private Paint			paint		= null;
@@ -16,14 +25,15 @@ public class FightScreen
 	private HeroSprite hero;
 	
 	//private int boutNum;
-	private int orgeHp;
-	private int orgeAttack;
-	private int orgeDefend;
-	private int orgeMoney;
-	private int orgeExperience;
-	private int heroDamagePerBout;
-	private int orgeDamagePerBout; 
+	private int orgeHp;							//恶魔血量
+	private int orgeAttack;						//恶魔攻击力
+	private int orgeDefend;						//恶魔防御力
+	private int orgeMoney;						//恶魔的钱
+	private int orgeExperience;					//恶魔经验值
+	private int heroDamagePerBout;				//每回合英雄伤害值
+	private int orgeDamagePerBout; 				//每回合恶魔伤害值
 	
+	//恶魔属性，位置和宽度，类型
 	private int orgeSrcX,orgeSrcY,
 				 w = GameMap.TILE_WIDTH;
 	
@@ -64,6 +74,11 @@ public class FightScreen
 	}
 
 
+	/**
+	 * 计算恶魔位置
+	 * @param index
+	 * @return
+	 */
 	private int[] calcXY(int index)
 	{
 		int[] result = { 0, 0 };
@@ -75,7 +90,7 @@ public class FightScreen
 	}
 
 
-	protected void onDraw(Canvas canvas)
+	public void onDraw(Canvas canvas)
 	{
 		mcanvas = canvas;
 
@@ -83,6 +98,7 @@ public class FightScreen
 		tw = yarin.SCREENW;
 		th = yarin.MessageBoxH;
 		tx = 0;
+		//文本居中
 		ty = (yarin.SCREENH - yarin.MessageBoxH) / 2;
 
 		showMessage();
@@ -93,6 +109,7 @@ public class FightScreen
 		}
 		else
 		{
+			//先绘制双方头像
 			yarin.drawImage(canvas, orgeImage, 0, ty + (th - GameMap.TILE_WIDTH) / 2, GameMap.TILE_WIDTH, GameMap.TILE_WIDTH, orgeSrcX, orgeSrcY);
 			yarin.drawImage(canvas, heroImage, (tw - GameMap.TILE_WIDTH), ty + (th - GameMap.TILE_WIDTH) / 2, GameMap.TILE_WIDTH, GameMap.TILE_WIDTH, 0, 0);
 			paint.setColor(Color.WHITE);
@@ -121,6 +138,9 @@ public class FightScreen
 	}
 
 
+	/**
+	 * 绘制对话框
+	 */
 	public void showMessage()
 	{
 		int x = 0;
