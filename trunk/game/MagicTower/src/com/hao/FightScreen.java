@@ -90,6 +90,10 @@ public class FightScreen
 	}
 
 
+	/**
+	 * 战斗时dialog绘制
+	 * @param canvas
+	 */
 	public void onDraw(Canvas canvas)
 	{
 		mcanvas = canvas;
@@ -139,7 +143,7 @@ public class FightScreen
 
 
 	/**
-	 * 绘制对话框
+	 * 绘制对话框的外框体
 	 */
 	public void showMessage()
 	{
@@ -156,6 +160,9 @@ public class FightScreen
 	}
 
 
+	/**
+	 * 战斗结束后显示的信息
+	 */
 	private void tick()
 	{
 		if (orgeHp <= 0)
