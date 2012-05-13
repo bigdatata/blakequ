@@ -8,24 +8,33 @@ import android.graphics.Bitmap;
 
 public class GameMap
 {
+	/**
+	 * 初始和结束时英雄位置，不同关卡在不同的位置
+	 * 如第0关，地图为floorArray[0][0],英雄起始索引为115，结束时索引为16
+	 * 这样判断英雄是否进入下一关
+	 */
 	private static final int[][] heroPosition = 
 	{
+		//begin position
 		{115,104,11,111,109,111,109,115,11,39,70,111,119,111,104,3,5, 93, 111,119,39,60},
+		//end position
 		{16, 1,  99,109,99, 108,103,1,  51,83,99,119,111,114,5,  7,71,111,119,49, 71,60}	
 	};
 	
-	public static final int			SWITCH_OFFSET	= 44;
-	public static final int			TILE_WIDTH		= 32;
-	public static final int			TILE_HEIGHT		= TILE_WIDTH;
-	private static final int			TILE_NUM_COL	= 11;
-	private static final int			TILE_NUM_ROW	= TILE_NUM_COL;
-	public static final int			MAP_WIDTH		= TILE_WIDTH * TILE_NUM_COL;
-	public static final int			MAP_HEIGHT		= MAP_WIDTH;
-	public static final int			FLOOR_NUM		= 22;
-	public static final int			TILE_NUM		= TILE_NUM_COL * TILE_NUM_ROW;
+	public static final int			SWITCH_OFFSET	= 44;				
+	public static final int			TILE_WIDTH		= 32;				//每个单元的宽
+	public static final int			TILE_HEIGHT		= TILE_WIDTH;		//每个单元的高
+	private static final int			TILE_NUM_COL	= 11;			//11个水平单元（11行）
+	private static final int			TILE_NUM_ROW	= TILE_NUM_COL; //11个垂直单元（11列）
+	public static final int			MAP_WIDTH		= TILE_WIDTH * TILE_NUM_COL;//地图宽
+	public static final int			MAP_HEIGHT		= MAP_WIDTH;		//地图高
+	public static final int			FLOOR_NUM		= 22;				
+	public static final int			TILE_NUM		= TILE_NUM_COL * TILE_NUM_ROW;//总的单元数
 
+	//表示英雄一关起始和结束（0:begin,1:end）
 	private int						curUpDown		= 0;
 
+	//当前的关卡地图数组
 	private int[]						curFloorArray	= new int[TILE_NUM];
 	public int							curFloorNum		= 0;
 	public int							reachedHighest	= 0;
@@ -44,31 +53,44 @@ public class GameMap
 	}
 
 
+	/**
+	 * 设置指定关卡的地图(地图，和英雄位置)
+	 * @param floorNum 关卡编号
+	 */
 	public void setMap(int floorNum)
 	{
 		for (int i = 0; i < TILE_NUM; i++)
 		{
 			curFloorArray[i] = floorArray[floorNum][i];
 		}
+		//根据行列下标设置地图
 		for (int i = 0; i < TILE_NUM; i++)
 		{
 			int[] colrow = getColRow(i);
+			//填充地图
 			floorMap.setCell(colrow[0], colrow[1], floorArray[curFloorNum][i]);
 
 		}
+		//根据已知索引 获取英雄开始或者结束的行列位置
 		int[] colrow = getColRow(heroPosition[curUpDown][floorNum]);
 		int x = (int) (colrow[0] * TILE_WIDTH + TILE_WIDTH / 2);
 		int y = (int) (colrow[1] * TILE_HEIGHT + TILE_HEIGHT / 2);
+		//在地图上设置英雄的位置(绘制出来)
 		hero.setRefPixelPosition(x, y);
 	}
 
 
+	/**
+	 * 根据索引获取行列值
+	 * @param index 当前数组中的索引
+	 * @return 所在行列下表
+	 */
 	private int[] getColRow(int index)
 	{
 		int[] result = new int[2];
-
+		//行
 		result[0] = index % TILE_NUM_COL;
-
+		//列
 		result[1] = (index - result[0]) / TILE_NUM_ROW;
 		return result;
 	}
@@ -120,18 +142,24 @@ public class GameMap
 		}
 	}
 
-
+	/**
+	 * 获取当前地图
+	 * @return
+	 */
 	public TiledLayer getFloorMap()
 	{
 		return floorMap;
 	}
 
-
+	/**
+	 * 下一个关卡
+	 * @return
+	 */
 	public int upstair()
 	{
 		if ((curFloorNum + 1) < FLOOR_NUM)
 		{
-			curUpDown = 0;
+			curUpDown = 0;//初始下一关英雄位置
 			setMap(++curFloorNum);
 			if (curFloorNum > reachedHighest)
 				reachedHighest = curFloorNum;
@@ -139,7 +167,10 @@ public class GameMap
 		return curFloorNum;
 	}
 
-
+	/**
+	 * 上一关卡
+	 * @return
+	 */
 	public int downstair()
 	{
 		if ((curFloorNum - 1) >= 0)
@@ -150,6 +181,11 @@ public class GameMap
 		return curFloorNum;
 	}
 
+	/**
+	 * 看是否能通过，主要是通过检测该单元是否是门，墙等
+	 * @param direction
+	 * @return 物体类型编号（可以对照最下面定义的静态变量确定类型）
+	 */
 	public int canPass(int direction)
 	{
 		int col = hero.getRefPixelX() / TILE_WIDTH;
@@ -158,28 +194,28 @@ public class GameMap
 		boolean isBound = true;
 		switch (direction)
 		{
-			case GameScreen.UP:
+			case GameScreen.UP://检测上面
 				if (row - 1 >= 0)
 				{
 					row--;
 					isBound = false;
 				}
 				break;
-			case GameScreen.DOWN:
+			case GameScreen.DOWN://下面
 				if (row + 1 < TILE_NUM_ROW)
 				{
 					row++;
 					isBound = false;
 				}
 				break;
-			case GameScreen.LEFT:
+			case GameScreen.LEFT://左边
 				if (col - 1 >= 0)
 				{
 					col--;
 					isBound = false;
 				}
 				break;
-			case GameScreen.RIGHT:
+			case GameScreen.RIGHT://右边
 				if (col + 1 < TILE_NUM_COL)
 				{
 					col++;
@@ -191,38 +227,61 @@ public class GameMap
 		{
 			result = 0;
 		}
+		//根据行列值判断当前单元cell是那种类型
 		else
 		{
 			aheadCol = col;
 			aheadRow = row;
 			aheadIndex = TILE_NUM_ROW * row + col;
+			//当前的单元所在的物体编号
 			result = floorArray[curFloorNum][aheadIndex];
 		}
 		return result;
 	}
 
 
+	/**
+	 * 改变当前floorArray[curFloorNum][index]的单元类型
+	 * @param index 改变单元的索引
+	 * @param type 要改变的类型
+	 */
 	public void changeCell(int index, int type)
 	{
 		int[] colrow = getColRow(index);
+		//改变地图数组
 		floorArray[curFloorNum][index] = type;
+		//改变地图
 		floorMap.setCell(colrow[0], colrow[1], type);
 	}
 
 
+	/**
+	 * 设置地图指定位置floorArray[floor][0]的类型为1(即道路)
+	 */
 	public void remove()
 	{
+		//设置单元数组
 		floorArray[curFloorNum][aheadIndex] = 1;
+		//重新设置该单元为道路
 		floorMap.setCell(aheadCol, aheadRow, 1);
 	}
 
-
+	/**
+	 * 设置地图指定位置floorArray[floor][index]的类型为1(即道路)
+	 * @param floor
+	 * @param index
+	 */
 	public void remove(int floor, int index)
 	{
 		floorArray[floor][index] = 1;
 	}
 
-
+	/**
+	 * 设置地图指定位置floorArray[floor][index]的类型为type
+	 * @param floor	关卡
+	 * @param index 关卡具体位置
+	 * @param type	指定替换的类型
+	 */
 	public void remove(int floor, int index, int type)
 	{
 		floorArray[floor][index] = type;
@@ -242,12 +301,16 @@ public class GameMap
 		}
 	}
 
-
+	/**
+	 * 获取恶魔数组
+	 * @return
+	 */
 	public int[] getOrgeArray()
 	{
 		int[] result = new int[TILE_NUM];
 		int type, num = 0;
 		boolean repeated = false;
+		//遍历整个地图查询是否是恶魔(编号在50-80)
 		for (int i = 0; i < TILE_NUM; i++)
 		{
 			repeated = false;
@@ -255,8 +318,10 @@ public class GameMap
 			{
 				if (type > FightCalc.MAX_ORGE_INDEX)
 					type -= SWITCH_OFFSET;
+				//小于50不是恶魔
 				if (type < MAP_ORGE1)
 					continue;
+				//检查是否已经存在和type同类的恶魔，是则repeated=true
 				for (int j = 0; j < num; j++)
 				{
 					if (result[j] == type)
@@ -265,6 +330,7 @@ public class GameMap
 						break;
 					}
 				}
+				//如果不存在同类，则添加到数组
 				if (repeated == false)
 				{
 					result[num] = type;
@@ -278,6 +344,11 @@ public class GameMap
 	}
 
 
+	/**
+	 * 获取某关卡的数据
+	 * @param floor 要获取的关卡编号
+	 * @return
+	 */
 	public byte[] getFloorArray(int floor)
 	{
 		byte[] result = new byte[TILE_NUM];
@@ -293,6 +364,11 @@ public class GameMap
 	}
 
 
+	/**
+	 * 设置地图数组
+	 * @param floor	哪个关卡
+	 * @param data	当前关卡的数据
+	 */
 	public void setFloorArray(int floor, byte[] data)
 	{
 		for (int i = 0; i < TILE_NUM; i++)
@@ -300,7 +376,11 @@ public class GameMap
 			floorArray[floor][i] = data[i];
 		}
 	}
-	
+	/**
+	 * 每个关卡地图元素数组(每个数字代表不同的类型如墙，道路等)
+	 * 关卡设置，这里是每个关卡的地图设置，数字代表的是显示的类型
+	 * 譬如或这里：2表示墙，1表示路，13表示门
+	 */
 	private int[][] floorArray =
 	{
 	//floor0
@@ -613,6 +693,9 @@ public class GameMap
 	}
 	};
 
+	/**
+	 * 具体每个数字所表示的含义,然后上面的关卡就是依据下面的
+	 */
 	public static final int MAP_ROAD = 1,
 							MAP_WALL = 2,
 							MAP_LEFT_SHOP = 3,
@@ -658,13 +741,13 @@ public class GameMap
 							MAP_CROSS = 42,
 							MAP_AX = 43,
 							MAP_SHIELD3 = 44,//5
-							//
+							//人物角色在地图的编号
 							MAP_ANGLE = 45,
 							MAP_THIEF = 46,
 							MAP_PRINCESS = 47,
 							MAP_BLUE_GEEZER = 48,
 							MAP_RED_GEEZER = 49,
-							//
+							//不同恶魔的编号从50-80都是
 							MAP_ORGE1 = 50,
 							MAP_ORGE2 = 51,
 							MAP_ORGE3 = 52,

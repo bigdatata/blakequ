@@ -18,6 +18,7 @@ import com.hao.MainGame;
 import com.hao.R;
 import com.hao.Task;
 import com.hao.R.drawable;
+import com.hao.util.CMIDIPlayer;
 import com.hao.util.TextUtil;
 import com.hao.util.yarin;
 
@@ -176,15 +177,15 @@ public class GameScreen extends GameView
 		}
 		switch (keyCode)
 		{
-			case yarin.KEY_SOFT_RIGHT:
+			case yarin.KEY_SOFT_RIGHT:	//退出键
 				save();
 				mMainGame.controlView(yarin.GAME_MENU);
 				if (mMainGame.mbMusic == 1)
 				{
-					mMainGame.mCMIDIPlayer.PlayMusic(1);
+					mMainGame.mCMIDIPlayer.PlayMusic(CMIDIPlayer.MP3_MENU);
 				}
 				break;
-			case yarin.KEY_DPAD_OK:
+			case yarin.KEY_DPAD_OK:	//主要处理ok键（显示消息等）
 				if (mshowMessage)
 				{
 					// 知道无法翻页为止
@@ -233,7 +234,7 @@ public class GameScreen extends GameView
 					}
 				}
 				break;
-			case yarin.KEY_DPAD_UP:
+			case yarin.KEY_DPAD_UP://向上键--上走
 				hero.setFrame(9);
 				if ((type = gameMap.canPass(UP)) == 1)
 				{
@@ -346,6 +347,10 @@ public class GameScreen extends GameView
 	}
 
 
+	/**
+	 * 绘制消息框（如获取到宝石等）
+	 * @param msg
+	 */
 	public void showMessage(String msg)
 	{
 		int w = yarin.SCREENW;
@@ -362,6 +367,10 @@ public class GameScreen extends GameView
 	}
 
 
+	/**
+	 * 绘制英雄的属性(在最下部)
+	 * @param canvas
+	 */
 	private void drawAttr(Canvas canvas)
 	{
 		int iH = 17;
@@ -429,7 +438,11 @@ public class GameScreen extends GameView
 		}
 	}
 
-
+	/**
+	 * 遇见恶魔开始战斗
+	 * @param type
+	 * @return
+	 */
 	public boolean fight(int type)
 	{
 		if (fightCalc.canAttack(type) == false)
@@ -535,6 +548,9 @@ public class GameScreen extends GameView
 	}
 
 
+	/**
+	 * 绘制对话框
+	 */
 	public void dialog()
 	{
 		int x, y, w, h;
@@ -542,7 +558,7 @@ public class GameScreen extends GameView
 		h = yarin.MessageBoxH;
 		x = 0;
 		y = (yarin.SCREENH - yarin.MessageBoxH) / 2;
-
+		//两句话一次对白
 		if (task.curTask2 % 2 == 0)
 		{
 			drawDialogBox(IMAGE_DIALOG_HERO, x, y, w, h);
@@ -556,6 +572,14 @@ public class GameScreen extends GameView
 	}
 
 
+	/**
+	 * 绘制对话上面的图片（头像）
+	 * @param imgType
+	 * @param x
+	 * @param y
+	 * @param w
+	 * @param h
+	 */
 	private void drawDialogBox(int imgType, int x, int y, int w, int h)
 	{
 		Paint ptmPaint = new Paint();
@@ -600,6 +624,11 @@ public class GameScreen extends GameView
 	}
 
 
+	/**
+	 * 根据类型获取图片
+	 * @param type
+	 * @return
+	 */
 	public Bitmap getImage(int type)
 	{
 		Bitmap result = null;

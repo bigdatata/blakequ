@@ -7,7 +7,14 @@ package com.hao;
  */
 public class FightCalc
 {
+	/**
+	 * 这个是恶魔在地图中的最小编号(恶魔编号从50-80)
+	 * @see com.hao.GameMap
+	 */
 	public static final int MIN_ORGE_INDEX = 50;
+	/**
+	 * 恶魔在地图中最大的编号
+	 */
 	public static final int MAX_ORGE_INDEX = 80;
 
 	private static final int OFFSET = 50;
