@@ -18,7 +18,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 
 public class Sprite extends Layer {
-	// ----- definitions for the various transformations possible -----
+	// ----- definitions for the various transformations possible 变形-----
 
 	/**
 	 * No transform is applied to the Sprite. This constant has a value of
@@ -44,6 +44,7 @@ public class Sprite extends Layer {
 	 */
 	public static final int TRANS_ROT270 = 6;
 
+	//------------影子-----------------
 	/**
 	 * Causes the Sprite to appear reflected about its vertical center. This
 	 * constant has a value of <code>2</code>.
@@ -905,7 +906,7 @@ public class Sprite extends Layer {
 	 * @param pixelLevel
 	 *            <code>true</code> to test for collision on a pixel-by-pixel
 	 *            basis, <code>false</code> to test using simple bounds
-	 *            checking.
+	 *            checking. 像素级别的冲突检测更加精确
 	 * @return <code>true</code> if the two Sprites have collided, otherwise
 	 *         <code>false</code>
 	 * @throws NullPointerException

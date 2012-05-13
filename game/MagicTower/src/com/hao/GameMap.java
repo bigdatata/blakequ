@@ -2,6 +2,8 @@ package com.hao;
 
 import javax.microedition.lcdui.game.TiledLayer;
 
+import com.hao.view.GameScreen;
+
 import android.graphics.Bitmap;
 
 public class GameMap

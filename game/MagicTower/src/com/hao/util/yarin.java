@@ -1,4 +1,4 @@
-package com.hao;
+package com.hao.util;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -6,14 +6,21 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.KeyEvent;
 
+/**
+ * 里面定义游戏常用的常量,以及常用的方法
+ * @author Administrator
+ *
+ */
 public class yarin
 {
+	/* 游戏状态常量 */
 	public static final int	GAME_SPLASH		= 1;
 	public static final int	GAME_MENU		= 2;
 	public static final int	GAME_ABOUT		= 3;
 	public static final int	GAME_HELP		= 4;
 	public static final int	GAME_RUN		= 5;
 	public static final int	GAME_CONTINUE	= 6;
+	/* 按键常量 */
 	public static final int	KEY_DPAD_UP		= KeyEvent.KEYCODE_DPAD_UP;
 	public static final int	KEY_DPAD_DOWN	= KeyEvent.KEYCODE_DPAD_DOWN;
 	public static final int	KEY_DPAD_LEFT	= KeyEvent.KEYCODE_DPAD_LEFT;
@@ -24,7 +31,7 @@ public class yarin
 
 	/* 游戏循环时间 */
 	public static final int	GAME_LOOP		= 100;
-	/* 屏幕的宽高 */
+	/* 屏幕的宽高,这个实际上应该根据情况实际获取 */
 	public static final int	SCREENW			= 320;
 	public static final int	SCREENH			= 480;
 	public static final int	BORDERW			= 320;
@@ -36,7 +43,12 @@ public class yarin
 	/* 文字的尺寸 */
 	public static final int	TextSize		= 16;
 
-
+	/**
+	 * 绘制一个填充矩形
+	 * @param canvas
+	 * @param rect
+	 * @param paint
+	 */
 	public static void fillRect(Canvas canvas, Rect rect, Paint paint)
 	{
 		paint.setStyle(Paint.Style.FILL);
@@ -44,6 +56,12 @@ public class yarin
 	}
 
 
+	/**
+	 * 绘制空心矩形
+	 * @param canvas
+	 * @param rect
+	 * @param paint
+	 */
 	public static void drawRect(Canvas canvas, Rect rect, Paint paint)
 	{
 		paint.setStyle(Paint.Style.STROKE);
@@ -51,6 +69,7 @@ public class yarin
 	}
 
 
+	
 	public static void SETAEERECT(Rect rect, int x, int y, int w, int h)
 	{
 		rect.left = x;
@@ -74,7 +93,7 @@ public class yarin
 	}
 
 
-	/*------------------------------------
+	/**
 	 * 绘制图片
 	 *
 	 * @param		x 屏幕上的x坐标	
@@ -83,9 +102,8 @@ public class yarin
 	 * @param		h 要绘制的图片的高度
 	 * @param		bx图片上的x坐标
 	 * @param		by图片上的y坐标
-	 *
 	 * @return		null
-	 ------------------------------------*/
+	 */
 	public static void drawImage(Canvas canvas, Bitmap blt, int x, int y, int w, int h, int bx, int by)
 	{
 		Rect src = new Rect();// 图片

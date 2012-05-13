@@ -1,18 +1,38 @@
 package com.hao;
 
+import com.hao.util.yarin;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.Log;
 import android.view.View;
 
+/**
+ * 游戏视图控制类（控制视图绘制，视图刷新，按键处理）
+ * 游戏的主绘制线程，负责所有界面的绘制
+ * 主要是从MainGame获取当前界面，然后绘制界面
+ * @author Administrator
+ *
+ */
 public class ThreadCanvas extends View implements Runnable
 {
 	private String	m_Tag	= "ThreadCanvas_Tag";
-
+	//当游戏结束的时候，必须设置为false以保证绘制线程的结束
+	private boolean flag = true;
 
 	public ThreadCanvas(Context context)
 	{
 		super(context);
+		flag = true;
+	}
+
+
+	/**
+	 * 当游戏结束的时候，结束刷新视图线程
+	 * @param flag
+	 */
+	public void setEndViewFlag(boolean flag) {
+		this.flag = flag;
 	}
 
 
@@ -43,13 +63,14 @@ public class ThreadCanvas extends View implements Runnable
 	 */
 	public void start()
 	{
+		flag = true;
 		Thread t = new Thread(this);
 		t.start();
 	}
 
 
 	// 刷新界面
-	public void refurbish()
+	private void refurbish()
 	{
 		if (MainGame.getMainView() != null)
 		{
@@ -68,7 +89,7 @@ public class ThreadCanvas extends View implements Runnable
 	 */
 	public void run()
 	{
-		while (true)
+		while (flag)
 		{
 			try
 			{
@@ -78,7 +99,7 @@ public class ThreadCanvas extends View implements Runnable
 			{
 				e.printStackTrace();
 			}
-
+//			System.out.println("-------run view:"+MainGame.getMainView().getName());
 			refurbish(); // 更新显示
 			postInvalidate(); // 刷新屏幕
 		}

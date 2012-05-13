@@ -171,6 +171,7 @@ public class LayerManager {
 		// if g == null g.getClipX will throw NullPointerException;
 		// save the original clip
 
+		//将图层管理的坐标系统和屏幕坐标系统一致
 		// translate the LayerManager co-ordinates to Screen co-ordinates
 		canvas.translate(x - viewX, y - viewY);
 		// set the clip to view window
@@ -242,20 +243,26 @@ public class LayerManager {
 	 *            the position at which to insert the layer
 	 */
 	private void addImpl(Layer layer, int index) {
+		//这里是在数组指定位置实现插入数据，那么如果index位置有数据则从它开始的数据都要往后移动一位
+		//从而在index进行插入，这里实现的方法是利用数组拷贝的方式，而不是循环移动
 		// Add component to list;
 		// allocate new array if necessary.
-
+		//超出数组长度，分配新的空间,远数组长度只是4
 		if (nlayers == component.length) {
 			Layer newcomponents[] = new Layer[nlayers + 4];
+			//将index之前的数据都copy到新数组
 			System.arraycopy(component, 0, newcomponents, 0, nlayers);
+			//将index+1之后的也copy到新数组，留下的index位置是存放新插入的数据layer
 			System.arraycopy(component, index, newcomponents, index + 1,
 					nlayers - index);
+			//替换原数组
 			component = newcomponents;
 		} else {
+			//没超过数组，直接copy后面的到新数组
 			System.arraycopy(component, index, component, index + 1, nlayers
 					- index);
 		}
-
+		//index位置是存放新插入的数据layer
 		component[index] = layer;
 		nlayers++;
 	}

@@ -18,7 +18,7 @@ public class HeroSprite extends Sprite
 	private int		money		= 0;
 
 	private int		level		= 1;
-	private int		yellowKey	= 100;
+	private int		yellowKey	= 100;	//钥匙，不同颜色钥匙打开不同的门
 	private int		blueKey		= 100;
 	private int		redKey		= 100;
 
@@ -34,13 +34,20 @@ public class HeroSprite extends Sprite
 
 	}
 
-
+	/**
+	 * 任务，一些对话信息
+	 * @param task
+	 */
 	public void setTask(Task task)
 	{
 		this.task = task;
 	}
 
-
+	/**
+	 * 使用钥匙（指定颜色钥匙打开指定的门）
+	 * @param key
+	 * @return
+	 */
 	public boolean useKey(int key)
 	{
 		boolean result = false;
@@ -72,7 +79,12 @@ public class HeroSprite extends Sprite
 	}
 
 
-	// take gem
+	/**
+	 * 获得宝石(包括钥匙，血瓶，剑等物品)
+	 * take gem
+	 * @param type
+	 * @return
+	 */
 	public String takeGem(int type)
 	{
 		String result = "";
@@ -188,7 +200,10 @@ public class HeroSprite extends Sprite
 		return result;
 	}
 
-
+	/**
+	 * 升级
+	 * @param value
+	 */
 	public void levelUp(int value)
 	{
 		level += value;
@@ -341,7 +356,10 @@ public class HeroSprite extends Sprite
 		return level;
 	}
 
-
+	/**
+	 * 将所有信息编码(为了存储hero当前状态)
+	 * @return
+	 */
 	public byte[] encode()
 	{
 		byte[] result = null;
@@ -388,7 +406,11 @@ public class HeroSprite extends Sprite
 	}
 
 
-	// decode the byte[] from RMS
+	/**
+	 * 解码数组（为了恢复英雄当前状态）
+	 * decode the byte[] from RMS
+	 * @param data
+	 */
 	public void decode(byte[] data)
 	{
 		try
