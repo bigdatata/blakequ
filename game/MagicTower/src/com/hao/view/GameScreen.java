@@ -83,13 +83,16 @@ public class GameScreen extends GameView
 	IMAGE_SPLASH = 15,
 	IMAGE_GAMEOVER = 16;
 	
-	public int					borderX, borderY;
-	private int				winWidth, winHeight;
+	public int					borderX, borderY;	//地图上x和y的边界
+	private int				winWidth, winHeight;	//地图的高宽
 	private int				scrollX, scrollY;
 	private int				curDialogImg;
 	private MagicTower			magicTower;
 
 	public TextUtil				tu				= null;
+	/**
+	 * 捡到的物品类型
+	 */
 	private int				miType			= -1;
 	/**
 	 * 
@@ -107,8 +110,8 @@ public class GameScreen extends GameView
 		this.magicTower = magicTower;
 		winWidth = yarin.BORDERW;
 		winHeight = yarin.BORDERH;
-		borderX = yarin.BORDERX;
-		borderY = yarin.SCREENH - yarin.BORDERH - 60;
+		borderX = yarin.BORDERX; //左上 地图x坐标
+		borderY = yarin.SCREENH - yarin.BORDERH - 60;	//左上地图y坐标
 		layerManager = new LayerManager();
 		tu = new TextUtil();
 		hero = new HeroSprite(BitmapFactory.decodeResource(this.getResources(), R.drawable.hero16), GameMap.TILE_WIDTH, GameMap.TILE_HEIGHT);
@@ -135,8 +138,12 @@ public class GameScreen extends GameView
 
 		drawAttr(canvas);
 		gameMap.animateMap();
+		
+		//根据hero相对位置滑动地图（地图不能完全显示）
 		scrollWin();
+		//重设窗口坐标系
 		layerManager.setViewWindow(scrollX, scrollY, winWidth, winHeight);
+		//在(borderX, borderY)处绘制地图
 		layerManager.paint(canvas, borderX, borderY);
 
 		if (mshowMessage)
@@ -164,7 +171,7 @@ public class GameScreen extends GameView
 		}
 		if (keyCode == KeyEvent.KEYCODE_2)
 		{
-			mMainGame.mCMIDIPlayer.PlayMusic(2);
+			mMainGame.mCMIDIPlayer.PlayMusic(CMIDIPlayer.MP3_RUN);
 		}
 		if (mFightScreen != null && mshowFight)
 		{
@@ -188,9 +195,10 @@ public class GameScreen extends GameView
 			case yarin.KEY_DPAD_OK:	//主要处理ok键（显示消息等）
 				if (mshowMessage)
 				{
-					// 知道无法翻页为止
+					// 直到无法翻页为止
 					if (!tu.Key(yarin.KEY_DPAD_DOWN))
 					{
+						//如果是捡到物品的时候，先将弹出的消息框隐藏，然后将捡到的物品从地图中删除
 						mshowMessage = false;
 						if ((miType >= GameMap.MAP_YELLOW_KEY) && (miType <= GameMap.MAP_SHIELD3))
 						{
@@ -416,16 +424,22 @@ public class GameScreen extends GameView
 	}
 
 
+	/**
+	 * 由于屏幕不能完全显示地图，故而需要能够滑动(根据hero的位置)
+	 */
 	private void scrollWin()
 	{
-		scrollX = hero.getRefPixelX() - winWidth / 2;
+		//当英雄移动到地图的屏幕中央的时候判断是否要移动地图
+		scrollX = hero.getRefPixelX() - winWidth / 2;	//当前hero的位置减去屏幕宽度一半
 		scrollY = hero.getRefPixelY() - winHeight / 2;
+		//如果scrollX<0说明地图需要左移
 		if (scrollX < 0)
 		{
 			scrollX = 0;
 		}
 		else if ((scrollX + winWidth) > GameMap.MAP_WIDTH)
 		{
+			//水平移动的距离就是:地图的宽度-屏幕宽度
 			scrollX = GameMap.MAP_WIDTH - winWidth;
 		}
 		if (scrollY < 0)

@@ -21,6 +21,12 @@ public class GameMap
 		{16, 1,  99,109,99, 108,103,1,  51,83,99,119,111,114,5,  7,71,111,119,49, 71,60}	
 	};
 	
+	/**
+	 * 它是同一个恶魔的两个不同动作的图像在图片中的不同位置的差
+	 * 从45开始的图元对象都有动作（45-80）
+	 * 而他们的另个动作是从89-124(45-80都加上44)，即是一一对应的45-89...
+	 * 从而能形成一个完整的动作
+	 */
 	public static final int			SWITCH_OFFSET	= 44;				
 	public static final int			TILE_WIDTH		= 32;				//每个单元的宽
 	public static final int			TILE_HEIGHT		= TILE_WIDTH;		//每个单元的高
@@ -36,13 +42,19 @@ public class GameMap
 
 	//当前的关卡地图数组
 	private int[]						curFloorArray	= new int[TILE_NUM];
-	public int							curFloorNum		= 0;
+	public int							curFloorNum		= 0;	//当前关卡
 	public int							reachedHighest	= 0;
 
-	private TiledLayer					floorMap		= null;
+	private TiledLayer					floorMap		= null;	//地图
 	private HeroSprite					hero			= null;
 	private int						aheadIndex		= 0;
+	/**
+	 * hero前方当前所在的行
+	 */
 	private int						aheadCol		= 0;
+	/**
+	 * hero前方当前所在的列
+	 */
 	private int						aheadRow		= 0;
 
 	public GameMap(HeroSprite hero, Bitmap bmap)
@@ -96,13 +108,21 @@ public class GameMap
 	}
 
 
+	/**
+	 * 完成图元对象的动画效果
+	 * 在该游戏中的动画只有两张图片，然后动画效果就是不断的在两张图片进行切换
+	 * 装换就是如果图片1，则装换为和他相同的另张图片2，如果是2则装换为1
+	 * 1<->2不断切换完成动画
+	 */
 	public void animateMap()
 	{
 		int switchedCell;
+		//遍历整个地图单元
 		for (int i = 0; i < TILE_NUM; i++)
 		{
 			switchedCell = 0;
 			int type = floorArray[curFloorNum][i];
+			//MAP_SHOP1<-->MAP_SHOP2
 			if (type == MAP_SHOP1)
 			{
 				switchedCell = MAP_SHOP2;
@@ -111,6 +131,7 @@ public class GameMap
 			{
 				switchedCell = MAP_SHOP1;
 			}
+			//MAP_STAR1<-->MAP_STAR2
 			else if (type == MAP_STAR1)
 			{
 				switchedCell = MAP_STAR2;
@@ -119,6 +140,7 @@ public class GameMap
 			{
 				switchedCell = MAP_STAR1;
 			}
+			//MAP_WATER1<-->MAP_WATER2
 			else if (type == MAP_WATER1)
 			{
 				switchedCell = MAP_WATER2;
@@ -127,6 +149,7 @@ public class GameMap
 			{
 				switchedCell = MAP_WATER1;
 			}
+			//45-80这些的动画切换
 			else if ((type >= MAP_ANGLE) && (type <= MAP_ORGE31))
 			{
 				switchedCell = type + SWITCH_OFFSET;
@@ -182,7 +205,7 @@ public class GameMap
 	}
 
 	/**
-	 * 看是否能通过，主要是通过检测该单元是否是门，墙等
+	 * 检测hero前方当前物品，主要是通过检测该单元是否是门，墙, 物品等
 	 * @param direction
 	 * @return 物体类型编号（可以对照最下面定义的静态变量确定类型）
 	 */
@@ -256,7 +279,9 @@ public class GameMap
 
 
 	/**
-	 * 设置地图指定位置floorArray[floor][0]的类型为1(即道路)
+	 * 设置地图指定位置（当前hero的正前方的单元位置）为道路（）
+	 * floorArray[floor][aheadIndex]的类型为1(即道路)
+	 * 如捡到某物品，然后将该地图块设置为道路（捡到物品）
 	 */
 	public void remove()
 	{
@@ -287,15 +312,21 @@ public class GameMap
 		floorArray[floor][index] = type;
 	}
 
-
+	/**
+	 * 跳转到指定关卡
+	 * @param floor
+	 */
 	public void jump(int floor)
 	{
+		//小于最高的关卡
 		if (reachedHighest >= floor)
 		{
+			//如果大于当前关卡--往前跳
 			if (floor >= curFloorNum)
-				curUpDown = 0;
+				curUpDown = 0;	//到关卡的起始位置
+			//往回走--往后跳，就调到floor的结束位置
 			else
-				curUpDown = 1;
+				curUpDown = 1;	//到该关结束位置
 			curFloorNum = floor;
 			setMap(curFloorNum);
 		}
@@ -316,6 +347,7 @@ public class GameMap
 			repeated = false;
 			if ((type = floorArray[curFloorNum][i]) >= FightCalc.MIN_ORGE_INDEX)
 			{
+				//如果大于80说明是图元的另一个对象，把它装换到0-80的范围，减去45即可
 				if (type > FightCalc.MAX_ORGE_INDEX)
 					type -= SWITCH_OFFSET;
 				//小于50不是恶魔
@@ -365,7 +397,7 @@ public class GameMap
 
 
 	/**
-	 * 设置地图数组
+	 * 设置指定关卡的地图数组
 	 * @param floor	哪个关卡
 	 * @param data	当前关卡的数据
 	 */
@@ -695,6 +727,8 @@ public class GameMap
 
 	/**
 	 * 具体每个数字所表示的含义,然后上面的关卡就是依据下面的
+	 * 注：在编号大于80（从89-124）的图像都是和45-80的图像一样的
+	 * 是属于同一个对象动作不同，目的是为了实现动画的效果！（他们的差是44，即45所对应的另一个动作编号是45+44=89）
 	 */
 	public static final int MAP_ROAD = 1,
 							MAP_WALL = 2,
