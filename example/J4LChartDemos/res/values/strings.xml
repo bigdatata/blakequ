@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, HandleImageActivity!</string>
+    <string name="app_name">HandleImage</string>
+    <string name="show_chart">显示图表</string>
+</resources>

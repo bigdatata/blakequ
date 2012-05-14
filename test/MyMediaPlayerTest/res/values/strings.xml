@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, TestMp3PlayerActivity!</string>
+    <string name="app_name">MyMediaPlayerTest</string>
+    <string name="music_play_now">正在播放</string>
+    <string name="music_title">music player</string>
+    <string name="playing">播放</string>
+    <string name="pause">暂停</string>
+    <string name="stop">停止</string>
+    <string name="format_not_surrport">不支持当前格式的文件</string>
+</resources>

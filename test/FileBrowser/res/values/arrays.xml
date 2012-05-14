@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="text">
+		<item>txt</item>
+		<item>conf</item>
+		<item>prop</item>
+		<item>rc</item>
+		<item>java</item>
+		<item>xml</item>
+		<item>c</item>
+		<item>c++</item>
+		<item>cpp</item>
+		<item>h</item>
+		<item>htm</item>
+		<item>html</item>
+		<item>js</item>
+		<item>log</item>
+		<item>sh</item>
+		<item>conf</item>
+	</string-array>
+	<string-array name="image">
+		<item>bmp</item>
+		<item>jpg</item>
+		<item>gif</item>
+		<item>png</item>
+		<item>gpeg</item>
+		<item>jpeg</item>
+	</string-array>
+	<string-array name="rar">
+		<item>rar</item>
+	</string-array>
+	<string-array name="application">
+		<item>zip</item>
+		<item>class</item>
+		<item>bin</item>
+		<item>pdf</item>
+		<item>doc</item>
+		<item>exe</item>
+		<item>gtar</item>
+		<item>gz</item>
+		<item>jar</item>
+		<item>js</item>
+		<item>mpc</item>
+		<item>msg</item>
+		<item>pps</item>
+		<item>ppt</item>
+		<item>rtf</item>
+		<item>tar</item>
+		<item>tgz</item>
+		<item>wps</item>
+		<item>z</item>
+	</string-array>
+	<string-array name="audio">
+		<item>mp3</item>
+		<item>wma</item>
+		<item>wmv</item>
+		<item>rmvb</item>
+		<item>wav</item>
+		<item>m3u</item>
+		<item>m4a</item>
+		<item>m4b</item>
+		<item>m4p</item>
+		<item>mp2</item>
+		<item>mpga</item>
+		<item>ogg</item>
+	</string-array>
+	<string-array name="video">
+		<item>3gp</item>
+		<item>avi</item>
+		<item>mov</item>
+		<item>mp4</item>
+		<item>asf</item>
+		<item>mpg4</item>
+		<item>m4u</item>
+		<item>m4v</item>
+		<item>mpe</item>
+		<item>mpeg</item>
+		<item>mpg</item>
+	</string-array>
+	<string-array name="file_operator">
+	    <item>删除</item>
+	    <item>复制</item>
+	    <item>剪切</item>
+	    <item>重命名</item>
+	    <item>收藏</item>
+	    <item>属性</item>
+	    <item>取消</item>
+	</string-array>
+	<string-array name="file_sort">
+	    <item>视频</item>
+	    <item>音乐</item>
+	    <item>图片</item>
+	    <item>应用</item>
+	    <item>程序</item>
+	    <item>文档</item>
+	    <item>压缩</item>
+	    <item>帮助</item>
+	    <item>收藏</item>
+	</string-array>
+	<string-array name="run_process">
+	    <item>结束进程</item>
+	    <item>详细信息</item>
+	    <item>进程属性</item>
+	    <item>取消</item>
+	</string-array>
+	<string-array name="default_process">
+	    <item>卸载</item>
+	    <item>详细信息</item>
+	    <item>属性</item>
+	    <item>取消</item>
+	</string-array>
+</resources>

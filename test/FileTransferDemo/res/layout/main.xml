@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<TextView  
+	android:id="@+id/info"
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:text="@string/hello"
+    />
+<Button 
+	android:id="@+id/upload"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:text="文件上传测试"/>
+<Button 
+	android:id="@+id/selectFile"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:text="选择或添加上传文件"/>
+<Button 
+	android:id="@+id/uploadPic"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:text="拍照上传图片"/>
+<Button 
+	android:id="@+id/uploadVideo"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:text="视频上传"/>
+<Button 
+	android:id="@+id/uploadAudio"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:text="录音上传"/>
+<EditText 
+	android:id="@+id/editText"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:hint="输入下载路径"/>
+<Button 
+	android:id="@+id/download"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:text="文件下载"/>
+<ProgressBar 
+    	android:id="@+id/downloadbar"
+    	android:max="100"
+    	android:progress="0"
+    	android:layout_width="fill_parent"
+    	style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_marginRight="5dp"
+    	android:layout_height="wrap_content"/>
+</LinearLayout>

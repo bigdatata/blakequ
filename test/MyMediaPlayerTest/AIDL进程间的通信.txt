@@ -1,0 +1,4 @@
+http://johnsonxu.iteye.com/blog/1182436
+
+第二十二讲：AIDL和远程Service调用
+http://android.yaohuiji.com/archives/728#comment-1484

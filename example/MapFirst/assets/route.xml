@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<DirectionsResponse> 
+ <status>OK</status> 
+ <route> 
+  <summary>东四路</summary> 
+  <leg> 
+   <step> 
+    <travel_mode>WALKING</travel_mode> 
+    <start_location> 
+     <lat>23.0550900</lat> 
+     <lng>113.3927400</lng> 
+    </start_location> 
+    <end_location> 
+     <lat>23.0537900</lat> 
+     <lng>113.3926200</lng> 
+    </end_location> 
+    <polyline> 
+     <points>i}ukCs_bsTH@~@R\D\DZ?`BI</points> 
+    </polyline> 
+    <duration> 
+     <value>109</value> 
+     <text>2 分钟</text> 
+    </duration> 
+    <html_instructions>从&lt;b&gt;主场东路&lt;/b&gt;向&lt;b&gt;南&lt;/b&gt;方向，前往&lt;b&gt;东四路&lt;/b&gt;</html_instructions> 
+    <distance> 
+     <value>147</value> 
+     <text>0.1 公里</text> 
+    </distance> 
+   </step> 
+   <step> 
+    <travel_mode>WALKING</travel_mode> 
+    <start_location> 
+     <lat>23.0537900</lat> 
+     <lng>113.3926200</lng> 
+    </start_location> 
+    <end_location> 
+     <lat>23.0543700</lat> 
+     <lng>113.3953200</lng> 
+    </end_location> 
+    <polyline> 
+     <points>euukC{~asTASAa@@_@Bg@ZiBFg@D_@A]AOCSCMGSGQKSY_@OGMI_@UKGIGII</points> 
+    </polyline> 
+    <duration> 
+     <value>224</value> 
+     <text>4 分钟</text> 
+    </duration> 
+    <html_instructions>向&lt;b&gt;左&lt;/b&gt;转，进入&lt;b&gt;东四路&lt;/b&gt;</html_instructions> 
+    <distance> 
+     <value>319</value> 
+     <text>0.3 公里</text> 
+    </distance> 
+   </step> 
+   <step> 
+    <travel_mode>WALKING</travel_mode> 
+    <start_location> 
+     <lat>23.0543700</lat> 
+     <lng>113.3953200</lng> 
+    </start_location> 
+    <end_location> 
+     <lat>23.0489800</lat> 
+     <lng>113.3976800</lng> 
+    </end_location> 
+    <polyline> 
+     <points>yxukCwobsTREr@QVKd@Yd@_@TWV_@Ra@N]La@ZgAj@iBPo@Na@LSNWNUVWNOJEpA]r@UlAOZAb@?v@BD@B?LBXFVH\JXJTJZRPRh@j@JNDFFNF\</points> 
+    </polyline> 
+    <duration> 
+     <value>608</value> 
+     <text>10 分钟</text> 
+    </duration> 
+    <html_instructions>向&lt;b&gt;右&lt;/b&gt;转，继续沿&lt;b&gt;东四路&lt;/b&gt;前行</html_instructions> 
+    <distance> 
+     <value>817</value> 
+     <text>0.8 公里</text> 
+    </distance> 
+   </step> 
+   <step> 
+    <travel_mode>WALKING</travel_mode> 
+    <start_location> 
+     <lat>23.0489800</lat> 
+     <lng>113.3976800</lng> 
+    </start_location> 
+    <end_location> 
+     <lat>23.0479000</lat> 
+     <lng>113.3989000</lng> 
+    </end_location> 
+    <polyline> 
+     <points>cwtkCo~bsTvEsF</points> 
+    </polyline> 
+    <duration> 
+     <value>125</value> 
+     <text>2 分钟</text> 
+    </duration> 
+    <html_instructions>向&lt;b&gt;左&lt;/b&gt;转，前往&lt;b&gt;内环东路&lt;/b&gt;</html_instructions> 
+    <distance> 
+     <value>173</value> 
+     <text>0.2 公里</text> 
+    </distance> 
+   </step> 
+   <step> 
+    <travel_mode>WALKING</travel_mode> 
+    <start_location> 
+     <lat>23.0479000</lat> 
+     <lng>113.3989000</lng> 
+    </start_location> 
+    <end_location> 
+     <lat>23.0465500</lat> 
+     <lng>113.3975400</lng> 
+    </end_location> 
+    <polyline> 
+     <points>kptkCcfcsTb@ZZT\VVXz@~@zAjB</points> 
+    </polyline> 
+    <duration> 
+     <value>147</value> 
+     <text>2 分钟</text> 
+    </duration> 
+    <html_instructions>向&lt;b&gt;右&lt;/b&gt;转，进入&lt;b&gt;内环东路&lt;/b&gt;&lt;div style=&quot;font-size:0.9em&quot;&gt;目的地在右侧&lt;/div&gt;</html_instructions> 
+    <distance> 
+     <value>205</value> 
+     <text>0.2 公里</text> 
+    </distance> 
+   </step> 
+   <duration> 
+    <value>1213</value> 
+    <text>20 分钟</text> 
+   </duration> 
+   <distance> 
+    <value>1661</value> 
+    <text>1.7 公里</text> 
+   </distance> 
+   <start_location> 
+    <lat>23.0550900</lat> 
+    <lng>113.3927400</lng> 
+   </start_location> 
+   <end_location> 
+    <lat>23.0465500</lat> 
+    <lng>113.3975400</lng> 
+   </end_location> 
+   <start_address>中国广东省广州市番禺区主场东路</start_address> 
+   <end_address>中国广东省广州市番禺区内环西路</end_address> 
+  </leg> 
+  <copyrights>地图数据 ©2011 Mapabc</copyrights> 
+  <overview_polyline> 
+   <points>i}ukCs_bsThATz@J|BICu@DgAb@qCD_@A]Ec@Ka@Se@Y_@OGm@_@UOIIREjA]jAy@l@w@b@_AfBcG\u@^m@f@g@|Ac@r@UlAO~@A|@DPBhBh@p@^z@~@PVNl@vEsFb@Zx@l@rAxAzAjB</points> 
+  </overview_polyline> 
+  <warning>步行路线正在测试中。 注意 – 此路线可能缺乏部分人行道信息。</warning> 
+  <bounds> 
+   <southwest> 
+    <lat>23.0465500</lat> 
+    <lng>113.3925700</lng> 
+   </southwest> 
+   <northeast> 
+    <lat>23.0550900</lat> 
+    <lng>113.3989000</lng> 
+   </northeast> 
+  </bounds> 
+ </route> 
+</DirectionsResponse> 

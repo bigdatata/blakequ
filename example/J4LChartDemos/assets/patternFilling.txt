@@ -1,0 +1,56 @@
+WIDTH=200
+
+HEIGHT=200
+
+TITLECHART=Server response time@font value='Serif|PLAIN|10'@
+
+TITLE_FONT=Serif|BOLD|14
+
+YLABEL=Seconds
+
+YLABEL_VERTICAL=TRUE
+
+YSCALE_MIN=0
+
+YSCALE_MAX=5
+
+BIG_TICK_INTERVALX=1
+
+BIG_TICK_INTERVALY=1
+
+XAXIS_TICKATBASE=TRUE
+
+XAXIS_LABELS= 00:00| 6:00| 12:00| 18:00| 24:00
+
+LEGEND=FALSE
+
+SERIE_1=serie
+
+SERIE_TYPE_1=CURVE
+
+SERIE_DATA_1=5|2|3|4|4.5
+
+SERIE_STYLE_1=2.0|0x0|NORMAL
+
+SERIE_FILL_1=0x66ffff
+
+SERIE_POINT_1=TRUE
+
+SERIE_NEEDLE_STYLE_1=3.0|0x0|NORMAL
+
+BARCHART_BACK=0xffffff
+
+LEFT_MARGIN=0.18
+
+RIGHT_MARGIN=0
+
+BOTTOM_MARGIN=0.25
+
+LEGEND_MARGIN=0.05
+
+CHART_FILL=0xeeffff
+
+CHART_NOTE1=@position value='0px,90%'@@size value='100%,10%'@ @background value='0x33ccff'@Copyright J4L Examples
+
+CHART_NOTE2=@image value='warning.png'@ @ANCHOR value='1,2' line='1|GRAY|DOTS'@ @position value='15%,15%'@@font value='Proportional|PLAIN|8'@Manual tunning\nperformed at 6:00
+

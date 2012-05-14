@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="notitle">
+		<item name="android:windowNoTitle">true</item> 
+	</style>
+	<style name="textstyle"><!-- 标题栏风格 -->
+        <item name="android:textSize">@dimen/big_font_size</item>
+        <item name="android:textColor">#6d6d6d</item>
+    </style>
+    <style name="big_black_font">
+    	<item name="android:textSize">20sp</item>
+    	<item name="android:textColor">#1A1A1A</item>
+    	<item name="android:gravity">center</item>
+    </style>
+    <style name="main_tab_bottom">
+        <item name="android:textSize">@dimen/bottom_tab_font_size</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center_horizontal</item>  
+        <item name="android:background">@drawable/home_btn_bg</item>
+        <item name="android:paddingTop">@dimen/bottom_tab_padding_up</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@null</item>  
+        <item name="android:singleLine">true</item>
+        <item name="android:drawablePadding">@dimen/bottom_tab_padding_drawable</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+    <style name="detail_btn">
+        <item name="android:textSize">@dimen/bottom_tab_font_size</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:background">@drawable/detail_btn_bg</item>
+        <item name="android:paddingTop">8.0dip</item>
+        <item name="android:paddingBottom">5.0dip</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>  
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+    <style name="margin_layout">
+    	<item name="android:layout_margin">5dip</item>
+    </style>
+    <style name="PopupAnimation" parent="android:Animation"><!-- 继承父样式的值，然后还可以对父样式中的进行修改或添加 -->
+		<item name="android:windowEnterAnimation">@anim/popup_enter</item>
+		<item name="android:windowExitAnimation">@anim/popup_exit</item>
+	</style>
+</resources>

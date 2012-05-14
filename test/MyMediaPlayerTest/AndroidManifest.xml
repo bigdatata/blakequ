@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.hao"
+      android:versionCode="1"
+      android:versionName="1.0">
+    <uses-sdk android:minSdkVersion="3" />
+
+    <application android:icon="@drawable/icon" android:label="@string/app_name">
+        <activity android:name=".PlayerActivity"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".TestMp3PlayerActivity"></activity>
+        <activity android:name=".VideoActivity"></activity>
+        <activity android:name="com.hao.util.FileBrowserActivity" android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+        <activity android:name="com.hao.video.view.OtherVideoActivity"></activity>
+		<service android:name="com.hao.audio.AudioService"></service>
+		<service android:name="com.hao.otheraudio.OtherAudioService"></service>
+		<activity android:name="com.hao.otheraudio.AudioActivity"></activity>
+    </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+</manifest>

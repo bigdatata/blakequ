@@ -1,0 +1,74 @@
+<DirectionsResponse>
+	<status>OK</status>
+	<route>
+		<summary>东四路</summary>
+		<leg>
+			<step>
+				<travel_mode>WALKING</travel_mode>
+				<start_location>
+					<lat>23.0550900</lat>
+					<lng>113.3927400</lng>
+				</start_location>
+				<end_location>
+					<lat>23.0537900</lat>
+					<lng>113.3926200</lng>
+				</end_location>
+				<polyline>
+					<points>i}ukCs_bsTH@~@R\D\DZ?`BI</points>
+				</polyline>
+				<duration>
+					<value>109</value>
+					<text>2 分钟</text>
+				</duration>
+				<html_instructions>
+					从
+					<b>主场东路</b>
+					向
+					<b>南</b>
+					方向，前往
+					<b>东四路</b>
+				</html_instructions>
+				<distance>
+					<value>147</value>
+					<text>0.1 公里</text>
+				</distance>
+			</step>
+			<step>...</step>
+			<step>...</step>
+			<step>...</step>
+			<step>...</step>
+			<duration>
+				<value>1213</value>
+				<text>20 分钟</text>
+			</duration>
+			<distance>
+				<value>1661</value>
+				<text>1.7 公里</text>
+			</distance>
+			<start_location>
+				<lat>23.0550900</lat>
+				<lng>113.3927400</lng>
+			</start_location>
+			<end_location>...</end_location>
+			<start_address>中国广东省广州市番禺区主场东路</start_address>
+			<end_address>中国广东省广州市番禺区内环西路</end_address>
+		</leg>
+		<copyrights>地图数据 ©2011 Mapabc</copyrights>
+		<overview_polyline>
+			<points>
+				i}ukCs_bsThATz@J|BICu@DgAb@qCD_@A]Ec@Ka@Se@Y_@OGm@_@UOIIREjA]jAy@l@w@b@_AfBcG\u@^m@f@g@|Ac@r@UlAO~@A|@DPBhBh@p@^z@~@PVNl@vEsFb@Zx@l@rAxAzAjB
+			</points>
+		</overview_polyline>
+		<warning>步行路线正在测试中。 注意 – 此路线可能缺乏部分人行道信息。</warning>
+		<bounds>
+			<southwest>
+				<lat>23.0465500</lat>
+				<lng>113.3925700</lng>
+			</southwest>
+			<northeast>
+				<lat>23.0550900</lat>
+				<lng>113.3989000</lng>
+			</northeast>
+		</bounds>
+	</route>
+</DirectionsResponse>

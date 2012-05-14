@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:theme="@android:style/Theme.Translucent"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:gravity="center"
+	    android:layout_gravity="center"
+	    android:background="@drawable/pic_backgound"><!-- 设置这个背景很重要关键，边框，圆角都是里面定义 -->
+	    <ImageView
+	    	android:id="@id/pic"
+	    	android:gravity="center"
+	    	android:layout_gravity="center"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"/>
+	    <!--ZoomControls
+	    	android:id="@id/zoom"
+	    	android:layout_below="@id/pic"
+	    	android:layout_alignParentBottom="true"
+	    	android:paddingBottom="5dip"
+	    	android:orientation="horizontal"
+	    	android:gravity="center"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"/>  -->
+</LinearLayout>

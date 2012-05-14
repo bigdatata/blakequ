@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- listitem -->
+	<item type="id" name="listItem"/>
+	<item type="id" name="activityIcon"/>
+	<item type="id" name="activityPic"/>
+	<item type="id" name="activityNumber"/>
+	<item type="id" name="activityComment"/>
+	<item type="id" name="ActivityTime"/>
+	<item type="id" name="activityTitle"/>
+	<item type="id" name="activityContent"/>
+	<item type="id" name="activityScore"/>
+	<!-- mainlist -->
+	<item type="id" name="main_radio"/>
+	<item type="id" name="radio_button0"/>
+	<item type="id" name="radio_button1"/>
+	<item type="id" name="radio_button2"/>
+	<item type="id" name="radio_button3"/>
+	<item type="id" name="moreItem"/>
+	<!-- title_two_button -->
+	<item type="id" name="title_bt_textView"/>
+	<item type="id" name="title_bt_left"/>
+	<item type="id" name="title_bt_right"/>
+	<!-- activity_detail -->
+	<item type="id" name="tab_discuss"/>
+	<item type="id" name="tab_attention"/>
+	<item type="id" name="tab_join"/>
+	<item type="id" name="tab_change"/>
+	<item type="id" name="tab_score"/>
+	<item type="id" name="activity_detail_icon"/>
+	<item type="id" name="activity_detail_creater"/>
+	<item type="id" name="activity_detail_attention"/>
+	<item type="id" name="activity_detail_content"/>
+	<item type="id" name="activity_detail_type"/>
+	<item type="id" name="activity_detail_time"/>
+	<item type="id" name="activity_detail_location"/>
+	<item type="id" name="activity_detail_score"/>
+	<item type="id" name="activity_detail_comment_num"/>
+	<item type="id" name="activity_detail_look_num"/>
+	<item type="id" name="activity_detail_sponser"/>
+	<item type="id" name="gallery"/>
+	<!-- picture -->
+	<item type="id" name="pic"/>
+	<item type="id" name="zoom"/>
+</resources>
+<!-- 这里面放的都是控件的id -->

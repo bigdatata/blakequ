@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical" android:layout_width="fill_parent"
+  android:gravity="center" android:layout_height="fill_parent"
+  android:layout_gravity="center" android:background="#b5555555" >
+    <LinearLayout 
+		android:theme="@android:style/Theme.Translucent"
+	    android:layout_width="fill_parent"
+	    android:layout_height="200dip"
+	    android:padding="15dip"
+	    android:orientation="vertical"
+	    android:gravity="center"
+	    android:layout_gravity="center"
+	    android:layout_marginBottom="5dip"
+	    android:layout_marginLeft="15dip"
+	    android:layout_marginRight="15dip"
+	    android:background="@drawable/detail_file_popup">
+	    <TextView 
+	        android:id="@+id/pop_title"
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content"
+	    	android:layout_marginBottom="5dip"
+	    	android:textSize="17dip"
+	    	android:gravity="center_horizontal"
+			android:textColor="@color/black"
+		/>
+	    <TextView 
+	    	android:id="@+id/pop_path"
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content"
+	    	android:layout_marginBottom="4dip"
+	    	android:textSize="16dip"
+	    	android:layout_marginLeft="10dip"
+			android:layout_marginRight="10dip"
+			android:textColor="@color/black_gray"
+	    	android:textAppearance="?android:attr/textAppearanceMedium"
+	    />
+	    <TextView 
+	    	android:id="@+id/pop_size"
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content"
+	    	android:layout_marginBottom="4dip"
+	    	android:textSize="16dip"
+	    	android:layout_marginLeft="10dip"
+			android:layout_marginRight="10dip"
+			android:textColor="@color/black_gray"
+	    	android:textAppearance="?android:attr/textAppearanceMedium"
+	    />
+	    <TextView 
+	    	android:id="@+id/pop_date"
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content"
+	    	android:layout_marginBottom="4dip"
+	    	android:textSize="16dip"
+	    	android:layout_marginLeft="10dip"
+			android:layout_marginRight="10dip"
+			android:textColor="@color/black_gray"
+	    	android:textAppearance="?android:attr/textAppearanceMedium"
+	    />
+	    <TextView 
+	    	android:id="@+id/pop_read_write"
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content"
+	    	android:layout_marginBottom="4dip"
+	    	android:textSize="16dip"
+	    	android:layout_marginLeft="10dip"
+			android:layout_marginRight="10dip"
+			android:textColor="@color/black_gray"
+	    	android:textAppearance="?android:attr/textAppearanceMedium"
+	    />
+	 </LinearLayout>
+</LinearLayout>

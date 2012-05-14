@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="light_red">#EEE9BF</color>
+    <color name="light_gray">#6d6d6d</color>
+    <color name="yellow">#FFB90F</color>
+    <color name="red">#FF4500</color>
+    <color name="white">#FFFFFF</color>
+    <color name="brown">#CD9B1D</color>
+    <color name="purple">#CD1076</color> <!-- 紫色 -->
+    <color name="light_green">#90EE90</color>
+    <color name="gray_black">#8B8878</color>
+    <color name="light_blue">#7B68EE</color>
+    <color name="deep_green">#458B00</color>
+    <color name="black">#000000</color>
+    <color name="blue">#0000CD</color>
+    <color name="light_yellow">#EEE685</color>
+    <color name="light_white">#EEE9BF</color>
+    <color name="very_light">#FAF0E6</color>
+    <color name="transparent">#00000000</color>
+    <color name="other_transparent">#FFFFFF</color>
+</resources>
+<!-- 里面都是常用颜色，#00000000 #FFFFFF都是透明-->

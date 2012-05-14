@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<step>
+	<travel_mode>WALKING</travel_mode>
+	<duration>
+		<value>125</value>
+		<text>2 分钟</text>
+	</duration>
+	<html_instructions>向左转，前往内环东路</html_instructions>
+	<distance>
+		<value>173</value>
+		<text>0.2 公里</text>
+	</distance>
+</step>

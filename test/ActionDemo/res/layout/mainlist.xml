@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/myActivityLayout"
+	android:orientation="horizontal"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:background="@drawable/list_light_red_background">
+	<ListView
+		android:id="@id/android:list"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:scrollbars="vertical"
+		android:scrollbarStyle="outsideOverlay"
+		android:divider="@drawable/moreitem_bg_line"
+		android:cacheColorHint="@color/transparent">
+	</ListView>
+</LinearLayout>
+	

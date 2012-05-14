@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#8B864E">
+    <ScrollView 
+		 	android:id="@+id/my_scrollview" 
+		 	android:scrollbars="vertical" 
+		 	android:layout_width="fill_parent" 
+		 	android:layout_height="fill_parent">
+		<LinearLayout 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="2dip"
+	        android:orientation="vertical">
+		    <TextView android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:text="@string/system_store"
+				android:textSize="17dp" android:textColor="@color/black"
+				android:layout_marginTop="3dip" android:background="@drawable/neighborhood_category_bar" />
+		    <TextView android:layout_width="fill_parent" android:id="@+id/system_store_total"
+		        android:layout_height="wrap_content" android:text="@string/system_store"
+		        android:layout_marginLeft="3dip"
+				android:textSize="17dp" android:textColor="@color/black"
+				android:layout_marginTop="3dip"/>
+		    <TextView android:layout_width="fill_parent" android:id="@+id/system_store_text"
+		        android:layout_height="wrap_content" android:text="@string/system_store"
+		        android:layout_marginLeft="3dip"
+				android:textSize="17dp" android:textColor="@color/black"
+				android:layout_marginTop="3dip"/>
+	    	<TextView android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:text="@string/system_phone"
+				android:textSize="17dp" android:textColor="@color/black"
+				android:layout_marginTop="3dip" android:background="@drawable/neighborhood_category_bar" />
+		    <TextView android:layout_width="fill_parent" android:id="@+id/system_phone_text"
+		        android:layout_height="wrap_content" android:text="@string/system_store"
+		        android:layout_marginLeft="3dip"
+				android:textSize="17dp" android:textColor="@color/black"
+				android:layout_marginTop="3dip"/>
+		    <TextView android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:text="@string/system_state"
+				android:textSize="17dp" android:textColor="@color/black"
+				android:layout_marginTop="3dip" android:background="@drawable/neighborhood_category_bar" />
+		    <TextView android:layout_width="fill_parent" android:id="@+id/system_state_text"
+		        android:layout_height="wrap_content" android:text="@string/system_store"
+		        android:layout_marginLeft="3dip"
+				android:textSize="17dp" android:textColor="@color/black"
+				android:layout_marginTop="3dip"/>
+	    </LinearLayout>
+    </ScrollView>
+</LinearLayout>

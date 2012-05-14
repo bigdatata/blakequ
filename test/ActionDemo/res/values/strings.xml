@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, ActionMain!</string>
+    <string name="app_name">ActionDemo</string>
+    <string name="my_join">与我相关</string>
+    <string name="recommend">推荐活动</string>
+    <string name="friend_join">朋友相关</string>
+    <string name="my_create">我创建的</string>
+    <string name="nextpage">更多</string>
+    <string name="createActivity">创建活动</string>
+    <string name="back">返回</string>
+    <string name="activity_home">主页</string>
+    <string name="attention">关注</string>
+    <string name="activity_type">类别</string>
+    <string name="activity_time">时间</string>
+    <string name="activity_location">地点</string>
+    <string name="activity_discuss">活动讨论</string>
+    <string name="activity_attention">关注活动</string>
+    <string name="activity_join">加入活动</string>
+    <string name="activity_score">活动评分</string>
+    <string name="activity_change">修改活动</string>
+    <string name="attention_me">关注我</string>
+    <string name="activity_content">活动内容</string>
+    <string name="title_content">活动内容:</string>
+    <string name="title_type">活动类型:</string>
+    <string name="title_time">活动时间:</string>
+    <string name="title_place">活动地点:</string>
+    <string name="comment">评论</string>
+    <string name="scan">浏览</string>
+</resources>

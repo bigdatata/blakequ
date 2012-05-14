@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+		android:layout_height="wrap_content" android:background="@drawable/media_popup_background"
+		android:layout_width="fill_parent" android:layout_gravity="bottom"
+		android:orientation="vertical">
+		<LinearLayout android:orientation="horizontal"
+			android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="4dip"
+			android:layout_marginRight="4dip"
+			android:layout_marginBottom="10dip" android:layout_gravity="center_horizontal">
+			<TextView android:id="@+id/begin_time" android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:text="00:00"/>
+			<SeekBar android:paddingRight="3dip" android:layout_gravity="center_vertical"
+				android:paddingLeft="3dip" android:layout_weight="1.0" 
+				android:layout_height="wrap_content" android:layout_width="wrap_content"
+				android:id="@+id/skbProgress2" android:max="100"></SeekBar>
+			<TextView android:id="@+id/end_time" android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:text="00:00"/>
+		</LinearLayout>
+		<LinearLayout android:orientation="horizontal"
+			android:layout_gravity="center_horizontal" android:layout_marginTop="4.0dip" android:layout_marginBottom="8dip"
+			android:layout_height="wrap_content" android:layout_width="wrap_content">
+			<ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:id="@+id/open_file" android:background="@drawable/open_file"/>
+			<ImageButton android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginRight="5dip" android:layout_marginLeft="5dip"
+				android:id="@+id/zoom" android:background="@drawable/zoom_icon"/>
+			<ImageButton android:layout_height="wrap_content" android:id="@+id/btpre"
+				android:background="@drawable/pre_icon" android:layout_width="wrap_content"></ImageButton>
+			<ImageButton android:layout_height="wrap_content" android:id="@+id/btpause"
+				android:layout_marginRight="5dip" android:layout_marginLeft="5dip"
+				android:background="@drawable/player_play_light" android:layout_width="wrap_content"></ImageButton>
+			<ImageButton android:layout_height="wrap_content" android:id="@+id/btpost"
+				android:background="@drawable/next_icon" android:layout_width="wrap_content"></ImageButton>
+			<ImageButton android:layout_height="wrap_content" android:layout_marginRight="5dip" android:layout_marginLeft="5dip"
+				android:layout_width="wrap_content" android:background="@drawable/player_stop_light" android:id="@+id/btstop"></ImageButton>
+			<ImageButton android:id="@+id/sound" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:background="@drawable/sound_icon"/>
+		</LinearLayout>
+	</LinearLayout>

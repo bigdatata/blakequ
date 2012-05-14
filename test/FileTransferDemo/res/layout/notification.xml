@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:padding="3dp">
+	<TextView 
+		android:id="@+id/title"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:textColor="#0D0D0D"
+		android:text="下载进度"
+	/>
+	<ProgressBar 
+    	android:id="@+id/bar"
+    	android:max="100"
+    	android:progress="0"
+    	android:layout_width="fill_parent"
+    	style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_marginRight="5dp"
+    	android:layout_height="wrap_content"/>
+</LinearLayout>

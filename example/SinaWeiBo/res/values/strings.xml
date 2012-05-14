@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hello">Hello World!</string>
+	<string name="app_name">我的新浪微博</string>
+	<string name="buttonname">ok</string>
+	<string name="main_at">\@我</string>
+	<string name="main_comment">评论</string>
+	<string name="main_message">私信k</string>
+	
+	<string name="main_home">首页</string>
+	<string name="main_news">信息</string>
+	<string name="main_my_info">我的资料</string>
+	<string name="menu_search">搜索</string>
+    <string name="more">更多</string>
+    <string name="loadinfo">加载中....</string>
+	
+	<string name="main_reload">刷新</string>
+	<string name="comment">评论</string>
+	<string name="forward">转发</string>
+	<string name="itemmenu_bookmark">收藏</string>
+
+	<color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+</resources>

@@ -1,0 +1,27 @@
+TITLECHART=Click on the pie
+LEGEND=TRUE
+SERIE_1=Pie
+SERIE_TYPE_1=PIE
+PIE_STYLE_1=RED
+PIE_STYLE_2=BLUE
+PIE_STYLE_3=GREEN
+PIE_NAME_1=Products
+PIE_NAME_2=Services
+PIE_NAME_3=Other
+PIE_LABEL_FORMAT=#PERCENTAGE#
+SERIE_DATA_1=94|48|28
+SERIE_FONT_1=ARIAL|BOLD|12
+SERIE_LABELS_1=Products|Services|Other
+SERIE_TIPS_1=Click to see PRODUCT \nsales by continent|Click to see SERVICES \nsales by continent|Click to see OTHER \nsales by continent
+CHART_SHOW_TIPS=true
+SERIE_TOGETHER_1=true|false|true
+CHART_BORDER=0.2|BLACK|LINE
+CHART_FILL=LIGHTGRAY
+LEGEND_BORDER=0.2|BLACK|LINE
+LEGEND_VERTICAL=false
+LEGEND_POSITION=TOP
+LEGEND_FILL=WHITE
+PIECHART_3D=true
+BACK_IMAGE=back19.png
+CHART_LINKS_TARGET=data
+SERIE_LINKS_1=getChart.jsp?chart=subpie1.txt|getChart.jsp?chart=subpie2.txt|getChart.jsp?chart=subpie3.txt
