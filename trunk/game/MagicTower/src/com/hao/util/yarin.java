@@ -34,10 +34,12 @@ public class yarin
 	/* 屏幕的宽高,这个实际上应该根据情况实际获取 */
 	public static final int	SCREENW			= 320;
 	public static final int	SCREENH			= 480;
+	/* 这个应该是地图的高宽*/
 	public static final int	BORDERW			= 320;
 	public static final int	BORDERH			= 352;
+	/* 这是地图的初始坐标位置（x,y）*/
 	public static final int	BORDERX			= (yarin.SCREENW - BORDERW) / 2;
-	public static final int	BORDERY			= (yarin.SCREENH - BORDERH) / 2;
+	public static final int	BORDERY			= (yarin.SCREENH - BORDERH) / 2; //它在左上角位置，地图开始绘制的地方
 	public static final int	MessageBoxH		= 70;
 
 	/* 文字的尺寸 */
