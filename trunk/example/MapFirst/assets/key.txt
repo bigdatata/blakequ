@@ -1,0 +1,14 @@
+0_-6yaFWEXB_FUZwu-pSoCN4EqZqJBZqj_7ZtVw
+
+
+F3:66:EF:A0:49:F9:1D:CA:9F:57:E0:62:52:07:85:8B
+
+
+ <com.google.android.maps.MapView
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:apiKey="0_-6yaFWEXB_FUZwu-pSoCN4EqZqJBZqj_7ZtVw"
+                 />
+                 
+                 
+http://code.google.com/intl/zh-CN/android/maps-api-signup.html

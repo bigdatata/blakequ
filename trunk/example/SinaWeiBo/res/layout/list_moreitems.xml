@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout android:gravity="center_horizontal"
+ android:orientation="vertical" 
+
+ android:layout_width="fill_parent" 
+ android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  		<TextView android:id="@+id/textView"
+  		 android:gravity="center" 
+  		android:text="更多" 
+  		android:textColor="@color/black" 
+  		android:textSize="20dip" 
+  		android:textStyle="bold"
+		 android:layout_width="fill_parent" 
+		 android:layout_height="wrap_content" 
+		  android:background="@drawable/list_item_bg" 
+		   />
+</LinearLayout>

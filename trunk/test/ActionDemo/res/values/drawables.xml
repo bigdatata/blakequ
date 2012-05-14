@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <item type="drawable" name="ltgray">#fff4f4f4</item>
+    <item type="drawable" name="ltyellow">#fffff4db</item>
+    <item type="drawable" name="black">#ff000000</item>
+    <item type="drawable" name="transparent">#00000000</item>
+    <item type="drawable" name="widget_edit_block_bg_normal">@android:color/transparent</item>
+    <item type="drawable" name="transparent_background">#99000000</item>
+    <item type="drawable" name="list_background">#fff4f4f4</item>
+    <item type="drawable" name="list_light_red_background">@color/light_red</item>
+</resources>
+<!--
+ 相当于只有一种颜色的图片 ,它和drawable目录是同一个层次的，只是在这里面大多是设置一种颜色,
+transparent透明.如果是图片的话直接放在drawable目录下就可以了
+-->

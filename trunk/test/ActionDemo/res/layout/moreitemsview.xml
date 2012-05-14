@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout 
+	android:orientation="horizontal" 
+	android:tag="itemview" 
+	android:background="@drawable/list_item_bg" 
+	android:layout_width="fill_parent" 
+	android:layout_height="35dip"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+        <TextView
+        	android:id="@id/moreItem" 
+        	android:layout_width="fill_parent" 
+        	android:layout_height="wrap_content" 
+        	android:layout_marginTop="10.0dip"
+        	android:text="@string/nextpage"
+        	style="@style/big_black_font"/>
+  </LinearLayout> 

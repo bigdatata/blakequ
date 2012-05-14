@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.hao">
+	<class name="CollectionMapping" table="t_collection_mapping">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="name"/>
+		<set name="setValues" table="t_set_values">
+			<key column="set_id"/>
+			<element type="string" column="set_value" not-null="true"/> <!-- not-null="true这样键值对是复合的 -->
+		</set>
+		<list name="listValues" table="t_list_values">
+			<key column="list_id"/>
+			<list-index column="list_index"/>
+			<element type="string" column="list_value"/>
+		</list>
+		<array name="arrayValues" table="t_array_values">
+			<key column="array_id"/>
+			<list-index column="array_index"/>
+			<element type="string" column="array_value"/>
+		</array>
+		<map name="mapValues" table="t_map_values">
+			<key column="map_id"/>
+			<map-key type="int" column="map_key"/>
+			<element type="string" column="map_value"/>
+		</map>
+	</class>
+</hibernate-mapping>

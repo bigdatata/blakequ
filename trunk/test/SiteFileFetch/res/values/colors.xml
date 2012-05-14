@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="pink">#EE6A50</color>
+	<color name="red">#FF4040</color>
+	<color name="red_light">#EEE9BF</color>
+	<color name="black">#000000</color>
+	<color name="black_gray">#8B8878</color>
+	<color name="yellow">#FFFF00</color>
+	<color name="yellow_light">#FFEC8B</color>
+	<color name="green">#00FF00</color>
+	<color name="green_light">#CAFF70</color>
+	<color name="white">#FFFFFF</color>
+	<color name="purple">#CD1076</color>
+	<color name="blue">#0000CD</color>
+	<color name="blue_light">#7B68EE</color>
+	<color name="brown">#B8860B</color>
+	<color name="transparent">#00000000</color><!-- 透明 -->
+</resources>
+
+<!--数组资源文件都放在里面，命名规范见school.txt  -->

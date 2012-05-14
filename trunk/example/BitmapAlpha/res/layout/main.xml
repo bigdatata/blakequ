@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.study.FixedGridLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res/com.study"
+	android:id="@+id/grid"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	app:cellWidth="120dp"
+	app:cellHeight="100dp">
+	<ImageView
+		android:layout_width="wrap_content"
+		android:padding="3px"
+		android:clickable="true"
+		android:layout_height="wrap_content"
+		android:src="@drawable/gimp"
+		android:scaleType="fitCenter" />
+	<ImageView
+		android:layout_width="wrap_content"
+		android:padding="3px"
+		android:clickable="true"
+		android:layout_height="wrap_content"
+		android:src="@drawable/looknfeel" />
+	<ImageView
+		android:layout_width="wrap_content"
+		android:padding="3px"
+		android:clickable="true"
+		android:layout_height="wrap_content"
+		android:src="@drawable/penguin" />
+	<ImageView
+		android:layout_width="wrap_content"
+		android:padding="3px"
+		android:clickable="true"
+		android:layout_height="wrap_content"
+		android:src="@drawable/pinguimroot3" />
+	<ImageView
+		android:layout_width="wrap_content"
+		android:padding="3px"
+		android:clickable="true"
+		android:layout_height="wrap_content"
+		android:src="@drawable/pinguimuser" />
+	<ImageView
+		android:layout_width="wrap_content"
+		android:padding="3px"
+		android:clickable="true"
+		android:layout_height="wrap_content"
+		android:src="@drawable/pinguimuser2" />
+</com.study.FixedGridLayout>

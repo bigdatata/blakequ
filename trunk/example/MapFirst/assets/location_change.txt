@@ -1,0 +1,161 @@
+Android Google地图上overlay显示位置，路线
+
+[日期：2011-10-12]	来源：Linux社区  作者：xiaobaismiley
+做了下手机google地图上的定位和图层标签的显示，先学学基础，把想要显示的标签搞定。
+好，首先是定位，这次用到的定位只是简单的传入经纬度，然后显示标签，画上图层就达到目的啦，Geoconding什么的根据地址名字来确定的话这次先不用。
+
+定位用到的是LocationManager，根据它的成员方法requestLocationUpdates如果我们的位置在一定范围内改变了，或者经过一定时间了，那就重新标记了。
+   locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new TestLocationListener(myloctionController,mapOverlays, firstOverlay));
+
+这个函数中的最后一个参数要求是一个LocationListener对象，我就新建了一个类，实现了LocationListener
+
+package myOverlay;
+/*
+ * 这个类用来定位mylocation，有一个位置监听器的接口，一旦位置发生改变之后就让图标也变化
+ * 
+ * 
+ */
+import java.util.ArrayList;
+import java.util.List;
+
+import com.google.Android.maps.GeoPoint;
+import com.google.Android.maps.MapController;
+import com.google.Android.maps.Overlay;
+import com.google.Android.maps.OverlayItem;
+
+import Android.location.Location;
+import Android.location.LocationListener;
+import Android.os.Bundle;
+
+public class TestLocationListener implements LocationListener{
+
+ private List<Overlay> mapOverlays=null;
+ private MylocationOverlay firstOverlay=null;
+ private MapController myloctionController=null;//用于定位移动的动画效果
+ 
+ public TestLocationListener(MapController myloctionController2, List<Overlay> mapOverlays,
+   MylocationOverlay firstOverlay) {
+  super();
+  this.mapOverlays = mapOverlays;
+  this.firstOverlay = firstOverlay;
+  this.myloctionController=myloctionController2;
+ }
+
+ //位置发生变化的时候就让定位自己的图标也发生相应的变化
+ @Override
+ public void onLocationChanged(Location location) {
+  double lon=0,lat=0;
+  lon=location.getLongitude();
+  lat=location.getLatitude();
+  System.out.println("现在的设置的位置经度为：  "+location.getLongitude());
+  System.out.println("现在的设置的位置纬度为：  "+location.getLatitude());
+  
+        //创建一个GeoPoint对象，通过经纬度，指定地图上的一个点
+  //GeoPoint point = new GeoPoint(19240000,-99120000);
+        GeoPoint point = new GeoPoint((int) (lat*1000000),(int) (lon*1000000));
+        System.out.println(point);
+        //创建一个OverLayItem对象，一个对象代表一个标记
+        OverlayItem overlayitem = new OverlayItem(point, "Hola, Mundo!", "I'm in Mexico City!");
+        //将创建好的OverLayItem对象，添加到firstOverlay对象当中
+        firstOverlay.addOverlay(overlayitem);
+        //将firstOverlay对象，添加到mapOverlays当中
+        mapOverlays.add(firstOverlay);
+      //以动画的形式以一定的速度移动到某个点
+        myloctionController.animateTo(point);
+        myloctionController.setZoom(10);//设置放大的级别
+        myloctionController.setCenter(point);//估计是中间设置吧
+        System.out.println("成功将用图标显示我现在的位置");
+ }
+
+ @Override
+ public void onProviderDisabled(String provider) {
+  // TODO Auto-generated method stub
+  
+ }
+
+ @Override
+ public void onProviderEnabled(String provider) {
+  // TODO Auto-generated method stub
+  
+ }
+
+ @Override
+ public void onStatusChanged(String provider, int status, Bundle extras) {
+  // TODO Auto-generated method stub
+  
+ }
+
+}
+
+现在就用到一个函数，只要覆盖它就行。因为一些参数设置都是默认的，所以只要位置改变了就会调用onLocationChanged，来绘制地图上的图层，也就是我们自己的位置的这个图层。这个类没什么好讲的，重点也不在这里，讲讲图层的实现。
+
+首先获得当前位置的左边点，函数的参数中自动传入了，很轻松拿到；
+
+接着生成标记对象，这里一个overlayitem就是一个标记咯，加上些提示信息，定位中总共也就一个标记；
+
+然后把标记添加到firstOverlay这个图层中；
+
+再要做的就是把图层放在手机原来的图层里咯，mapOverlays就是在主窗口中获得了手机原来的图层，传参到这里。只要添加进去就搞定了。
+
+要是要弄的稍微动感点就加个myloctionController咯。定位就OK了
+
+对了，还有firstOverlay要说下，这是个MylocationOverla对象，继承ItemizedOverlay<OverlayItem>，是google map提供的api中查到的，是google map上面画图层需要用到的。还是老办法，继承了这个类那就覆盖里面的一些方法，其中要注意的就是因为其中有些参数是传进来的，所以在构造函数中要稍微处理下。（构造函数神马的还是用系统自动生成的比较好，免得弄错，上次就是因为调用super方法弄错了，找了半天才发现。。自己java基础真得检讨了。。）这个类中具体继承的类自己也可以查查看，像onTap（）这个函数现在用到的就是点击标签的时候弹出窗口来显示一些信息咯。简单用法是这样，当然更复杂的以后用到了再说吧。
+
+那么定位就OK了。
+
+ 
+
+接下来说路线的显示。。方法倒是一样，一个是显示一个标签，一个是显示N个标签。。。
+
+因为显示的标签不少，我怕主界面会卡，我就放到了另外一个线程中了，先看看
+
+class ShowRouteThread implements Runnable {
+  @Override
+  public void run() {
+   System.out.println("进入了显示路径函数，开始画图吧");    
+   stopTag=routeData.getStopTag();
+   stopTitle=routeData.getStopTitle();
+   stopLat=routeData.getStopLat();
+   stopLon=routeData.getStopLon();
+   int lat,lon;   
+   for (int i = 0; i < stopTag.size(); i++) {
+    lat=(int)(Double.parseDouble(stopLat.get(i))*1000000);
+    lon=(int)(Double.parseDouble(stopLon.get(i))*1000000);
+    GeoPoint point=new GeoPoint(lat,lon);
+    //一个overitem就是一个点，一个对象
+    OverlayItem overlayitem = new OverlayItem(point, stopTag.get(i), stopTitle.get(i));
+    //RouteOverlay间接继承ItemizedOverlay<OverlayItem>，表示一个图层，在这个图层上面可以有很多的图标
+    RouteOverlay.addOverlay(overlayitem);         
+   } 
+   //mapOverlays在前面已经和手机图层联系起来了，将一个个图层添加进去就能显示在手机上
+   mapOverlays.add(RouteOverlay);
+   GeoPoint lastpPoint=new GeoPoint( (int)(Double.parseDouble(stopLat.get(stopTag.size()-1))*1000000), (int)(Double.parseDouble(stopLon.get(stopTag.size()-1))*1000000) );
+   //以动画的形式以一定的速度移动到某个点
+         myloctionController.animateTo(lastpPoint);
+         //myloctionController.setZoom(10);//设置放大的级别
+         myloctionController.setCenter(lastpPoint);//估计是中间设置吧
+  }
+ }
+
+ 
+
+首先是把原来解析到的数据都拿来吧
+
+stopTag=routeData.getStopTag();
+   stopTitle=routeData.getStopTitle();
+   stopLat=routeData.getStopLat();
+   stopLon=routeData.getStopLon();
+
+之前设计的xml的数据存放方法还是不错的，这样拿来就简单多了。这次是直接显示路线，就不用等改变了经纬度再显示位置啦，当然就不用Locationmanager了，直接根据四个arraylist里面的数据来确定位置，生成标签对象，一个个添加到图层里面，然后等全部都添加完以后再把这个图层放在手机图层里面，和上面的差不多。
+
+这样子的话我们这个程序里面现在有两个图层，一个是定位我们自己位置的firstoverlay，然后就是现在这个RouteOverlay，当然现在这个图层里面标签多了点而已。那么这两个就都搞定了。
+
+哦，对了，最后还得说下权限问题，上次也就是因为这个卡了好久。
+
+要用google map的话除了apikey以外（这个就自己去申请吧），权限也是要的，就是这个<uses-library Android:name="com.google.android.maps" />
+
+然后就是要精确点的定位的话就要用 <uses-permission Android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+当然咯，还有一个就是因为要联网嘛，所以要 <uses-permission Android:name="android.permission.INTERNET" />
+
+好，这样就木有问题了！

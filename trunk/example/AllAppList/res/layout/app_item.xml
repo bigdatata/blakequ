@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+android:layout_width="fill_parent" 
+android:layout_height="wrap_content" 
+> 
+<RelativeLayout android:id="@+id/alllayout" android:layout_width="wrap_content"  android:layout_height="wrap_content">
+     <RelativeLayout android:id="@+id/imglayout" android:layout_width="160dp"  android:layout_height="160dp" android:background="@drawable/mer_border">
+                <ImageView android:id="@+id/imgdetail" android:layout_width="145dp"  android:layout_height="145dp" android:layout_margin="8dp" />
+                <TextView android:id="@+id/price" android:layout_width="180dp"  android:layout_height="wrap_content" android:text="12345" android:layout_alignParentBottom="true" android:background="#C02000" android:textColor="#FFFFFF"/>
+                <TextView android:id="@+id/look" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="去看看" android:layout_alignParentBottom="true" android:layout_alignParentRight="true" android:background="#C02000" android:textColor="#FFFFFF"/>
+      </RelativeLayout>
+      <TextView android:id="@+id/tuaninfo" android:layout_width="fill_parent" 
+      android:layout_height="wrap_content" android:textSize="16dp" 
+      android:maxLines="2" android:layout_below="@id/imglayout" 
+       android:ellipsize="end" android:text="dddddddddd"/>"
+</RelativeLayout>
+</RelativeLayout> 

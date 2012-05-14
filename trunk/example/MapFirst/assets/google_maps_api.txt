@@ -1,0 +1,3 @@
+http://code.google.com/intl/zh-CN/apis/maps/index.html
+1.Google Directions API****
+2.Google Places API（开发人员预览）

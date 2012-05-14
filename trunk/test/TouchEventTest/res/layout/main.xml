@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hao.LayoutView1 xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<com.hao.LayoutView2
+		android:orientation="vertical" android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:gravity="center">
+		<com.hao.MyTextView
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:id="@+id/tv" android:text="AB" android:textSize="40sp"
+			android:textStyle="bold" android:background="#FFFFFF"
+			android:textColor="#0000FF" />
+	</com.hao.LayoutView2>
+</com.hao.LayoutView1> 

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.hao.Student" table="hql_student">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="name"/>
+		<property name="createTime"/>
+		<many-to-one name="classes" column="classesid"/>
+		<!--设定过滤器的条件为id小于myid，myid需要设置，其中 &it是xml中小于符号的转移-->
+		<!-- 
+		下面是几个在XML文档中预定义好的实体：
+		&1t; <(小于号)
+		> >(大于号)
+		& &(和)
+		&apos; '(单引号)
+		" "(双引号)
+		实体必须以符号"&"开头，以符号";"结尾。
+		注意：只有"<"字符和"&"字符对于XML来说是严格禁止使用的。剩下的都是合法的，为了减少出错，使用实体是一个好习惯。
+		 -->
+		<filter name="testFilter" condition="id &lt; :myid"></filter>
+	</class>
+	
+	<query name="queryStudent">
+		<![CDATA[
+			select s from Student s where s.id <?
+		]]>
+	</query>	
+	
+	<!-- 不要忘了，在class里面要声明过滤器 -->
+	<!--声明过滤器，并设定一个形参myid，类型为initeger-->
+	<filter-def name="testFilter">
+		<filter-param type="integer" name="myid"/>
+	</filter-def>
+</hibernate-mapping>

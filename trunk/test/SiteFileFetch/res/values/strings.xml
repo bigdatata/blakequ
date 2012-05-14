@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, SiteFileFetchActivity!</string>
+    <string name="app_name">SiteFileFetch</string>
+    <string name="download_stop">暂停下载</string>
+    <string name="download_conti">继续下载</string>
+    <string name="upload_stop">暂停上传</string>
+    <string name="upload_conti">继续上传</string>
+    <string name="download_over">下载完成！</string>
+    <string name="upload_over">上传完成！</string>
+</resources>

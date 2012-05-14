@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.hao">
+	<class name="Employee" table="cm_employee">
+		<id name="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="name"/>
+		<component name="employeeContact">
+			<property name="email"/>
+			<property name="address"/>
+			<property name="zipCode"/>
+			<property name="contactTel"/>
+		</component>
+	</class>
+</hibernate-mapping>

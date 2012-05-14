@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:my="http://schemas.android.com/apk/res/com.hao"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+	<TextView  
+	    android:layout_width="fill_parent" 
+	    android:layout_height="wrap_content" 
+	    android:text="my first radioButton"
+    />
+    <com.hao.layout.MyRadioGroup
+    	android:id="@+id/group"
+    	android:orientation="vertical"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content">
+    	<com.hao.layout.MyRadioButton
+	    	android:id="@+id/myRadio"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:text="false"
+	    	my:values="false"
+    	/>
+    	<com.hao.layout.MyRadioButton
+	    	android:id="@+id/myRadio1"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:text="false"
+	    	my:values="false"
+    	/>
+    	<com.hao.layout.MyRadioButton
+	    	android:id="@+id/myRadio2"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:text="false"
+	    	my:values="false"
+    	/>
+    </com.hao.layout.MyRadioGroup>
+</LinearLayout>

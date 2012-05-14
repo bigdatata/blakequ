@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="GB18030" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+	<form-beans>
+		<form-bean name="loginForm" type="com.hao.LoginActionForm"></form-bean>
+	</form-beans>
+	
+	<global-forwards>
+		<forward name="login" path="/login.jsp" redirect="true"></forward>
+	</global-forwards>
+	
+	<action-mappings>
+		<action path="/login"
+				name="loginForm"
+				scope="request"
+				type="com.hao.LoginAction"
+		>
+			<forward name="success" path="/login_success.jsp"></forward>
+			<forward name="error" path="/login_error.jsp"></forward>
+		</action>
+		
+		<action path="/must_login"
+				type="com.hao.MustLoginAction"
+		>
+		<!-- 这是局部的login，上面是全局的，当转向到login的时候，优先局部然后全局
+			<forward name="login" path="/login.jsp"	redirect="true"></forward>
+		-->
+		<!-- 
+			开始must_login.jsp直接放在WebRoot目录，此时是直接可以访问的（不通过Action）
+			此时我们把它放在WEB-INF目录下(此目录是不能直接访问)，此时就不能再浏览器直接访问了
+			就必须通过Action来访问
+		 -->
+			<forward name="success" path="/WEB-INF/jsp/must_login.jsp"></forward>
+		</action>
+		
+		<!-- 动态配置页面 ,这里演示的是静态-->
+		<action path="/dyna_page"
+				type="com.hao.DynaActionForwardTestAction"		
+		>
+			<forward name="page1" path="/page1.jsp"></forward>
+			<forward name="page2" path="/page2.jsp"></forward>
+			<forward name="page3" path="/page3.jsp"></forward>
+		</action>
+	</action-mappings>
+</struts-config>
+

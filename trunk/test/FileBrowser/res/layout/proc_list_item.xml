@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="fill_parent" 
+    android:layout_height="65dip">
+	<RelativeLayout android:layout_width="45.0dip" 
+	    android:layout_height="65dip" 
+	    android:layout_weight="0.0">
+		<ImageView android:id="@+id/icon" 
+		    android:layout_width="40.0dip" 
+		    android:layout_height="40.0dip" 
+		    android:scaleType="fitCenter" 
+		    android:layout_centerInParent="true" />
+	</RelativeLayout>
+	<LinearLayout android:orientation="vertical" 
+	    android:layout_width="wrap_content" 
+	    android:layout_height="65dip" 
+	    android:padding="4.0dip" 
+	    android:layout_weight="1.0">
+		<TextView android:id="@+id/programName" 
+		    android:textColor="#ff000000" 
+		    android:layout_width="wrap_content" 
+		    android:layout_height="wrap_content" 
+		    android:textSize="15.0sp"
+		    android:ellipsize="marquee"
+    		android:marqueeRepeatLimit="marquee_forever" 
+    		android:scrollHorizontally="true"/>
+		<TextView android:id="@+id/processSize" 
+		    android:layout_width="wrap_content" 
+		    android:layout_height="wrap_content" 
+		    android:text="程序大小" 
+		    android:textSize="13.0sp"
+		    android:ellipsize="marquee"
+    		android:marqueeRepeatLimit="marquee_forever" 
+    		android:scrollHorizontally="true"/>
+		<TextView android:id="@+id/pkgSize"
+		    android:layout_width="wrap_content" 
+		    android:layout_height="wrap_content" 
+		    android:text="程序大小"
+		    android:textSize="13.0sp"
+		    android:ellipsize="marquee"
+    		android:marqueeRepeatLimit="marquee_forever" 
+    		android:scrollHorizontally="true"/>
+	</LinearLayout>
+	<TextView android:id="@+id/cpuMemString" 
+	    android:layout_width="wrap_content" 
+	    android:paddingRight="5dip" 
+	    android:textSize="15.0sp"
+	    android:layout_height="65dip" 
+	    android:layout_weight="0.0" 
+	    android:gravity="center_vertical"/>
+</LinearLayout>

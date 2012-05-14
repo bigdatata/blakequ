@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/collect_time"
+          android:icon="@android:drawable/ic_menu_my_calendar"
+          android:title="@string/collect_time" />
+    <item android:id="@+id/collect_type"
+          android:icon="@android:drawable/ic_menu_recent_history"
+          android:title="@string/collect_type" />
+</menu>
