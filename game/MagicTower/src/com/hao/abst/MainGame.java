@@ -1,5 +1,6 @@
-package com.hao;
+package com.hao.abst;
 
+import com.hao.MagicTower;
 import com.hao.util.CMIDIPlayer;
 import com.hao.util.yarin;
 import com.hao.view.AboutScreen;

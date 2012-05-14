@@ -137,6 +137,11 @@ public class Task
 							 RESCUE_PRINCESS = 6,
 							 FIGHT_BOSS = 7;
 							 
+	/**
+	 * 下面是各个任务的当前状态<p>
+	 * 从taskState[0-7]分别表示上面定义的8个任务,每个任务的状态是0-3<p>
+	 * 其中2,3任务的初始状态都是2即CANFINISH，4,5的任务初始状态都是1表示RECIEVED
+	 */
 	private byte[] taskState = 
 		{
 		0, //0:find cross                      (7),
@@ -151,8 +156,8 @@ public class Task
 	private GameScreen gameScreen;
 	private HeroSprite hero;
 	private GameMap gameMap;
-	public int curTask;
-	public int curTask2;
+	public int curTask;						//当前任务
+	public int curTask2;					
 	public boolean mbtask = false;			//标记当前任务是否完成
 	
 	public Task(GameScreen gameScreen,HeroSprite hero,GameMap gameMap)
@@ -182,10 +187,12 @@ public class Task
 				recieveTask();
 				break;
 			case RECIEVED:
+				//下面两个任务初始状态就是1,只需要满足条件就算当前任务完成
 				if (curTask == GET_SHENGGUANG_JIAN)
 				{
 					if (hero.getExperience() >= 500)
 					{
+						//满足当前条件，任务完成
 						mbtask = true;	
 						gameScreen.mshowDialog = true;
 						gameScreen.tu.InitText(finishedDialog[curTask][curTask2], 0, (yarin.SCREENH-yarin.MessageBoxH)/2, yarin.SCREENW, yarin.MessageBoxH, 0x0, 0xffff00, 255, yarin.TextSize);
@@ -196,6 +203,7 @@ public class Task
 					}
 					else
 					{
+						//还不满足当前条件，任务继续
 						mbtask = false;	
 						gameScreen.mshowDialog = true;
 						gameScreen.tu.InitText(recieveDialog[curTask][curTask2], 0, (yarin.SCREENH-yarin.MessageBoxH)/2, yarin.SCREENW, yarin.MessageBoxH, 0x0, 0xffff00, 255, yarin.TextSize);
@@ -241,9 +249,11 @@ public class Task
 	 */
 	private void recieveTask()
 	{
+		//先将当前任务提升一个级别
 		taskState[curTask]++;
 		switch (curTask)
 		{
+			//这是第0关
 			case FIND_CROSS:
 				gameMap.remove();
 				gameMap.changeCell(92, GameMap.MAP_ANGLE);
@@ -254,6 +264,7 @@ public class Task
 			case FIND_AX:
 				gameMap.remove(2, 67);
 				break;
+			//下面两个任务是一次性的，故而只需一次就完成了，故而是--
 			case GET_SHENGGUANG_JIAN:
 				taskState[curTask]--;
 				break;
@@ -275,6 +286,7 @@ public class Task
 	 */
 	private void finishTask()
 	{
+		//当前任务状态加1
 		taskState[curTask]++;
 		switch (curTask)
 		{
@@ -285,6 +297,7 @@ public class Task
 				break;
 			case FIND_AX:
 				gameMap.remove();
+				//移除18级的一些东西
 				gameMap.remove(18, 49, GameMap.MAP_PRINCESS);
 				gameMap.remove(18, 60, GameMap.MAP_BARRIER);
 				gameMap.remove(18, 71, GameMap.MAP_RED_DOOR);
@@ -318,10 +331,11 @@ public class Task
 	
 	/**
 	 * 更新任务状态
-	 * @param type
+	 * @param type 当前的任务
 	 */
 	public void updateTaskState(int type)
 	{
+		//当前任务状态提升
 		taskState[type] ++;
 	}
 	
