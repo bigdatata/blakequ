@@ -1,7 +1,7 @@
 package com.hao.view;
 
-import com.hao.GameView;
-import com.hao.MainGame;
+import com.hao.abst.GameView;
+import com.hao.abst.MainGame;
 import com.hao.util.CMIDIPlayer;
 import com.hao.util.yarin;
 

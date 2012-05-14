@@ -1,4 +1,4 @@
-package com.hao;
+package com.hao.abst;
 
 import com.hao.util.yarin;
 
@@ -107,7 +107,7 @@ public class ThreadCanvas extends View implements Runnable
 
 
 	// 按键处理(按键按下)
-	boolean onKeyDown(int keyCode)
+	public boolean onKeyDown(int keyCode)
 	{
 		if (MainGame.getMainView() != null)
 		{
@@ -122,7 +122,7 @@ public class ThreadCanvas extends View implements Runnable
 
 
 	// 按键弹起
-	boolean onKeyUp(int keyCode)
+	public boolean onKeyUp(int keyCode)
 	{
 		if (MainGame.getMainView() != null)
 		{

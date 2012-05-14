@@ -1,9 +1,9 @@
 package com.hao.view;
 
-import com.hao.GameView;
-import com.hao.MainGame;
 import com.hao.R;
 import com.hao.R.string;
+import com.hao.abst.GameView;
+import com.hao.abst.MainGame;
 import com.hao.util.TextUtil;
 import com.hao.util.yarin;
 

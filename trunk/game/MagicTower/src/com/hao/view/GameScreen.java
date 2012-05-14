@@ -11,13 +11,13 @@ import javax.microedition.lcdui.game.LayerManager;
 import com.hao.FightCalc;
 import com.hao.FightScreen;
 import com.hao.GameMap;
-import com.hao.GameView;
 import com.hao.HeroSprite;
 import com.hao.MagicTower;
-import com.hao.MainGame;
 import com.hao.R;
 import com.hao.Task;
 import com.hao.R.drawable;
+import com.hao.abst.GameView;
+import com.hao.abst.MainGame;
 import com.hao.util.CMIDIPlayer;
 import com.hao.util.TextUtil;
 import com.hao.util.yarin;
@@ -86,7 +86,7 @@ public class GameScreen extends GameView
 	public int					borderX, borderY;	//地图上x和y的边界
 	private int				winWidth, winHeight;	//地图的高宽
 	private int				scrollX, scrollY;
-	private int				curDialogImg;
+	private int				curDialogImg;			//当前和hero对话的对象
 	private MagicTower			magicTower;
 
 	public TextUtil				tu				= null;
@@ -213,6 +213,7 @@ public class GameScreen extends GameView
 					{
 						if (task.mbtask)
 						{
+							//已经完成任务时的对话
 							if (task.curTask2 < Task.finishedDialog[task.curTask].length - 1)
 							{
 								task.curTask2++;
@@ -227,6 +228,7 @@ public class GameScreen extends GameView
 						}
 						else
 						{
+							//接收任务时的对话
 							if (task.curTask2 < Task.recieveDialog[task.curTask].length - 1)
 							{
 								task.curTask2++;
@@ -298,18 +300,25 @@ public class GameScreen extends GameView
 	}
 
 
+	/**
+	 * 对不同类型的单元处理（该单元正处在hero的正前方）
+	 * @param type
+	 */
 	private void dealType(int type)
 	{
+		//当上楼的时候，进入下一关
 		if (type == GameMap.MAP_UPSTAIR)
 		{
 			gameMap.upstair();
 			hero.setFrame(0);
 		}
+		//进入上一关
 		else if (type == GameMap.MAP_DOWNSTAIR)
 		{
 			gameMap.downstair();
 			hero.setFrame(0);
 		}
+		//遇到门
 		else if ((type >= GameMap.MAP_YELLOW_DOOR) && (type <= GameMap.MAP_RED_DOOR))
 		{
 			if (hero.useKey(type))
@@ -317,36 +326,42 @@ public class GameScreen extends GameView
 				gameMap.remove();
 			}
 		}
+		//遇到障碍物
 		else if (type == GameMap.MAP_BARRIER)
 		{
 			gameMap.remove();
 		}
+		//遇到商店（功能待扩展）
 		else if ((type == GameMap.MAP_SHOP1) || (type == GameMap.MAP_SHOP2))
 		{
 			if (gameMap.curFloorNum == 3)
 			{
-				// shop(ShopScreen.SHOP_3);
+//				 shop(ShopScreen.SHOP_3);
 			}
 			else
 			{
 				// shop(ShopScreen.SHOP_11);
 			}
 		}
+		//遇到钥匙等宝物
 		else if ((type >= GameMap.MAP_YELLOW_KEY) && (type <= GameMap.MAP_SHIELD3))
 		{
-			mshowMessage = true;
+			mshowMessage = true;//显示一个提示框信息
 			miType = type;
 			tu.InitText(hero.takeGem(type), 0, (yarin.SCREENH - yarin.MessageBoxH) / 2, yarin.SCREENW, yarin.MessageBoxH, 0x0, 0xff0000, 255, yarin.TextSize);
 		}
+		//遇到各种人物
 		else if (type >= GameMap.MAP_ANGLE)
 		{
 			if (type > GameMap.MAP_ORGE31)
 				type -= GameMap.SWITCH_OFFSET;
+			//遇到天使，小偷等角色
 			if (((type >= GameMap.MAP_ANGLE) && (type <= GameMap.MAP_RED_GEEZER)) || (type == GameMap.MAP_ORGE31))
 			{
 				/* 处理任务，注意不同层的老头的任务不同 */
 				dealTask(type);
 			}
+			//遇到恶魔就要fight
 			else if ((type >= GameMap.MAP_ORGE1) && (type <= GameMap.MAP_ORGE30))
 			{
 				fight(type);
@@ -486,6 +501,10 @@ public class GameScreen extends GameView
 	}
 
 
+	/**
+	 * 遇到不同的类型的角色，接受不同的任务
+	 * @param type
+	 */
 	private void dealTask(int type)
 	{
 		int curTask = -1;
@@ -572,13 +591,15 @@ public class GameScreen extends GameView
 		h = yarin.MessageBoxH;
 		x = 0;
 		y = (yarin.SCREENH - yarin.MessageBoxH) / 2;
-		//两句话一次对白
+		//一问一答，0,2,4是hero，1,3,5是其他角色
 		if (task.curTask2 % 2 == 0)
 		{
+			//绘制hero
 			drawDialogBox(IMAGE_DIALOG_HERO, x, y, w, h);
 		}
 		else
 		{
+			//绘制和hero对话的角色
 			drawDialogBox(curDialogImg, x, y, w, h);
 		}
 
