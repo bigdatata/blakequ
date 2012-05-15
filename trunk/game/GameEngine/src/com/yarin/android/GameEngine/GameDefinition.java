@@ -1,4 +1,9 @@
 package com.yarin.android.GameEngine;
+/**
+ * 所有有关的常量都放在该类
+ * @author Administrator
+ *
+ */
 public class GameDefinition
 {
 	/* 游戏状态 */
