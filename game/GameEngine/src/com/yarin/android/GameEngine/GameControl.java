@@ -3,6 +3,12 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.view.View;
+
+/**
+ * 游戏界面的绘制
+ * @author Administrator
+ *
+ */
 public class GameControl extends View implements Runnable
 {
 	//游戏状态
