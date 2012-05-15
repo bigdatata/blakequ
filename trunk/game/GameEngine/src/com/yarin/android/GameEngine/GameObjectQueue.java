@@ -1,7 +1,11 @@
 package com.yarin.android.GameEngine;
 import java.util.Enumeration;
 import java.util.Hashtable;
-//对象的一个队列
+/**
+ * 对象的一个队列，用于对象的管理
+ * @author Administrator
+ *
+ */
 public class GameObjectQueue extends Hashtable
 {
 	private String id=null;
