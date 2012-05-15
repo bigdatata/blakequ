@@ -24,6 +24,7 @@ public class LayerManager {
 	}
 
 	/**
+	 * 先添加到图层的后绘制，即添加顺序和绘制顺序相反<p>
 	 * Appends a Layer to this LayerManager. The Layer is appended to the list
 	 * of existing Layers such that it has the highest index (i.e. it is
 	 * furthest away from the user). The Layer is first removed from this

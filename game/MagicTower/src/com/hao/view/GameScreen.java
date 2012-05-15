@@ -124,6 +124,8 @@ public class GameScreen extends GameView
 		{
 			load();
 		}
+		//注意这里的图层添加顺序，绘制的顺序是按添加的反顺序，即先添加的后绘制
+		//如添加顺序是hero，map 而绘制的顺序是map,hero;这很重要，因为如果先添加map在添加hero，则hero会被覆盖，显示不出来
 		layerManager.append(hero);
 		layerManager.append(gameMap.getFloorMap());
 		setName("GameScreen");
@@ -141,9 +143,9 @@ public class GameScreen extends GameView
 		
 		//根据hero相对位置滑动地图（地图不能完全显示）
 		scrollWin();
-		//重设窗口坐标系
+		//重设窗口坐标系,设置视窗的位置和大小
 		layerManager.setViewWindow(scrollX, scrollY, winWidth, winHeight);
-		//在(borderX, borderY)处绘制地图
+		//在(borderX, borderY)处绘制所有图层
 		layerManager.paint(canvas, borderX, borderY);
 
 		if (mshowMessage)
