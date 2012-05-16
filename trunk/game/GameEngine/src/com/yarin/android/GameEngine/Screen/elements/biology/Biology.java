@@ -1,5 +1,9 @@
 package com.yarin.android.GameEngine.Screen.elements.biology;
-//生物接口：定义了具有生命力的动/植物行为
+/**
+ * 生物接口：定义了具有生命力的动/植物行为
+ * @author AlbertQu
+ *
+ */
 public interface Biology
 {
 	//最大生命力

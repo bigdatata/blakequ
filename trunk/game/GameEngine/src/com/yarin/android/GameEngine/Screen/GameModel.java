@@ -14,6 +14,9 @@ public class GameModel
 	//当前的模式类型
 	private int modelType=0;
 	
+	/**
+	 * 默认为运动模式
+	 */
 	public GameModel(){
 		modelType=FREEMOVE_MODEL;
 	}

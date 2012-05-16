@@ -11,7 +11,11 @@ import com.yarin.android.GameEngine.Events.EventQueue;
 import com.yarin.android.GameEngine.Material.Movement;
 import com.yarin.android.GameEngine.Screen.animation.Animator;
 import com.yarin.android.GameEngine.Util.Coordinates;
-//实现Biology接口的动物类
+/**
+ * 实现Biology接口的动物类
+ * @author AlbertQu
+ *
+ */
 public class Animal extends GameObject implements Biology 
 {
 	//名称

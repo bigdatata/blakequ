@@ -10,8 +10,12 @@ import android.graphics.BitmapFactory;
 import com.yarin.android.GameEngine.GameActivity;
 import com.yarin.android.GameEngine.GameObject;
 import com.yarin.android.GameEngine.Util.Coordinates;
-//地图转换器：将屏幕的地图从一个切换到另一个，目前仅支持2个地图之间的切换
-//地图的切换在Player与地图转换器之间的碰撞发生，地图转换器的图片可以是透明的图片，这样不会影响画面的效果
+/**
+ * 地图转换器：将屏幕的地图从一个切换到另一个，目前仅支持2个地图之间的切换<p>
+ * 地图的切换在Player与地图转换器之间的碰撞发生，地图转换器的图片可以是透明的图片，这样不会影响画面的效果
+ * @author AlbertQu
+ *
+ */
 public class MapTransformer extends GameObject
 {
 	//下一个的地图ID

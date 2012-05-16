@@ -4,7 +4,11 @@ import java.util.Enumeration;
 
 import com.yarin.android.GameEngine.GameObjectQueue;
 
-//道具管理：装载一定数量的道具
+/**
+ * 道具管理：装载一定数量的道具
+ * @author AlbertQu
+ *
+ */
 public class PropertyManager extends GameObjectQueue
 {
 	public PropertyManager(){

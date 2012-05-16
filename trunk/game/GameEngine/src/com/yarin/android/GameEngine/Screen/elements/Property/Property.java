@@ -4,7 +4,11 @@ import java.util.Vector;
 
 import com.yarin.android.GameEngine.GameObject;
 
-//道具类
+/**
+ * 道具类(一个道具的属性)
+ * @author AlbertQu
+ *
+ */
 public class Property extends GameObject
 {
 	//治疗类道具:用于恢复主角生命力

@@ -7,7 +7,11 @@ import javax.microedition.lcdui.game.TiledLayer;
 import com.yarin.android.GameEngine.GameObject;
 import com.yarin.android.GameEngine.Util.StringExtension;
 
-//简单地图层：只显示一屏大小
+/**
+ * 简单地图层：只显示一屏大小
+ * @author AlbertQu
+ *
+ */
 public class SimpleLayer extends GameObject
 {
 	//行走路径类型图层

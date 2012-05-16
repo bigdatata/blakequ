@@ -9,7 +9,11 @@ import android.graphics.BitmapFactory;
 import com.yarin.android.GameEngine.GameActivity;
 import com.yarin.android.GameEngine.Screen.elements.biology.Actor;
 import com.yarin.android.GameEngine.Screen.elements.biology.NPC;
-//图层管理器:负责构造地图
+/**
+ * 图层管理器:负责构造地图(绘制地图)
+ * @author AlbertQu
+ *
+ */
 public class SimpleLayerManager extends LayerManager
 {
 	public SimpleLayerManager(){

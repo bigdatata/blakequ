@@ -5,6 +5,11 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
+/**
+ * 基本的绘图工具类
+ * @author AlbertQu
+ *
+ */
 public class Graphics
 {
 	public static void fillRect(Canvas g, Rect rect, Paint paint)

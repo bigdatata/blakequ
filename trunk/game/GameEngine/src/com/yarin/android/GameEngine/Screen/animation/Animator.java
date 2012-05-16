@@ -6,7 +6,11 @@ import android.graphics.Bitmap;
 
 import com.yarin.android.GameEngine.Util.Calculagraph;
 
-//动画角色类
+/**
+ * 动画角色类
+ * @author AlbertQu
+ *
+ */
 public class Animator extends Sprite
 {
 	private Calculagraph cal=null;

@@ -3,7 +3,11 @@ package com.yarin.android.GameEngine.Screen;
 import com.yarin.android.GameEngine.GameObjectQueue;
 import com.yarin.android.GameEngine.Script.XmlScriptParser;
 
-//游戏装载器：负责将关卡(地图、NPC、地图转换器、道具)、主角、摄像机等装入内存
+/**
+ * 游戏装载器：负责将关卡(地图、NPC、地图转换器、道具)、主角、摄像机等装入内存
+ * @author AlbertQu
+ *
+ */
 public class GameLoader
 {
 	//积极加载模式（加载所有的对象）
