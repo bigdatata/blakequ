@@ -6,6 +6,11 @@ import com.yarin.android.GameEngine.Material.Movement;
 import com.yarin.android.GameEngine.Screen.elements.Property.PropertyManager;
 import com.yarin.android.GameEngine.Util.StringExtension;
 
+/**
+ * Non-Player-Controlled Character 非玩家控制角色
+ * @author AlbertQu
+ *
+ */
 public class NPC extends Animal
 {
 	//功能类NPC：在游戏中担任功能性工作-如卖道具

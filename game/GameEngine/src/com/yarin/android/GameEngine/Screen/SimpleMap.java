@@ -4,7 +4,11 @@ import java.util.Vector;
 
 import com.yarin.android.GameEngine.GameObject;
 import com.yarin.android.GameEngine.GameObjectQueue;
-//简单地图：由主角的行走路径和非行走路径组成,还有NPC
+/**
+ * 简单地图：由主角的行走路径和非行走路径组成,还有NPC
+ * @author AlbertQu
+ *
+ */
 public class SimpleMap extends GameObject
 {
 	//图层集合(图层的顺序按照数组的顺序)

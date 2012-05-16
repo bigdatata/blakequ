@@ -4,7 +4,11 @@ import java.util.Vector;
 
 import com.yarin.android.GameEngine.GameObject;
 import com.yarin.android.GameEngine.GameObjectQueue;
-//游戏世界：有多个map组成的大型关卡
+/**
+ * 游戏世界：有多个map组成的大型关卡
+ * @author AlbertQu
+ *
+ */
 public class SimpleLevel extends GameObject
 {
 	//关卡名称

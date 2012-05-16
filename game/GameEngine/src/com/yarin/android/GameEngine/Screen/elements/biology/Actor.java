@@ -8,6 +8,11 @@ import com.yarin.android.GameEngine.Screen.elements.Property.Property;
 import com.yarin.android.GameEngine.Screen.elements.Property.PropertyManager;
 import com.yarin.android.GameEngine.Util.StringExtension;
 
+/**
+ * 游戏主角
+ * @author AlbertQu
+ *
+ */
 public class Actor extends Animal
 {
 	//道具箱
@@ -55,7 +60,7 @@ public class Actor extends Animal
 	}
 	
 	/**
-	 * 装备道具，从道具箱中注销
+	 * 装备道具，从道具箱中注销(相当于已经使用了该道具，故而应该从道具箱中移除)
 	 * @param prop 要装备的道具
 	 */
 	public void equipProperty(Property prop){

@@ -6,6 +6,11 @@ import com.yarin.android.GameEngine.GameObject;
 import com.yarin.android.GameEngine.Screen.elements.biology.Actor;
 import com.yarin.android.GameEngine.Util.Coordinates;
 
+/**
+ * 摄像机
+ * @author AlbertQu
+ *
+ */
 public class Camera extends GameObject
 {
 	//移动模式-跟随主角模式
