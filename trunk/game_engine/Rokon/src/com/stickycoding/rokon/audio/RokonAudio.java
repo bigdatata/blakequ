@@ -12,7 +12,7 @@ import com.stickycoding.rokon.Rokon;
  * relatively low file size limit exists.
  * 
  * The RokonAudio class uses SoundPool to manage its sounds.
- * 
+ * 使用单例模式
  * @author Richard
  */
 public class RokonAudio {
@@ -26,7 +26,7 @@ public class RokonAudio {
         private float masterVolume;
         private SoundPool soundPool;
         private SoundFile[] soundArr = new SoundFile[MAX_SOUNDS];
-        
+        //静音
         public static boolean mute = false;
         
         public RokonAudio() {
@@ -84,6 +84,7 @@ public class RokonAudio {
                         SoundFile soundFile = new SoundFile(id);
                         Debug.print("SoundFile loaded as id=" + id);
                         j = -1;
+                        //检查存储的声音资源是否已经超出了数组边界
                         for(i = 0; i < MAX_SOUNDS; i++)
                                 if(soundArr[i] == null)
                                         j = i;
