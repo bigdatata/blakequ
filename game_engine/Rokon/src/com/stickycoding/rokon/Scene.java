@@ -20,12 +20,8 @@ import com.stickycoding.rokon.device.OS;
 /**
  * Scene.java
  * A Scene holds and prepares drawable objects or object groups
- * 
+ * 持有和准备绘图对象(组)的场景类,该场景可能有多层(Layer)组成，每层含义多个对象(组成层的小Tile)
  * @author Richard
- */
-/**
- * @author Richard
- *
  */
 public abstract class Scene {
 	
@@ -72,7 +68,7 @@ public abstract class Scene {
 	
 	/**
 	 * Forces a Texture to be loaded onto the hardware
-	 * 
+	 * 装载
 	 * @param texture
 	 */
 	public void forceTexture(Texture texture) {
@@ -85,6 +81,9 @@ public abstract class Scene {
 		}
 	}
 	
+	/**
+	 * if has forced texture, <code>true </code>Checks whether a Texture has been loaded onto the hardware If it hasn't, it loads
+	 */
 	protected void checkForcedTextures() {
 		if(hasForcedTexture) {
 			for(int i = 0; i < forceTexture.length; i++) {
@@ -115,6 +114,9 @@ public abstract class Scene {
 		}
 	}
 	
+	/**
+	 * send message to UI thread
+	 */
 	protected void onUIRunnables() {
 		synchronized(RokonActivity.runnableLock) {
 			for(int i = 0; i < MAX_RUNNABLE; i++) {
@@ -206,7 +208,7 @@ public abstract class Scene {
 	}
 
 	/**
-	 * Called before each render loop
+	 * Called before each render(渲染) loop
 	 * 
 	 * @param gl GL10 object
 	 */
@@ -236,7 +238,7 @@ public abstract class Scene {
 	public abstract void onReady();
 	
 	/**
-	 * Triggered when a DrawableObjects .fade is completed
+	 * Triggered(触发) when a DrawableObjects .fade is completed
 	 * 
 	 * @param object the DrawableObject to which fade was applied
 	 */
@@ -352,7 +354,7 @@ public abstract class Scene {
 	/**
 	 * Invokes a method inside the Scene class, defined by given parameters.
 	 * If no parameters exist, use the alternative invoke method
-	 * 
+	 * 利用反射调用该类自身方法
 	 * @param methodName String
 	 * @param params Class[]
 	 * @param paramValues Object[]
@@ -408,7 +410,7 @@ public abstract class Scene {
 	 * on a little processing time) and are 100% sure there are no name conflicts.
 	 * 
 	 * IllegalArgumentException may be passed to the Debug class, logcat will be notified - but there is no way to test at your end.
-	 * 
+	 * <b>必须确保没有重名的方法</b>
 	 * @param methodName String
 	 * @param paramValues Object[]
 	 * 
@@ -440,7 +442,7 @@ public abstract class Scene {
 	
 	/**
 	 * Invokes a method inside the Scene class, assuming there are no parameters to pass
-	 * 
+	 * <b>只能调用该类没有参数的方法</b>
 	 * @param methodName String
 	 * 
 	 * @return TRUE if successful, FALSE otherwise
@@ -471,11 +473,20 @@ public abstract class Scene {
 		return false;
 	}
 
+	/**
+	 * handle the multi touch begin from SDK 8(API_LEVEL >=8)
+	 * @param x
+	 * @param y
+	 * @param action
+	 * @param pointerCount
+	 * @param pointerId
+	 */
 	protected void handleSDK8MultiTouch(float[] x, float[] y, int action, int pointerCount, int[] pointerId) {
 		for(int idx = 0; idx < pointerCount; idx++) {
 			int id = pointerId[idx];
 			final float _realX = x[idx];
 			final float _realY = y[idx];
+			//相对于游戏当前屏幕的xy位置，因为游戏有时候并不是占了整个屏幕
 			final float realX = x[idx] * (RokonActivity.gameWidth / Graphics.getWidthPixels());
 			final float realY = y[idx] * (RokonActivity.gameHeight / Graphics.getHeightPixels());
 			float gameX = realX;
@@ -499,6 +510,7 @@ public abstract class Scene {
 					if(object != null && object.isTouchable()) {
 						boolean touched = false;
 						if(object instanceof Sprite) {
+							//检查触摸到是否在该精灵上
 							touched = MathHelper.pointInShape(checkX, checkY, (Sprite)object);
 						} else {	
 							touched = MathHelper.pointInRect(checkX, checkY, object.getX(), object.getY(), object.getWidth(), object.getHeight());
@@ -585,6 +597,14 @@ public abstract class Scene {
 		}
 	}
 	
+	/**
+	 * handle multi touch(API_LEVEL>=5 and API_LEVEL<8)
+	 * @param x
+	 * @param y
+	 * @param action
+	 * @param pointerCount
+	 * @param pointerId
+	 */
 	protected void handleMultiTouch(float[] x, float[] y, int action, int pointerCount, int[] pointerId) {
 		for(int idx = 0; idx < pointerCount; idx++) {
 			int id = pointerId[idx];
@@ -761,7 +781,14 @@ public abstract class Scene {
 		}
 	}
 
-	
+	/**
+	 * handle touch(API_LEVEL < 5)
+	 * @param x
+	 * @param y
+	 * @param action
+	 * @param pointerCount
+	 * @param pointerId
+	 */
 	protected void handleTouch(float[] x, float[] y, int action, int pointerCount, int[] pointerId) {
 		if(onTouchCustom(x, y, action, pointerCount, pointerId)) return;
 		if(OS.API_LEVEL >= 5) {

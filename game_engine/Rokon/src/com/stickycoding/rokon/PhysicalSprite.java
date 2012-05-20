@@ -11,7 +11,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 /**
  * PhysicalObject.java
  * An object which can undergo collisions through Box2D
- * 
+ * 由Box2d模拟的物理对象精灵
  * @author Richard
  *
  */
@@ -136,7 +136,7 @@ public class PhysicalSprite extends Sprite implements Updateable {
 	}
 	
 	/**
-	 * Creates and applies a kinematic Body from a FixtureDef
+	 * Creates and applies a kinematic(动态的) Body from a FixtureDef
 	 * 
 	 * @param fixture valid FixtureDef object
 	 */
@@ -150,7 +150,7 @@ public class PhysicalSprite extends Sprite implements Updateable {
 	}
 	
 	/**
-	 * Creates and applies a kinematic Body from a Shape
+	 * Creates and applies a kinematic(动态的) Body from a Shape
 	 * 
 	 * @param shape valid Shape object
 	 */
@@ -210,7 +210,7 @@ public class PhysicalSprite extends Sprite implements Updateable {
 	}
 	
 	/**
-	 * Creates and applies a kinematic circular Body from a FixtureDef
+	 * Creates and applies a kinematic(动态的) circular Body from a FixtureDef
 	 * 
 	 * @param fixtureDef valid FixtureDef object
 	 */
@@ -223,7 +223,7 @@ public class PhysicalSprite extends Sprite implements Updateable {
 	}
 	
 	/**
-	 * Creates and applies a kinematic circular Body
+	 * Creates and applies a kinematic(动态的) circular Body
 	 */
 	public void createKinematicCircle() {
 		CircleShape circle = new CircleShape();
@@ -279,7 +279,7 @@ public class PhysicalSprite extends Sprite implements Updateable {
 	}
 	
 	/**
-	 * Creates and applies a kinematic rectangular Body from a FixtureDef
+	 * Creates and applies a kinematic(动态的) rectangular Body from a FixtureDef
 	 * 
 	 * @param fixtureDef valid FixtureDef object
 	 */
@@ -340,7 +340,7 @@ public class PhysicalSprite extends Sprite implements Updateable {
 		usePhysics = false;
 	}
 	
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.stickycoding.rokon.Sprite#onUpdate()
 	 */
 	@Override

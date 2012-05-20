@@ -5,7 +5,7 @@ import javax.microedition.khronos.opengles.GL10;
 /**
  * TextSprite.text
  * A Sprite optimized for use with TextTexture
- *
+ * 文本对象的精灵
  * @author Richard
  */
 public class TextSprite extends Sprite {
@@ -60,7 +60,7 @@ public class TextSprite extends Sprite {
 		super.setTexture(texture);
 	}
 	
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.stickycoding.rokon.DrawableObject#onDrawNormal(javax.microedition.khronos.opengles.GL10)
 	 */
 	@Override

@@ -14,9 +14,9 @@ import com.stickycoding.rokon.vbo.VBO;
 
 /**
  * Texture.java
- * An object representing one texture (one image file)
+ * An object representing one texture(纹理) (one image file)
  * Contains information linking the actual asset file for the texture
- * 
+ * 里面存储了图片包含的所有单元格信息
  * @author Richard
  */
 
@@ -25,13 +25,14 @@ public class Texture {
 	protected TextureAtlas parentAtlas;
 	protected int atlasX, atlasY, atlasIndex;
 	protected Bitmap bmp;
-	
+	//textrue width and height must be the power of two
 	protected int textureWidth, textureHeight;
 	protected int width, height, columns, rows, tileCount;
 	protected String path;
+	//use store of all tile in bitmap
 	protected BufferObject[] buffer;
 	private int textureIndex = -1;
-	
+	//use store of all tile vbo
 	protected ArrayVBO[] vbo;
 	
 	protected boolean reload = false;
@@ -75,14 +76,26 @@ public class Texture {
 		return textureIndex;
 	}
 	
+	/**
+	 * the columns of image tile
+	 * @return
+	 */
 	public int getTileCols() {
 		return columns;
 	}
 	
+	/**
+	 * the rows of image tile
+	 * @return
+	 */
 	public int getTileRows() {
 		return rows;
 	}
 	
+	/**
+	 * the number of tile
+	 * @return
+	 */
 	public int getTileCount() {
 		return tileCount;
 	}
@@ -122,7 +135,7 @@ public class Texture {
 	
 	/**
 	 * Creates a texture, with a file from the assets
-	 * 
+	 * 初始化一个图片，该图片包含很多单元(Tile)
 	 * @param filename path in assets, relative to RokonActivity.getGraphicsPath
 	 * @param columns number of columns in the texture
 	 * @param rows number of rows in the texture
@@ -143,10 +156,14 @@ public class Texture {
 		this.columns = columns;
 		this.rows = rows;
 		tileCount = columns * rows;
+		//textrue width and height must be the power of two
 		textureWidth = nextPowerOfTwo(width);
 		textureHeight = nextPowerOfTwo(height);
 	}
 	
+	/**
+	 * put the information of tile into buffer array
+	 */
 	protected void prepareBuffers() {
 		if(parentAtlas == null) {
 			buffer = new BufferObject[tileCount];
@@ -193,6 +210,9 @@ public class Texture {
 		}
 	}
 	
+	/**
+	 * free buffer
+	 */
 	protected void freeBuffers() {
 		for(int i = 0; i < buffer.length; i++) {
 			buffer[i].free();
@@ -200,6 +220,7 @@ public class Texture {
 	}
 	
 	/**
+	 * check x whether is a power of two(检测x是不是2的幂2,4,8...)
 	 * @param x integer
 	 * @return TRUE if x is a power of two, FALSE otherwise
 	 */
@@ -208,7 +229,7 @@ public class Texture {
 	}
 	
 	/**
-	 * Finds the next power of two, from a given minimum
+	 * Finds the next power of two(2的幂), from a given minimum
 	 * 
 	 * @param minimum integer
 	 * @return the next (or same, if minimum is power-of-two) power-of-two
@@ -226,6 +247,10 @@ public class Texture {
 		}
 	}
 	
+	/**
+	 * get the bitmap
+	 * @return
+	 */
 	protected Bitmap getBitmap() {
         try {
         	BitmapFactory.Options opts = new BitmapFactory.Options();

@@ -3,7 +3,6 @@ package com.stickycoding.rokon.tileengine;
 import com.stickycoding.rokon.Scene;
 
 /**
- * SquareTiledLayer.java
  * A very basic square-based rectangular layer
  * 
  * @author Richard

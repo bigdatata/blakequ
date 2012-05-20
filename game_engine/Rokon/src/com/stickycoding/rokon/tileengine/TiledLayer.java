@@ -6,7 +6,6 @@ import com.stickycoding.rokon.Layer;
 import com.stickycoding.rokon.Scene;
 
 /**
- * TiledLayer.java
  * An extension of Layer, this is the parent of other tiled layers
  * 
  * @author Richard

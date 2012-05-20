@@ -2,6 +2,12 @@ package com.stickycoding.rokon;
 
 import android.view.MotionEvent;
 
+/**
+ * similar with {@link MotionEventWrapper5}}. 
+ * API_LEVEL>=8的触摸事件包装类
+ * @author AlbertQu
+ *
+ */
 public class MotionEventWrapper8 {
 
 	protected static final int ACTION_MASK = 0x000000ff;

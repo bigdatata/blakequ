@@ -16,6 +16,7 @@ public class BasicGameObject extends RotationalObject {
 	
 	protected int id = -1;
 	protected String name = null;
+	//每个基本游戏对象都有对应的场景和图层
 	protected Scene parentScene;
 	protected Layer parentLayer;
 

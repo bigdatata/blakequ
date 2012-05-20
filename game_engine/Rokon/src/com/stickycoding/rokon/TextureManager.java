@@ -24,6 +24,10 @@ public class TextureManager {
 	
 	protected static Object refreshLock = new Object();
 	
+	/**
+	 * add a texture object to texture array, aim to conveniently manage
+	 * @param texture
+	 */
 	public static void refreshTexture(Texture texture) {
 		synchronized(refreshLock) {
 			for(int i = 0; i < MAX_TEXTURE_COUNT; i++) {

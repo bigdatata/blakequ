@@ -6,7 +6,7 @@ import android.util.DisplayMetrics;
 /**
  * Device.java
  * Discovers and retrieves information about the devices hardware
- * 
+ * 该类主要是检测屏幕的大小及类型等属性
  * @author Richard 
  */
 public class Graphics {

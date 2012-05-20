@@ -67,6 +67,11 @@ public class RenderQueueManager {
 		}
 	}
 	
+	/**
+	 * render element
+	 * @author AlbertQu
+	 *
+	 */
 	public class RenderElement extends BaseObject {
 		
         public RenderElement() {

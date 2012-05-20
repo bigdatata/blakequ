@@ -18,7 +18,7 @@ package com.stickycoding.rokon;
 import java.util.Comparator;
 
 /**
- * QuickSorter.java
+ * 快速排序算法
  * Borrowed from ReplicaIsland.
  * No good for end-user
  */
@@ -53,13 +53,21 @@ public class QuickSorter<Type> extends Sorter<Type> {
         quicksort(a, i + 1, right, comparator);
     }
        
-    // partition a[left] to a[right], assumes left < right
+    /**
+     * partition a[left] to a[right], assumes left < right
+     * 一次划分
+     * @param a
+     * @param left
+     * @param right
+     * @param comparator
+     * @return
+     */
     private int partition(Type[] a, int left, int right, Comparator<Type> comparator) {
         int i = left - 1;
         int j = right;
         while (true) {
             while (comparator.compare(a[++i], a[right]) < 0) {     // find item on left to swap
-            }                              // a[right] acts as sentinel
+            }                              // a[right] acts as sentinel(哨兵)
             while (comparator.compare(a[right], a[--j]) < 0) {    // find item on right to swap
                 if (j == left) { 
                     break;                 // don't go out-of-bounds

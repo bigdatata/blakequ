@@ -5,7 +5,7 @@ import com.stickycoding.rokon.Debug;
 /**
  * SoundFile.java
  * SoundFile contains sounds which have been loaded into the RokonAudio class.
- * 
+ * 负责存储导入的音频文件
  * @author Richard
  */
 public class SoundFile {

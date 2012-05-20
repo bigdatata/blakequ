@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 /**
  * DrawQueue.java
- * 
+ * 设置绘制顺序（通过设置setComparator）
  * Stores the type and list of draw queue for each layer
  * @author Richard
  */

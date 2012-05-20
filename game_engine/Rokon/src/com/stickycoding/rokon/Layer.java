@@ -6,7 +6,7 @@ package com.stickycoding.rokon;
  * A Layer is contained inside a Scene, and are drawn in ascending order
  * Each Layer has a many DrawableObjects and one DrawQueue
  * @author Richard
- *
+ * 游戏画面层(有许多DrawableObjects以及一个DrawQueue)
  */
 public class Layer {
 	
@@ -114,6 +114,9 @@ public class Layer {
 		drawableObject.onAdd(this);
 	}
 	
+	/**
+	 * 移除非活动对象
+	 */
 	protected void removeDead() {
 		for(int i = 0; i < gameObjects.getCount(); i++) {
 			while(gameObjects.get(i) != null && !gameObjects.get(i).isAlive()) {
@@ -122,6 +125,9 @@ public class Layer {
 		}
 	}
 	
+	/**
+	 * 渲染所有对象
+	 */
 	protected void render() {
 		DrawOrder.sort(gameObjects, drawQueueType);
 		removeDead();

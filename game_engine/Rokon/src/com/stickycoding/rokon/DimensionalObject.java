@@ -4,7 +4,9 @@ package com.stickycoding.rokon;
 /**
  * Dimensional.java
  * An object with position and dimensions
- * 
+ * 一个可移动的对象(有位置，尺寸)，位置属性从{@link Point}继承而来，在该类衍生出尺寸的属性.<p>
+ * 这就是面向对象编程，一个对象的功能是通过逐步的继承来完善<p>
+ * 具体的继承体系(功能逐渐扩充)：Point(位置)-->DimensionalObject(尺寸+位置)-->RotationalObject(尺寸+位置+旋转)-->BasicGameObject
  * @author Richard
  */
 
@@ -102,7 +104,7 @@ public class DimensionalObject extends Point {
 	/**
 	 * Increases the width by a given amount
 	 * 
-	 * @param width amount to increase width by (will shrink if < 0)
+	 * @param width amount to increase width by (will shrink(收缩) if < 0)
 	 */
 	public void growWidth(float width) {
 		this.width += width;

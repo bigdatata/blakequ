@@ -21,7 +21,7 @@ import com.badlogic.gdx.physics.box2d.World;
  * Physics.java
  * Contains some static variables for the Box2D engine
  * (Kindly written by the libgdx project)
- * 
+ * 物理世界的一些静态方法
  * @author Richard
  */
 
@@ -141,6 +141,13 @@ public class Physics {
 		return body;
 	}
 	
+	/**
+	 * check whether contact of two body
+	 * @param contact
+	 * @param body1
+	 * @param body2
+	 * @return
+	 */
 	public static boolean bodyContact(Contact contact, Body body1, Body body2) {
 		if(body1.getFixtureList().contains(contact.getFixtureA()) && body2.getFixtureList().contains(contact.getFixtureB())) {
 			return true;

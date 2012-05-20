@@ -4,7 +4,6 @@ import com.stickycoding.rokon.Scene;
 
 
 /**
- * RectangularTiledLayer.java
  * A TiledLayer working with basic squares
  * 
  * @author Richard
@@ -20,7 +19,7 @@ public class RectangularLayer extends TiledLayer {
 		this.height = height;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.stickycoding.rokon.tileengine.TiledLayer#getDrawX(int, int)
 	 */
 	@Override
@@ -28,7 +27,7 @@ public class RectangularLayer extends TiledLayer {
 		return x * width;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.stickycoding.rokon.tileengine.TiledLayer#getDrawY(int, int)
 	 */
 	@Override
@@ -36,7 +35,7 @@ public class RectangularLayer extends TiledLayer {
 		return y * height; 
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.stickycoding.rokon.tileengine.TiledLayer#getDrawX(int, int, int, int, float)
 	 */
 	@Override
@@ -44,7 +43,7 @@ public class RectangularLayer extends TiledLayer {
 		return (x * width) + ((targetX - x) * offset * width);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.stickycoding.rokon.tileengine.TiledLayer#getDrawY(int, int, int, int, float)
 	 */
 	@Override
@@ -52,7 +51,7 @@ public class RectangularLayer extends TiledLayer {
 		return (y * height) + ((targetY - y) * offset * height);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.stickycoding.rokon.tileengine.TiledLayer#getTileX(float, float)
 	 */
 	@Override
@@ -60,7 +59,7 @@ public class RectangularLayer extends TiledLayer {
 		return (int)((x - (x % width)) / width);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.stickycoding.rokon.tileengine.TiledLayer#getTileY(float, float)
 	 */
 	@Override

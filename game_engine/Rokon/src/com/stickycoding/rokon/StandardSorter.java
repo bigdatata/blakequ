@@ -25,9 +25,12 @@ import java.util.Comparator;
 @SuppressWarnings("rawtypes")
 public class StandardSorter<T> extends Sorter {
 
+	/**
+     * 排序方式就是引用{@link java.util.Arrays#sort()}的排序方式
+     */
     @SuppressWarnings("unchecked")
 	@Override
-    protected void sort(Object[] array, int count, Comparator comparator) {
+	protected void sort(Object[] array, int count, Comparator comparator) {
         Arrays.sort(array, 0, count, comparator);
     }
 

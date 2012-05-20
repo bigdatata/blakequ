@@ -10,7 +10,18 @@ package com.stickycoding.rokon.device;
 
 public interface OnAccelerometerChange {
 
+	/**
+	 * when the accelerometer changed
+	 * @param x
+	 * @param y
+	 * @param z
+	 */
 	void onAccelerometerChange(float x, float y, float z);
+	
+	/**
+	 * when shake phone
+	 * @param intensity the intensity of shake
+	 */
 	void onShake(float intensity);
 
 }

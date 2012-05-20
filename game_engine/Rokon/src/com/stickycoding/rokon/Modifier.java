@@ -3,8 +3,11 @@ package com.stickycoding.rokon;
 /**
  * Modifier.java
  * Modifies properties of drawable objects
- * 
+ * 当精灵状态改变的时候会触发一些方法
  * @author Richard
+ * @see #onStart(Sprite)
+ * @see #onEnd(Sprite)
+ * @see #onUpdate(Sprite)
  */
 
 public abstract class Modifier {

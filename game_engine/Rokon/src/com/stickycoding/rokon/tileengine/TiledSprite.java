@@ -5,7 +5,7 @@ import com.stickycoding.rokon.Sprite;
 /**
  * TileSprite.java
  * A Sprite specifically designed for use with TiledLayer
- * 
+ * 一个特殊的精灵类
  * @author Richard
  */
 

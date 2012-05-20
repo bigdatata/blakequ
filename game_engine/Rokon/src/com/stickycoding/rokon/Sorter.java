@@ -20,7 +20,15 @@ import java.util.Comparator;
 /**
  * Sorter.java
  * This is another class borrowed from the ReplicaIsland project
+ * 自定义的排序抽象类
  */
 public abstract class Sorter<Type> {
+	
+	/**
+	 * 排序
+	 * @param array
+	 * @param count
+	 * @param comparator
+	 */
     protected abstract void sort(Type[] array, int count, Comparator<Type> comparator);
 }

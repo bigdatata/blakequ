@@ -7,10 +7,10 @@ package com.stickycoding.rokon;
  * 
  * There are two types of translational movement, one based on X and Y, and one based on a magnitude and angle
  * The two methods can be used together, though it is recommended to avoid this - it may be easy to get confused
+ * <p>精灵(具有移动，旋转的属性和方法),在设置移动和旋转等属性之后，最重要的是调用{@link #onUpdate()}方法
  * 
  * @author Richard
  */
-
 public class Sprite extends GameObject implements Updateable {
 
 	
@@ -26,7 +26,7 @@ public class Sprite extends GameObject implements Updateable {
 	
 	protected int modifierCount = 0;
 	protected Modifier[] modifier = new Modifier[MAX_MODIFIERS];
-	
+	//旋转相关属性
 	protected boolean isRotateTo = false;
 	protected float rotateToAngleStart, rotateToAngle;
 	protected long rotateToStartTime;
@@ -116,6 +116,9 @@ public class Sprite extends GameObject implements Updateable {
 		terminalAngularVelocity = 0;
 	}
 	
+	/**
+	 * update the position of sprite
+	 */
 	protected void updatePosition() {
 		if(accelerationX == 0 && accelerationY == 0 && speedX == 0 && speedY == 0 && velocity == 0 && angularVelocity == 0 && angularAcceleration == 0) return;
 		if(accelerationX != 0) {
@@ -165,6 +168,9 @@ public class Sprite extends GameObject implements Updateable {
 		}
 	}
 	
+	/**
+	 * update all property of sprite
+	 */
 	public void onUpdate() {
 		super.onUpdate();
 		if(isMoveTo) {
@@ -177,6 +183,9 @@ public class Sprite extends GameObject implements Updateable {
 		updateModifiers();
 	}
 	
+	/**
+	 * update the Modifier
+	 */
 	protected void updateModifiers() {
 		if(modifierCount > 0) {
 			for(int i = 0; i < MAX_MODIFIERS; i++) {
@@ -527,8 +536,11 @@ public class Sprite extends GameObject implements Updateable {
 		this.angularVelocity = angularVelocity;
 	}
 	
+	//----------------------------------旋转----------------------------------------
+	
 	/**
 	 * Rotates the Sprite to a specific angle, over a given time
+	 * <b>NOTICE: </b>not rotate right now, after invoke {@link #onUpdateRotateTo()}}
 	 * 
 	 * @param angle angle, in radians, to rotate to
 	 * @param direction the direction (using ROTATE_TO_ constants)
@@ -594,6 +606,7 @@ public class Sprite extends GameObject implements Updateable {
 	
 	/**
 	 * Rotates to a given angle over a period of time
+	 * <b>NOTICE: </b>not rotate right now, after invoke {@link #onUpdateRotateTo()}}
 	 * 
 	 * @param angle the final angle, in radians
 	 * @param direction automatic, clockwise or anticlockwise - defined by ROTATE_TO_ constants
@@ -606,6 +619,9 @@ public class Sprite extends GameObject implements Updateable {
 		rotateToCallback = callback;
 	}
 	
+	/**
+	 * start rotate sprite
+	 */
 	protected void onUpdateRotateTo() {
 		float position = (float)(Time.loopTicks - rotateToStartTime) / (float)rotateToTime;
 		float movementFactor = Movement.getPosition(position, rotateToType);
@@ -631,6 +647,8 @@ public class Sprite extends GameObject implements Updateable {
 		}
 	}
 	
+	//---------------------------------------移动-----------------------------------
+	//关于移动的基本属性
 	protected boolean isMoveTo = false;
 	protected float moveToStartX, moveToStartY, moveToFinalX, moveToFinalY;
 	protected int moveToType;
@@ -698,6 +716,9 @@ public class Sprite extends GameObject implements Updateable {
 		moveTo(x, y, time, Movement.LINEAR);
 	}
 	
+	/**
+	 * start move sprite
+	 */
 	protected void onUpdateMoveTo() {
 		float position = (float)(Time.loopTicks - moveToStartTime) / (float)moveToTime;
 		float movementFactor = Movement.getPosition(position, moveToType);

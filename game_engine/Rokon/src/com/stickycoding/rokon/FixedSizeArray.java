@@ -21,17 +21,19 @@ import java.util.Comparator;
 
 /**
  * FixedSizeArray.java
- * This was ripped straight from ReplicaIsland, it's a great way of making arrays a little easier without having to manage memory alloacations
+ * This was ripped straight from ReplicaIsland, it's a great way of making arrays a little easier 
+ * without having to manage memory alloacations
  * No good for end-user
  * 
  * FixedSizeArray is an alternative to a standard Java collection like ArrayList.  It is designed
- * to provide a contiguous array of fixed length which can be accessed, sorted, and searched without
+ * to provide a contiguous(连续的) array of fixed length which can be accessed, sorted, and searched without
  * requiring any runtime allocation.  This implementation makes a distinction between the "capacity"
  * of an array (the maximum number of objects it can contain) and the "count" of an array
  * (the current number of objects inserted into the array).  Operations such as set() and remove()
  * can only operate on objects that have been explicitly add()-ed to the array; that is, indexes
  * larger than getCount() but smaller than getCapacity() can't be used on their own.
- * 
+ * <p>自定义的一个数组(主要特点是不需要运行时在分配空间，也就是说只能插入初始分配空间长度的元素)
+ * 而ArrayList是不够了自动在分配空间，这是主要区别
  * @param <T> The type of object that this array contains.
  */
 public class FixedSizeArray<T> extends AllocationGuard {
@@ -71,6 +73,7 @@ public class FixedSizeArray<T> extends AllocationGuard {
      * object is ignored.
      */
     protected final void add(T object) {
+    	//断言，如果前半部分是false则会输出Array exhausted!，否则正常
         assert mCount < mContents.length : "Array exhausted!";
         if (mCount < mContents.length) {
             mContents[mCount] = object;
@@ -98,7 +101,7 @@ public class FixedSizeArray<T> extends AllocationGuard {
      */
     protected void remove(int index) {
         assert index < mCount;
-        // ugh
+        //移除index位置元素，它后面的所有元素均左移一位
         if (index < mCount) {
             for (int x = index; x < mCount; x++) {
                 if (x + 1 < mContents.length && x + 1 < mCount) {
@@ -129,6 +132,8 @@ public class FixedSizeArray<T> extends AllocationGuard {
     /**
      * Swaps the element at the passed index with the element at the end of the array.  When
      * followed by removeLast(), this is useful for quickly removing array elements.
+     * 通过和最后的元素交换，在调用removeLast(),实现快速删除
+     * @see #removeLast()
      */
     protected void swapWithLast(int index) {
         if (mCount > 0 && index < mCount - 1) {
@@ -218,9 +223,11 @@ public class FixedSizeArray<T> extends AllocationGuard {
             }
         } else {
             // unsorted, linear search
-                
+        	
+            //not ignore comparator
             if (comparator != null && !ignoreComparator) {
                 for (int x = 0; x < count; x++) {
+                	//comparator the value by Comparator
                         final int result = comparator.compare(contents[x], object);
                     if (result == 0) {
                         index = x;
@@ -230,8 +237,11 @@ public class FixedSizeArray<T> extends AllocationGuard {
                         break;
                     }
                 }
-            } else {
+            } 
+            //ignore comparator
+            else {
                 for (int x = 0; x < count; x++) {
+                	//direct comparator the value not by Comparator
                     if (contents[x] == object) {
                         index = x;
                         break;

@@ -10,7 +10,7 @@ import android.graphics.Typeface;
 /**
  * Font.java
  * Loads a TTF font, for creating TextTextures
- * 
+ * 利用指定的字体绘制文字,能够转换为{@link TextTexture}}
  * @author Richard
  */
 
@@ -57,6 +57,7 @@ public class Font {
 	
 	private void init() {
 		paint = new Paint();
+		//设置字体类型
 		paint.setTypeface(typeface);
 		paint.setTextSize(DEFAULT_FONT_SIZE);
 		fontMetrics = paint.getFontMetrics();
@@ -75,7 +76,7 @@ public class Font {
 	
 	/**
 	 * Creates a TextTexture without wrapping
-	 * 
+	 * 创建一个含有特定字体的图片文件，相当于将某字体制作为图片然后封装为TextTexture
 	 * @param text valid String
 	 * @return valid TextTexture, NULL if error in processing
 	 */
@@ -92,7 +93,7 @@ public class Font {
 	
 	/**
 	 * Creates a TextTexture with wrapping
-	 * 
+	 * 创建指定宽度的字体文件(超出的宽度将分为多行)
 	 * @param text valid String
 	 * @param width an integer width, in pixels, for the TextTexture produced
 	 * @return valid TextTexture, NULL if error in processing
@@ -108,8 +109,10 @@ public class Font {
 		Rect testRect = new Rect();
 		
 		for(int index = 0; index < text.length(); index++) {
+			//get single word bounds which include width and height
 			paint.getTextBounds(text, index, index + 1, testRect);
 			currentLineWidth += testRect.right;
+			//if out range of width should change another line
 			if(currentLineWidth + testRect.right > width) {
 				currentLineWidth = testRect.right;
 				lines[lineCount] = text.substring(lineIndexStart, index);

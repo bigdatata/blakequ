@@ -9,13 +9,8 @@ import com.stickycoding.rokon.vbo.VBO;
 /**
  * Polygon.java
  * A polygon shape, vertices should be from 0 to 1
- * 
+ * 多边形
  * @author Richard
- */
-
-/**
- * @author Richard
- *
  */
 public class Polygon {
 	
@@ -111,6 +106,7 @@ public class Polygon {
 	 * @param vertices array of floats
 	 */
 	public Polygon(float[] vertices) {
+		//一个点有x，y两个坐标点，故而必须是2的整数倍
 		if(vertices.length % 2 != 0) {
 			Debug.error("Tried creating Polygon with odd number of vertices");
 			Debug.forceExit();

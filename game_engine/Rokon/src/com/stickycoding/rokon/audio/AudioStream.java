@@ -3,6 +3,7 @@ package com.stickycoding.rokon.audio;
 /**
  * Handles a stream of sound, launched through RokonAudio.
  * Each time a SoundFile is played it is given a unique AudioStream
+ * 负责音频的播放等动作
  * @author Richard
  */
 public class AudioStream {

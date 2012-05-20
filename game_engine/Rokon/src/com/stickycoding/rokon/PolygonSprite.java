@@ -8,7 +8,7 @@ import com.stickycoding.rokon.vbo.ArrayVBO;
  * PolygonSprite.java
  * An extension of Sprite, that draws Polygon shapes rather than basic rectangles.
  * Cannot be textured, for now.
- * 
+ * 多边形的精灵
  * @author Richard
  */
 public class PolygonSprite extends Sprite {
@@ -16,7 +16,7 @@ public class PolygonSprite extends Sprite {
 	protected BufferObject polygonBuffer;
 	protected ArrayVBO polygonVBO;
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.stickycoding.rokon.Sprite#getVertex(int)
 	 */
 	public float[] getVertex(int index) {
@@ -59,7 +59,7 @@ public class PolygonSprite extends Sprite {
 		}
 	}
 	
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.stickycoding.rokon.DrawableObject#setTexture(com.stickycoding.rokon.Texture)
 	 */
 	@Override

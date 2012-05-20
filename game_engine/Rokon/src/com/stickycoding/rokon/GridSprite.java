@@ -2,6 +2,11 @@ package com.stickycoding.rokon;
 
 import javax.microedition.khronos.opengles.GL10;
 
+/**
+ * ËÄ±ßÐÎ¾«Áé
+ * @author AlbertQu
+ *
+ */
 public class GridSprite extends Sprite {
 	
 	private int quadsAcross, quadsDown;

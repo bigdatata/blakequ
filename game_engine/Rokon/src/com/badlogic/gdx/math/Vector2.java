@@ -22,6 +22,8 @@ package com.badlogic.gdx.math;
  * 
  * Encapsulates a 2D vector. Allows chaining methods by returning a 
  * reference to itself
+ * 2维向量封装类
+ * 
  * @author badlogicgames@gmail.com
  *
  */

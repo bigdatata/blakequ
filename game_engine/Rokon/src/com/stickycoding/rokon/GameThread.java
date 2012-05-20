@@ -9,30 +9,42 @@ import android.view.MotionEvent;
 /**
  * GameThread.java
  * Handles the game thread, should it be separated from the OpenGL
- * 
+ * 游戏主线程
  * @author Richard
  */
 public class GameThread implements Runnable {
-	
-	protected static final int MAX_TRIGGERS = 32; //This should be fine for now, any more and the game must be being very unresponsive anyway
+	//This should be fine for now, any more and the game must be being very unresponsive anyway
+	protected static final int MAX_TRIGGERS = 32; 
 	
 	private static boolean finished = false, pauseGame = false;
-	
+	/**
+	 * 用于同步的对象(为了节约空间可以用一位)
+	 * 注：零长度的byte数组对象创建起来将比任何对象都经济――查看编译后的字节码：
+	 * 生成零长度的byte[]对象只需3条操作码，而Object lock = new Object()则需要7行操作码。
+	 * private byte[] lock = new byte[0];　// 特殊的instance变量
+	 */
 	private static Object pauseLock = new Object();
 	private static Object inputLock = new Object();
 	
-	private static MotionTrigger[] motionTrigger;
-	private static KeyTrigger[] keyTrigger;
-	protected static int motionTriggerCount;
-	protected static boolean hasKeyTrigger;
+	//触发器变量
+	private static MotionTrigger[] motionTrigger;//动作触发器数组
+	private static KeyTrigger[] keyTrigger;//按键触发数组
+	protected static int motionTriggerCount;//动作触发计数
+	protected static boolean hasKeyTrigger;//按键触发数组
 	
 	private long lastTime;
 	
 	protected static boolean hasRunnable;
-	
+	//运行锁
 	public static Object runnableLock = new Object();
 	
+	/**
+	 * 触摸触发器(主要记录了最大3个触摸点)
+	 * @author AlbertQu
+	 *
+	 */
 	protected class MotionTrigger {
+		//最大触摸点是3个
 		public static final int MAX_POINTERS = 3;
 		
 		protected boolean isTouch;
@@ -48,6 +60,11 @@ public class GameThread implements Runnable {
 			pointerId = new int[MAX_POINTERS];
 		}
 		
+		/**
+		 * set the point array of touch
+		 * @param event
+		 * @param isTouch
+		 */
 		protected void set(MotionEvent event, boolean isTouch) {
 			if(OS.API_LEVEL >= 5) {
 				if(OS.API_LEVEL >= 8) {
@@ -79,6 +96,11 @@ public class GameThread implements Runnable {
 		
 	}
 	
+	/**
+	 * 按钮触发器
+	 * @author AlbertQu
+	 *
+	 */
 	protected class KeyTrigger {
 		protected boolean isDown;
 		protected int keyCode;
@@ -114,7 +136,7 @@ public class GameThread implements Runnable {
 			keyTrigger[i] = new KeyTrigger();
 		}
 		
-		while(!finished) {			
+		while(!finished) {		
 			final long startTime = SystemClock.uptimeMillis();
 			final long deltaTime = startTime - lastTime;
 			long finalDelta = deltaTime;
@@ -253,6 +275,11 @@ public class GameThread implements Runnable {
 		}
 	}
 	
+	/**
+	 * 跟踪触摸动作
+	 * @param touch
+	 * @param event
+	 */
 	public static void motionInput(boolean touch, MotionEvent event) {
 		synchronized (inputLock) {
 			if(motionTriggerCount < MAX_TRIGGERS) {
@@ -264,6 +291,12 @@ public class GameThread implements Runnable {
 		}
 	}
 	
+	/**
+	 * 跟踪按钮动作
+	 * @param down
+	 * @param keyCode
+	 * @param event
+	 */
 	public static void keyInput(boolean down, int keyCode, KeyEvent event) {
 		synchronized (inputLock) {
 			for(int i = 0; i < MAX_TRIGGERS; i++) {
