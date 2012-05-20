@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * MathHelper.java
  * Some basic functions for mathematics
- * 
+ * 助手类，里面有许多数学方法(向量运算，碰撞检测)
  * @author Richard
  */
 
@@ -59,7 +59,7 @@ public class MathHelper {
 	}
 	
 	/**
-	 * Finds the normal vector
+	 * Finds the normal vector(法向量)
 	 * 
 	 * @param vector valid Vector2 object
 	 * 
@@ -70,7 +70,7 @@ public class MathHelper {
 	}
 	
 	/**
-	 * Determines whether two Sprites intersect
+	 * Determines whether two Sprites intersect(相交)
 	 * 
 	 * @param sprite1 valid Sprite object
 	 * @param sprite2 valid Sprite object
@@ -178,6 +178,14 @@ public class MathHelper {
 		return true;
 	}
 	
+	/**
+	 * the distance of interval(相交)
+	 * @param minA
+	 * @param maxA
+	 * @param minB
+	 * @param maxB
+	 * @return
+	 */
 	private static float intervalDistance(float minA, float maxA, float minB, float maxB) {
 	    if (minA < minB) {
 	        return minB - maxA;
@@ -188,7 +196,7 @@ public class MathHelper {
 	
 	/**
 	 * Calculates the minimum distance between a given point, and an edge/vertex on a Sprite
-	 * 
+	 * 点到精灵的最短距离
 	 * @param x point X
 	 * @param y point Y 
 	 * @param sprite valid Sprite
@@ -274,7 +282,7 @@ public class MathHelper {
 	
 	/**
 	 * Returns the dot product between two Vector2 objects
-	 * 
+	 * 计算两个向量的点积
 	 * @param vector1 valid Vector2
 	 * @param vector2 valid Vector2
 	 * 
@@ -286,7 +294,7 @@ public class MathHelper {
 	
 	/**
 	 * Returns the dot product between a Vector2 object and given points
-	 * 
+	 * 点积
 	 * @param vector valid Vector2
 	 * @param x x-value
 	 * @param y y-value
@@ -299,7 +307,7 @@ public class MathHelper {
 	
 	/**
 	 * Returns the dot product between two sets of xy values
-	 * 
+	 * 点积
 	 * @param x1 x-value A
 	 * @param y1 y-value A
 	 * @param x2 x-value B

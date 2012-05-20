@@ -758,7 +758,7 @@ public class GLSurfaceView extends SurfaceView implements SurfaceHolder.Callback
         protected int mAlphaSize;
         protected int mDepthSize;
         protected int mStencilSize;
-        }
+     }
 
     /**
      * This class will choose a supported surface as close to
@@ -1358,6 +1358,9 @@ public class GLSurfaceView extends SurfaceView implements SurfaceHolder.Callback
     }
 
 
+    /**
+     * check the state of render thread
+     */
     private void checkRenderThreadState() {
         if (mGLThread != null) {
             throw new IllegalStateException(

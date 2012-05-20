@@ -7,7 +7,7 @@ import com.stickycoding.rokon.BufferObject;
 /**
  * VBO.java
  * A VBO object, handles basic functions
- * 
+ * ∂•µ„ª∫≥Â∂‘œÛ(Vertex Buffer Object) 
  * @author Richard
  */
 

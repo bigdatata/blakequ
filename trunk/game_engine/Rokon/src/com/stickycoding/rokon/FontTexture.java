@@ -3,11 +3,11 @@ package com.stickycoding.rokon;
 /**
  * TextTexture.java
  * A texture specifically tailored for bitmap fonts
- * 
+ * 为字体定制的bitmap fonts
  * @author Richard
  */
 public class FontTexture extends Texture {
-	
+	//用于存储所有字符
 	protected char[] chars;
 
 	/**

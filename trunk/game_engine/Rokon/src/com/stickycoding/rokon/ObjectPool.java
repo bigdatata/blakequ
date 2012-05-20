@@ -22,7 +22,7 @@ package com.stickycoding.rokon;
  * A general-purpose pool of objects.  Objects in the pool are allocated up front and then
  * passed out to requesting objects until the pool is exhausted (at which point an error is thrown).
  * Code that requests objects from the pool should return them to the pool when they are finished.
- * This class is abstract; derivations need to implement the fill() function to fill the pool, and
+ * This class is abstract; derivations(≈……˙ ) need to implement the fill() function to fill the pool, and
  * may wish to override release() to clear state on objects as they are returned to the pool.
  */
 public abstract class ObjectPool {
@@ -41,7 +41,10 @@ public abstract class ObjectPool {
         setSize(size);
     }
 
-    /** Allocates an object from the pool */
+    /** 
+     * Allocates an object from the pool, by delete last element
+     * 
+     */
     protected Object allocate() {
         Object result = mAvailable.removeLast();
         assert result != null : "Object pool of type " + this.getClass().getSimpleName()
@@ -59,6 +62,10 @@ public abstract class ObjectPool {
         return mAvailable.getCapacity() - mAvailable.getCount();
     }
 
+    /**
+     * set the size of object pool
+     * @param size
+     */
     private void setSize(int size) {
         mSize = size;
         mAvailable = new FixedSizeArray<Object>(mSize);
@@ -66,6 +73,9 @@ public abstract class ObjectPool {
         fill();
     }
 
+    /**
+     * fill the object pool
+     */
     protected abstract void fill();
 
     protected FixedSizeArray<Object> getAvailable() {

@@ -5,6 +5,8 @@ import javax.microedition.khronos.opengles.GL10;
 import com.stickycoding.rokon.device.Graphics;
 
 /**
+ * 游戏中基本的一个图形元素对象（具有位置，尺寸，旋转）等基本属性，并实现了
+ * 可绘制，更新，移动，点击等动态属性(通过继承实现)
  * @author Richard
  *
  */
@@ -19,20 +21,20 @@ public class DrawableObject extends BasicGameObject implements Drawable, Updatea
 	protected BufferObject buffer;
 	protected Texture texture;
 	protected int textureTile = 0;
-	
+	//可见性
 	protected boolean invisible;
-	
+	//渐变效果的一些属性
 	protected boolean isFading;
 	protected int fadeTime, fadeType;
 	protected long fadeStartTime;
 	protected float fadeTo, fadeStart;
 	protected boolean fadeUp;
-	
+	//动画的一些效果属性
 	protected boolean animated, hasCustomAnimation, animationReturnToStart;
 	protected int animationStartTile, animationEndTile, animationLoops, animationCustomPosition;
 	protected int[] customAnimationSequence;
 	private long animationFrameTicks, animationLastTicks;
-	
+	//线条，颜色等属性
 	protected float lineWidth = -1;
 	protected boolean fill = true;
 	protected float borderRed = 0, borderGreen = 0, borderBlue = 0, borderAlpha = 1;
@@ -185,6 +187,9 @@ public class DrawableObject extends BasicGameObject implements Drawable, Updatea
 		
 	}
 	
+	/**
+	 * simply invoke after {@link #fade(float, float, int, int)}}, and then begin fade
+	 */
 	protected void updateFadeTo() {
 		if(!isFading) return;
 		float position = (float)(Time.loopTicks - fadeStartTime) / (float)fadeTime;
@@ -217,6 +222,7 @@ public class DrawableObject extends BasicGameObject implements Drawable, Updatea
 		if(isVBO()) {
 			
 		} else {
+			//这个缓冲器是引擎定义的全局变量
 			buffer = Rokon.triangleStripBoxBuffer;
 		}
 	}
@@ -367,11 +373,15 @@ public class DrawableObject extends BasicGameObject implements Drawable, Updatea
 		this.alpha = alpha;
 	}
 	
+	/**
+	 * start draw use opengles
+	 */
 	public void onDraw(GL10 gl) {
 		if(invisible) return;
 		switch(forceDrawType) {
 			case DrawPriority.DEFAULT:
 				switch(DrawPriority.drawPriority) {
+					//VBO优先
 					case DrawPriority.PRIORITY_VBO:
 						if(Graphics.isSupportsVBO()) {
 							onDrawVBO(gl);
@@ -513,7 +523,7 @@ public class DrawableObject extends BasicGameObject implements Drawable, Updatea
 		return textureTile % texture.columns;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.stickycoding.rokon.RotationalObject#onUpdate()
 	 */
 	public void onUpdate() {
@@ -627,6 +637,9 @@ public class DrawableObject extends BasicGameObject implements Drawable, Updatea
 		animate(animationTiles, frameTime, -1, false);
 	}
 	
+	/**
+	 * start animation
+	 */
 	protected void updateAnimation() {
 		if(!animated || freezeAnimation) return;
 		long tickDifference = Time.loopTicks - animationLastTicks - animationFrameTicks;
@@ -688,7 +701,7 @@ public class DrawableObject extends BasicGameObject implements Drawable, Updatea
 		}
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.stickycoding.rokon.Drawable#isTouchable()
 	 */
 	public boolean isTouchable() {

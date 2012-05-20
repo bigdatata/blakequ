@@ -6,7 +6,7 @@ import com.stickycoding.rokon.vbo.ElementVBO;
 /**
  * Rokon.java
  * Various static methods and fields, used by the engine
- * 
+ * 里面包含了一些全局性的变量
  * @author Richard
  */
 

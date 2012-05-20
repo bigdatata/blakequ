@@ -10,7 +10,7 @@ import com.stickycoding.rokon.GLHelper;
 /**
  * ElementVBO.java
  * An element VBO, defined by BufferObject.
- * Currently unused, but may be introduced for vertex-colouring
+ * Currently unused, but may be introduced for vertex-coloring
  * 
  * @author Richard
  */

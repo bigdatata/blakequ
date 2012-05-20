@@ -7,7 +7,7 @@ import android.opengl.GLU;
 /**
  * Window.java
  * A way of controlling what part of a Scene is visible to the player
- * 
+ * 窗口类，控制对用户可见的窗口，继承自{@link DimensionalObject}
  * @author Richard
  */
 

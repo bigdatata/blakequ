@@ -24,6 +24,7 @@ package com.stickycoding.rokon;
  * BaseObject, so they may be strung together into a hierarchy of objects.  ObjectManager may
  * be specialized to implement special types of traversals (e.g. PhasedObjectManager sorts its
  * children).
+ * 对象管理器，里面有三个数组(正使用的，待增加的，待删除的)对象，然后提供更新，重置对象等方法
  */
 
 public class ObjectManager extends BaseObject {
@@ -31,8 +32,8 @@ public class ObjectManager extends BaseObject {
     protected static final int DEFAULT_ARRAY_SIZE = 256;
 
     private FixedSizeArray<BaseObject> mObjects;
-    private FixedSizeArray<BaseObject> mPendingAdditions;
-    private FixedSizeArray<BaseObject> mPendingRemovals;
+    private FixedSizeArray<BaseObject> mPendingAdditions;//待增加的数组
+    private FixedSizeArray<BaseObject> mPendingRemovals;//待删除的数组
 
     public ObjectManager(int arraySize) {
         super();
@@ -51,7 +52,12 @@ public class ObjectManager extends BaseObject {
         }
     }
 
+    /**
+     * 实现的功能就是将{@code mPendingAdditions}数组的元素添加到{@code mObjects}
+     * 然后将{@code mPendingRemovals}数组中元素从{@code mObjects}中移除
+     */
     public void commitUpdates() {
+    	//将待增加的添加到mObjects数组
         final int additionCount = mPendingAdditions.getCount();
         if (additionCount > 0) {
             final Object[] additionsArray = mPendingAdditions.getArray();
@@ -62,6 +68,7 @@ public class ObjectManager extends BaseObject {
             mPendingAdditions.clear();
         }
 
+        //将待移除的从mObjects数组移除
         final int removalCount = mPendingRemovals.getCount();
         if (removalCount > 0) {
             final Object[] removalsArray = mPendingRemovals.getArray();
@@ -104,14 +111,27 @@ public class ObjectManager extends BaseObject {
         return mObjects.get(index);
     }
 
+    /**
+     * add to {@link #mPendingAdditions}, invoke {@link #commitUpdates()} will add element to {@link #mObjects}
+     * @param object
+     */
     public void add(BaseObject object) {
         mPendingAdditions.add(object);
     }
 
+    /**
+     * remove from {@link #mPendingRemovals} <p>
+     * <b>Notice: </b>not remove from {@link #mObjects}
+     * @param object
+     */
     public void remove(BaseObject object) {
         mPendingRemovals.add(object);
     }
 
+    /**
+     * first, add {@link #mObjects} all elements to {@link mPendingRemovals}; 
+     * second, clear {@link mPendingRemovals} arrays.
+     */
     public void removeAll() {
         final int count = mObjects.getCount();
         final Object[] objectArray = mObjects.getArray();

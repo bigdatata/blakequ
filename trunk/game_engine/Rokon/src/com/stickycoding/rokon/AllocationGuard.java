@@ -17,13 +17,18 @@ package com.stickycoding.rokon;
  */
 
 /**
- * This was taken from ReplicaIsland, another useful class to ease our troubles
- * No good for end-user
+ * This was taken from ReplicaIsland(a game), another useful class to ease our troubles,
+ * No good for end-user<p>
  * 
  * AllocationGuard is a utility class for tracking down memory leaks.  It implements a 
  * "checkpoint" memory scheme.  After the static sGuardActive flag has been set, any further
- * allocation of AllocationGuard or its derivatives will cause an error log entry.  Note
+ * allocation of AllocationGuard or its derivatives(衍生,派生) will cause an error log entry.  Note
  * that AllocationGuard requires all of its derivatives to call super() in their constructor. 
+ * <p>内存分配检测工具--用于跟踪内存泄露
+ * 
+ * <p><b>注：继承该类的函数都需调用super()函数，以确定内存跟踪是否正在进行</b>
+ * @see com.stickycoding.rokon.BaseObject
+ * @see com.stickycoding.rokon.FixedSizeArray
  */
 
 public class AllocationGuard {

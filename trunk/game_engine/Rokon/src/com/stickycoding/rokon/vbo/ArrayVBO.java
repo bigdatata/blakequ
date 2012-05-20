@@ -10,7 +10,7 @@ import com.stickycoding.rokon.VBOManager;
 /**
  * ArrayVBO.java
  * An array VBO, defined by a BufferObject
- * 
+ * ¶¥µã»º³åÊý×é
  * @author Richard
  */
 public class ArrayVBO extends VBO {
@@ -19,7 +19,8 @@ public class ArrayVBO extends VBO {
 		super(bufferObject, drawType);
 	}
 
-	/* (non-Javadoc)
+	/**
+	 * (non-Javadoc)
 	 * @see com.stickycoding.rokon.vbo.VBO#load(javax.microedition.khronos.opengles.GL10)
 	 */
 	public void load(GL10 gl) {

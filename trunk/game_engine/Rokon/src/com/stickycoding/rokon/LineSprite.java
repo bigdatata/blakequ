@@ -5,7 +5,7 @@ import javax.microedition.khronos.opengles.GL10;
 /**
  * LineSprite.java
  * A very simple drawable straight line. For lines with many vertices, use PolygonSprite
- * 
+ * 用线条绘制的精灵
  * @author Richard
  */
 

@@ -3,7 +3,7 @@ package com.stickycoding.rokon;
 /**
  * Movement.java
  * Defines several different types of movement, which can be applied to varying situations
- * 
+ * 各种移动效果的封装类
  * @author Richard
  */
 public class Movement {
@@ -42,7 +42,7 @@ public class Movement {
 	/**
 	 * Begins quickly, ends slowly
 	 */
-	public static final int SLOWING = 3;
+	public static final int SLOWING = 5;
 	
 	/**
 	 * Calculates a relative position along a 'path'

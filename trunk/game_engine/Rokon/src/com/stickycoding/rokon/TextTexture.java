@@ -5,8 +5,8 @@ import android.graphics.Bitmap;
 /**
  * TextTexture.java
  * A Texture specifically designed for TTF text
- * These are created through Font.createTexture
- * 
+ * These are created through {@link Font#createTexture(String)} or {@link Font#createTexture(String, int)}
+ * <p>字体类型文件
  * @author Richard
  */
 public class TextTexture extends Texture {

@@ -12,7 +12,10 @@ import com.stickycoding.rokon.Rokon;
  * relatively low file size limit exists.
  * 
  * The RokonAudio class uses SoundPool to manage its sounds.
- * 使用单例模式
+ * 使用单例模式<p>
+ * 1.{@link RokonAudio}---使用SoundPool可以同时播放多个比较短的音频，该类用于实例化SoundPool，以及创建,释放音频资源,设置音量<p>
+ * 2.{@link SoundFile}---专门存储读取的音频文件，完成播放和unload音频，播放的时候获取streamID 并实例化{@link AudioStream}。<p>
+ * 3.{@link AudioStream}---负责音频的具体播放，暂停，设置音量等具体动作
  * @author Richard
  */
 public class RokonAudio {

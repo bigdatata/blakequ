@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.Shape;
  * Used with Physics.fromFile()
  * 
  * @author Richard
+ * @see Physics#fromFile(String, DimensionalObject)
  */
 public class PhysicsDef {
 	

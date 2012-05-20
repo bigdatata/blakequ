@@ -8,7 +8,7 @@ import android.opengl.GLUtils;
 /**
  * TextureAtlas.java
  * Holds many textures, loaded onto the atlas rather than single textures. Good for reducing actual texture count on hardware, reducing state changes, improving speed.
- * 
+ * 保存Texture数组
  * @author Richard
  */
 
@@ -131,9 +131,17 @@ public class TextureAtlas extends Texture {
 		}
 	}
 	
+	/**
+	 * check the skip Textrue whether overlap with current textrue array
+	 * @param x
+	 * @param y
+	 * @param skip
+	 * @return the index of array whitch overlap with skip Texture
+	 */
 	private int textureAt(int x, int y, Texture skip) {
 		for(int i = 0; i < maxTextureCount; i++) {
 			if(this.texture[i] != null && this.texture[i] != skip) {
+				//检验两个矩形是否重叠
 				if(MathHelper.rectOverlap(x, y, x + skip.width + 2, y + skip.width + 2, texture[i].atlasX, texture[i].atlasY, texture[i].atlasX + texture[i].width, texture[i].atlasY + texture[i].height)) {
 					return i;
 				}
@@ -142,6 +150,10 @@ public class TextureAtlas extends Texture {
 		return -1;
 	}
 	
+	/**
+	 * find the position in array
+	 * @return index of empty of array
+	 */
 	private int getNextEmptySlot() {
 		for(int i = 0; i < maxTextureCount; i++) {
 			if(texture[i] == null) {
@@ -151,7 +163,8 @@ public class TextureAtlas extends Texture {
 		return -1;
 	}
 	
-	/* (non-Javadoc)
+	/**
+	 * (non-Javadoc)
 	 * @see com.stickycoding.rokon.Texture#onLoadTexture(javax.microedition.khronos.opengles.GL10)
 	 */
 	protected void onLoadTexture(GL10 gl) {

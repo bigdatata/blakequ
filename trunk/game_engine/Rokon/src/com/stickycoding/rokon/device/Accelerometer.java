@@ -15,7 +15,7 @@ import com.stickycoding.rokon.Time;
 /**
  * Accelerometer.java
  * Helper class for the accelerometer on the device, if it has one
- * 
+ * 加速器（传感器）的封装,可以监听加速器是否改变，和摇动次数
  * @author Richard
  */
 

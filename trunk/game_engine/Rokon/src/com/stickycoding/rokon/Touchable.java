@@ -5,6 +5,7 @@ import android.view.MotionEvent;
 /**
  * Touchable.java
  * An interface applied to objects to allow responses to screen touch events
+ * 对基本游戏对象的触摸监听接口
  * @author Richard
  *
  */

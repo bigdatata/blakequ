@@ -8,7 +8,7 @@ import com.stickycoding.rokon.vbo.VBO;
  * VBOManager.java
  * Handles VBOs, much in the same way that TextureManager does. It keeps track of the ones active on the hardware, and reloads them if necessary.
  * 		eg, when coming back from Home button press
- *  
+ *  VBOπ‹¿Ì∆˜
  * @author Richard
  */
 

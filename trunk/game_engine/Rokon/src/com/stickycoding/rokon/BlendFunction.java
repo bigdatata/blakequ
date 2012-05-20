@@ -2,7 +2,7 @@ package com.stickycoding.rokon;
 
 /**
  * BlendFunction.java
- * Holds parameters for OpenGL blend function
+ * Holds parameters for OpenGL blend(»ìºÏ) function
  * See glBlendFunc parameters for details on each different setting
  * 
  * @author Richard

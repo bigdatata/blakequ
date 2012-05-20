@@ -3,7 +3,7 @@ package com.stickycoding.rokon;
 /**
  * Callback.java
  * Provies a reference for a Callback for invoking Methods
- * 
+ * 回调方法的封装
  * @author Richard
  */
 public class Callback {
@@ -54,7 +54,9 @@ public class Callback {
 	/**
 	 * Creates a Callback, defining a method by it's name,
 	 * a given parameter type and a given parameter object.
-	 * This is guaranteed to match only 1 possible method.
+	 * <b>This is guaranteed to match only 1 possible method.
+	 * 只有一个参数的才能调用该方法，如果方法有多个参数怎不行，
+	 * 应该使用{@link #Callback(String, Class[], Object[])}</b>
 	 * 
 	 * @param methodName valid method name
 	 * @param parameterType a Class which represents the parameter type

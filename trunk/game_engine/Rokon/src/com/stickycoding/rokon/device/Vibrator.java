@@ -8,11 +8,12 @@ import android.content.Context;
  * Vibrate.java
  * A helper class for vibrating the device
  * 
- * REMEMBER TO ADD THE RIGHT PERMISSIONS TO AndroidManifest.xml * 
- * <uses-permission android:name="android.permission.VIBRATE" ></uses-permission>
+ * REMEMBER TO ADD THE RIGHT PERMISSIONS TO AndroidManifest.xml  <p>
  * 
- * Take care when using import, the name clashes with android.os.Vibrator (yeah, I know.)
+ * <b>uses-permission android:name="android.permission.VIBRATE"</b><p>
  * 
+ * Take care when using import, the name clashes(冲突) with android.os.Vibrator (yeah, I know.)
+ * <p>手机震动的封装类，注意不要和系统的{@link android.os.Vibrator}冲突,且要<b>添加相应权限</b>
  * @author Richard
  */
 

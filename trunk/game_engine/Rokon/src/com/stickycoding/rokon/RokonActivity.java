@@ -82,7 +82,7 @@ public class RokonActivity extends Activity {
 	 * This is automatically called at onDestroy() when isFinishing() is TRUE
 	 * You shouldn't need to call this yourself
 	 */
-	public void dispose() {
+	private void dispose() {
 		Debug.print("dispose()");
 		if(currentScene != null) {
 			for(int i = 0; i < Scene.MAX_RUNNABLE; i++) {
@@ -127,7 +127,8 @@ public class RokonActivity extends Activity {
 		return gameHeight;
 	}
 	
-	/* (non-Javadoc)
+	/**
+	 * (non-Javadoc)
 	 * @see android.app.Activity#onKeyDown(int, android.view.KeyEvent)
 	 */
 	@Override
@@ -137,7 +138,7 @@ public class RokonActivity extends Activity {
 		return super.onKeyDown(keyCode, event);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see android.app.Activity#onTrackballEvent(android.view.MotionEvent)
 	 */
 	@Override
@@ -146,7 +147,7 @@ public class RokonActivity extends Activity {
 		return super.onTrackballEvent(event);
 	}
 	
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see android.app.Activity#onKeyUp(int, android.view.KeyEvent)
 	 */
 	@Override
@@ -224,18 +225,21 @@ public class RokonActivity extends Activity {
 		}
 	}	
 	
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see android.app.Activity#onDestroy()
 	 */
 	@Override
 	public void onDestroy() {
 		Debug.print("onDestroy()");
 		if(isFinishing()) {
-			//dispose();
+			dispose();
 		}
 		super.onDestroy();
 	}
 	
+	/**
+	 * 初始化变量
+	 */
 	private void createStatics() {
 		Graphics.determine(this);
 		Rokon.blendFunction = new BlendFunction(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
@@ -256,7 +260,7 @@ public class RokonActivity extends Activity {
 		OS.determineAPI();
 	}
 	
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see android.app.Activity#onPause()
 	 */
 	@Override

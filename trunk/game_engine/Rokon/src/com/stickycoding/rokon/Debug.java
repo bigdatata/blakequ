@@ -6,7 +6,7 @@ import android.util.Log;
  * Debug.java
  * Functions and helpers to aid debugging and engine reports.
  * DebugMode can be toggled to avoid using the print command.
- * 
+ * 自定义的告警处理类
  * @author Richard
  */
 public class Debug {

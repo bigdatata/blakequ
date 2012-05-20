@@ -22,11 +22,12 @@ package com.stickycoding.rokon;
  * The core object from which most other objects are derived.  Anything that will be managed by
  * an ObjectManager, and anything that requires an update per frame should be derived from
  * BaseObject.  BaseObject also defines the interface for the object-wide system registry.
+ * <p>该类是最基本的类，<b>该系统中所有的类都应该由它派生，它提供了对象的管理，和内存跟踪机制
  */
 public abstract class BaseObject extends AllocationGuard {
 
     public BaseObject() {
-        super();
+        super();//must call
     }
 
     /**
@@ -39,6 +40,9 @@ public abstract class BaseObject extends AllocationGuard {
     }
 
 
+    /**
+     * reset object(update and delete)
+     */
     public abstract void reset();
 
 }

@@ -10,7 +10,7 @@ import android.graphics.Canvas;
  * DynamicTexture.java
  * A Texture which can be changed at runtime. A separate class was created to cut down on unecessary memory allocations,
  * since it is much more likely for a Texture to remain unchanged.
- * 
+ * 动态字体(可以实时改变)
  * This cannot be used inside a TextureAtlas
  * 
  * @author Richard
@@ -77,6 +77,9 @@ public class DynamicTexture extends Texture {
 		return canvas;
 	}
 
+	/**
+	 * add this to manager array
+	 */
 	public void refresh() {
 		TextureManager.refreshTexture(this);
 	}

@@ -3,7 +3,7 @@ package com.stickycoding.rokon;
 /**
  * DrawPriority.java
  * Contains constants and details on the draw priority system
- * 
+ * 绘制优先级
  * @author Richard
  */
 public class DrawPriority {

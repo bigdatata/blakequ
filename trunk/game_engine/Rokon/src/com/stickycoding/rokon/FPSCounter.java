@@ -4,19 +4,22 @@ package com.stickycoding.rokon;
  * FPSCounter.java
  * Contains protected static methods used to count frame rate, and profile the performance of the engine
  * No good for end-user
- * 
+ * 每秒帧数计算器 静态类
  * @author Richard
  */
 public class FPSCounter {
-	
+	//平均每秒帧数
 	protected static final int FPS_AVG = 5;
-	
+	//总共帧数及时间计数
 	protected static int frameCount = 0;
 	protected static long secondStart = 0;
-	
+	//循环及时间计数
 	protected static int loopCount = 0;
 	protected static long loopSecondStart = 0;
 	
+	/**
+	 * next frame(not loop)
+	 */
 	protected static void onFrame() {
 		if(secondStart == 0) {
 			secondStart = Time.drawTicks;
@@ -32,6 +35,9 @@ public class FPSCounter {
 		}
 	}
 	
+	/**
+	 * loop next frame
+	 */
 	protected static void onLoop() {
 		if(loopSecondStart == 0) {
 			loopSecondStart = Time.loopTicks;

@@ -8,13 +8,16 @@ import android.os.Build;
 /**
  * BufferObject.java
  * Some functions for Buffers
- * 
+ * 定义的一个存储坐标属性的类（包括x,y,width,height）
  * @author Richard 
  */
 
 public class BufferObject {
 
 	protected ByteBuffer byteBuffer;
+	/**
+	 * the number of points
+	 */
 	protected int size;
 	
 	/**
@@ -33,6 +36,9 @@ public class BufferObject {
 	 */
 	public BufferObject(int length) {
 		if(Build.VERSION.SDK == "3")
+			/**
+			 * 分配时是length*4因为一个矩形的确定需要一个点(x,y)和长宽(length,width)共四个数据
+			 */
 			byteBuffer = ByteBuffer.allocate(length*4);
 		else
 			byteBuffer = ByteBuffer.allocateDirect(length*4);
@@ -67,7 +73,7 @@ public class BufferObject {
 	 * Updates the BufferObject with a new set of points, passed by a float array.
 	 * The length of this array must match the size of the BufferObject as it stands.
 	 * Unexpected results (or Exceptions) will arise if not used properly.
-	 *  
+	 * 用float数组(点坐标)初始化缓冲区
 	 * @param floats an array of points for the buffer
 	 */
 	public void updateRaw(float[] floats) {
@@ -82,7 +88,7 @@ public class BufferObject {
 	 * Updates the BufferObject with a new set of points, assuming rectangular shape.
 	 * This should only be used in a BufferObject of length 8. Otherwise errors may occur.
 	 * Merely for convenience, it is wiser to use updateRaw
-	 * 
+	 * 里面定义了一个矩形的四个点坐标
 	 * @param x x-coordinate 
 	 * @param y y-coordinate 
 	 * @param width width of rectangle
@@ -90,12 +96,16 @@ public class BufferObject {
 	 */
 	public void update(float x, float y, float width, float height) {
 		byteBuffer.position(0);
+		//left-up point
 		byteBuffer.putFloat(x);
 		byteBuffer.putFloat(y);
+		//right-up point
 		byteBuffer.putFloat(x + width);
 		byteBuffer.putFloat(y);
+		//left-down point
 		byteBuffer.putFloat(x);
 		byteBuffer.putFloat(y + height);
+		//right-down point
 		byteBuffer.putFloat(x + width);
 		byteBuffer.putFloat(y + height);
 		byteBuffer.position(0);

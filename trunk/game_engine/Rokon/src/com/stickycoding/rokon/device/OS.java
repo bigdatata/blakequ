@@ -4,6 +4,11 @@ import android.os.Build;
 
 import com.stickycoding.rokon.Debug;
 
+/**
+ * the type of OS which the API of system
+ * @author AlbertQu
+ *
+ */
 public class OS {
 	
 	/**

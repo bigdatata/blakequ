@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * PositionalObject.java
  * An point which has basic 2D positional coordinates, and methods to move
- * 
+ * 基于二维坐标系的点
  * @author Richard
  */
 
@@ -50,7 +50,8 @@ public class Point extends Vector2 {
 	
 	/**
 	 * Returns the X coordinate for this Point
-	 * 
+	 * <p><b>NOTICE: </b>the point base parent coordinate, so if the parent not null will back
+	 * X = parent.getX() + x.
 	 * @return x-coordinate
 	 */
 	public float getX() {
@@ -59,7 +60,8 @@ public class Point extends Vector2 {
 	
 	/**
 	 * Returns the Y coordinate for this Point
-	 * 
+	 * <p><b>NOTICE: </b>the point base parent coordinate, so if the parent not null will back
+	 * Y = parent.getY() + y.
 	 * @return y-coordinate
 	 */
 	public float getY() {

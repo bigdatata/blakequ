@@ -7,8 +7,8 @@ import android.view.MotionEvent;
 /**
  * Drawable.java
  * An interface for objects which are to be in the render queue 
- * Confusion with Androids own Drawable class may be a potential issue, though this being an interface they cannot easily be used accidentally
- *  
+ * Confusion with Androids own {@link android.graphics.drawable.Drawable} class may be a potential issue, though this being an interface they cannot easily be used accidentally
+ * 一个接口函数，具有绘制，更新，移动，点击等属性
  * @author Richard
  */
 public abstract interface Drawable {
