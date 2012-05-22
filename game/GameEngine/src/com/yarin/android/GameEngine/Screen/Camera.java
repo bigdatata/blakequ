@@ -7,7 +7,7 @@ import com.yarin.android.GameEngine.Screen.elements.biology.Actor;
 import com.yarin.android.GameEngine.Util.Coordinates;
 
 /**
- * 摄像机
+ * 摄像机(主要就是当前的可视范围，主要目的就是可视范围是随着主角移动还是触摸位置移动(地图过大))
  * @author AlbertQu
  *
  */
