@@ -48,6 +48,10 @@ public class IGameObjectQueue{
 		return objectQueue.get(id);
 	}
 	
+	public void remove(int id){
+		objectQueue.remove(id);
+	}
+	
 	/**
 	 * garbage the dead game object
 	 */
