@@ -1,5 +1,7 @@
 package com.albert.audio;
 
+import com.albert.util.Disposable;
+
 /**
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
@@ -7,7 +9,7 @@ package com.albert.audio;
  * @author Nicolas Gramlich
  * @since 15:02:06 - 13.06.2010
  */
-public interface IAudioManager<T extends IAudioEntity> {
+public interface IAudioManager<T extends IAudioEntity> extends Disposable{
 	// ===========================================================
 	// Constants
 	// ===========================================================
