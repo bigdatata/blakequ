@@ -2,6 +2,8 @@ package com.albert.audio;
 
 import java.util.ArrayList;
 
+import com.albert.util.Disposable;
+
 /**
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
@@ -9,7 +11,7 @@ import java.util.ArrayList;
  * @author Nicolas Gramlich
  * @since 18:07:02 - 13.06.2010
  */
-public abstract class BaseAudioManager<T extends IAudioEntity> implements IAudioManager<T> {
+public abstract class BaseAudioManager<T extends IAudioEntity> implements IAudioManager<T>{
 
 	protected final ArrayList<T> mAudioEntities = new ArrayList<T>();
 
@@ -44,7 +46,7 @@ public abstract class BaseAudioManager<T extends IAudioEntity> implements IAudio
 	}
 
 	@Override
-	public void releaseAll() {
+	public synchronized void releaseAll() {
 		final ArrayList<T> audioEntities = this.mAudioEntities;
 		for(int i = audioEntities.size() - 1; i >= 0; i--) {
 			final T audioEntity = audioEntities.get(i);
@@ -53,4 +55,12 @@ public abstract class BaseAudioManager<T extends IAudioEntity> implements IAudio
 			audioEntity.release();
 		}
 	}
+
+	@Override
+	public synchronized void dispose() {
+		// TODO Auto-generated method stub
+		this.releaseAll();
+	}
+	
+	
 }
