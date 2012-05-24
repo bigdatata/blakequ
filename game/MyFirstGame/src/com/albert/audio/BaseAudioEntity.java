@@ -1,5 +1,7 @@
 package com.albert.audio;
 
+import com.albert.IGameObject;
+import com.albert.IProperty;
 import com.albert.audio.exception.AudioException;
 
 
@@ -10,7 +12,7 @@ import com.albert.audio.exception.AudioException;
  * @author Nicolas Gramlich
  * @since 16:35:37 - 13.06.2010
  */
-public abstract class BaseAudioEntity implements IAudioEntity {
+public abstract class BaseAudioEntity implements IAudioEntity{
 
 	private final IAudioManager<? extends IAudioEntity> mAudioManager;
 
@@ -26,10 +28,6 @@ public abstract class BaseAudioEntity implements IAudioEntity {
 	public BaseAudioEntity(final IAudioManager<? extends IAudioEntity> pAudioManager) {
 		this.mAudioManager = pAudioManager;
 	}
-
-	// ===========================================================
-	// Getter & Setter
-	// ===========================================================
 
 	public boolean isReleased() {
 		return this.mReleased;

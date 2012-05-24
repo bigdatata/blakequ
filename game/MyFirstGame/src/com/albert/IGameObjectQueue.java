@@ -10,17 +10,7 @@ import android.util.Log;
  * @author AlbertQu
  *
  */
-public class IGameObjectQueue{
-	private static IGameObjectQueue instance = null;
-	private static HashMap<Integer, IGameObject> objectQueue = new HashMap<Integer, IGameObject>();
-	private IGameObjectQueue(){}
-	
-	public synchronized static IGameObjectQueue getInstance(){
-		if(instance == null){
-			instance = new IGameObjectQueue();
-		}
-		return instance;
-	}
+public class IGameObjectQueue extends HashMap<Integer, IGameObject>{
 
 	/**
 	 * add {@link IGameObject} to queue, if exsits, not add to queue.
@@ -28,10 +18,10 @@ public class IGameObjectQueue{
 	 * @param object
 	 */
 	public void add(int id, IGameObject object){
-		if(objectQueue.containsKey(id)){
-			Log.w("IGameObjectQueue", object.getName()+" has exsits in object queue");
+		if(this.containsKey(id)){
+			Log.w("IGamethis", object.getName()+" has exsits in object queue");
 		}else{
-			objectQueue.put(id, object);
+			this.put(id, object);
 		}
 	}
 	
@@ -41,31 +31,43 @@ public class IGameObjectQueue{
 	 * @param object
 	 */
 	public void addAndUpdate(int id, IGameObject object){
-		objectQueue.put(id, object);
+		this.put(id, object);
 	}
 
 	public IGameObject get(int id){
-		return objectQueue.get(id);
+		return this.get(id);
 	}
 	
 	public void remove(int id){
-		objectQueue.remove(id);
+		this.remove(id);
+	}
+	
+	public IGameObject[] list(){
+		IGameObject[] objs = new IGameObject[this.size()]; 
+		Iterator itr = this.keySet().iterator();
+		int i=0;
+		while(itr.hasNext()){
+			IGameObject igo = this.get(itr.next());
+			objs[i++] = igo;
+		}
+		return objs;
 	}
 	
 	/**
 	 * garbage the dead game object
 	 */
 	public void gc(){
-		Iterator itr = objectQueue.keySet().iterator();
+		Iterator itr = this.keySet().iterator();
 		while(itr.hasNext()){
-			IGameObject igo = objectQueue.get(itr.next());
+			IGameObject igo = this.get(itr.next());
 			if(!igo.isAlive()){
+				igo = null;
 				itr.remove();
 			}
 		}
 	}
 	
 	public void clear(){
-		objectQueue.clear();
+		this.clear();
 	}
 }
