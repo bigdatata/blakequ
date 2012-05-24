@@ -7,6 +7,6 @@ package com.albert;
  */
 public interface GameObjectInterface {
 	
-	void setId(int id);
-	void loadProperities(IProperty property);
+	void setId(String id);
+	void loadProperties(IProperty property);
 }

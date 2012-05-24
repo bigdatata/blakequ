@@ -7,16 +7,19 @@ package com.albert;
  */
 public abstract class IGameObject implements GameObjectInterface {
 	
-	private int id;
+	private String id;
 	//the state of current object, if dead, set false
 	private boolean alive = true;
+
+
 	@Override
-	public void loadProperities(IProperty property) {
+	public void loadProperties(IProperty property) {
 		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void setId(int id) {
+	public void setId(String id) {
 		// TODO Auto-generated method stub
 		this.id = id;
 	}
@@ -28,7 +31,7 @@ public abstract class IGameObject implements GameObjectInterface {
 		return this.getClass().getName();
 	}
 	
-	public int getId(){
+	public String getId(){
 		return id;
 	}
 

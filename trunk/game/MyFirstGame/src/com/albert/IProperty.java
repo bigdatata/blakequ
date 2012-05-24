@@ -7,14 +7,7 @@ package com.albert;
  */
 public interface IProperty {
 
-	/**
-	 * set the property of game object
-	 */
-	void setProperties();
-	
-	/**
-	 * get the property of game object
-	 * @return
-	 */
-	IProperty getProperties();
+	void setStoreFile(String file);
+	void saveProperty();
+	void readProperty();
 }
