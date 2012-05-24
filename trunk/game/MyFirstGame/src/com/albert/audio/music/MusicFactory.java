@@ -16,23 +16,9 @@ import android.media.MediaPlayer;
  * @since 15:05:49 - 13.06.2010
  */
 public class MusicFactory {
-	// ===========================================================
-	// Constants
-	// ===========================================================
 
-	// ===========================================================
-	// Fields
-	// ===========================================================
+	private static String sAssetBasePath = "file:///android_asset/";
 
-	private static String sAssetBasePath = "";
-
-	// ===========================================================
-	// Constructors
-	// ===========================================================
-
-	// ===========================================================
-	// Getter & Setter
-	// ===========================================================
 
 	/**
 	 * @param pAssetBasePath must end with '<code>/</code>' or have <code>.length() == 0</code>.
@@ -53,13 +39,6 @@ public class MusicFactory {
 		MusicFactory.setAssetBasePath("");
 	}
 
-	// ===========================================================
-	// Methods for/from SuperClass/Interfaces
-	// ===========================================================
-
-	// ===========================================================
-	// Methods
-	// ===========================================================
 
 	public static Music createMusicFromFile(final MusicManager pMusicManager, final File pFile) throws IOException {
 		final MediaPlayer mediaPlayer = new MediaPlayer();
