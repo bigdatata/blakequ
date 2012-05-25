@@ -29,5 +29,12 @@ public class AudioSetting {
 		this.audioType = audioType;
 	}
 	
+	/**
+	 * mute
+	 * @return
+	 */
+	public boolean isMute(){
+		return !(playBackgroundAudio || playActionAudio);
+	}
 	
 }

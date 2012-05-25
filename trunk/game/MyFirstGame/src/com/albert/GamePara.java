@@ -32,4 +32,8 @@ public class GamePara {
 	
 	/* the size fo text */
 	public static final int	TextSize = 16;
+	
+	
+	/* sleep time of game view refresh */
+	public static final int GAME_LOOP = 100;
 }
