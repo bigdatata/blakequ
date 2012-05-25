@@ -3,24 +3,21 @@ package com.albert;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 public abstract class IGameView extends SurfaceView implements SurfaceHolder.Callback{
 
-	protected SurfaceHolder sfh;  
-	protected Canvas canvas;  
-	protected Paint paint;  
+	protected SurfaceHolder surfaceHolder;  
     public static int screenW, screenH;
     protected String viewName;
 	
 	public IGameView(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
-		sfh = getHolder();
-		sfh.addCallback(this);
-		paint = new Paint();
-		paint.setAntiAlias(true);
+		surfaceHolder = getHolder();
+		surfaceHolder.addCallback(this);
 		setFocusable(true);
 		setFocusableInTouchMode(true);
 	}
@@ -49,7 +46,7 @@ public abstract class IGameView extends SurfaceView implements SurfaceHolder.Cal
 	 * 绘图
 	 * @param	Canvas		
 	 */
-	protected abstract void onDraw(Canvas canvas);
+	public abstract void onDraw(Canvas canvas);
 	
 	/**
 	 * 按键按下
@@ -67,6 +64,10 @@ public abstract class IGameView extends SurfaceView implements SurfaceHolder.Cal
 	public abstract boolean onKeyUp(int keyCode);
 	
 	/**
+	 * 触摸
+	 */
+	public abstract boolean onTouchEvent(MotionEvent event);
+	/**
 	 * 回收资源
 	 */
 	public abstract void reCycle();	
@@ -74,7 +75,7 @@ public abstract class IGameView extends SurfaceView implements SurfaceHolder.Cal
 	/**
 	 * 刷新
 	 */
-	protected abstract void refurbish();
+	public abstract void refurbish();
 
 	/**
 	 * get the name of view

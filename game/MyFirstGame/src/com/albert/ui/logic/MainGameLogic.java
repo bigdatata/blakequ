@@ -1,13 +1,10 @@
 package com.albert.ui.logic;
 
-import java.io.IOException;
 
 import com.albert.GamePara;
 import com.albert.IGameView;
 import com.albert.audio.AudioSetting;
 import com.albert.audio.BaseAudioEntity;
-import com.albert.audio.BaseAudioManager;
-import com.albert.audio.music.MusicFactory;
 import com.albert.audio.music.MusicManager;
 import com.albert.audio.sound.SoundManager;
 import com.albert.ui.WelcomeView;
@@ -30,7 +27,8 @@ public class MainGameLogic {
 	//set the audio
 	private AudioSetting audioSetting = null;
 	public BaseAudioEntity audio = null;
-	private BaseAudioManager audioManager = null;
+	public MusicManager musicManager = null;
+	public SoundManager soundManager = null;
 	
 	public MainGameLogic(Context mContext) {
 		super();
@@ -49,29 +47,8 @@ public class MainGameLogic {
 	 * init audio manager
 	 */
 	public void initAudio(){
-		if(audioSetting.isPlayActionAudio() && !audioSetting.isPlayBackgroundAudio()){
-//			//init the audio
-//			switch(audioSetting.getAudioType()){
-//				case GamePara.MUSIC:
-//					audioManager = new MusicManager();
-//				try {
-//					audio = MusicFactory.createMusicFromAsset((MusicManager)audioManager, mContext, "");
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//					break;
-//				case GamePara.SOUND:
-//					audioManager = new SoundManager();
-//					break;
-//				case GamePara.AUDIO_BOTH:
-//					break;
-//			}
-		}else if(audioSetting.isPlayBackgroundAudio() && !audioSetting.isPlayActionAudio()){
-			
-		}else if(audioSetting.isPlayBackgroundAudio() && audioSetting.isPlayActionAudio()){
-			
-		}
+		musicManager = new MusicManager();
+		soundManager = new SoundManager();
 	}
 	
 	/**
@@ -117,7 +94,6 @@ public class MainGameLogic {
 		if(gameView != null)
 		{
 			gameView = null;
-			audioSetting = null;
 			System.gc();
 		}
 	}

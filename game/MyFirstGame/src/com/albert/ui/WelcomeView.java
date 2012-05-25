@@ -2,6 +2,7 @@ package com.albert.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.view.MotionEvent;
 
 import com.albert.IGameView;
 import com.albert.ui.logic.MainGameLogic;
@@ -19,7 +20,7 @@ public class WelcomeView extends IGameView {
 	}
 
 	@Override
-	protected void onDraw(Canvas canvas) {
+	public void onDraw(Canvas canvas) {
 		// TODO Auto-generated method stub
 
 	}
@@ -44,9 +45,15 @@ public class WelcomeView extends IGameView {
 	}
 
 	@Override
-	protected void refurbish() {
+	public void refurbish() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 
