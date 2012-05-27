@@ -97,6 +97,18 @@ public class MainGameLogic {
 			System.gc();
 		}
 	}
+	
+	/**
+	 * before quit system, free space
+	 */
+	public void free(){
+		if(musicManager != null){
+			musicManager.dispose();
+		}
+		if(soundManager != null){
+			musicManager.dispose();
+		}
+	}
 
 	/**
 	 * get current game state

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="game_menu">
+        <item>开始</item>
+        <item>读取上次游戏</item>
+        <item>设置</item>
+        <item>帮助</item>
+        <item>关于</item>
+    </string-array>
+    
+</resources>
