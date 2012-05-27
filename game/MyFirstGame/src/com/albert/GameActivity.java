@@ -5,6 +5,7 @@ import com.albert.ui.logic.ViewThread;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 
@@ -66,6 +67,7 @@ public class GameActivity extends BaseActivity {
 	@Override
 	public void onDestroyResources() {
 		// TODO Auto-generated method stub
+		Log.i("GameActivity", "onDestroyResources");
 		viewThread.stopRefreshView();
 		mainGame.free();
 		System.gc();

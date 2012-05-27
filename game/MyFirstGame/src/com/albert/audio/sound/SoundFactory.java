@@ -81,7 +81,11 @@ public class SoundFactory {
 	public static Sound createSoundFromResource(final SoundManager pSoundManager, final Context pContext, final int pSoundResID) {
 		synchronized(pSoundManager) {
 			final int soundID = pSoundManager.getSoundPool().load(pContext, pSoundResID, 1);
-			final Sound sound = new Sound(pSoundManager, soundID);
+			Sound sound = null;
+			if(soundID > 0){
+				sound = new Sound(pSoundManager, soundID);
+				sound.setLoaded(true);
+			}
 			pSoundManager.add(sound);
 			return sound;
 		}

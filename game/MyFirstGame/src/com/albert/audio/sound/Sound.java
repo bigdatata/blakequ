@@ -25,7 +25,7 @@ public class Sound extends BaseAudioEntity {
 	private int mSoundID;
 	private int mStreamID;
 
-	private boolean mLoaded;
+	private boolean mLoaded = false;
 
 	private int mLoopCount;
 	private float mRate = 1.0f;
@@ -107,7 +107,7 @@ public class Sound extends BaseAudioEntity {
 		final float masterVolume = this.getMasterVolume();
 		final float leftVolume = this.mLeftVolume * masterVolume;
 		final float rightVolume = this.mRightVolume * masterVolume;
-
+		
 		this.mStreamID = this.getSoundPool().play(this.mSoundID, leftVolume, rightVolume, 1, this.mLoopCount, this.mRate);
 	}
 

@@ -1,10 +1,10 @@
 package com.albert.ui.logic;
 
 
+import com.albert.GameActivity;
 import com.albert.GamePara;
 import com.albert.IGameView;
 import com.albert.audio.AudioSetting;
-import com.albert.audio.BaseAudioEntity;
 import com.albert.audio.music.MusicManager;
 import com.albert.audio.sound.SoundManager;
 import com.albert.ui.WelcomeView;
@@ -20,13 +20,13 @@ public class MainGameLogic {
 
 	
 	private Context mContext;
+	private GameActivity gameActivity;
 	//current state of game, default -1 means not begin
 	private int gameStatus = -1;
 	private static IGameView currentView = null;
 	
 	//set the audio
 	private AudioSetting audioSetting = null;
-	public BaseAudioEntity audio = null;
 	public MusicManager musicManager = null;
 	public SoundManager soundManager = null;
 	
@@ -34,6 +34,7 @@ public class MainGameLogic {
 		super();
 		audioSetting = new AudioSetting();
 		this.mContext = mContext;
+		gameActivity = (GameActivity) mContext;
 		this.initGame();
 	}
 	
@@ -153,4 +154,10 @@ public class MainGameLogic {
 	public AudioSetting getAudioSetting() {
 		return audioSetting;
 	}
+
+	public GameActivity getGameActivity() {
+		return gameActivity;
+	}
+	
+	
 }

@@ -16,6 +16,7 @@ public class GamePara {
 	public static final int	GAME_HELP		= 4;
 	public static final int	GAME_RUN		= 5;
 	public static final int	GAME_CONTINUE	= 6;
+	public static final int GAME_SETTING 	= 7;
 	
 	
 	/* key code */

@@ -10,7 +10,6 @@ import android.view.SurfaceView;
 public abstract class IGameView extends SurfaceView implements SurfaceHolder.Callback{
 
 	protected SurfaceHolder surfaceHolder;  
-    public static int screenW, screenH;
     protected String viewName;
 	
 	public IGameView(Context context) {
@@ -25,8 +24,6 @@ public abstract class IGameView extends SurfaceView implements SurfaceHolder.Cal
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
 		// TODO Auto-generated method stub
-		screenH = getHeight();
-		screenW = getWidth();
 	}
 
 	@Override
