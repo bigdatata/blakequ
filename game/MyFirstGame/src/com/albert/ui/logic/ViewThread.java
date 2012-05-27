@@ -58,7 +58,6 @@ public class ViewThread extends SurfaceView implements Callback,Runnable {
 			if (canvas != null) {
 				IGameView gameView = MainGameLogic.getCurrentView();
 				if(gameView != null){
-					Log.i(TAG, "begin draw "+gameView.getViewName());
 					gameView.onDraw(canvas);
 				}else{
 					Log.i(TAG, "the game view is null");
