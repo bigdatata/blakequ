@@ -1,0 +1,24 @@
+#include <string.h>
+#include <stdio.h>
+----------------------strcmp---区分大小写-------------------
+/*
+原型：extern int strcmp(const void *s1, const void *s2);
+
+用法：#include <string.h>
+
+功能：比较字符串s1和s2是否相同,区分大小写。
+
+说明：如果s1=s2则返回零，否则返回非零值。
+
+----------------------stricmp---不区分字母的大小写-------------------
+原型：extern int stricmp(char *s1,char * s2);
+        
+用法：#include <string.h>
+
+功能：比较字符串s1和s2，但不区分字母的大小写。
+
+说明：strcmpi是到stricmp的宏定义，实际未提供此函数。
+        当s1<s2时，返回值<0
+        当s1=s2时，返回值=0
+        当s1>s2时，返回值>0
+*/
