@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="mainpage_item">
+		<item>发布商品</item>
+		<item>查找商品</item>
+		<item>商品地图</item>
+		<item>我的商品</item>
+	</string-array>
+	<string-array name="goods_assortment">
+		<item>图书</item>
+		<item>手机数码</item>
+		<item>电脑办公</item>
+		<item>家居厨具</item>
+		<item>服饰鞋帽</item>
+		<item>个护化妆</item>
+		<item>箱包钟表</item>
+		<item>运动健康</item>
+		<item>乐器玩具</item>
+		<item>小吃零食</item>
+		<item>票务</item>
+	</string-array>
+
+	<string-array name="goods_state">
+		<item>正在出售</item>
+		<item>已经售出</item>
+	</string-array>
+	<string-array name="main_goods_list_distance">
+		<item>所有</item>
+		<item>1000</item>
+		<item>500</item>
+		<item>200</item>
+		<item>100</item>
+	</string-array>
+	<array name="main_goods_list_price">
+		<item>由低到高</item>
+		<item>由高到低</item>
+	</array>
+	<string-array name="mygoods_button_text">
+		<item>购物车</item>
+		<item>我的关注</item>
+		<item>我的商品</item>
+	</string-array>
+	<string-array name="searchgoods_words">
+		<item>手机</item>
+		<item>电脑</item>
+		<item>家电</item>
+		<item>洗衣机</item>
+		<item>家电</item>
+		<item>笔记本</item>
+		<item>键盘</item>
+		<item>内存</item>
+		<item>衣物</item>
+		<item>主板</item>
+	</string-array>
+	<string-array name="detailgoods_change_state">
+		<item>已经售出</item>
+		<item>正在出售</item>
+	</string-array>
+	<string-array name="map_distance">
+		<item>100</item>
+		<item>200</item>
+		<item>500</item>
+		<item>1000</item>
+		<item>所有</item>
+	</string-array>
+	<string-array name="map_set_point_type">
+		<item>使用我的位置</item>
+		<item>从地图上选取</item>
+	</string-array>
+</resources>
+
+	<!--数组资源文件都放在里面，命名规范见school.txt  -->

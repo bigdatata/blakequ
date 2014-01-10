@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:layout_marginLeft="25dip" android:layout_marginRight="25dip"
+	android:layout_gravity="center_vertical" android:background="@drawable/detailgoods_popup_background"
+	android:orientation="vertical"
+	android:id="@+id/sellgoods_picture">
+
+	<TextView android:text="@string/sellgoods_camera_send" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:id="@id/sellgoods_sendpicture"
+		android:textColor="@color/white" android:layout_gravity="center_horizontal"
+		android:textSize="18dip"></TextView>
+
+	<Button android:text="@string/sellgoods_local_upload" android:id="@id/sellgoods_sendpicture_local"
+		android:layout_width="match_parent" android:layout_height="50dip"
+		android:textSize="16dp" android:layout_centerHorizontal="true" android:background="@drawable/detailgoods_button"></Button>
+	<Button android:text="@string/sellgoods_camera_upload" android:id="@id/sellgoods_sendpicture_camera"
+		android:layout_width="match_parent" android:layout_height="50dp"
+		android:textSize="16dp" android:layout_centerHorizontal="true"
+		android:background="@drawable/detailgoods_button"></Button>
+	<Button android:text="@string/cancel" android:id="@id/sellgoods_sendpicture_cancel"
+		android:layout_height="50dp" android:textSize="16dp" android:layout_width="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:layout_alignParentRight="true" android:background="@drawable/detailgoods_button"></Button>
+</LinearLayout>
+

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:id="@+id/sellgoods_main"
+	android:background="@drawable/goodslist_background">
+
+	<include layout="@layout/main_title" android:id="@+id/sellgoods_title"></include>
+	<ScrollView android:layout_height="fill_parent"
+		android:fillViewport="true" android:layout_width="fill_parent"
+		android:layout_weight="1" android:padding="5dp">
+		<RelativeLayout android:layout_width="fill_parent"
+			android:layout_height="fill_parent">
+			<TextView android:text="商品名称" android:textStyle="bold"
+				android:layout_marginTop="12dp" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:textColor="@color/black"
+				android:id="@+id/sellgoods_name_text" android:textSize="16dip"
+				android:layout_alignParentTop="true" android:layout_alignParentLeft="true"></TextView>
+			<EditText android:id="@+id/sellgoods_name_edit"
+				android:layout_toRightOf="@id/sellgoods_name_text"
+				android:layout_alignParentTop="true"
+				android:layout_alignParentRight="true" android:layout_width="wrap_content"
+				android:layout_height="wrap_content"></EditText>
+
+			<View android:background="@drawable/bar_highlight"
+				android:layout_below="@id/sellgoods_name_edit" android:layout_width="fill_parent"
+				android:layout_height="1dip" android:id="@+id/sellgoogds_view1" />
+			<TextView android:id="@id/sellgoods_catagory_text"
+				android:layout_marginTop="12dp" android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:layout_alignParentLeft="true"
+				android:textSize="16dip" android:textColor="@color/black"
+				android:textStyle="bold" android:text="商品类别" android:layout_below="@id/sellgoogds_view1" />
+			<Spinner android:id="@id/sellgoods_catagory_spinner"
+				android:layout_height="wrap_content" android:layout_width="fill_parent"
+				android:layout_weight="1" android:text="" android:background="@drawable/main_goods_list_dropdown"
+				android:layout_alignParentRight="true" android:layout_toRightOf="@id/sellgoods_name_text"
+				android:layout_below="@id/sellgoogds_view1" />
+			<View android:background="@drawable/bar_highlight" android:id="@+id/sellgoogds_view2"
+				android:layout_height="1dip" android:layout_width="fill_parent"
+				android:layout_below="@id/sellgoods_catagory_spinner" />
+			<TextView android:id="@id/sellgoods_state_text"
+				android:layout_marginTop="12dp" android:layout_height="wrap_content"
+				android:layout_width="wrap_content" android:layout_alignParentLeft="true"
+				android:textSize="16dip" android:textColor="@color/black"
+				android:gravity="right" android:textStyle="bold" android:text="当前状态"
+				android:layout_below="@id/sellgoogds_view2" />
+			<Spinner android:id="@id/sellgoods_state_spinner"
+				android:layout_height="wrap_content" android:layout_width="fill_parent"
+				android:layout_weight="1" android:text=""
+				android:background="@drawable/main_goods_list_dropdown"
+				android:layout_alignParentRight="true" android:layout_toRightOf="@id/sellgoods_name_text"
+				android:layout_below="@id/sellgoogds_view2" />
+			<View android:background="@drawable/bar_highlight" android:id="@+id/sellgoogds_view3"
+				android:layout_height="1dip" android:layout_width="fill_parent"
+				android:layout_below="@id/sellgoods_state_spinner" />
+			<TextView android:layout_height="wrap_content"
+				android:layout_marginTop="12dp" android:layout_width="wrap_content"
+				android:layout_alignParentLeft="true" android:textSize="16dip"
+				android:textColor="@color/black" android:gravity="right"
+				android:textStyle="bold" android:text="价格" android:layout_below="@id/sellgoogds_view3" />
+			<CheckBox android:id="@id/sellgoods_price_checkbox"
+				android:layout_height="wrap_content" android:layout_width="wrap_content"
+				android:text="" android:layout_alignParentRight="true"
+				android:layout_below="@id/sellgoogds_view3" />
+			<TextView android:id="@id/sellgoods_price_isDiscussing"
+				android:layout_height="wrap_content" android:layout_width="wrap_content"
+				android:textSize="16dip" android:textColor="@color/black"
+				android:text="面议" android:layout_toLeftOf="@id/sellgoods_price_checkbox"
+				android:layout_marginTop="10dp" android:layout_below="@id/sellgoogds_view3" />
+			<EditText android:id="@id/sellgoods_price_edit"
+				android:layout_height="wrap_content" android:layout_width="fill_parent"
+				android:layout_weight="1" android:text="" android:layout_toRightOf="@id/sellgoods_name_text"
+				android:layout_toLeftOf="@id/sellgoods_price_isDiscussing"
+				android:layout_below="@id/sellgoogds_view3"
+				android:scrollHorizontally="true" />
+
+
+			<View android:background="@drawable/bar_highlight" android:id="@+id/sellgoogds_view4"
+				android:layout_height="1dip" android:layout_width="fill_parent"
+				android:layout_below="@id/sellgoods_price_checkbox" />
+			<LinearLayout android:id="@+id/sellgoogds_linearlayout1"
+				android:layout_height="wrap_content" android:layout_width="fill_parent"
+				android:layout_below="@id/sellgoogds_view4">
+				<ImageButton android:background="@drawable/detailgoods_button"
+					android:id="@id/sellgoods_picture" android:layout_height="50dip"
+					android:layout_width="80dip" android:layout_weight="1"
+					android:textSize="16dip" android:src="@drawable/picture" />
+				<ImageButton android:background="@drawable/detailgoods_button"
+					android:id="@id/sellgoods_getgps" android:layout_height="50dip"
+					android:layout_width="80dip" android:layout_weight="1"
+					android:textSize="16dip" android:src="@drawable/detailgoods_button_location" />
+				<ImageButton android:background="@drawable/detailgoods_button"
+					android:id="@id/sellgoods_address" android:layout_height="50dip"
+					android:layout_width="80dip" android:layout_weight="1"
+					android:textSize="16dip" android:src="@drawable/detailgoods_button_call" />
+
+			</LinearLayout>
+			
+			<TextView android:id="@id/sellgoods_descript_text"
+				android:layout_height="wrap_content" android:layout_width="fill_parent"
+				android:layout_alignParentLeft="true" android:textSize="16dip"
+				android:textColor="@color/black" android:text="详细描述：" android:background="@drawable/mainpage_title_bar"
+				android:layout_below="@id/sellgoogds_linearlayout1" />
+			<EditText android:id="@id/sellgoods_descript_edit"
+				android:layout_height="wrap_content" android:layout_width="fill_parent"
+				android:layout_alignParentLeft="true" android:minLines="7"
+				android:layout_alignParentRight="true" android:layout_below="@id/sellgoods_descript_text"
+				android:inputType="textMultiLine" android:gravity="top|left" />
+			<ViewStub android:id="@+id/sellgoods_stub_view" android:layout="@layout/sellgoods_inflate_image"
+					  android:layout_width="fill_parent" android:layout_height="wrap_content"
+					  android:layout_below="@id/sellgoods_descript_edit">
+			</ViewStub>
+		</RelativeLayout>
+	</ScrollView>
+</LinearLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exchange>
+	<login>
+		<info>8</info>
+	</login>
+</exchange>
+<!-- 如果登录成功，返回当前用户的id号 -->

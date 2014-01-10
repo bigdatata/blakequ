@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/mainpage_menu_change_user"
+          android:icon="@drawable/ic_menu_invite"
+          android:title="@string/mainpage_menu_change_user" />
+    <item android:id="@+id/mainpage_menu_help"
+          android:icon="@android:drawable/ic_menu_info_details"
+          android:title="@string/mainpage_menu_help" />
+    <item android:id="@+id/mainpage_menu_exit"
+    	  android:icon="@android:drawable/ic_lock_power_off"
+    	  android:title="@string/mainpage_menu_exit"/>
+</menu>

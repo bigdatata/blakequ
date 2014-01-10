@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:layout_marginLeft="25dip" android:layout_marginRight="25dip"
+	android:layout_gravity="center_vertical"
+	android:stretchColumns="1" android:background="@drawable/detailgoods_popup_background"
+	android:id="@+id/sellgoods_popup">
+	<RelativeLayout android:layout_gravity="center">
+		<TextView android:text="@string/sellgoods_connection" android:id="@id/sellgoods_contact"
+			android:textColor="@color/white" android:layout_width="wrap_content"
+			android:textSize="18dip" android:layout_height="wrap_content"
+			android:layout_centerHorizontal="true">
+		</TextView>
+	</RelativeLayout>
+
+	<TableRow>
+		<TextView android:text="@string/sellgoods_phone" android:id="@id/sellgoods_contact_phone_text"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:textColor="@color/white" android:textSize="16dip"></TextView>
+		<EditText android:id="@id/sellgoods_contact_phone_edit"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"></EditText>
+	</TableRow>
+
+	<TableRow>
+		<TextView android:text="@string/sellgoods_qq" android:id="@id/sellgoods_contact_qq_text"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:textColor="@color/white" android:textSize="16dip"></TextView>
+		<EditText android:id="@id/sellgoods_contact_qq_edit"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"></EditText>
+	</TableRow>
+
+	<TableRow>
+		<TextView android:text="@string/sellgoods_location" android:id="@id/sellgoods_contact_location_text"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:textColor="@color/white" android:textSize="16dip"></TextView>
+		<EditText android:id="@id/sellgoods_contact_location_edit"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"></EditText>
+	</TableRow>
+
+	<LinearLayout android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:layout_below="@id/sellgoods_contact_location_edit">
+		<Button android:text="@string/confirm" android:id="@id/sellgoods_contact_sure"
+			android:textSize="16dip" android:layout_alignParentLeft="true"
+			android:layout_width="wrap_content" android:layout_height="50dp"
+			android:layout_weight="1" android:background="@drawable/detailgoods_button"></Button>
+		<Button android:text="@string/cancel" android:id="@id/sellgoods_contact_cancel"
+			android:textSize="16dip" android:layout_width="wrap_content"
+			android:layout_height="50dp" android:layout_weight="1"
+			android:layout_alignParentRight="true" android:background="@drawable/detailgoods_button"></Button>
+	</LinearLayout>
+</TableLayout>

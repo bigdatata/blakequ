@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!--main layout string write there -->
+
+	<string name="hello">Hello World, SchoolActivity!</string>
+	<string name="test_txtview">测试数据</string>
+	<string name="app_name">校园交易通</string>
+	<string name="promt_exit_app">是否要退出应用程序?</string>
+	<string name="confirm">确定</string>
+	<string name="cancel">取消</string>
+	<string name="mainpage_hot_today">今日热门</string>
+	<string name="mainpage_menu_help"> 帮助</string>
+	<string name="mainpage_menu_change_user">切换用户</string>
+	<string name="mainpage_menu_exit">退出</string>
+	<string name="mainpage_menu_help_content">这款软件是基于地理位置的一款校园交易软件，你可以在上面发布商品，即时查看商品信息，即时找到商品位置，真正做到即时方便的商品交易平台。\n创萌工作室版权所有\n作者:创萌工作室\n联系:Blakequ@gmail.com
+		\n欢迎体验</string>
+	<string name="main_goods_list_spinner_sort_price">按价格</string>
+	<string name="main_goods_list_spinner_sort_length">按距离</string>
+	<string name="main_no_new_data">没有最新数据！</string>
+	<string name="main_notifi_new_message">你有新的留言!</string>
+	<string name="main_notifi_num1">你有</string>
+	<string name="main_notifi_num2">个商品有最新留言</string>
+	<string name="login">登录</string>
+	<string name="register">注册</string>
+	<string name="account">用户名:</string>
+	<string name="password">密码:</string>
+	<string name="login_pwd_reinput">密码确认:</string>
+	<string name="login_store_pwd">保存密码</string>
+	<string name="login_auto">自动登录</string>
+	<string name="login_now">正在登录...</string>
+	<string name="register_now">正在注册...</string>
+	<string name="login_error">用户名或密码不能为空!</string>
+	<string name="login_fail_no_user">没有当前用户!</string>
+	<string name="login_fail_pwd">密码错误!</string>
+	<string name="login_fail_net_error">网络连接错误，请检查网络是否连接正确</string>
+	<string name="login_fail_out_of_time">登录超时,请检查网络连接</string>
+	<string name="register_pwd_not_same">两次输入密码不一致</string>
+	<string name="register_null_user">用户名不能为空</string>
+	<string name="register_null_pwd">密码不能为空</string>
+	<string name="register_exists_user">用户已经存在，请重新输入用户名</string>
+	<string name="register_input_email">输入用户邮箱</string>
+	<string name="register_input_pwd">输入密码</string>
+	<string name="register_input_pwd_too">再次输入密码</string>
+
+	<string name="detailgoods_tab_leave_note">留言</string>
+	<string name="detailgoods_tab_notice">关注</string>
+	<string name="detailgoods_tab_modify">修改</string>
+	<string name="detailgoods_tab_state">状态</string>
+	<string name="detailgoods_name">名称:</string>
+	<string name="detailgoods_price">价格:</string>
+	<string name="detailgoods_state">状态:</string>
+	<string name="detailgoods_pub_time">时间:</string>
+	<string name="detailgoods_distance">距离:</string>
+	<string name="detailgoods_location">位置:</string>
+	<string name="detailgoods_button_telephone">电话</string>
+	<string name="detailgoods_button_sms">短信</string>
+	<string name="detailgoods_button_leave_note">留言</string>
+	<string name="detailgoods_button_location">位置</string>
+	<string name="detailgoods_sell_now">正在出售</string>
+	<string name="detailgoods_selled">已出售</string>
+	<string name="detailgoods_no_change">只有创建用户才能修改</string>
+	<string name="detailgoods_modify_goods_state">商品状态</string>
+	<string name="detailgoods_change_state">商品状态并未改变</string>
+	<string name="detailgoods_no_phone">当前用户没有留下手机号码</string>
+	<string name="detailgoods_notice">关注成功</string>
+	<string name="detailgoods_popup_bt_back">返回</string>
+	<string name="detailgoods_popup_bt_store">保存</string>
+	<string name="detailgoods_popup_store_ok">保存成功</string>
+	<string name="detailgoods_not_modify">只有发布者才能修改</string>
+	<string name="detailgoods_upload_note_success">发表留言成功</string>
+	<string name="detailgoods_upload_note_error">发表留言失败</string>
+	<string name="detailgoods_download_fail">加载图片失败</string>
+	<string name="detailgoods_no_get_pic">正在获取图片</string>
+	<string name="detailgoods_not_location">用户未填写位置</string>
+
+	<!-- mygoods layout string write there -->
+	<string name="mygoods_shopping">购物车</string>
+	<string name="mygoods_attention">我的关注</string>
+	<string name="mygoods_goods">我的商品</string>
+	<string name="mygoods_sell">发布商品</string>
+	<string name="mygoods_not_goods">你的购物车还没有商品</string>
+	<string name="mygoods_new_data">已经是最新数据</string>
+	<string name="mygoods_no_attention">你还没有关注商品</string>
+
+	<!-- searchgoods layout string write there -->
+	<string name="searchgoods_text_hint">输入搜索的商品名称,类别</string>
+	<string name="searchgoods_hot_search_word">热门搜索:</string>
+	<string name="searchgoods_sorts">搜索分类</string>
+	<string name="searchgoods_word">搜索词</string>
+	<string name="search">搜索结果</string>
+	<string name="searchgoods_more_word">更多</string>
+	<string name="searchgoods_fresh_error">刷新失败,没有最新数据</string>
+	<string name="searchgoods_find_error">暂时还没有你所查询的数据</string>
+	<string name="searchgoods_input_error">请先输入搜索词</string>
+	<string name="searchgoods_find_now">正在查询...</string>
+	<!-- sellgoods layout string write there -->
+	<string name="sellgoods_submit_ok">提交成功!</string>
+	<string name="sellgoods_submit_cancel">提交失败!</string>
+	<string name="sellgoods_submit_complete">请填写完整!</string>
+	<string name="to_top">items</string>
+	<string name="snapshot">menu</string>
+	<string name="sellgoods_talk_face">面谈</string>
+	<string name="sellgoods_camera_send">上传照片</string>
+	<string name="sellgoods_local_ok">照片上传成功!</string>
+	<string name="sellgoods_local_fail">照片上传失败</string>
+	<string name="sellgoods_local_path">图片路径:</string>
+	<string name="sellgoods_local_url_text">上传路径:</string>
+	<string name="sellgoods_telephone_must">电话号码必须填写!</string>
+	<string name="sellgoods_all_must">请填写完整!</string>
+	<string name="sellgoods_connection">联系方式</string>
+	<string name="sellgoods_phone">联系电话</string>
+	<string name="sellgoods_qq">QQ</string>
+	<string name="sellgoods_location">你的位置</string>
+	<string name="sellgoods_camera_upload">拍照上传</string>
+	<string name="sellgoods_local_upload">本地上传</string>
+
+	<!-- map layout string write there -->
+	<string name="no_location">无法获取当前位置，请稍后再试</string>
+	<string name="location_unable">你的GPS没有开启,是否现在开启</string>
+	<string name="location_setting">设置</string>
+	<string name="map_search_goods_hint">搜索商品</string>
+	<string name="map_traffic">交通</string>
+	<string name="map_search_goods">搜索</string>
+	<string name="map_my_point">我的位置</string>
+	<string name="map_pop_view_more_details">详细信息</string>
+	<string name="map_pop_view_hide_button">隐藏</string>
+	<string name="map_sur_no_goods">你所选范围还没有商品信息</string>
+	<string name="map_get_location_now">正在定位...</string>
+	<string name="map_get_data_now">正在查找...</string>
+	<string name="map_route_fail">获取路线失败</string>
+	<string name="map_menu_navigation">导航</string>
+	<string name="map_menu_setting">设置</string>
+	<string name="map_menu_route">路线</string>
+	<string name="map_distance_select">选择显示范围</string>
+	<string name="map_selected_start_point">输入起点...</string>
+	<string name="map_selected_end_point">输入终点...</string>
+	<string name="map_set_start_point">设置起点</string>
+	<string name="map_set_end_point">设置终点</string>
+	<string name="map_set_from_map">地图上的点</string>
+	<string name="map_set_start_from_map">选取为起点</string>
+	<string name="map_set_end_from_map">选取为终点</string>
+	<string name="map_my_point_fail">设置我的位置失败</string>
+	<string name="map_transit_not_support">公交查询正在完善</string>
+	<string name="map_info_not_startPoint">没有选择起点，请重新选择</string>
+	<string name="map_info_not_endPoint">没有选择终点，请重新选择</string>
+	<string name="map_info_not_mode">没有选择出行模式</string>
+	<string name="map_search_route">正在查找路线...</string>
+	<string name="map_location_not_service">当前服务不可用</string>
+
+	<!-- leave message  layout string write there-->
+	<string name="messagegoods_reply_leave_note">留言回复</string>
+	<string name="messagegoods_input_num">可输入字数114</string>
+	<string name="messagegoods_leave_note">留言</string>
+</resources>
+
+	<!--数组资源文件都放在里面，命名规范见school.txt  -->

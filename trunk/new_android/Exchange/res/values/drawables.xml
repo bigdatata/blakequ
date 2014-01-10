@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<item type="drawable" name="transparent">#00000000</item>
+
+</resources>
+
+<!--数组资源文件都放在里面，命名规范见school.txt  -->

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+	android:shape="rectangle">
+	<!-- 设置渐变 -->
+	<gradient android:startColor="#4D4D4D" android:endColor="#3D3D3D"
+		android:angle="90" /><!--表示背景颜色渐变android:angle="90"这个是设置颜色渐变方向，从上到下啊，从左到右 -->
+	<!-- 描边，dashWidth指的是边线的宽度 dashGap 指的是每条线之间的间距 -->
+	<stroke android:dashWidth="2dp" android:dashGap="0dp"
+
+		android:width="2dp" android:color="@color/transparent"></stroke>
+	<!-- 设置圆角-->
+	<corners android:bottomRightRadius="5dp"
+		android:bottomLeftRadius="5dp" android:topLeftRadius="5dp"
+		android:topRightRadius="5dp" />
+	<padding android:left="4dp" android:top="4dp" android:right="4dp"  
+        android:bottom="4dp" />
+</shape>
+<!-- popupwindow的边框，圆角背景 -->

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exchange>
+	<goodsList totalNum="2">
+		<id>1</id>
+		<id>2</id>
+	</goodsList>
+</exchange>
+<!-- 对当前用户所有商品的最新评论，当前用户可能有几个商品，要列出有最新评论的商品id
+这里表示商品1,2有最新的留言了 -->

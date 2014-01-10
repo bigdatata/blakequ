@@ -1,0 +1,18 @@
+1.要使用title(就是最上面有返回键和另一个键的layout)直接你在所在的布局文件中添加
+下面的即可,**id必须要改成自己的
+<include 
+		android:id="@+id/neighborhood_detailTitle" 
+		layout="@layout/main_title"/>
+		
+2.对于一般的button统一用button_icon.xml作为android:background
+
+3.在dimens.xml中定义了button，textView的字体大小，统一使用里面的
+只有大小两种，大字体用于正文，小的就是下面的日期等。
+
+4.在styles.xml中定义了一般textView，button的样式，统一使用这种
+
+5.整个布局的背景可以使用main_background.png先。
+
+***
+在首次登陆的时候创建所有的数据库
+还有当前用户商品的状态：notification如果有回复等

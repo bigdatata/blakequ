@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- font size write there -->
+    <dimen name="button_small_font_size">15sp</dimen>
+    <dimen name="button_big_font_size">17sp</dimen>
+    <dimen name="tab_button_size">10dip</dimen>
+    <dimen name="title_text_font_size">25sp</dimen>
+    <dimen name="text_big_font_size">18dip</dimen>
+    <dimen name="text_small_font_size">16dip</dimen>
+    <dimen name="small_font_size">13sp</dimen>
+    
+    <!-- module weight or height write there -->
+    <dimen name="button_height">45.0dip</dimen>
+    
+    <!-- module padding length write there  -->
+    <dimen name="bottom_tab_padding_up">5.0dip</dimen>
+    <dimen name="widget_write_margin_top">19.0dip</dimen>
+    
+</resources>
+
+<!--数组资源文件都放在里面，命名规范见school.txt  -->

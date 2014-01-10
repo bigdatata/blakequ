@@ -1,0 +1,35 @@
+在做工程的时候命名规范如下：
+1.在ids.xml(id命名),arrays.xml命名，drawables.xml命名，strings.xml命名，styles.xml命名
+还有自己放在drawables的图片文件也必须改名字，遵照下面的命名规则,图片全部放在drawable-mdpi
+其他文件夹不放
+都必须按照下面的命名规则
+
+2.常用的colors.xml中的颜色我会写好，大家用颜色都必须在这里面引用（xml布局，在Activity中也可以应用）
+还有我还会定义常用的控件title.xml是标题的模板，已经常用属性：文本颜色，大小，按钮的大小，按钮的风格等
+到时候做好了，我会在里面详细说明
+
+3.在写Activity方法的时候你们需要继承我写的BaseActivity(已经继承Activity，不用自己继承Activity)
+ListActivity我写好了再说，不明白的问我就ok。
+
+4.关于类，方法，域(方法变量的命名),常量：单词之间不用下划线（***）
+类，每个单词首字母必须大写（如TestActivity.class）
+	每个类必须写上注释（输入"/"+"*"+"enter"会自动出现，作者用自己名字的拼音）
+方法，首字母小写，后面的单词首字母大写(如initView())
+域，首字母小写，后面的单词首字母大写（如String myTitle;）
+常量，必须全部大写，字母之间用下划线分割（如final static int USE_MYFONE = 1;）
+
+
+
+命名规范（单词之间用下划线***）
+1.登陆界面：login_*
+2.首页：mainpage_*
+3.发布商品：sellgoods_*
+4.查找商品：searchgoods_*
+5.热门商品：hotgoods_*
+6.我的商品：mygoods_*
+7.地图：map_*
+8.商品修改：modifygoods_*
+9.留言及评论：messagegoods_*
+
+例如对于留言的button：id = messagegoods_button string = messagegoods_name 
+他的布局文件命名为messagegoods_leave_message.xml等

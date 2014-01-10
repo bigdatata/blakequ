@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!--main ui id write there -->
+
+	<item type="id" name="main_title_left"/>
+	<item type="id" name="main_title_right"/>
+	<item type="id" name="main_title_text"/>
+	<item type="id" name="main_listitem_name"/>
+	<item type="id" name="main_listitem_content"/>
+	<item type="id" name="main_listitem_price"/>
+	<item type="id" name="main_listitem_length"/>
+	<item type="id" name="main_listitem_comment_num"/>
+	<item type="id" name="main_listitem_location"/>
+	<item type="id" name="main_goods_list_title"/>
+	<item type="id" name="main_goods_list_listview"/>
+	<item type="id" name="myattentiongoods_list_listview"/>
+	<item type="id" name="main_goods_list_spinner_sort_price"/>
+	<item type="id" name="main_goods_list_spinner_sort_distance"/>
+	<item type="id" name="mainpage_list"/>
+	<item type="id" name="mainpage_gridview"/>
+	<item type="id" name="mainpage_gridview_image"/>
+	<item type="id" name="mainpage_gridview_title"/>
+	<item type="id" name="mainpage_listview_time"/>
+	<item type="id" name="mainpage_listview_title"/>
+	<item type="id" name="mainpage_popup_text"/>
+	<item type="id" name="login_edit_account"/>
+	<item type="id" name="login_edit_passwd"/>
+	<item type="id" name="login_button"/>
+	<item type="id" name="login_register_button"/>
+	<item type="id" name="login_remember_pwd_checkbox"/>
+	<item type="id" name="login_autologin_checkbox"/>
+	<item type="id" name="register_edit_account"/>
+	<item type="id" name="register_edit_passwd"/>
+	<item type="id" name="register_edit_passwd_ensure"/>
+	<item type="id" name="register_ok_button"/>
+	<item type="id" name="register_cancle_button"/>
+	
+	
+	
+	<item type="id" name="detailgoods_title"/>
+	<item type="id" name="detailgoods_tab_leave_note"/>
+	<item type="id" name="detailgoods_tab_notice"/>
+	<item type="id" name="detailgoods_tab_state"/>
+	<item type="id" name="detailgoods_tab_modify"/>
+	<item type="id" name="detailgoods_icon"/>
+	<item type="id" name="detailgoods_name"/>
+	<item type="id" name="detailgoods_price"/>
+	<item type="id" name="detailgoods_state"/>
+	<item type="id" name="detailgoods_pub_time"/>
+	<item type="id" name="detailgoods_distance"/>
+	<item type="id" name="detailgoods_location"/>
+	<item type="id" name="detailgoods_button_phone"/>
+	<item type="id" name="detailgoods_button_sms"/>
+	<item type="id" name="detailgoods_button_leave_note"/>
+	<item type="id" name="detailgoods_button_location"/>
+	<item type="id" name="detailgoods_content"/>
+	<item type="id" name="detailgoods_image"/>
+
+	<!-- hotgoods ui id write there -->
+	<item type="id" name="hotgoods_list_title" />
+	<item type="id" name="hotgoods_list_listview" />
+
+	<item type="id" name="detailgoods_pic_button"/>
+	<item type="id" name="detailgoods_pic"/>
+	<item type="id" name="detailgoods_popup_title_button"/>
+	
+
+	<!-- mygoods ui id write there -->
+	<item type="id" name="mygoods_maintab_title" />
+	<item type="id" name="mygoods_maintab_bottom" />
+	<item type="id" name="mygoods_maintab_radio" />
+	<item type="id" name="mygoods_radio_button0" />
+	<item type="id" name="mygoods_radio_button1" />
+	<item type="id" name="mygoods_radio_button2" />
+	<item type="id" name="mygoods_list_listview" />
+
+	<!-- searchgoods ui id write there -->
+	<item type="id" name="searchgoods_search_textview" />
+	<item type="id" name="searchgoods_search_button" />
+	<item type="id" name="searchgoods_hot_word1" />
+	<item type="id" name="searchgoods_hot_word2" />
+	<item type="id" name="searchgoods_word_more" />
+	<item type="id" name="searchgoods_listview" />
+	<item type="id" name="searchgoods_listview_image" />
+	<item type="id" name="searchgoods_listview_text" />
+
+	<!-- sellgoods ui id write there -->
+	<item type="id" name="sellgoods_name"></item>
+	<item type="id" name="sellgoods_catagory_text"></item>
+	<item type="id" name="sellgoods_catagory_spinner"></item>
+	<item type="id" name="sellgoods_state_text"></item>
+	<item type="id" name="sellgoods_state_spinner"></item>
+	<item type="id" name="sellgoods_price_edit"></item>
+	<item type="id" name="sellgoods_price_isDiscussing"></item>
+	<item type="id" name="sellgoods_price_checkbox"></item>
+	<item type="id" name="sellgoods_picture"></item>
+	<item type="id" name="sellgoods_getgps"></item>
+	<item type="id" name="sellgoods_address"></item>
+	<item type="id" name="sellgoods_descript_text"></item>
+	<item type="id" name="sellgoods_descript_edit"></item>
+	<item type="id" name="sellgoods_sendpicture"></item>
+	<item type="id" name="sellgoods_sendpicture_camera"></item>
+	<item type="id" name="sellgoods_sendpicture_local"></item>
+	<item type="id" name="sellgoods_sendpicture_cancel"></item>
+	<item type="id" name="sellgoods_gps"></item>
+	<item type="id" name="sellgoods_gps_longitude_text"></item>
+	<item type="id" name="sellgoods_gps_longitude_edit"></item>
+	<item type="id" name="sellgoods_gps_latitude_text"></item>
+	<item type="id" name="sellgoods_gps_latitude_edit"></item>
+	<item type="id" name="sellgoods_gps_sure"></item>
+	<item type="id" name="sellgoods_gps_cancel"></item>
+	<item type="id" name="sellgoods_contact"></item>
+	<item type="id" name="sellgoods_contact_phone_text"></item>
+	<item type="id" name="sellgoods_contact_phone_edit"></item>
+	<item type="id" name="sellgoods_contact_qq_text"></item>
+	<item type="id" name="sellgoods_contact_qq_edit"></item>
+	<item type="id" name="sellgoods_contact_location_text"></item>
+	<item type="id" name="sellgoods_contact_location_edit"></item>
+	<item type="id" name="sellgoods_contact_sure"></item>
+	<item type="id" name="sellgoods_contact_cancel"></item>
+	<item type="id" name="sellgoods_local_upload"></item>
+	<item type="id" name="sellgoods_local_upload_button"></item>
+	<item type="id" name="sellgoods_local_url"></item>
+	<item type="id" name="sellgoods_local_url_edit"></item>
+	<item type="id" name="sellgoods_local_button"></item>
+	<item type="id" name="sellgoods_camera_button"></item>
+	<item type="id" name="sellgoods_imageview"/>
+
+
+	<!-- map id write there -->
+	<item type="id" name="map_location_view"></item>
+	<item type="id" name="map_search_good_edit_text"></item>
+	<item type="id" name="map_search_button"></item>
+	<item type="id" name="map_traffic_button"></item>
+	<item type="id" name="map_search_good_button"></item>
+	<item type="id" name="map_my_point_button"></item>
+	<item type="id" name="map_pop_view_text_view"></item>
+	<item type="id" name="map_pop_view_more_details_button"></item>
+	<item type="id" name="map_show_my_location_button"></item>
+	<item type="id" name="map_show_route_button"/>
+	<item type="id" name="map_pop_view_hide_button"></item>
+	<item type="id" name="map_start_point_et"/>
+	<item type="id" name="map_end_point_et"/>
+	<item type="id" name="map_start_point_bt"/>
+	<item type="id" name="map_end_point_bt"/>
+	<item type="id" name="map_search_bt"/>
+	<item type="id" name="map_mode_driving_bt"/>
+	<item type="id" name="map_mode_transit_bt"/>
+	<item type="id" name="map_mode_walk_bt"/>
+	
+	<!-- leave message ui id write there-->
+	<item type="id" name="messagegoods_input_num" />
+	<item type="id" name="messagegoods_input_edit" />
+	<item type="id" name="messagegoods_input_confirm" />
+	<item type="id" name="messagegoods_input_cancel" />
+	<item type="id" name="messagegoods_listitem_user" />
+	<item type="id" name="messagegoods_listitem_time" />
+	<item type="id" name="messagegoods_listitem_content" />
+	<item type="id" name="messagegoods_title" />
+	<item type="id" name="messagegoods_listview" />
+</resources>
+
+	<!--数组资源文件都放在里面，命名规范见school.txt  -->

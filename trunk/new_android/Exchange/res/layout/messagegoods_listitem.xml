@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+  <LinearLayout 
+  	android:layout_width="fill_parent"
+  	android:layout_height="wrap_content"
+  	android:orientation="horizontal"
+  	android:layout_marginBottom="2dip">
+  	<TextView
+  		android:id="@id/messagegoods_listitem_user" 
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:layout_marginLeft="3dip"
+  		android:text="显示用户"
+  		style="@style/textview_not_main_style"
+  	/>
+  	<TextView 
+  		android:id="@id/messagegoods_listitem_time" 
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:layout_marginLeft="20dip"
+  		android:text="显示时间"
+  		style="@style/textview_not_main_style"
+  	/>
+  	</LinearLayout>
+  	<TextView 
+  		android:id="@id/messagegoods_listitem_content" 
+  		android:layout_width="fill_parent"
+  		android:layout_height="wrap_content"
+  		android:layout_marginLeft="3dip"
+  		android:layout_marginRight="2dip"
+  		android:text="显示留言内容"
+  		style="@style/textview_normal_style"
+  	/>
+</LinearLayout>

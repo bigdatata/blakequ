@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical">
+	<TextView android:id="@id/main_listitem_name"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:text="显示商品名称" style="@style/textview_normal_style" />
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:layout_marginLeft="2dip"
+		android:layout_marginRight="2dip" android:background="@drawable/main_popup"
+		android:orientation="vertical">
+		<TextView android:id="@id/main_listitem_content"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_marginLeft="2dip" android:layout_marginRight="2dip"
+			android:text="显示商品简介" style="@style/textview_normal_style" 
+			android:focusable="true" android:clickable="true" android:background="@drawable/main_goods_listitem_textview_background"/>
+		<RelativeLayout android:layout_below="@id/main_listitem_content"
+			android:layout_width="fill_parent" android:padding="5dip"
+			android:layout_height="wrap_content">
+			<LinearLayout android:id="@+id/lay1"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true" android:orientation="horizontal">
+				<ImageView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:padding="3dip"
+					android:src="@drawable/price_icon">
+				</ImageView>
+				<TextView android:id="@id/main_listitem_price"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:text="10圆" style="@style/textview_not_main_style" />
+			</LinearLayout>
+			<LinearLayout android:id="@+id/lay2"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_toRightOf="@+id/lay1" android:paddingLeft="66dip"
+				android:orientation="horizontal">
+				<ImageView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:padding="3dip"
+					android:src="@drawable/location_icon">
+				</ImageView>
+				<TextView android:id="@id/main_listitem_length"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:text="50m" style="@style/textview_not_main_style">
+				</TextView>
+			</LinearLayout>
+			<LinearLayout android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true" android:orientation="horizontal">
+				<ImageView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:padding="3dip"
+					android:src="@drawable/comment_icon">
+				</ImageView>
+				<TextView android:id="@id/main_listitem_comment_num"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:text="20" style="@style/textview_not_main_style" />
+			</LinearLayout>
+		</RelativeLayout>
+	</LinearLayout>
+</LinearLayout>
