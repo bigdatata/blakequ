@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="cm.exchange" android:versionCode="1" android:versionName="1.0">
+	<uses-sdk android:minSdkVersion="4" android:targetSdkVersion="4"/>
+
+	<application android:icon="@drawable/exchange"
+		android:label="@string/app_name" android:theme="@style/notitle"
+		android:name="cm.exchange.ui.ExchangeApplication">
+		<!--用于引入测试库-->
+		<uses-library android:name="android.test.runner" />
+		<uses-library android:name="com.google.android.maps" />
+		<!--main ui activity write there -->
+		<activity android:name="cm.exchange.ui.LogoActivity"
+			android:label="@string/app_name"
+			android:windowSoftInputMode="adjustResize">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		<activity android:name="cm.exchange.ui.LoginActivity"></activity>
+		<activity android:name="cm.exchange.ExchangeActivity" />
+		<activity android:name="cm.exchange.ui.MainPageActivity" />
+		<activity android:name="cm.exchange.ui.LeaveNoteActivity"
+				  android:windowSoftInputMode="adjustResize"/>
+		<activity android:name="cm.exchange.ui.DetailGoodsActivity" />
+		<activity android:name="cm.exchange.ui.ShowGoodsListActivity" />
+		<activity android:name="cm.exchange.ui.RegisterActivity" 
+				  android:windowSoftInputMode="adjustResize"/>
+
+		<!-- mygoods ui activity write there -->
+		<activity android:name="cm.exchange.ui.mygoods.MyGoodsMainActivity" />
+		<activity android:name="cm.exchange.ui.mygoods.MyGoodsShopping" />
+		<activity android:name="cm.exchange.ui.mygoods.MyGoodsAttention" />
+		<activity android:name="cm.exchange.ui.mygoods.MyGoodsActivity" />
+		<!-- searchgoods ui activity write there -->
+		<activity android:name="cm.exchange.ui.searchgoods.SearchGoods" />
+		<!-- sellgoods ui activity write there -->
+		<activity android:name="cm.exchange.ui.sellgoods.SellGoods"
+			android:windowSoftInputMode="adjustResize"></activity>
+		<activity android:name="cm.exchange.ui.sellgoods.SellGoods_Local"
+			android:windowSoftInputMode="adjustResize"></activity>
+		<activity android:name="cm.exchange.ui.sellgoods.SellGoods_Camera"
+			android:windowSoftInputMode="adjustResize"></activity>
+		<!-- map write there -->
+		<activity android:name="cm.exchange.ui.map.MapLocationActivity" />
+
+		<!-- service write there -->
+		<service android:name="cm.exchange.util.BaseService">
+			<intent-filter>
+				<action android:name="cm.exchange.util.BaseService" />
+			</intent-filter>
+		</service>
+	</application>
+	<!-- all permission -->
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.CAMERA" />
+	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.RESTART_PACKAGES" />
+	<uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
+	<uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
+
+	<instrumentation android:name="android.test.InstrumentationTestRunner"
+		android:targetPackage="cm.exchange" android:label="Test" />
+</manifest>

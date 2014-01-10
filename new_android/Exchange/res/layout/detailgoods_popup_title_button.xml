@@ -1,0 +1,20 @@
+<FrameLayout android:id="@+id/FrameLayout02"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<Button android:id="@+id/detailgoods_popup_title_bt_left" 
+		android:layout_gravity="center_vertical"
+ 		android:background="@drawable/button_icon"
+ 		android:text="@string/detailgoods_popup_bt_back"
+		android:layout_height="36dip" 
+		android:layout_width="wrap_content" 
+		android:layout_marginLeft="4dip">
+	</Button>
+	<Button android:id="@+id/detailgoods_popup_title_bt_right" 
+		android:background="@drawable/button_icon"
+		android:text="@string/detailgoods_popup_bt_store"
+		android:layout_gravity="right" 
+		android:layout_height="36dip" 
+		android:layout_width="wrap_content"
+		android:layout_marginRight="4dip">
+	</Button>
+</FrameLayout>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exchange>
+	<goodsList totalNum="5">
+	<goods>
+		<createUser>1</createUser>
+		<id>1</id>
+		<name>iphone4出售</name>
+		<createTime>2011-05-31 11:12:16</createTime>
+		<saleTime>2012-06-01 11:12:16</saleTime>
+		<isHavePic>true</isHavePic>
+		<pictureAddress>http://192.168.1.111:8080/pic/6.jpg</pictureAddress>
+		<goodsState>0</goodsState>
+		<catagory>2</catagory>
+		<price>20</price>
+		<detail>刚刚买了不到一年，一切如新，如果有需要call me，记得联系</detail>
+		<isDiscussing>true</isDiscussing>
+		<longitude>103.9251794</longitude>
+		<latitude>30.75786796</latitude>
+		<commentNum>21</commentNum>
+	</goods>
+	<goods>
+		<id>2</id>
+		<createUser>2</createUser>
+		<name>轮滑出售</name>
+		<createTime>2011-06-31 11:12:16</createTime>
+		<saleTime>2012-07-30 11:12:16</saleTime>
+		<isHavePic>true</isHavePic>
+		<pictureAddress>http://192.168.1.111:8080/pic/2.jpg</pictureAddress>
+		<goodsState>1</goodsState>
+		<catagory>4</catagory>
+		<price>356</price>
+		<detail>全新的轮滑出售，由于本人腿不幸摔伤，用不了了，放了许久，今日出售，希望有志者赶快了买</detail>
+		<isDiscussing>false</isDiscussing>
+		<longitude>103.9211794</longitude>
+		<latitude>30.75784796</latitude>
+		<commentNum>222</commentNum>
+	</goods>
+	<goods>
+		<id>3</id>
+		<createUser>1</createUser>
+		<name>衣服</name>
+		<createTime>2010-05-18 11:12:16</createTime>
+		<saleTime>2012-05-19 11:12:16</saleTime>
+		<isHavePic>false</isHavePic>
+		<goodsState>1</goodsState>
+		<catagory>4</catagory>
+		<price>34</price>
+		<detail>最新时尚衬衫现已经到货，欢迎光临本店，有惊喜相送哦</detail>
+		<isDiscussing>false</isDiscussing>
+		<longitude>103.91617940</longitude>
+		<latitude>30.7573679</latitude>
+		<commentNum>22</commentNum>
+	</goods>
+	<goods>
+		<id>6</id>
+		<createUser>3</createUser>
+		<name>高等代数</name>
+		<createTime>2010-03-31 11:12:16</createTime>
+		<saleTime>2012-04-03 11:12:16</saleTime>
+		<isHavePic>true</isHavePic>
+		<pictureAddress>http://192.168.1.111:8080/pic/3.jpg</pictureAddress>
+		<goodsState>1</goodsState>
+		<catagory>5</catagory>
+		<price>30</price>
+		<detail>本人即将毕业，先甩卖以前书籍，高等代数，有弟弟妹妹们赶快来卖哦</detail>
+		<isDiscussing>false</isDiscussing>
+		<longitude>103.92817940</longitude>
+		<latitude>30.7573679</latitude>
+		<commentNum>92</commentNum>
+	</goods>
+	<goods>
+		<id>7</id>
+		<createUser>2</createUser>
+		<name>山地车出售</name>
+		<createTime>2010-09-01 11:12:16</createTime>
+		<saleTime>2012-05-02 11:12:16</saleTime>
+		<isHavePic>true</isHavePic>
+		<pictureAddress>http://192.168.1.111:8080/pic/5.jpg</pictureAddress>
+		<goodsState>1</goodsState>
+		<catagory>7</catagory>
+		<price>88</price>
+		<detail>那位驴友热爱出游的，免不了在山地车来狂奔了，赶快了，我这辆八成新，先看货在买</detail>
+		<isDiscussing>false</isDiscussing>
+		<longitude>103.92117940</longitude>
+		<latitude>30.75713796</latitude>
+		<commentNum>72</commentNum>
+	</goods>
+	</goodsList>
+</exchange>
+<!-- <goodsList totalNum="2">中的标签，默认一页传10条数据，如果少于10条，标签就是totalNum
+	否则标签就是totalPages，显示一共有几页
+ -->

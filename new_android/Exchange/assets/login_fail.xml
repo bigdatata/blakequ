@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exchange>
+	<login>
+		<error>-2</error>
+	</login>
+</exchange>
+<!-- 如果失败则返回失败信息
+-1.没有当前用户，即用户名错误
+-2.有当前用户，但密码错误
+ -->

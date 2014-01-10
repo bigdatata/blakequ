@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--written by muhuan -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
+	<ScrollView android:layout_height="fill_parent"
+		android:fillViewport="true" android:layout_width="fill_parent"
+		android:layout_weight="1"  android:padding="5dp">
+		<RelativeLayout android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:background="@drawable/login_background"
+			android:paddingTop="200dip" android:paddingLeft="10dip">
+			<TextView android:id="@+id/login_view_account" android:text="@string/account"
+				android:layout_width="70dip" android:layout_height="30dip"
+				android:layout_marginLeft="15dp" 
+				android:layout_marginBottom="20dip" android:layout_alignParentTop="true"
+				android:textColor="@color/black"
+				android:textSize="8pt" />
+				
+			<EditText android:id="@id/login_edit_account"   
+			    android:background="@drawable/login_edittext"
+				android:layout_width="200dip" android:layout_height="40dip"
+				android:text="" android:layout_toRightOf="@id/login_view_account"
+				android:layout_alignTop="@id/login_view_account" />
+				
+			<TextView android:id="@+id/login_view_passwd" android:text="@string/password"
+				android:layout_width="70dip" android:layout_height="30dip"
+				android:textColor="@color/black"
+				android:layout_marginLeft="15dp" 
+				android:layout_below="@id/login_view_account" android:textSize="8pt" />
+				
+			<EditText android:background="@drawable/login_edittext"
+			    android:id="@id/login_edit_passwd"
+				android:layout_width="200dip" android:layout_height="40dip"
+				android:password="true" android:layout_toRightOf="@id/login_view_passwd"
+				android:layout_alignTop="@id/login_view_passwd" />
+			<Button android:id="@id/login_button" android:text="@string/login"
+				android:layout_marginTop="20dip" android:layout_width="wrap_content"
+				android:background="@drawable/main_title_button"
+				android:layout_height="wrap_content" android:layout_below="@id/login_view_passwd"
+				android:textSize="7pt"  
+				android:layout_marginLeft="70dip"/>
+				
+			<Button android:id="@id/login_register_button" android:text="@string/register"
+				android:background="@drawable/main_title_button"
+				android:layout_alignTop="@id/login_button" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:layout_below="@id/login_edit_passwd"
+				android:layout_toRightOf="@id/login_button"
+				android:layout_marginLeft="40dip" android:textSize="7pt" />
+			
+			<CheckBox android:id="@id/login_remember_pwd_checkbox" android:text="@string/login_store_pwd"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_below="@id/login_register_button"
+				android:layout_alignLeft="@id/login_button"
+				android:button="@drawable/login_checkbox"
+				android:layout_marginTop="15dip"/>
+			<CheckBox android:id="@id/login_autologin_checkbox" android:text="@string/login_auto"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_toRightOf="@id/login_remember_pwd_checkbox"
+				android:layout_alignTop="@id/login_remember_pwd_checkbox"  
+				android:button="@drawable/login_checkbox"
+				android:layout_marginLeft="10dip"/>
+		</RelativeLayout>
+	</ScrollView>
+</LinearLayout>

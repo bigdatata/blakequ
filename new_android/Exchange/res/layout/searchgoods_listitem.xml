@@ -1,0 +1,21 @@
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="horizontal"
+  android:layout_width="match_parent"
+  android:layout_height="75dip">
+  <ImageView
+  	android:id="@id/searchgoods_listview_image"
+  	android:layout_width="wrap_content"
+  	android:layout_height="wrap_content"
+  	android:layout_margin="2dip"
+  	android:layout_gravity="center"/>
+  <TextView
+  	android:id="@id/searchgoods_listview_text"
+  	android:layout_width="fill_parent"
+  	android:layout_height="wrap_content"
+  	android:textSize="25dip"
+  	android:layout_marginLeft="8dip"
+  	android:text="牛逼"
+  	android:textColor="@color/black"
+  	android:layout_gravity="center"/>
+ </LinearLayout>

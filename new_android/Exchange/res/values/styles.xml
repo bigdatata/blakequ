@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="notitle" parent="android:Theme">
+		<item name="android:windowNoTitle">true</item>
+	</style>
+	<style name="title_text_style"><!-- 标题栏文字风格 -->
+		<item name="android:textSize">@dimen/title_text_font_size</item>
+		<item name="android:textColor">@color/black_gray</item>
+	</style>
+	<style name="confirm_button_style">
+		<item name="android:singleLine">true</item>
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:background">@drawable/button_icon</item>
+		<item name="android:gravity">center</item>
+		<item name="android:textColor">@color/black</item>
+		<item name="android:textSize">@dimen/button_small_font_size</item>
+		<item name="android:layout_weight">1.0</item>
+		<item name="android:layout_marginTop">3dp</item>
+		<item name="android:layout_marginBottom">2dp</item>
+		<item name="android:padding">2dp</item>
+	</style>
+	<style name="textview_normal_style">
+		<item name="android:textSize">@dimen/text_big_font_size</item>
+		<item name="android:textColor">@color/black</item>
+	</style>
+	<style name="textview_not_main_style">
+		<item name="android:textSize">@dimen/text_small_font_size</item>
+		<item name="android:textColor">@color/brown</item>
+	</style>
+	<style name="PopupAnimation" parent="android:Animation">
+		<item name="android:windowEnterAnimation">@anim/popup_enter</item>
+		<item name="android:windowExitAnimation">@anim/popup_exit</item>
+	</style>
+	<style name="map_popupAnimation" parent="android:Animation">
+		<item name="android:windowEnterAnimation">@anim/map_popup_enter</item>
+		<item name="android:windowExitAnimation">@anim/map_popup_exit</item>
+	</style>
+	<style name="detailgoods_tab_button">
+		<item name="android:textSize">@dimen/tab_button_size</item>
+		<item name="android:textColor">@color/black</item>
+		<item name="android:ellipsize">marquee</item>
+		<item name="android:gravity">center_horizontal</item>
+		<item name="android:background">@drawable/detailgoods_btn_bg</item>
+		<item name="android:paddingTop">8.0dip</item>
+		<item name="android:paddingBottom">5.0dip</item>
+		<item name="android:focusable">true</item>
+		<item name="android:clickable">true</item>
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:singleLine">true</item>
+		<item name="android:layout_weight">1.0</item>
+	</style>
+	<style name="main_tab_bottom">
+		<item name="android:textSize">10sp</item>
+		<item name="android:textColor">@color/black</item>
+		<item name="android:ellipsize">marquee</item>
+		<item name="android:gravity">center_horizontal</item>
+		<item name="android:background">@drawable/mygoods_maintab_btn_bg</item>
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:button">@null</item>
+		<item name="android:singleLine">true</item>
+		<item name="android:layout_weight">1.0</item>
+		<item name="android:layout_marginTop">3dp</item>
+		<item name="android:layout_marginBottom">2dp</item>
+		<item name="android:padding">2dp</item>
+	</style>
+</resources>
+
+<!--数组资源文件都放在里面，命名规范见school.txt  -->

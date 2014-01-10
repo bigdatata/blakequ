@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exchange>
+	<register>
+		<info>1</info>
+	</register>
+</exchange>
+<!-- 
+(>=0).注册成功，并返回当前用户id(id>=0)
+-1.注册失败，用户名已经存在 -->

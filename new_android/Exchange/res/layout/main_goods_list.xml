@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:background="@drawable/main_goods_list_background">
+  <include 
+	android:id="@id/main_goods_list_title" 
+	layout="@layout/main_title"/>
+  <LinearLayout
+  	android:layout_width="fill_parent"
+  	android:layout_height="wrap_content"
+  	android:orientation="horizontal">
+  	<Spinner
+  		android:id="@id/main_goods_list_spinner_sort_price"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:layout_weight="1"
+  		android:prompt="@string/main_goods_list_spinner_sort_price"
+  		android:background="@drawable/main_goods_list_dropdown"/>
+  	<Spinner
+  		android:id="@id/main_goods_list_spinner_sort_distance"
+  		android:layout_width="wrap_content"
+  		android:layout_height="wrap_content"
+  		android:layout_weight="1"
+  		android:prompt="@string/main_goods_list_spinner_sort_length"
+  		android:background="@drawable/main_goods_list_dropdown"/>
+  </LinearLayout>
+  <View
+			android:background="@drawable/bar_highlight"
+			android:layout_width="fill_parent"
+			android:layout_height="1dip"/>
+  <ListView 
+  	android:id="@id/main_goods_list_listview"
+  	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:scrollbars="vertical" android:scrollbarStyle="outsideOverlay"
+	android:divider="@drawable/bar_highlight" android:cacheColorHint="@color/transparent" 
+  />
+</LinearLayout>

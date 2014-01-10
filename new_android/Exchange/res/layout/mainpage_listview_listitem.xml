@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="horizontal"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  android:layout_marginLeft="2dip">
+  <TextView 
+  	android:id="@id/mainpage_listview_time"
+  	android:layout_width="wrap_content"
+  	android:layout_height="wrap_content"
+  	android:layout_margin="2dip"
+  	style="@style/textview_not_main_style"
+  />
+  <TextView 
+  	android:id="@id/mainpage_listview_title"
+  	android:layout_marginLeft="3dip"
+  	android:layout_marginBottom="2dip"
+  	android:layout_marginTop="2dip"
+  	android:layout_width="fill_parent"
+  	android:layout_height="wrap_content"
+  	android:ellipsize="marquee"
+    android:marqueeRepeatLimit="marquee_forever" 
+    android:focusableInTouchMode="true" 
+    android:scrollHorizontally="true"
+  	style="@style/textview_normal_style"
+  />
+    
+</LinearLayout>

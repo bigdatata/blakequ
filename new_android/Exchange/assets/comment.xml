@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exchange>
+	<commentList totalNum="2">
+		<comment>
+			<id>1</id>
+			<username>李云</username>
+			<time>2011-05-31 11:12:16</time>
+			<content>楼主爽快啊，商品不错，以后希望继续合作，呵呵</content>
+		</comment>
+		<comment>
+			<id>2</id>
+			<username>张三</username>
+			<time>2011-05-31 12:12:16</time>
+			<content>此商品来自五湖四海，欢迎选购，以后希望继续合作，呵呵</content>
+		</comment>
+	</commentList>
+</exchange>

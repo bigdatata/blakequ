@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent" android:layout_height="match_parent"
+	android:orientation="vertical" android:background="@drawable/search_background">
+	<LinearLayout android:gravity="center" android:background="@drawable/searchgoods_background"
+		android:paddingLeft="5.0dip" android:paddingRight="5.0dip"
+		android:orientation="horizontal" android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+		<AutoCompleteTextView android:id="@id/searchgoods_search_textview"
+			android:background="@drawable/searchgoods_edittext_bg"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:singleLine="true" android:completionThreshold="1"
+			android:hint="@string/searchgoods_text_hint" android:layout_weight="1.0" />
+		<Button android:id="@id/searchgoods_search_button" android:background="@drawable/searchgoods_button_bg"
+			android:layout_width="wrap_content" android:layout_height="wrap_content" />
+	</LinearLayout>
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:orientation="horizontal"
+		android:layout_marginTop="1dip" android:layout_marginBottom="2dip"
+		android:paddingLeft="3.0dip" android:paddingRight="3.0dip">
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="@string/searchgoods_hot_search_word"
+			android:layout_margin="3dip" android:textSize="17dip"
+			android:layout_weight="1" android:textColor="@color/black" />
+		<TextView android:id="@id/searchgoods_hot_word1" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="@string/searchgoods_word"
+			android:layout_margin="3dip" android:layout_weight="1"
+			android:textSize="17dip" android:background="@drawable/searchgoods_link"
+			android:textColor="@color/black" />
+		<TextView android:id="@id/searchgoods_hot_word2" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="@string/searchgoods_word"
+			android:layout_margin="3dip" android:textSize="17dip"
+			android:background="@drawable/searchgoods_link" android:layout_weight="1"
+			android:textColor="@color/black" />
+		<TextView android:id="@id/searchgoods_word_more" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="@string/searchgoods_word"
+			android:layout_margin="3dip" android:textSize="17dip"
+			android:background="@drawable/searchgoods_link" android:layout_weight="1"
+			android:textColor="@color/black" />
+	</LinearLayout>
+	<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="@string/searchgoods_sorts"
+		android:textSize="@dimen/text_big_font_size" android:textColor="@color/black"
+		android:layout_marginTop="3dip" android:background="@drawable/mainpage_title_bar" />
+	<ListView android:id="@id/searchgoods_listview"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:scrollbars="vertical" android:scrollbarStyle="outsideOverlay"
+		android:divider="@drawable/bar_highlight" android:cacheColorHint="@color/transparent" />
+</LinearLayout>

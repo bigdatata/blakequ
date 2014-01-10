@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/mainpage_layout"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@drawable/main_background">
+  <TextView
+  	android:id="@+id/mainpage_textview"
+  	android:layout_width="fill_parent"
+  	android:layout_height="wrap_content"
+  	android:text="@string/mainpage_hot_today"	
+  	android:layout_gravity="center"
+  	android:background="@drawable/mainpage_title_bar"
+  	style="@style/textview_normal_style"/>
+  <ListView 
+  	android:id="@id/mainpage_list"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:layout_marginLeft="4dip"
+	android:layout_marginRight="4dip"
+	android:layout_below="@id/mainpage_textview"
+	android:scrollbars="vertical"
+	android:scrollbarStyle="outsideOverlay"
+	android:divider="@drawable/bar_highlight"
+	android:cacheColorHint="@color/transparent"/>
+  <GridView android:id="@id/mainpage_gridview" android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_marginBottom="20dip"
+		android:paddingLeft="15dip" android:paddingRight="15dip"
+		android:verticalSpacing="10dp" android:horizontalSpacing="15dip"
+		android:numColumns="2" android:columnWidth="80dp"
+		android:stretchMode="columnWidth" android:gravity="center" />
+</RelativeLayout>
